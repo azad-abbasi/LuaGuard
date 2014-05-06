@@ -39,14 +39,25 @@ public class ASTwalker {
             currentToken = st.nextToken();
             if(currentToken.equals("(")){
                 myNodeStack.push(currentToken);
-                treeRoot.setName(st.nextToken());
+                currentToken = st.nextToken();
+                //if we kknow the next token is not a string we can continue
+                if(!currentToken.equals("'")) {
+                    treeRoot.setName(st.nextToken());
+                }
+                //else, we have to concatenate the token to make it a string
+                else{
+                    //code to be written
+                }
            }
+
+
+
         }
     }
 
-    public static void treeConstructor(Node root){
+    public static Node treeConstructor(Node root){
         if (myNodeStack.isEmpty()){
-            return;
+            return null;
         }
         String currentToken = st.nextToken();
         if(currentToken.equals(")")||currentToken.equals("(")){
@@ -55,6 +66,7 @@ public class ASTwalker {
                 root.addChild(new Node());
             }
         }
+        return null;
     }
 
     // this function returns true if the node is
