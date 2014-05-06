@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 grammars/Lua.g 2014-05-06 11:25:02
+// $ANTLR 3.5.2 grammars/Lua.g 2014-05-06 12:40:25
 
 package parser;
 
@@ -202,8 +202,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "parse"
 	// grammars/Lua.g:194:1: parse : chunk EOF -> chunk ;
-	public final parse_return parse() throws RecognitionException {
-		parse_return retval = new parse_return();
+	public final LuaParser.parse_return parse() throws RecognitionException {
+		LuaParser.parse_return retval = new LuaParser.parse_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -279,8 +279,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "chunk"
 	// grammars/Lua.g:198:1: chunk : ( stat )* ( ret_stat )? -> ^( CHUNK ( stat )* ( ret_stat )? ) ;
-	public final chunk_return chunk() throws RecognitionException {
-		chunk_return retval = new chunk_return();
+	public final LuaParser.chunk_return chunk() throws RecognitionException {
+		LuaParser.chunk_return retval = new LuaParser.chunk_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -411,8 +411,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "stat"
 	// grammars/Lua.g:202:1: stat : ( ( assignment )=> assignment | var[false] | do_block | while_stat | repeat_stat | local | goto_stat | if_stat | for_stat | function | label | Break | ';' ->);
-	public final stat_return stat() throws RecognitionException {
-		stat_return retval = new stat_return();
+	public final LuaParser.stat_return stat() throws RecognitionException {
+		LuaParser.stat_return retval = new LuaParser.stat_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -753,8 +753,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "do_block"
 	// grammars/Lua.g:218:1: do_block : Do chunk End -> ^( Do chunk ) ;
-	public final do_block_return do_block() throws RecognitionException {
-		do_block_return retval = new do_block_return();
+	public final LuaParser.do_block_return do_block() throws RecognitionException {
+		LuaParser.do_block_return retval = new LuaParser.do_block_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -843,8 +843,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "while_stat"
 	// grammars/Lua.g:222:1: while_stat : While expr do_block -> ^( While expr do_block ) ;
-	public final while_stat_return while_stat() throws RecognitionException {
-		while_stat_return retval = new while_stat_return();
+	public final LuaParser.while_stat_return while_stat() throws RecognitionException {
+		LuaParser.while_stat_return retval = new LuaParser.while_stat_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -935,8 +935,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "repeat_stat"
 	// grammars/Lua.g:226:1: repeat_stat : Repeat chunk Until expr -> ^( Repeat chunk expr ) ;
-	public final repeat_stat_return repeat_stat() throws RecognitionException {
-		repeat_stat_return retval = new repeat_stat_return();
+	public final LuaParser.repeat_stat_return repeat_stat() throws RecognitionException {
+		LuaParser.repeat_stat_return retval = new LuaParser.repeat_stat_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -1033,8 +1033,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "assignment"
 	// grammars/Lua.g:230:1: assignment : var_list '=' expr_list -> ^( ASSIGNMENT ^( VAR_LIST var_list ) ^( EXPR_LIST expr_list ) ) ;
-	public final assignment_return assignment() throws RecognitionException {
-		assignment_return retval = new assignment_return();
+	public final LuaParser.assignment_return assignment() throws RecognitionException {
+		LuaParser.assignment_return retval = new LuaParser.assignment_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -1139,8 +1139,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "local"
 	// grammars/Lua.g:235:1: local : Local ( name_list '=' expr_list -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) ) | Function Name func_body -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST Name ) ^( EXPR_LIST func_body ) ) ) ;
-	public final local_return local() throws RecognitionException {
-		local_return retval = new local_return();
+	public final LuaParser.local_return local() throws RecognitionException {
+		LuaParser.local_return retval = new LuaParser.local_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -1344,8 +1344,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "goto_stat"
 	// grammars/Lua.g:241:1: goto_stat : Goto Name -> ^( Goto Name ) ;
-	public final goto_stat_return goto_stat() throws RecognitionException {
-		goto_stat_return retval = new goto_stat_return();
+	public final LuaParser.goto_stat_return goto_stat() throws RecognitionException {
+		LuaParser.goto_stat_return retval = new LuaParser.goto_stat_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -1427,8 +1427,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "if_stat"
 	// grammars/Lua.g:245:1: if_stat : If expr Then chunk ( elseif_stat )* ( else_stat )? End -> ^( If ^( CONDITION expr chunk ) ( elseif_stat )* ( else_stat )? ) ;
-	public final if_stat_return if_stat() throws RecognitionException {
-		if_stat_return retval = new if_stat_return();
+	public final LuaParser.if_stat_return if_stat() throws RecognitionException {
+		LuaParser.if_stat_return retval = new LuaParser.if_stat_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -1600,8 +1600,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "elseif_stat"
 	// grammars/Lua.g:249:1: elseif_stat : Elseif expr Then chunk -> ^( CONDITION expr chunk ) ;
-	public final elseif_stat_return elseif_stat() throws RecognitionException {
-		elseif_stat_return retval = new elseif_stat_return();
+	public final LuaParser.elseif_stat_return elseif_stat() throws RecognitionException {
+		LuaParser.elseif_stat_return retval = new LuaParser.elseif_stat_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -1698,8 +1698,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "else_stat"
 	// grammars/Lua.g:253:1: else_stat : Else chunk -> ^( CONDITION True chunk ) ;
-	public final else_stat_return else_stat() throws RecognitionException {
-		else_stat_return retval = new else_stat_return();
+	public final LuaParser.else_stat_return else_stat() throws RecognitionException {
+		LuaParser.else_stat_return retval = new LuaParser.else_stat_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -1783,8 +1783,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "for_stat"
 	// grammars/Lua.g:257:1: for_stat : For ( Name '=' a= expr ',' b= expr ( ',' c= expr )? do_block -> ^( For Name $a $b ( $c)? do_block ) | name_list In expr_list do_block -> ^( FOR_IN ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) do_block ) ) ;
-	public final for_stat_return for_stat() throws RecognitionException {
-		for_stat_return retval = new for_stat_return();
+	public final LuaParser.for_stat_return for_stat() throws RecognitionException {
+		LuaParser.for_stat_return retval = new LuaParser.for_stat_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -2054,8 +2054,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "function"
 	// grammars/Lua.g:263:1: function : Function names ( Col Name func_body -> ^( FUNCTION_ASSIGNMENT ^( VAR_LIST ) ^( EXPR_LIST func_body ) ) | func_body -> ^( FUNCTION_ASSIGNMENT ^( VAR_LIST ) ^( EXPR_LIST func_body ) ) ) ;
-	public final function_return function() throws RecognitionException {
-		function_return retval = new function_return();
+	public final LuaParser.function_return function() throws RecognitionException {
+		LuaParser.function_return retval = new LuaParser.function_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -2144,7 +2144,7 @@ public class LuaParser extends Parser {
 						{
 						CommonTree root_2 = (CommonTree)adaptor.nil();
 						root_2 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(VAR_LIST, "VAR_LIST"), root_2);
-						adaptor.addChild(root_2, namesToVar((names64!=null?((names_return)names64).list:null), (Name66!=null?Name66.getText():null)));
+						adaptor.addChild(root_2, namesToVar((names64!=null?((LuaParser.names_return)names64).list:null), (Name66!=null?Name66.getText():null)));
 						adaptor.addChild(root_1, root_2);
 						}
 
@@ -2197,7 +2197,7 @@ public class LuaParser extends Parser {
 						{
 						CommonTree root_2 = (CommonTree)adaptor.nil();
 						root_2 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(VAR_LIST, "VAR_LIST"), root_2);
-						adaptor.addChild(root_2, namesToVar((names64!=null?((names_return)names64).list:null)));
+						adaptor.addChild(root_2, namesToVar((names64!=null?((LuaParser.names_return)names64).list:null)));
 						adaptor.addChild(root_1, root_2);
 						}
 
@@ -2255,8 +2255,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "names"
 	// grammars/Lua.g:271:1: names returns [List<String> list] : a= Name ( '.' b= Name )* ;
-	public final names_return names() throws RecognitionException {
-		names_return retval = new names_return();
+	public final LuaParser.names_return names() throws RecognitionException {
+		LuaParser.names_return retval = new LuaParser.names_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -2349,8 +2349,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "function_literal"
 	// grammars/Lua.g:276:1: function_literal : Function func_body -> func_body ;
-	public final function_literal_return function_literal() throws RecognitionException {
-		function_literal_return retval = new function_literal_return();
+	public final LuaParser.function_literal_return function_literal() throws RecognitionException {
+		LuaParser.function_literal_return retval = new LuaParser.function_literal_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -2426,8 +2426,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "func_body"
 	// grammars/Lua.g:280:1: func_body : '(' param_list ')' chunk End -> ^( FUNCTION param_list chunk ) ;
-	public final func_body_return func_body() throws RecognitionException {
-		func_body_return retval = new func_body_return();
+	public final LuaParser.func_body_return func_body() throws RecognitionException {
+		LuaParser.func_body_return retval = new LuaParser.func_body_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -2530,8 +2530,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "param_list"
 	// grammars/Lua.g:284:1: param_list : ( name_list ( ',' DotDotDot )? -> ^( PARAM_LIST name_list ( DotDotDot )? ) | ( DotDotDot )? -> ^( PARAM_LIST ( DotDotDot )? ) );
-	public final param_list_return param_list() throws RecognitionException {
-		param_list_return retval = new param_list_return();
+	public final LuaParser.param_list_return param_list() throws RecognitionException {
+		LuaParser.param_list_return retval = new LuaParser.param_list_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -2719,8 +2719,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "ret_stat"
 	// grammars/Lua.g:289:1: ret_stat : Return ( expr_list )? ( ';' )? -> ^( Return ( expr_list )? ) ;
-	public final ret_stat_return ret_stat() throws RecognitionException {
-		ret_stat_return retval = new ret_stat_return();
+	public final LuaParser.ret_stat_return ret_stat() throws RecognitionException {
+		LuaParser.ret_stat_return retval = new LuaParser.ret_stat_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -2844,8 +2844,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "expr"
 	// grammars/Lua.g:293:1: expr : or_expr ;
-	public final expr_return expr() throws RecognitionException {
-		expr_return retval = new expr_return();
+	public final LuaParser.expr_return expr() throws RecognitionException {
+		LuaParser.expr_return retval = new LuaParser.expr_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -2897,8 +2897,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "or_expr"
 	// grammars/Lua.g:297:1: or_expr : and_expr ( Or ^ and_expr )* ;
-	public final or_expr_return or_expr() throws RecognitionException {
-		or_expr_return retval = new or_expr_return();
+	public final LuaParser.or_expr_return or_expr() throws RecognitionException {
+		LuaParser.or_expr_return retval = new LuaParser.or_expr_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -2986,8 +2986,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "and_expr"
 	// grammars/Lua.g:301:1: and_expr : rel_expr ( And ^ rel_expr )* ;
-	public final and_expr_return and_expr() throws RecognitionException {
-		and_expr_return retval = new and_expr_return();
+	public final LuaParser.and_expr_return and_expr() throws RecognitionException {
+		LuaParser.and_expr_return retval = new LuaParser.and_expr_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -3075,8 +3075,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "rel_expr"
 	// grammars/Lua.g:305:1: rel_expr : concat_expr ( ( LT | GT | LTEq | GTEq | NEq | Eq ) ^ concat_expr )? ;
-	public final rel_expr_return rel_expr() throws RecognitionException {
-		rel_expr_return retval = new rel_expr_return();
+	public final LuaParser.rel_expr_return rel_expr() throws RecognitionException {
+		LuaParser.rel_expr_return retval = new LuaParser.rel_expr_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -3165,8 +3165,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "concat_expr"
 	// grammars/Lua.g:309:1: concat_expr : add_expr ( DotDot ^ add_expr )* ;
-	public final concat_expr_return concat_expr() throws RecognitionException {
-		concat_expr_return retval = new concat_expr_return();
+	public final LuaParser.concat_expr_return concat_expr() throws RecognitionException {
+		LuaParser.concat_expr_return retval = new LuaParser.concat_expr_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -3254,8 +3254,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "add_expr"
 	// grammars/Lua.g:313:1: add_expr : mult_expr ( ( Add | Minus ) ^ mult_expr )* ;
-	public final add_expr_return add_expr() throws RecognitionException {
-		add_expr_return retval = new add_expr_return();
+	public final LuaParser.add_expr_return add_expr() throws RecognitionException {
+		LuaParser.add_expr_return retval = new LuaParser.add_expr_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -3350,8 +3350,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "mult_expr"
 	// grammars/Lua.g:317:1: mult_expr : unary_expr ( ( Mult | Div | Mod ) ^ unary_expr )* ;
-	public final mult_expr_return mult_expr() throws RecognitionException {
-		mult_expr_return retval = new mult_expr_return();
+	public final LuaParser.mult_expr_return mult_expr() throws RecognitionException {
+		LuaParser.mult_expr_return retval = new LuaParser.mult_expr_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -3446,8 +3446,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "unary_expr"
 	// grammars/Lua.g:321:1: unary_expr : ( Minus unary_expr -> ^( UNARY_MINUS unary_expr ) | Length pow_expr -> ^( Length pow_expr ) | Not unary_expr -> ^( Not unary_expr ) | pow_expr );
-	public final unary_expr_return unary_expr() throws RecognitionException {
-		unary_expr_return retval = new unary_expr_return();
+	public final LuaParser.unary_expr_return unary_expr() throws RecognitionException {
+		LuaParser.unary_expr_return retval = new LuaParser.unary_expr_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -3677,8 +3677,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "pow_expr"
 	// grammars/Lua.g:329:1: pow_expr : (a+= atom -> $a) ( ( Pow a+= atom )+ ->)? ;
-	public final pow_expr_return pow_expr() throws RecognitionException {
-		pow_expr_return retval = new pow_expr_return();
+	public final LuaParser.pow_expr_return pow_expr() throws RecognitionException {
+		LuaParser.pow_expr_return retval = new LuaParser.pow_expr_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -3830,8 +3830,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "atom"
 	// grammars/Lua.g:334:1: atom : ( var[false] | function_literal | table_constructor | DotDotDot | Number | String | Nil | True | False );
-	public final atom_return atom() throws RecognitionException {
-		atom_return retval = new atom_return();
+	public final LuaParser.atom_return atom() throws RecognitionException {
+		LuaParser.atom_return retval = new LuaParser.atom_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -4067,8 +4067,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "var"
 	// grammars/Lua.g:346:1: var[boolean assign] : ( callee[assign] -> callee ) ( ( tail )=> ( ( ( tail )=>t= tail )+ -> {assign}? ^( ASSIGNMENT_VAR callee ( tail )+ ) -> ^( VAR callee ( tail )+ ) ) )? ;
-	public final var_return var(boolean assign) throws RecognitionException {
-		var_return retval = new var_return();
+	public final LuaParser.var_return var(boolean assign) throws RecognitionException {
+		LuaParser.var_return retval = new LuaParser.var_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -4289,8 +4289,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "callee"
 	// grammars/Lua.g:352:1: callee[boolean assign] : ( '(' expr ')' -> expr | Name );
-	public final callee_return callee(boolean assign) throws RecognitionException {
-		callee_return retval = new callee_return();
+	public final LuaParser.callee_return callee(boolean assign) throws RecognitionException {
+		LuaParser.callee_return retval = new LuaParser.callee_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -4408,8 +4408,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "tail"
 	// grammars/Lua.g:357:1: tail : ( '.' Name -> ^( INDEX String[$Name.text] ) | '[' expr ']' -> ^( INDEX expr ) | ':' Name '(' ( expr_list )? ')' -> ^( INDEX ) ^( COL_CALL ( expr_list )? ) | ':' Name table_constructor -> ^( INDEX ) ^( COL_CALL table_constructor ) | ':' Name String -> ^( INDEX ) ^( COL_CALL String ) | '(' ( expr_list )? ')' -> ^( CALL ( expr_list )? ) | table_constructor -> ^( CALL table_constructor ) | String -> ^( CALL String ) );
-	public final tail_return tail() throws RecognitionException {
-		tail_return retval = new tail_return();
+	public final LuaParser.tail_return tail() throws RecognitionException {
+		LuaParser.tail_return retval = new LuaParser.tail_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -4983,8 +4983,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "table_constructor"
 	// grammars/Lua.g:368:1: table_constructor : '{' ( field_list )? '}' -> ^( TABLE ( field_list )? ) ;
-	public final table_constructor_return table_constructor() throws RecognitionException {
-		table_constructor_return retval = new table_constructor_return();
+	public final LuaParser.table_constructor_return table_constructor() throws RecognitionException {
+		LuaParser.table_constructor_return retval = new LuaParser.table_constructor_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -5093,8 +5093,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "field_list"
 	// grammars/Lua.g:372:1: field_list : field ( field_sep field )* ( field_sep )? -> ( field )+ ;
-	public final field_list_return field_list() throws RecognitionException {
-		field_list_return retval = new field_list_return();
+	public final LuaParser.field_list_return field_list() throws RecognitionException {
+		LuaParser.field_list_return retval = new LuaParser.field_list_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -5230,8 +5230,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "field"
 	// grammars/Lua.g:376:1: field : ( '[' expr ']' '=' expr -> ^( FIELD expr expr ) | Name '=' expr -> ^( FIELD expr ) | expr -> ^( FIELD expr ) );
-	public final field_return field() throws RecognitionException {
-		field_return retval = new field_return();
+	public final LuaParser.field_return field() throws RecognitionException {
+		LuaParser.field_return retval = new LuaParser.field_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -5481,8 +5481,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "field_sep"
 	// grammars/Lua.g:382:1: field_sep : ( ',' | ';' );
-	public final field_sep_return field_sep() throws RecognitionException {
-		field_sep_return retval = new field_sep_return();
+	public final LuaParser.field_sep_return field_sep() throws RecognitionException {
+		LuaParser.field_sep_return retval = new LuaParser.field_sep_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -5541,8 +5541,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "label"
 	// grammars/Lua.g:387:1: label : '::' Name '::' -> ^( LABEL Name ) ;
-	public final label_return label() throws RecognitionException {
-		label_return retval = new label_return();
+	public final LuaParser.label_return label() throws RecognitionException {
+		LuaParser.label_return retval = new LuaParser.label_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -5629,8 +5629,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "var_list"
 	// grammars/Lua.g:391:1: var_list : var[true] ( ',' var[true] )* -> ( var )+ ;
-	public final var_list_return var_list() throws RecognitionException {
-		var_list_return retval = new var_list_return();
+	public final LuaParser.var_list_return var_list() throws RecognitionException {
+		LuaParser.var_list_return retval = new LuaParser.var_list_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -5740,8 +5740,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "expr_list"
 	// grammars/Lua.g:395:1: expr_list : expr ( ',' expr )* -> ( expr )+ ;
-	public final expr_list_return expr_list() throws RecognitionException {
-		expr_list_return retval = new expr_list_return();
+	public final LuaParser.expr_list_return expr_list() throws RecognitionException {
+		LuaParser.expr_list_return retval = new LuaParser.expr_list_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -5851,8 +5851,8 @@ public class LuaParser extends Parser {
 
 	// $ANTLR start "name_list"
 	// grammars/Lua.g:399:1: name_list : Name ( ',' Name )* -> {addSelf}? ( Name )+ -> ( Name )+ ;
-	public final name_list_return name_list() throws RecognitionException {
-		name_list_return retval = new name_list_return();
+	public final LuaParser.name_list_return name_list() throws RecognitionException {
+		LuaParser.name_list_return retval = new LuaParser.name_list_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;

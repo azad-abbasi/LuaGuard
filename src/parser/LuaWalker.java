@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 grammars/LuaWalker.g 2014-05-06 11:25:03
+// $ANTLR 3.5.2 grammars/LuaWalker.g 2014-05-06 12:40:26
 
 package parser;
 
@@ -1829,8 +1829,8 @@ public class LuaWalker extends TreeParser {
 
 	// $ANTLR start "expr_list"
 	// grammars/LuaWalker.g:167:1: expr_list : ( expr )+ ;
-	public final expr_list_return expr_list() throws RecognitionException {
-		expr_list_return retval = new expr_list_return();
+	public final LuaWalker.expr_list_return expr_list() throws RecognitionException {
+		LuaWalker.expr_list_return retval = new LuaWalker.expr_list_return();
 		retval.start = input.LT(1);
 
 		try {

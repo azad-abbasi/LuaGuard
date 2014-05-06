@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 grammars/Lua.g 2014-05-06 11:25:02
+// $ANTLR 3.5.2 grammars/Lua.g 2014-05-06 12:40:25
 
 package parser;
 import java.math.*;
@@ -1438,7 +1438,7 @@ public class LuaLexer extends Lexer {
 
 					}
 
-					setText(new BigDecimal(getText()).toPlainString().replaceAll("\\.0*$", ""));
+					setText(new java.math.BigDecimal(getText()).toPlainString().replaceAll("\\.0*$", ""));
 					}
 					break;
 				case 2 :
