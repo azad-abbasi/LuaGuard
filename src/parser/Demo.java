@@ -11,7 +11,7 @@
 //    public static void main(String[] args) throws Exception {
 //        InputReader file = new InputReader(args[0]);
 //
-//        ANTLRStringStream in = new ANTLRStringStream(file.getFileString());
+//        ANTLRStringStream in = new ANTLRStringStream(file.getString());
 //        ExpLexer lexer = new ExpLexer(in);
 //        CommonTokenStream tokens = new CommonTokenStream(lexer);
 //        ExpParser parser = new ExpParser(tokens);

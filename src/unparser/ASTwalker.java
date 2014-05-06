@@ -25,48 +25,58 @@ public class ASTwalker {
 
     public ASTwalker(String path){
         InputReader read = new InputReader(path);
-        String ast = read.getFileString();
+        String ast = read.getString();
         st = new StringTokenizer(ast);
     }
 
-    public static void readTokens(String astPath){
 
-        Node treeRoot = new Node();
-
-        //now we have every node in a st node tokenizer !
-        String currentToken;
-        while (st.hasMoreTokens()) {
-            currentToken = st.nextToken();
-            if(currentToken.equals("(")){
-                myNodeStack.push(currentToken);
-                currentToken = st.nextToken();
-                //if we kknow the next token is not a string we can continue
-                if(!currentToken.equals("'")) {
-                    treeRoot.setName(st.nextToken());
-                }
-                //else, we have to concatenate the token to make it a string
-                else{
-                    //code to be written
-                }
-           }
-
-
-
-        }
-    }
-
-    public static Node treeConstructor(Node root){
-        if (myNodeStack.isEmpty()){
-            return null;
-        }
+    //recursive function to create a tree.
+    public static Node treeConstructor(String root){
+        Node thisNode = new Node(root);
         String currentToken = st.nextToken();
-        if(currentToken.equals(")")||currentToken.equals("(")){
-            if(handleStack(currentToken)){
+        int index = 0 ;
+        while(st.hasMoreTokens()){
 
-                root.addChild(new Node());
+
+            //if the current token is not a "(" or ")" then it's either a string or another child
+            //with no furthur children
+
+            if(!currentToken.equals(")") || !currentToken.equals("(")){
+                if(!currentToken.equals("'")){
+                    thisNode.addChild(new Node(currentToken));
+                }
+                else{
+                    thisNode.addChild(new Node(getStringToken()));
+                }
+                currentToken = st.nextToken();
+            }
+            //what happens if we see a closing parenthesis here
+            else if(currentToken.equals("(")){
+                currentToken = st.nextToken();
+                thisNode.addChild(new Node(currentToken));
+            }
+
+            //what if we see an opening parenthesis here
+            else if(currentToken.equals(")")){
+                currentToken = st.nextToken();
+                return thisNode;
             }
         }
-        return null;
+
+        return thisNode;
+    }
+
+
+    //when we see a "'" token, we wait for the next one for them to be the next token all together
+    //it means it's a string
+    public static String getStringToken(){
+        String currentToken = st.nextToken();
+        String finalString="";
+        while(!currentToken.equals("'")){
+            finalString+=currentToken;
+            currentToken=st.nextToken();
+        }
+        return finalString;
     }
 
     // this function returns true if the node is
@@ -83,16 +93,25 @@ public class ASTwalker {
     }
     public static void printTokens(String path){
         InputReader read = new InputReader(path);
-        String ast = read.getFileString();
-        StringTokenizer st = new StringTokenizer(ast);
-        while(st.hasMoreTokens()){
-            System.out.println(st.nextToken());
+        String ast = read.getString();
+        StringTokenizer wb = new StringTokenizer(ast);
+        while(wb.hasMoreTokens()){
+            System.out.println(wb.nextToken());
         }
     }
 
     public static void main(String[] args) {
-
         printTokens(args[0]);
+        InputReader read = new InputReader(args[0]);
+        String ast = read.getString();
+        st = new StringTokenizer(ast);
+        System.out.println(st.nextToken());
+        Node tree = treeConstructor(st.nextToken());
+        System.out.println("");
+        System.out.println("");
+        System.out.println(tree.getChild(2).getName());
+//        printTokens(args[0]);
+
 //        readTokens(args[0]);
     }
 }

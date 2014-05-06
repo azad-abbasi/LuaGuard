@@ -59,7 +59,7 @@ public class InputReader {
 
     }
 
-    public String getFileString(){
+    public String getString(){
         return output;
     }
 }

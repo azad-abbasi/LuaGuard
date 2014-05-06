@@ -25,7 +25,7 @@ public class Unparser {
 
     public static void main(String[] args) {
         InputReader input = new InputReader(args[0]);
-        String inputString = input.getFileString();
+        String inputString = input.getString();
         System.out.println(inputString);
     }
 

@@ -1,5 +1,5 @@
 /**
- * Created by azadabbasi on 4/10/14.
+ * Created by azadabbasi on 4/10/14.2
  */
 package parser;
 import org.antlr.runtime.ANTLRFileStream;
@@ -74,15 +74,6 @@ import org.antlr.runtime.ANTLRFileStream;
                 else{
                     FinalTreeString += tree.toString();
                 }
-
-
-
-
-
-
-
-
-            
 
 
             //now we will have to print the children

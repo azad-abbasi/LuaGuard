@@ -25,7 +25,7 @@ public class ASTwalker {
 
     public ASTwalker(String path){
         InputReader read = new InputReader(path);
-        String ast = read.getFileString();
+        String ast = read.getString();
         st = new StringTokenizer(ast);
     }
 
@@ -58,7 +58,7 @@ public class ASTwalker {
     }
     public static void printTokens(String path){
         InputReader read = new InputReader(path);
-        String ast = read.getFileString();
+        String ast = read.getString();
         StringTokenizer st = new StringTokenizer(ast);
         while(st.hasMoreTokens()){
             System.out.println(st.nextToken());
