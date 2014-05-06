@@ -1,0 +1,49 @@
+function uniqueid_some_event (e)
+ if (e:HasString("string1")) then
+   -- do something
+ end
+ if (e:HasString("string2")) then
+  -- do something
+ end
+end
+
+if (e:HasString("outside function...")) then end
+==============================================================================
+
+(CHUNK
+    (ASSIGNMENT
+        (VAR_LIST uniqueid_some_event)
+        (EXPR_LIST
+            (FUNCTION
+                (PARAM_LIST e)
+                (CHUNK
+                    (if
+                        (CONDITION
+                            (VAR e
+                                (INDEX HasString)
+                                (COL_CALL string1)
+                            )
+                            CHUNK
+                        )
+                    )
+                    (if
+                        (CONDITION
+                            (VAR e
+                                (INDEX HasString)
+                                (COL_CALL string2)
+                            ) CHUNK
+                        )
+                    )
+                )
+            )
+        )
+    )
+    (if
+        (CONDITION
+            (VAR e
+                (INDEX HasString)
+                (COL_CALL outside function...)
+            ) CHUNK
+        )
+    )
+)
