@@ -33,32 +33,32 @@ public class ASTwalker {
     //recursive function to create a tree.
     public static Node treeConstructor(String root){
         Node thisNode = new Node(root);
-        String currentToken = st.nextToken();
+        String currentToken;
         int index = 0 ;
         while(st.hasMoreTokens()){
-
+            currentToken = st.nextToken();
 
             //if the current token is not a "(" or ")" then it's either a string or another child
             //with no furthur children
 
-            if(!currentToken.equals(")") || !currentToken.equals("(")){
+            if(!(currentToken.equals(")") || currentToken.equals("("))){
                 if(!currentToken.equals("'")){
                     thisNode.addChild(new Node(currentToken));
+
                 }
                 else{
-                    thisNode.addChild(new Node(getStringToken()));
+                    thisNode.addChild(treeConstructor(getStringToken()));
                 }
-                currentToken = st.nextToken();
+//                currentToken = st.nextToken();
             }
             //what happens if we see a closing parenthesis here
             else if(currentToken.equals("(")){
-                currentToken = st.nextToken();
-                thisNode.addChild(new Node(currentToken));
+                thisNode.addChild(treeConstructor(st.nextToken()));
+
             }
 
             //what if we see an opening parenthesis here
             else if(currentToken.equals(")")){
-                currentToken = st.nextToken();
                 return thisNode;
             }
         }
@@ -105,11 +105,11 @@ public class ASTwalker {
         InputReader read = new InputReader(args[0]);
         String ast = read.getString();
         st = new StringTokenizer(ast);
-        System.out.println(st.nextToken());
+        String token = st.nextToken();
         Node tree = treeConstructor(st.nextToken());
         System.out.println("");
         System.out.println("");
-        System.out.println(tree.getChild(2).getName());
+        System.out.println(tree.getChild(1).getChild(0).getName());
 //        printTokens(args[0]);
 
 //        readTokens(args[0]);
