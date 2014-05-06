@@ -65,7 +65,24 @@ import org.antlr.runtime.ANTLRFileStream;
             //add the beginning parenthesis
             FinalTreeString += " ( ";
             //now we add the current Tree's name
-            FinalTreeString += tree.toString();
+            String tokenName = LuaParser.tokenNames[tree.getType()];
+            String tokenText = tree.getText();
+
+                if(tokenName.equals("String")){
+                    FinalTreeString = FinalTreeString + " ' " + tree.toString() + " ' ";
+                }
+                else{
+                    FinalTreeString += tree.toString();
+                }
+
+
+
+
+
+
+
+
+            
 
 
             //now we will have to print the children
@@ -73,7 +90,16 @@ import org.antlr.runtime.ANTLRFileStream;
                 for (int i = 0 ; i<tree.getChildCount() ; i++){
                     //if this child didn't have any children
                     if(tree.getChild(i).getChildCount() == 0 ){
-                        FinalTreeString = FinalTreeString + " " + tree.getChild(i).toString();
+                        tokenName = LuaParser.tokenNames[tree.getChild(i).getType()];
+                        tokenText = tree.getChild(i).getText();
+
+                        if(tokenName.equals("String")){
+                            FinalTreeString = FinalTreeString + " " + " ' " + tree.getChild(i).toString() + " ' ";
+                        }
+                        else{
+                            FinalTreeString = FinalTreeString + " " + tree.getChild(i).toString();
+                        }
+
                     }
                     else{
                         FinalTreeString += "\n";

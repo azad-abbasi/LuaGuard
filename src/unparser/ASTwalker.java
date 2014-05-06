@@ -44,16 +44,29 @@ public class ASTwalker {
         }
     }
 
+    public static void treeConstructor(Node root){
+        if (myNodeStack.isEmpty()){
+            return;
+        }
+        String currentToken = st.nextToken();
+        if(currentToken.equals(")")||currentToken.equals("(")){
+            if(handleStack(currentToken)){
+
+                root.addChild(new Node());
+            }
+        }
+    }
+
     // this function returns true if the node is
     //ending in ")"
     public static boolean handleStack(String str){
         if(str.equals(")")){
             myNodeStack.pop();
-            return true;
+            return false;
         }
         else {
-            myNodeStack.push(")");
-            return false;
+            myNodeStack.push("(");
+            return true;
         }
     }
     public static void printTokens(String path){
@@ -68,6 +81,6 @@ public class ASTwalker {
     public static void main(String[] args) {
 
         printTokens(args[0]);
-        readTokens(args[0]);
+//        readTokens(args[0]);
     }
 }
