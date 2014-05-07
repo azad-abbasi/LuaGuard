@@ -41,7 +41,7 @@ import unparser.TreeConstructor;
 
             TreeConstructor myTree = new TreeConstructor(args[1]);
             InputReader.printToFile(args[2],myTree.toString());
-            myTree.printTreeTokens();
+//            myTree.printTreeTokens();
 
 
             System.out.println(treeStructure);

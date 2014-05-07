@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 grammars/Lua.g 2014-05-07 12:55:55
+// $ANTLR 3.5.2 grammars/Lua.g 2014-05-07 14:04:41
 
 package parser;
 
@@ -288,8 +288,8 @@ public class LuaParser extends Parser {
 		ParserRuleReturnScope stat3 =null;
 		ParserRuleReturnScope ret_stat4 =null;
 
-		RewriteRuleSubtreeStream stream_ret_stat=new RewriteRuleSubtreeStream(adaptor,"rule ret_stat");
 		RewriteRuleSubtreeStream stream_stat=new RewriteRuleSubtreeStream(adaptor,"rule stat");
+		RewriteRuleSubtreeStream stream_ret_stat=new RewriteRuleSubtreeStream(adaptor,"rule ret_stat");
 
 		try {
 			// grammars/Lua.g:199:2: ( ( stat )* ( ret_stat )? -> ^( CHUNK ( stat )* ( ret_stat )? ) )
@@ -765,8 +765,8 @@ public class LuaParser extends Parser {
 
 		CommonTree Do18_tree=null;
 		CommonTree End20_tree=null;
-		RewriteRuleTokenStream stream_Do=new RewriteRuleTokenStream(adaptor,"token Do");
 		RewriteRuleTokenStream stream_End=new RewriteRuleTokenStream(adaptor,"token End");
+		RewriteRuleTokenStream stream_Do=new RewriteRuleTokenStream(adaptor,"token Do");
 		RewriteRuleSubtreeStream stream_chunk=new RewriteRuleSubtreeStream(adaptor,"rule chunk");
 
 		try {
@@ -785,7 +785,7 @@ public class LuaParser extends Parser {
 			if ( state.backtracking==0 ) stream_End.add(End20);
 
 			// AST REWRITE
-			// elements: Do, chunk
+			// elements: chunk, Do
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -876,7 +876,7 @@ public class LuaParser extends Parser {
 			if (state.failed) return retval;
 			if ( state.backtracking==0 ) stream_do_block.add(do_block23.getTree());
 			// AST REWRITE
-			// elements: expr, do_block, While
+			// elements: While, do_block, expr
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -948,8 +948,8 @@ public class LuaParser extends Parser {
 
 		CommonTree Repeat24_tree=null;
 		CommonTree Until26_tree=null;
-		RewriteRuleTokenStream stream_Until=new RewriteRuleTokenStream(adaptor,"token Until");
 		RewriteRuleTokenStream stream_Repeat=new RewriteRuleTokenStream(adaptor,"token Repeat");
+		RewriteRuleTokenStream stream_Until=new RewriteRuleTokenStream(adaptor,"token Until");
 		RewriteRuleSubtreeStream stream_chunk=new RewriteRuleSubtreeStream(adaptor,"rule chunk");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
@@ -974,7 +974,7 @@ public class LuaParser extends Parser {
 			if (state.failed) return retval;
 			if ( state.backtracking==0 ) stream_expr.add(expr27.getTree());
 			// AST REWRITE
-			// elements: Repeat, chunk, expr
+			// elements: chunk, expr, Repeat
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1045,8 +1045,8 @@ public class LuaParser extends Parser {
 
 		CommonTree char_literal29_tree=null;
 		RewriteRuleTokenStream stream_Assign=new RewriteRuleTokenStream(adaptor,"token Assign");
-		RewriteRuleSubtreeStream stream_var_list=new RewriteRuleSubtreeStream(adaptor,"rule var_list");
 		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
+		RewriteRuleSubtreeStream stream_var_list=new RewriteRuleSubtreeStream(adaptor,"rule var_list");
 
 		try {
 			// grammars/Lua.g:231:2: ( var_list '=' expr_list -> ^( ASSIGNMENT ^( VAR_LIST var_list ) ^( EXPR_LIST expr_list ) ) )
@@ -1066,7 +1066,7 @@ public class LuaParser extends Parser {
 			if (state.failed) return retval;
 			if ( state.backtracking==0 ) stream_expr_list.add(expr_list30.getTree());
 			// AST REWRITE
-			// elements: expr_list, var_list
+			// elements: var_list, expr_list
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1157,13 +1157,13 @@ public class LuaParser extends Parser {
 		CommonTree char_literal33_tree=null;
 		CommonTree Function35_tree=null;
 		CommonTree Name36_tree=null;
-		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
+		RewriteRuleTokenStream stream_Function=new RewriteRuleTokenStream(adaptor,"token Function");
 		RewriteRuleTokenStream stream_Local=new RewriteRuleTokenStream(adaptor,"token Local");
 		RewriteRuleTokenStream stream_Assign=new RewriteRuleTokenStream(adaptor,"token Assign");
-		RewriteRuleTokenStream stream_Function=new RewriteRuleTokenStream(adaptor,"token Function");
-		RewriteRuleSubtreeStream stream_func_body=new RewriteRuleSubtreeStream(adaptor,"rule func_body");
-		RewriteRuleSubtreeStream stream_name_list=new RewriteRuleSubtreeStream(adaptor,"rule name_list");
+		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
 		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
+		RewriteRuleSubtreeStream stream_name_list=new RewriteRuleSubtreeStream(adaptor,"rule name_list");
+		RewriteRuleSubtreeStream stream_func_body=new RewriteRuleSubtreeStream(adaptor,"rule func_body");
 
 		try {
 			// grammars/Lua.g:236:2: ( Local ( name_list '=' expr_list -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) ) | Function Name func_body -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST Name ) ^( EXPR_LIST func_body ) ) ) )
@@ -1266,7 +1266,7 @@ public class LuaParser extends Parser {
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_func_body.add(func_body37.getTree());
 					// AST REWRITE
-					// elements: func_body, Name
+					// elements: Name, func_body
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1355,8 +1355,8 @@ public class LuaParser extends Parser {
 
 		CommonTree Goto38_tree=null;
 		CommonTree Name39_tree=null;
-		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
 		RewriteRuleTokenStream stream_Goto=new RewriteRuleTokenStream(adaptor,"token Goto");
+		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
 
 		try {
 			// grammars/Lua.g:242:2: ( Goto Name -> ^( Goto Name ) )
@@ -1369,7 +1369,7 @@ public class LuaParser extends Parser {
 			if ( state.backtracking==0 ) stream_Name.add(Name39);
 
 			// AST REWRITE
-			// elements: Goto, Name
+			// elements: Name, Goto
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1444,12 +1444,12 @@ public class LuaParser extends Parser {
 		CommonTree If40_tree=null;
 		CommonTree Then42_tree=null;
 		CommonTree End46_tree=null;
-		RewriteRuleTokenStream stream_End=new RewriteRuleTokenStream(adaptor,"token End");
 		RewriteRuleTokenStream stream_Then=new RewriteRuleTokenStream(adaptor,"token Then");
+		RewriteRuleTokenStream stream_End=new RewriteRuleTokenStream(adaptor,"token End");
 		RewriteRuleTokenStream stream_If=new RewriteRuleTokenStream(adaptor,"token If");
+		RewriteRuleSubtreeStream stream_elseif_stat=new RewriteRuleSubtreeStream(adaptor,"rule elseif_stat");
 		RewriteRuleSubtreeStream stream_chunk=new RewriteRuleSubtreeStream(adaptor,"rule chunk");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
-		RewriteRuleSubtreeStream stream_elseif_stat=new RewriteRuleSubtreeStream(adaptor,"rule elseif_stat");
 		RewriteRuleSubtreeStream stream_else_stat=new RewriteRuleSubtreeStream(adaptor,"rule else_stat");
 
 		try {
@@ -1522,7 +1522,7 @@ public class LuaParser extends Parser {
 			if ( state.backtracking==0 ) stream_End.add(End46);
 
 			// AST REWRITE
-			// elements: else_stat, expr, chunk, If, elseif_stat
+			// elements: If, chunk, expr, elseif_stat, else_stat
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1613,8 +1613,8 @@ public class LuaParser extends Parser {
 
 		CommonTree Elseif47_tree=null;
 		CommonTree Then49_tree=null;
-		RewriteRuleTokenStream stream_Then=new RewriteRuleTokenStream(adaptor,"token Then");
 		RewriteRuleTokenStream stream_Elseif=new RewriteRuleTokenStream(adaptor,"token Elseif");
+		RewriteRuleTokenStream stream_Then=new RewriteRuleTokenStream(adaptor,"token Then");
 		RewriteRuleSubtreeStream stream_chunk=new RewriteRuleSubtreeStream(adaptor,"rule chunk");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
@@ -1809,15 +1809,15 @@ public class LuaParser extends Parser {
 		CommonTree char_literal56_tree=null;
 		CommonTree char_literal57_tree=null;
 		CommonTree In60_tree=null;
-		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
-		RewriteRuleTokenStream stream_In=new RewriteRuleTokenStream(adaptor,"token In");
-		RewriteRuleTokenStream stream_Assign=new RewriteRuleTokenStream(adaptor,"token Assign");
-		RewriteRuleTokenStream stream_For=new RewriteRuleTokenStream(adaptor,"token For");
 		RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
+		RewriteRuleTokenStream stream_In=new RewriteRuleTokenStream(adaptor,"token In");
+		RewriteRuleTokenStream stream_For=new RewriteRuleTokenStream(adaptor,"token For");
+		RewriteRuleTokenStream stream_Assign=new RewriteRuleTokenStream(adaptor,"token Assign");
+		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
 		RewriteRuleSubtreeStream stream_do_block=new RewriteRuleSubtreeStream(adaptor,"rule do_block");
+		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
 		RewriteRuleSubtreeStream stream_name_list=new RewriteRuleSubtreeStream(adaptor,"rule name_list");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
-		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
 
 		try {
 			// grammars/Lua.g:258:2: ( For ( Name '=' a= expr ',' b= expr ( ',' c= expr )? do_block -> ^( For Name $a $b ( $c)? do_block ) | name_list In expr_list do_block -> ^( FOR_IN ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) do_block ) ) )
@@ -1912,18 +1912,18 @@ public class LuaParser extends Parser {
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_do_block.add(do_block58.getTree());
 					// AST REWRITE
-					// elements: For, b, do_block, c, a, Name
+					// elements: c, do_block, For, Name, b, a
 					// token labels: 
-					// rule labels: retval, b, c, a
+					// rule labels: a, b, c, retval
 					// token list labels: 
 					// rule list labels: 
 					// wildcard labels: 
 					if ( state.backtracking==0 ) {
 					retval.tree = root_0;
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+					RewriteRuleSubtreeStream stream_a=new RewriteRuleSubtreeStream(adaptor,"rule a",a!=null?a.getTree():null);
 					RewriteRuleSubtreeStream stream_b=new RewriteRuleSubtreeStream(adaptor,"rule b",b!=null?b.getTree():null);
 					RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.getTree():null);
-					RewriteRuleSubtreeStream stream_a=new RewriteRuleSubtreeStream(adaptor,"rule a",a!=null?a.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (CommonTree)adaptor.nil();
 					// 258:60: -> ^( For Name $a $b ( $c)? do_block )
@@ -1975,7 +1975,7 @@ public class LuaParser extends Parser {
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_do_block.add(do_block62.getTree());
 					// AST REWRITE
-					// elements: do_block, expr_list, name_list
+					// elements: expr_list, do_block, name_list
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2070,9 +2070,9 @@ public class LuaParser extends Parser {
 		CommonTree Function63_tree=null;
 		CommonTree Col65_tree=null;
 		CommonTree Name66_tree=null;
-		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
-		RewriteRuleTokenStream stream_Col=new RewriteRuleTokenStream(adaptor,"token Col");
 		RewriteRuleTokenStream stream_Function=new RewriteRuleTokenStream(adaptor,"token Function");
+		RewriteRuleTokenStream stream_Col=new RewriteRuleTokenStream(adaptor,"token Col");
+		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
 		RewriteRuleSubtreeStream stream_names=new RewriteRuleSubtreeStream(adaptor,"rule names");
 		RewriteRuleSubtreeStream stream_func_body=new RewriteRuleSubtreeStream(adaptor,"rule func_body");
 
@@ -2441,9 +2441,9 @@ public class LuaParser extends Parser {
 		CommonTree char_literal72_tree=null;
 		CommonTree char_literal74_tree=null;
 		CommonTree End76_tree=null;
-		RewriteRuleTokenStream stream_End=new RewriteRuleTokenStream(adaptor,"token End");
 		RewriteRuleTokenStream stream_CPar=new RewriteRuleTokenStream(adaptor,"token CPar");
 		RewriteRuleTokenStream stream_OPar=new RewriteRuleTokenStream(adaptor,"token OPar");
+		RewriteRuleTokenStream stream_End=new RewriteRuleTokenStream(adaptor,"token End");
 		RewriteRuleSubtreeStream stream_chunk=new RewriteRuleSubtreeStream(adaptor,"rule chunk");
 		RewriteRuleSubtreeStream stream_param_list=new RewriteRuleSubtreeStream(adaptor,"rule param_list");
 
@@ -2471,7 +2471,7 @@ public class LuaParser extends Parser {
 			if ( state.backtracking==0 ) stream_End.add(End76);
 
 			// AST REWRITE
-			// elements: chunk, param_list
+			// elements: param_list, chunk
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -2544,8 +2544,8 @@ public class LuaParser extends Parser {
 		CommonTree char_literal78_tree=null;
 		CommonTree DotDotDot79_tree=null;
 		CommonTree DotDotDot80_tree=null;
-		RewriteRuleTokenStream stream_DotDotDot=new RewriteRuleTokenStream(adaptor,"token DotDotDot");
 		RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
+		RewriteRuleTokenStream stream_DotDotDot=new RewriteRuleTokenStream(adaptor,"token DotDotDot");
 		RewriteRuleSubtreeStream stream_name_list=new RewriteRuleSubtreeStream(adaptor,"rule name_list");
 
 		try {
@@ -2597,7 +2597,7 @@ public class LuaParser extends Parser {
 					}
 
 					// AST REWRITE
-					// elements: name_list, DotDotDot
+					// elements: DotDotDot, name_list
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -3463,9 +3463,9 @@ public class LuaParser extends Parser {
 		CommonTree Minus103_tree=null;
 		CommonTree Length105_tree=null;
 		CommonTree Not107_tree=null;
-		RewriteRuleTokenStream stream_Minus=new RewriteRuleTokenStream(adaptor,"token Minus");
-		RewriteRuleTokenStream stream_Length=new RewriteRuleTokenStream(adaptor,"token Length");
 		RewriteRuleTokenStream stream_Not=new RewriteRuleTokenStream(adaptor,"token Not");
+		RewriteRuleTokenStream stream_Length=new RewriteRuleTokenStream(adaptor,"token Length");
+		RewriteRuleTokenStream stream_Minus=new RewriteRuleTokenStream(adaptor,"token Minus");
 		RewriteRuleSubtreeStream stream_unary_expr=new RewriteRuleSubtreeStream(adaptor,"rule unary_expr");
 		RewriteRuleSubtreeStream stream_pow_expr=new RewriteRuleSubtreeStream(adaptor,"rule pow_expr");
 
@@ -3562,7 +3562,7 @@ public class LuaParser extends Parser {
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_pow_expr.add(pow_expr106.getTree());
 					// AST REWRITE
-					// elements: pow_expr, Length
+					// elements: Length, pow_expr
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -3603,7 +3603,7 @@ public class LuaParser extends Parser {
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_unary_expr.add(unary_expr108.getTree());
 					// AST REWRITE
-					// elements: unary_expr, Not
+					// elements: Not, unary_expr
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -4076,8 +4076,8 @@ public class LuaParser extends Parser {
 		ParserRuleReturnScope t =null;
 		ParserRuleReturnScope callee120 =null;
 
-		RewriteRuleSubtreeStream stream_callee=new RewriteRuleSubtreeStream(adaptor,"rule callee");
 		RewriteRuleSubtreeStream stream_tail=new RewriteRuleSubtreeStream(adaptor,"rule tail");
+		RewriteRuleSubtreeStream stream_callee=new RewriteRuleSubtreeStream(adaptor,"rule callee");
 
 		try {
 			// grammars/Lua.g:347:2: ( ( callee[assign] -> callee ) ( ( tail )=> ( ( ( tail )=>t= tail )+ -> {assign}? ^( ASSIGNMENT_VAR callee ( tail )+ ) -> ^( VAR callee ( tail )+ ) ) )? )
@@ -4196,7 +4196,7 @@ public class LuaParser extends Parser {
 					}
 
 					// AST REWRITE
-					// elements: tail, tail, callee, callee
+					// elements: callee, tail, callee, tail
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -4452,17 +4452,17 @@ public class LuaParser extends Parser {
 		CommonTree char_literal141_tree=null;
 		CommonTree char_literal143_tree=null;
 		CommonTree String145_tree=null;
-		RewriteRuleTokenStream stream_Dot=new RewriteRuleTokenStream(adaptor,"token Dot");
-		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
 		RewriteRuleTokenStream stream_Col=new RewriteRuleTokenStream(adaptor,"token Col");
-		RewriteRuleTokenStream stream_String=new RewriteRuleTokenStream(adaptor,"token String");
 		RewriteRuleTokenStream stream_CPar=new RewriteRuleTokenStream(adaptor,"token CPar");
-		RewriteRuleTokenStream stream_CBrack=new RewriteRuleTokenStream(adaptor,"token CBrack");
 		RewriteRuleTokenStream stream_OPar=new RewriteRuleTokenStream(adaptor,"token OPar");
+		RewriteRuleTokenStream stream_Dot=new RewriteRuleTokenStream(adaptor,"token Dot");
+		RewriteRuleTokenStream stream_CBrack=new RewriteRuleTokenStream(adaptor,"token CBrack");
+		RewriteRuleTokenStream stream_String=new RewriteRuleTokenStream(adaptor,"token String");
 		RewriteRuleTokenStream stream_OBrack=new RewriteRuleTokenStream(adaptor,"token OBrack");
+		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
+		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
 		RewriteRuleSubtreeStream stream_table_constructor=new RewriteRuleSubtreeStream(adaptor,"rule table_constructor");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
-		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
 
 		try {
 			// grammars/Lua.g:358:2: ( '.' Name -> ^( INDEX String[$Name.text] ) | '[' expr ']' -> ^( INDEX expr ) | ':' Name '(' ( expr_list )? ')' -> ^( INDEX ) ^( COL_CALL ( expr_list )? ) | ':' Name table_constructor -> ^( INDEX ) ^( COL_CALL table_constructor ) | ':' Name String -> ^( INDEX ) ^( COL_CALL String ) | '(' ( expr_list )? ')' -> ^( CALL ( expr_list )? ) | table_constructor -> ^( CALL table_constructor ) | String -> ^( CALL String ) )
@@ -5251,10 +5251,10 @@ public class LuaParser extends Parser {
 		CommonTree char_literal156_tree=null;
 		CommonTree Name158_tree=null;
 		CommonTree char_literal159_tree=null;
-		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
-		RewriteRuleTokenStream stream_Assign=new RewriteRuleTokenStream(adaptor,"token Assign");
 		RewriteRuleTokenStream stream_CBrack=new RewriteRuleTokenStream(adaptor,"token CBrack");
+		RewriteRuleTokenStream stream_Assign=new RewriteRuleTokenStream(adaptor,"token Assign");
 		RewriteRuleTokenStream stream_OBrack=new RewriteRuleTokenStream(adaptor,"token OBrack");
+		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
 		try {
@@ -5554,8 +5554,8 @@ public class LuaParser extends Parser {
 		CommonTree string_literal163_tree=null;
 		CommonTree Name164_tree=null;
 		CommonTree string_literal165_tree=null;
-		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
 		RewriteRuleTokenStream stream_ColCol=new RewriteRuleTokenStream(adaptor,"token ColCol");
+		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
 
 		try {
 			// grammars/Lua.g:388:2: ( '::' Name '::' -> ^( LABEL Name ) )
@@ -5864,8 +5864,8 @@ public class LuaParser extends Parser {
 		CommonTree Name172_tree=null;
 		CommonTree char_literal173_tree=null;
 		CommonTree Name174_tree=null;
-		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
 		RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
+		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
 
 		try {
 			// grammars/Lua.g:400:2: ( Name ( ',' Name )* -> {addSelf}? ( Name )+ -> ( Name )+ )
@@ -6014,11 +6014,11 @@ public class LuaParser extends Parser {
 
 	// Delegated rules
 
-	public final boolean synpred3_Lua() {
+	public final boolean synpred1_Lua() {
 		state.backtracking++;
 		int start = input.mark();
 		try {
-			synpred3_Lua_fragment(); // can never throw exception
+			synpred1_Lua_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: "+re);
 		}
@@ -6042,11 +6042,11 @@ public class LuaParser extends Parser {
 		state.failed=false;
 		return success;
 	}
-	public final boolean synpred1_Lua() {
+	public final boolean synpred3_Lua() {
 		state.backtracking++;
 		int start = input.mark();
 		try {
-			synpred1_Lua_fragment(); // can never throw exception
+			synpred3_Lua_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: "+re);
 		}
