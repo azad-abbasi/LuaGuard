@@ -20,70 +20,7 @@ import org.antlr.runtime.ANTLRFileStream;
 //                        "Minus", "Mod", "Mult", "NAME_LIST", "NEq", "Name", "Nil", "Not", "Number",
 //                        "OBrace", "Obrack", "OPar", "Or", "PARAM_LIST", "Pow", "Reapeat", "Return", "Scol", "Space",
 //                        "String", "TABLE", "Then", "True", "UNARY_MINUS", "Until", "VAR", "VAR_LIST", "While"));
-        public static String FinalTreeString = "";
-        private static void printSimpleAST(CommonTree tree){
-            System.out.println(tree.toStringTree());
-        }
 
-
-        //this file creates the structured Tree String with a CommonTree as the input
-        //and puts the tree in the FinalTreeString variable(static)
-        private static void createStructuredTree(CommonTree tree, int Indention){
-
-            //Create the indention first
-            String indent="";
-            if (Indention > 0 ) {
-                indent = new String(new char[Indention]).replace('\0', '\t');
-            }
-            //add indents to the final tree
-            FinalTreeString += indent;
-            //add the beginning parenthesis
-            FinalTreeString += " ( ";
-            //now we add the current Tree's name
-            String tokenName = LuaParser.tokenNames[tree.getType()];
-            String tokenText = tree.getText();
-
-                if(tokenName.equals("String")){
-                    FinalTreeString = FinalTreeString + " ' " + tree.toString() + " ' ";
-                }
-                else{
-                    FinalTreeString += tree.toString();
-                }
-
-
-            //now we will have to print the children
-            if(tree.getChildCount() > 0 ) {
-                for (int i = 0 ; i<tree.getChildCount() ; i++){
-                    //if this child didn't have any children
-                    if(tree.getChild(i).getChildCount() == 0 ){
-                        tokenName = LuaParser.tokenNames[tree.getChild(i).getType()];
-                        tokenText = tree.getChild(i).getText();
-
-                        if(tokenName.equals("String")){
-                            FinalTreeString = FinalTreeString + " " + " ' " + tree.getChild(i).toString() + " ' ";
-                        }
-                        else{
-                            FinalTreeString = FinalTreeString + " " + tree.getChild(i).toString();
-                        }
-
-                    }
-                    else{
-                        FinalTreeString += "\n";
-                        for(int j = i ; j<tree.getChildCount(); j++){
-                            createStructuredTree((CommonTree) tree.getChild(j), Indention + 1);
-                        }
-                        FinalTreeString = FinalTreeString + indent + " )\n";
-                        break;
-                    }
-                    if(i == tree.getChildCount()-1)
-                        FinalTreeString += " )\n";
-                }
-            }
-            //else if you don't have any children
-            else{
-                FinalTreeString += " )\n";
-            }
-        }
         public static void main(String[] args) throws Exception {
             LuaLexer lexer = new LuaLexer(new ANTLRFileStream(args[0]));
             LuaParser parser = new LuaParser(new CommonTokenStream(lexer));
@@ -91,10 +28,19 @@ import org.antlr.runtime.ANTLRFileStream;
             String treeString = tree.toStringTree();
             //now we feed the common tree "tree" to the createStructuredTree
             //and feed the Final string to the input reader to put it in a file.
-            createStructuredTree(tree, 0);
+            MyASTgenerator myAST = new MyASTgenerator(tree);
+            String treeStructure = myAST.getAST();
 //            printToSeparateFile(args[1],treeString);
-            InputReader.printToFile(args[1], FinalTreeString);
-            System.out.println(FinalTreeString);
+            InputReader.printToFile(args[1], treeStructure);
+
+
+
+//            TreeConstructor myTree = new TreeConstructor(args[1]);
+//            InputReader.printToFile(args[2],myTree.toString());
+//            myTree.printTreeTokens();
+
+
+            System.out.println(treeStructure);
 //
         }
     }
