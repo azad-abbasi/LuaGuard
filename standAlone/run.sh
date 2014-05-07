@@ -3,9 +3,8 @@
 #!/bin/bash
 #coppy every file to the corresponding directory
 
-cp ../src/parser/*.java ./src/parser/
-cp ../src/unparser/*.java ./src/unparser/
-cp ../src/main/*.java ./src/main/
+cp -rf ../src/* ./src/
+
 cp ../grammars/*.g ./grammars/
 
 
