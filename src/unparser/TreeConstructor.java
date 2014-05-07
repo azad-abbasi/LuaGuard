@@ -12,7 +12,6 @@ import java.util.StringTokenizer;
  */
 public class TreeConstructor {
     public static StringTokenizer st ;
-    public static Node treeRoot;
     public static ArrayList<String> Keywords = new ArrayList<String>(
             Arrays.asList("ASSIGNMENT", "ASSIGNMENT_VAR", "CALL",
                     "CHUNK", "COL_CALL", "CONDITION", "EXPR_LIST",
@@ -25,6 +24,7 @@ public class TreeConstructor {
     public static Node tree;
     private String path;
 
+
     public TreeConstructor(String path){
         this.path= path;
         InputReader read = new InputReader(path);
@@ -33,15 +33,17 @@ public class TreeConstructor {
         //we need to get rid of the first token that is a parenthesis
         //so we read a token.
         st.nextToken();
-        tree = treeConstructor(st.nextToken());
+        tree = treeConstructor(st.nextToken(),null);
 
     }
 
-    public Node getTree(){
+
+
+    public Node getRoot(){
         return tree;
     }
 
-    public void printStructuredTree(){
+    public void printTree(){
         printStructuredTree(tree,0);
         System.out.println(finalTreeString);
     }
@@ -50,8 +52,8 @@ public class TreeConstructor {
         printTokens(path);
     }
 
-    public static Node treeConstructor(String root){
-        Node thisNode = new Node(root);
+    public static Node treeConstructor(String root, Node father){
+        Node thisNode = new Node(root,father);
         String currentToken;
         int index = 0 ;
         while(st.hasMoreTokens()){
@@ -62,17 +64,17 @@ public class TreeConstructor {
 
             if(!(currentToken.equals(")") || currentToken.equals("("))){
                 if(!currentToken.equals("'")){
-                    thisNode.addChild(new Node(currentToken));
+                    thisNode.addChild(new Node(currentToken,thisNode));
 
                 }
                 else{
-                    thisNode.addChild(treeConstructor(getStringToken()));
+                    thisNode.addChild(treeConstructor(getStringToken(),thisNode));
                 }
 //                currentToken = st.nextToken();
             }
             //what happens if we see a closing parenthesis here
             else if(currentToken.equals("(")){
-                thisNode.addChild(treeConstructor(st.nextToken()));
+                thisNode.addChild(treeConstructor(st.nextToken(),thisNode));
 
             }
 

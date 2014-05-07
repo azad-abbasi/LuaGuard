@@ -9,6 +9,7 @@ public class ASTwalker {
 
     public static void main(String[] args) {
         TreeConstructor tree = new TreeConstructor(args[0]);
-        tree.printStructuredTree();
+        tree.printTree();
+
     }
 }
