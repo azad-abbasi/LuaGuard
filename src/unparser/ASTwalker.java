@@ -22,6 +22,7 @@ public class ASTwalker {
                         "PARAM_LIST", "TABLE", "UNARY_MINUS","VAR",
                         "VAR_LIST","FUNCTION_FUNCTION"));
     public static Stack<String> myNodeStack = new Stack<String>();
+    public static String finalTreeString = "";
 
     public ASTwalker(String path){
         InputReader read = new InputReader(path);
@@ -76,6 +77,7 @@ public class ASTwalker {
             finalString+=currentToken;
             currentToken=st.nextToken();
         }
+        st.nextToken();
         return finalString;
     }
 
@@ -91,6 +93,8 @@ public class ASTwalker {
             return true;
         }
     }
+
+    // print the tokens of a file given in the path
     public static void printTokens(String path){
         InputReader read = new InputReader(path);
         String ast = read.getString();
@@ -99,19 +103,58 @@ public class ASTwalker {
             System.out.println(wb.nextToken());
         }
     }
+    private static void printStructuredTree(Node tree, int Indention){
+        //Create the indention first
+        String indent="";
+        if (Indention > 0 ) {
+            indent = new String(new char[Indention]).replace('\0', '\t');
+        }
+        //add indents to the final tree
+        finalTreeString += indent;
+        //add the beginning parenthesis
+        finalTreeString += "(";
+        //now we add the current Tree's name
+        finalTreeString += tree.getName();
+
+
+        //now we will have to print the children
+        if(tree.getChildCount() > 0 ) {
+            for (int i = 0 ; i<tree.getChildCount() ; i++){
+                //if this child didn't have any children
+                if(tree.getChild(i).getChildCount() == 0 ){
+                    finalTreeString = finalTreeString + " " + tree.getChild(i).getName();
+                }
+                else{
+                    finalTreeString += "\n";
+                    for(int j = i ; j<tree.getChildCount(); j++){
+                        printStructuredTree(tree.getChild(j),Indention+1);
+                    }
+                    finalTreeString = finalTreeString + indent + ")\n";
+                    break;
+                }
+                if(i == tree.getChildCount()-1)
+                    finalTreeString += ")\n";
+            }
+        }
+        //else if you don't have any children
+        else{
+            finalTreeString += ")\n";
+        }
+    }
 
     public static void main(String[] args) {
-        printTokens(args[0]);
+//        printTokens(args[0]);
         InputReader read = new InputReader(args[0]);
         String ast = read.getString();
         st = new StringTokenizer(ast);
-        String token = st.nextToken();
+        //we need to get rid of the first token that is a parenthesis
+        //so we read a token.
+        st.nextToken();
         Node tree = treeConstructor(st.nextToken());
-        System.out.println("");
-        System.out.println("");
-        System.out.println(tree.getChild(1).getChild(0).getName());
+//        printStructuredTree(tree,0);
+//        System.out.println(finalTreeString);
+//        printStructuredTree(tree,0);
 //        printTokens(args[0]);
-
 //        readTokens(args[0]);
     }
 }

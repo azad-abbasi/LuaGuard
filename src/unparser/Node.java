@@ -25,6 +25,12 @@ public class Node {
         }
         children.add(n);
     }
+    public int getChildCount(){
+        if(children == null){
+            return 0;
+        }
+        return children.size();
+    }
     public void setName(String name){
         this.name = name;
     }
