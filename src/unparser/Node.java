@@ -11,9 +11,11 @@ public class Node {
     //contain it's children which are Nodes themselves
     String name;
     ArrayList<Node> children;
+    Node parent;
 
-    public Node(String name){
+    public Node(String name, Node parent){
         this.name = name;
+        this.parent = parent;
     }
     public Node(){
 
@@ -24,6 +26,9 @@ public class Node {
             children = new ArrayList<Node>();
         }
         children.add(n);
+    }
+    public Node getParent(){
+        return parent;
     }
     public int getChildCount(){
         if(children == null){
