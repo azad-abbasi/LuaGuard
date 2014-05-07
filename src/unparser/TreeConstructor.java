@@ -1,9 +1,5 @@
-/**
- * Created by Azad on 5/5/2014.
- * this file will walk through an AST
- * file and regenerates the tree
- */
 package unparser;
+
 import parser.InputReader;
 
 import java.util.ArrayList;
@@ -11,27 +7,49 @@ import java.util.Arrays;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class ASTwalker {
+/**
+ * Created by Azad on 5/6/2014.
+ */
+public class TreeConstructor {
     public static StringTokenizer st ;
     public static Node treeRoot;
     public static ArrayList<String> Keywords = new ArrayList<String>(
-                Arrays.asList("ASSIGNMENT", "ASSIGNMENT_VAR","CALL",
-                        "CHUNK", "COL_CALL","CONDITION", "EXPR_LIST",
-                        "FIELD", "FIELD_LIST", "FOR_IN", "FUNCTION",
-                        "INDEX", "LABEL","LOCAL_ASSIGNMENT", "NAME_LIST",
-                        "PARAM_LIST", "TABLE", "UNARY_MINUS","VAR",
-                        "VAR_LIST","FUNCTION_FUNCTION"));
+            Arrays.asList("ASSIGNMENT", "ASSIGNMENT_VAR", "CALL",
+                    "CHUNK", "COL_CALL", "CONDITION", "EXPR_LIST",
+                    "FIELD", "FIELD_LIST", "FOR_IN", "FUNCTION",
+                    "INDEX", "LABEL", "LOCAL_ASSIGNMENT", "NAME_LIST",
+                    "PARAM_LIST", "TABLE", "UNARY_MINUS", "VAR",
+                    "VAR_LIST", "FUNCTION_FUNCTION"));
     public static Stack<String> myNodeStack = new Stack<String>();
     public static String finalTreeString = "";
+    public static Node tree;
+    private String path;
 
-    public ASTwalker(String path){
+    public TreeConstructor(String path){
+        this.path= path;
         InputReader read = new InputReader(path);
         String ast = read.getString();
         st = new StringTokenizer(ast);
+        //we need to get rid of the first token that is a parenthesis
+        //so we read a token.
+        st.nextToken();
+        tree = treeConstructor(st.nextToken());
+
     }
 
+    public Node getTree(){
+        return tree;
+    }
 
-    //recursive function to create a tree.
+    public void printStructuredTree(){
+        printStructuredTree(tree,0);
+        System.out.println(finalTreeString);
+    }
+
+    public void printTreeTokens(){
+        printTokens(path);
+    }
+
     public static Node treeConstructor(String root){
         Node thisNode = new Node(root);
         String currentToken;
@@ -142,8 +160,7 @@ public class ASTwalker {
         }
     }
 
-    public static void main(String[] args) {
-        TreeConstructor tree = new TreeConstructor(args[0]);
-        tree.printStructuredTree();
-    }
+
+
+
 }
