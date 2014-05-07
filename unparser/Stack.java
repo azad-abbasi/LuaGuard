@@ -18,15 +18,16 @@ public class Stack {
 			return "Stack empty";
 	}
 	public static String parent(){
-		if (top >= 0 && top < 99){
-			return stack[top + 1];
+		//System.out.print("top:"+top);
+		if (top > 0 && top < 100){
+			return stack[top - 1];
 		}
 		else
 			return "Element out of range";
 	}
 	public static String child(){
-		if (top >= 1 && top < 100){
-			return stack[top - 1];
+		if (top > 0 && top < 100){
+			return stack[top + 1];
 		}
 		else
 			return "Element out of range";
@@ -38,10 +39,10 @@ public class Stack {
 	}
 	public static boolean isEmpty(){
 		if (top > 0){
-			return true;
+			return false;
 		}
 		else{
-			return false;
+			return true;
 		}
 	}
 }

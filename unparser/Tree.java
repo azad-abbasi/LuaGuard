@@ -60,13 +60,32 @@ public class Tree {
 		return ast;
 	}
 	
+	public static void merge(Vector<Node> forest){					//will merge the suptree into one tree
+		Node root = new Node(" ");
+		
+		/**test. prints out subtrees*/
+		for (Node n : forest)
+		{
+			System.out.println("name:" + n.name);
+			System.out.println("parent:" + n.nameOfParent);
+		}
+		
+		for (Node n : forest){
+			for (Node m : forest){
+				if (m.nameOfParent == n.nameOfParent){
+					n.parent.setChild(m.name);
+				}
+			}
+		}
+	}
+	
 	public static void treeBuilder(Vector<String> ast){
+		Vector<Node> forest = new Vector<Node>();	//keeps track of trees in forest
 		int i;
 		int index = 0;
 		boolean popOnce = false;
 		boolean popTwice = false;
 		boolean mightPopOnce = false;
-		boolean mightPopTwice = false;
 		
 		
 		for (String line : ast){								//for each line in the AST tree
@@ -82,40 +101,57 @@ public class Tree {
 				
 				if (Character.toString(line.charAt(i)).equals("(")){		//we may need to pop once
 					mightPopOnce = true;
-					mightPopTwice = true;
-					System.out.println("hi");
 				}
 				if (mightPopOnce && Character.toString(line.charAt(i)).equals(")")){	//enclosed statement in parentheses needs to be popped
 					popOnce = true;
 				}
-				else if (mightPopTwice && Character.toString(line.charAt(i)).equals(")")){	//need to pop twice
+				else if (Character.toString(line.charAt(i)).equals(")")){	//need to pop twice
 					popTwice = true;
-					mightPopTwice = false;			//only is negated here, since it is testing the next line for ")"
 				}
 			}
 			if (popOnce){		//must pop an item off the stack and find the string value directly preceding it. This is a leaf node.
-				String child = Stack.pop();	//pop the line that was just pushed onto the stack
 				String parent = Stack.parent();	//retrieve name of preceding line. This will be a temporary value for parent in the tree
+				String child = Stack.pop();	//pop the line that was just pushed onto the stack
 				
+				Node elem = new Node(child);
+				elem.setParent(parent);
 				//insert node with key of popped stack element onto tree. Assign its temporary parent to the name of the parent//
-				//Node elem = new Node(child, parent);
+				forest.add(elem);
+				
+				//System.out.println("child:"+child);
+				//System.out.println("parent:"+parent);
 			}
 			else if (popTwice){		//must pop two items off the stack and find the string value directly preceding them. child2 is a leaf node.
+				//System.out.print("popTwice ");
 				String child1 = Stack.pop();
-				String child2 = Stack.pop();
 				String parent = Stack.parent();
+				String child2 = Stack.pop();
+
+				//System.out.println(" parent" + parent);
 				
-				System.out.println("pop twice " + "Child1:" + "Child2:"+child2);
+				//System.out.println("child1"+child1+"Child2:"+child2);
+				
+				Node elem1 = new Node(child1);
+				Node elem2 = new Node(child2);
+				
+				elem1.setParent(parent);
+				elem2.setParent(parent);
 				
 				//insert nodes with keys of popped stack element onto tree. Assign their shared temporary parent to the name of the parent//
-				//Node elem1 = new Node(child1, parent);
-				//Node elem2 = new Node(child2, parent);
+				forest.add(elem1);
+				forest.add(elem2);
+				
+				//System.out.println("child1:"+child1);
+				//System.out.println("child2:"+child2);
+				//System.out.println("parent:"+parent);
 			}
 			else{
 				index++;
 			}
 		}
 		Stack.printStack();
+		
+		merge(forest);
 	}
 
 	public static void main(String[] args){
