@@ -5,11 +5,6 @@ package parser;
 import org.antlr.runtime.ANTLRFileStream;
     import org.antlr.runtime.CommonTokenStream;
     import org.antlr.runtime.tree.CommonTree;
-
-    import java.io.BufferedWriter;
-    import java.io.File;
-    import java.io.FileWriter;
-    import java.io.IOException;
 //    import java.util.ArrayList;
 //    import java.util.Arrays;
 
@@ -30,30 +25,10 @@ import org.antlr.runtime.ANTLRFileStream;
             System.out.println(tree.toStringTree());
         }
 
-        private static void printToFile(String path, String finalStr) {
 
-            //creating a writer
-            try {
-                File file = new File(path+".txt");
-                for (int i = 0 ; i<100 ; i++){
-                    if(file.exists()){
-                        file = new File(path+i+".txt");
-                    }
-                    else{
-                        break;
-                    }
-                }
-
-                BufferedWriter output = new BufferedWriter(new FileWriter(file));
-
-                output.write(finalStr);
-                output.close();
-            } catch ( IOException e ) {
-                e.printStackTrace();
-            }
-
-        }
-        private static void printStructuredTree(CommonTree tree, int Indention){
+        //this file creates the structured Tree String with a CommonTree as the input
+        //and puts the tree in the FinalTreeString variable(static)
+        private static void createStructuredTree(CommonTree tree, int Indention){
 
             //Create the indention first
             String indent="";
@@ -95,7 +70,7 @@ import org.antlr.runtime.ANTLRFileStream;
                     else{
                         FinalTreeString += "\n";
                         for(int j = i ; j<tree.getChildCount(); j++){
-                            printStructuredTree((CommonTree)tree.getChild(j),Indention+1);
+                            createStructuredTree((CommonTree) tree.getChild(j), Indention + 1);
                         }
                         FinalTreeString = FinalTreeString + indent + " )\n";
                         break;
@@ -114,9 +89,11 @@ import org.antlr.runtime.ANTLRFileStream;
             LuaParser parser = new LuaParser(new CommonTokenStream(lexer));
             CommonTree tree =  parser.parse().getTree();
             String treeString = tree.toStringTree();
-            printStructuredTree(tree,0);
-//            printToFile(args[1]+"Simple",treeString);
-            printToFile(args[1],FinalTreeString);
+            //now we feed the common tree "tree" to the createStructuredTree
+            //and feed the Final string to the input reader to put it in a file.
+            createStructuredTree(tree, 0);
+//            printToSeparateFile(args[1],treeString);
+            InputReader.printToFile(args[1], FinalTreeString);
             System.out.println(FinalTreeString);
 //
         }

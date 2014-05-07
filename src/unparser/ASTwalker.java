@@ -4,12 +4,17 @@
  * file and regenerates the tree
  */
 package unparser;
+
+import parser.InputReader;
+
 public class ASTwalker {
 
 
     public static void main(String[] args) {
         TreeConstructor tree = new TreeConstructor(args[0]);
-        tree.printTree();
+        InputReader.printToFile(args[1],tree.toString());
+        tree.printTreeTokens();
+//        tree.printTree();
 
     }
 }
