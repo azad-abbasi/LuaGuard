@@ -1,12 +1,16 @@
 /**
  * Created by azadabbasi on 4/10/14.2
  */
-package parser;
+package main;
 import org.antlr.runtime.ANTLRFileStream;
-    import org.antlr.runtime.CommonTokenStream;
-    import org.antlr.runtime.tree.CommonTree;
-//    import java.util.ArrayList;
-//    import java.util.Arrays;
+import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.tree.CommonTree;
+import parser.InputReader;
+import parser.LuaLexer;
+import parser.LuaParser;
+import parser.MyASTgenerator;
+import unparser.TreeConstructor;
+
 
     public class MainClass {
 //        public static ArrayList<String> places = new ArrayList<String>(
@@ -35,9 +39,9 @@ import org.antlr.runtime.ANTLRFileStream;
 
 
 
-//            TreeConstructor myTree = new TreeConstructor(args[1]);
-//            InputReader.printToFile(args[2],myTree.toString());
-//            myTree.printTreeTokens();
+            TreeConstructor myTree = new TreeConstructor(args[1]);
+            InputReader.printToFile(args[2],myTree.toString());
+            myTree.printTreeTokens();
 
 
             System.out.println(treeStructure);
