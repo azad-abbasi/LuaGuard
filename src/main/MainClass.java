@@ -26,6 +26,14 @@ import unparser.TreeConstructor;
 //                        "String", "TABLE", "Then", "True", "UNARY_MINUS", "Until", "VAR", "VAR_LIST", "While"));
 
         public static void main(String[] args) throws Exception {
+
+            if(args.length<4){
+                System.out.println("\n    This class takes 3 arguments:" +
+                        "\n     1:the path to the input file which contains the Lua code" +
+                        "\n     2:the path to the desired output path" +
+                        "\n     3:the path to the desired unparser path");
+                return;
+            }
             LuaLexer lexer = new LuaLexer(new ANTLRFileStream(args[0]));
             LuaParser parser = new LuaParser(new CommonTokenStream(lexer));
             CommonTree tree =  parser.parse().getTree();
