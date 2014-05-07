@@ -10,7 +10,6 @@ public class Node {
 	
 	Node(String n){
 		name = n;
-		children.add(null); 					//each node is considered to be a leaf initially
 		parent = root;							//parent is assumed to be null initially
 	}
 	
@@ -29,5 +28,23 @@ public class Node {
 	
 	public Node getChild(int i){
 		return children.get(i);
+	}
+	
+	public void print(){
+		System.out.println("Name:" + name);
+		System.out.println("Parent:" + nameOfParent);
+		
+		System.out.println("Children:");
+		for(Node ch : children){
+			if (ch != null){
+				System.out.println(ch.name);
+			}
+			else{
+				System.out.print("No children");
+			}
+			
+		}
+		
+		System.out.println(" ");
 	}
 }

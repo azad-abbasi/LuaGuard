@@ -57,25 +57,60 @@ public class Tree {
 			ex.printStackTrace();
 			}
 		}
+		//**have to classify tokens in the event of multiple occurance
+		int count;			//used for the inner-inner loop
+		int i;				//used for the inner loop
+		int index = 0;		//used for the outer loop
+		for (String s : ast){
+			count = 0;	
+			i = 0;
+			for (String t : ast){
+				if (s.equals(t) && !Character.toString(s.charAt(0)).equals(")") && i > index){
+					String c = Integer.toString(count);
+					
+					/**assign c to s*/
+					t = c + t;
+					
+					ast.set(i, t);
+					count++;
+				}
+				i++;
+			}
+			index++;
+		}
+		
 		return ast;
 	}
 	
 	public static void merge(Vector<Node> forest){					//will merge the suptree into one tree
+		Vector<Node> tree = new Vector<Node>();
 		Node root = new Node(" ");
 		
+		
 		/**test. prints out subtrees*/
-		for (Node n : forest)
+		/**for (Node n : forest)
 		{
 			System.out.println("name:" + n.name);
 			System.out.println("parent:" + n.nameOfParent);
+		}*/
+		
+		int j = 0;		//for inner loop
+		int k = 0;		//for outer loop
+		for (Node n : forest){
+			j = 0;
+			for (Node m : forest){
+				if (m.nameOfParent.equals(n.nameOfParent) && j > k){
+					n.getParent().setChild(m.name);
+					tree.add(n.getParent());
+				}
+				
+				j++;
+			}
+			k++;
 		}
 		
-		for (Node n : forest){
-			for (Node m : forest){
-				if (m.nameOfParent == n.nameOfParent){
-					n.parent.setChild(m.name);
-				}
-			}
+		for (Node i : tree){
+			i.print();
 		}
 	}
 	
@@ -115,6 +150,8 @@ public class Tree {
 				
 				Node elem = new Node(child);
 				elem.setParent(parent);
+				elem.getParent().setChild(elem.name);
+				
 				//insert node with key of popped stack element onto tree. Assign its temporary parent to the name of the parent//
 				forest.add(elem);
 				
@@ -136,6 +173,8 @@ public class Tree {
 				
 				elem1.setParent(parent);
 				elem2.setParent(parent);
+				elem1.getParent().setChild(elem1.name);
+				elem2.getParent().setChild(elem2.name);
 				
 				//insert nodes with keys of popped stack element onto tree. Assign their shared temporary parent to the name of the parent//
 				forest.add(elem1);
@@ -159,14 +198,13 @@ public class Tree {
 		Vector<String> ast = fileReader("testIn.txt");
 		
 		//test fileReader
-		for (String line : ast){
+		/**for (String line : ast){
 			System.out.println(line);
 		}
-		System.out.println("size:"+ast.size());
+		System.out.println("size:"+ast.size());*/
 		
 		//execute treeBuilder
 		treeBuilder(ast);
 	}
-
 
 }
