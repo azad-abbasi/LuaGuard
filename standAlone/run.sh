@@ -1,5 +1,8 @@
+
+
 #!/bin/bash
 #coppy every file to the corresponding directory
+
 cp ../src/parser/*.java ./src/parser/
 cp ../src/unparser/*.java ./src/unparser/
 cp ../src/main/*.java ./src/main/
@@ -12,8 +15,11 @@ mv grammars/*.java src/parser/
 mv *.tokens src/parser/
 javac -cp "lib/antlr-3.5.2-complete-no-st3.jar" -sourcepath "./src/*/*" src/*/*.java
 
-
-
-java -cp ".:lib/antlr-3.5.2-complete-no-st3.jar" src/main/MainClass $1 $2 $3
+one="../"$1
+two="../"$2
+three="../"$3
+cd src/
+java -cp ".:../lib/antlr-3.5.2-complete-no-st3.jar:parser/*:unparser/*:main/*" main/MainClass $one $two $three
+cd ../
 rm -rf src/parser/*.class src/unparser/*.class src/*/*.class
 
