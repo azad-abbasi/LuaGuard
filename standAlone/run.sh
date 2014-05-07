@@ -19,12 +19,8 @@ mv *.tokens src/parser/
 javac -cp "lib/antlr-3.5.2-complete-no-st3.jar" -sourcepath "./src/*/*" src/*/*.java
 
 #running the mainClass of the source code
-one="../"$1
-two="../"$2
-three="../"$3
-cd src/
-java -cp ".:../lib/antlr-3.5.2-complete-no-st3.jar:*/*" main/MainClass $one $two $three
-cd ../
+
+java -cp "./src/:lib/antlr-3.5.2-complete-no-st3.jar" main.MainClass $1 $2 $3
 
 
 #clearing the directories of .class files
