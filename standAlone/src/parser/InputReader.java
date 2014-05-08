@@ -34,8 +34,23 @@ public class InputReader {
 
 
     }
+    public static void printToFile(String path, String finalStr) {
 
-    private static void printToFile(String path, String finalStr) {
+        //creating a writer
+        try {
+            File file = new File(path);
+
+
+            BufferedWriter output = new BufferedWriter(new FileWriter(file));
+
+            output.write(finalStr);
+            output.close();
+        } catch ( IOException e ) {
+            e.printStackTrace();
+        }
+
+    }
+    private static void printToSeparateFile(String path, String finalStr) {
 
         //creating a writer
         try {
@@ -59,7 +74,7 @@ public class InputReader {
 
     }
 
-    public String getFileString(){
+    public String getString(){
         return output;
     }
 }

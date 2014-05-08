@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 .\\grammars\\LuaWalker.g 2014-05-06 23:55:38
+// $ANTLR 3.5.2 grammars/LuaWalker.g 2014-05-07 16:51:57
 
 package parser;
 
@@ -128,16 +128,16 @@ public class LuaWalker extends TreeParser {
 	}
 
 	@Override public String[] getTokenNames() { return LuaWalker.tokenNames; }
-	@Override public String getGrammarFileName() { return ".\\grammars\\LuaWalker.g"; }
+	@Override public String getGrammarFileName() { return "grammars/LuaWalker.g"; }
 
 
 
 	// $ANTLR start "walk"
-	// .\\grammars\\LuaWalker.g:41:1: walk : chunk ;
+	// grammars/LuaWalker.g:41:1: walk : chunk ;
 	public final void walk() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:42:2: ( chunk )
-			// .\\grammars\\LuaWalker.g:42:4: chunk
+			// grammars/LuaWalker.g:42:2: ( chunk )
+			// grammars/LuaWalker.g:42:4: chunk
 			{
 			pushFollow(FOLLOW_chunk_in_walk38);
 			chunk();
@@ -159,16 +159,16 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "chunk"
-	// .\\grammars\\LuaWalker.g:45:1: chunk : ^( CHUNK ( stat )* ( ret_stat )? ) ;
+	// grammars/LuaWalker.g:45:1: chunk : ^( CHUNK ( stat )* ( ret_stat )? ) ;
 	public final void chunk() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:46:2: ( ^( CHUNK ( stat )* ( ret_stat )? ) )
-			// .\\grammars\\LuaWalker.g:46:4: ^( CHUNK ( stat )* ( ret_stat )? )
+			// grammars/LuaWalker.g:46:2: ( ^( CHUNK ( stat )* ( ret_stat )? ) )
+			// grammars/LuaWalker.g:46:4: ^( CHUNK ( stat )* ( ret_stat )? )
 			{
 			match(input,CHUNK,FOLLOW_CHUNK_in_chunk50); 
 			if ( input.LA(1)==Token.DOWN ) {
 				match(input, Token.DOWN, null); 
-				// .\\grammars\\LuaWalker.g:46:12: ( stat )*
+				// grammars/LuaWalker.g:46:12: ( stat )*
 				loop1:
 				while (true) {
 					int alt1=2;
@@ -179,7 +179,7 @@ public class LuaWalker extends TreeParser {
 
 					switch (alt1) {
 					case 1 :
-						// .\\grammars\\LuaWalker.g:46:12: stat
+						// grammars/LuaWalker.g:46:12: stat
 						{
 						pushFollow(FOLLOW_stat_in_chunk52);
 						stat();
@@ -193,7 +193,7 @@ public class LuaWalker extends TreeParser {
 					}
 				}
 
-				// .\\grammars\\LuaWalker.g:46:18: ( ret_stat )?
+				// grammars/LuaWalker.g:46:18: ( ret_stat )?
 				int alt2=2;
 				int LA2_0 = input.LA(1);
 				if ( (LA2_0==Return) ) {
@@ -201,7 +201,7 @@ public class LuaWalker extends TreeParser {
 				}
 				switch (alt2) {
 					case 1 :
-						// .\\grammars\\LuaWalker.g:46:18: ret_stat
+						// grammars/LuaWalker.g:46:18: ret_stat
 						{
 						pushFollow(FOLLOW_ret_stat_in_chunk55);
 						ret_stat();
@@ -231,10 +231,10 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "stat"
-	// .\\grammars\\LuaWalker.g:49:1: stat : ( assignment | var[true] | do_block | while_stat | repeat_stat | local | if_stat | for_stat | label | goto_stat | Break );
+	// grammars/LuaWalker.g:49:1: stat : ( assignment | var[true] | do_block | while_stat | repeat_stat | local | if_stat | for_stat | label | goto_stat | Break );
 	public final void stat() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:50:2: ( assignment | var[true] | do_block | while_stat | repeat_stat | local | if_stat | for_stat | label | goto_stat | Break )
+			// grammars/LuaWalker.g:50:2: ( assignment | var[true] | do_block | while_stat | repeat_stat | local | if_stat | for_stat | label | goto_stat | Break )
 			int alt3=11;
 			switch ( input.LA(1) ) {
 			case ASSIGNMENT:
@@ -300,7 +300,7 @@ public class LuaWalker extends TreeParser {
 			}
 			switch (alt3) {
 				case 1 :
-					// .\\grammars\\LuaWalker.g:50:4: assignment
+					// grammars/LuaWalker.g:50:4: assignment
 					{
 					pushFollow(FOLLOW_assignment_in_stat68);
 					assignment();
@@ -309,7 +309,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 2 :
-					// .\\grammars\\LuaWalker.g:51:4: var[true]
+					// grammars/LuaWalker.g:51:4: var[true]
 					{
 					pushFollow(FOLLOW_var_in_stat73);
 					var(true);
@@ -318,7 +318,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 3 :
-					// .\\grammars\\LuaWalker.g:52:4: do_block
+					// grammars/LuaWalker.g:52:4: do_block
 					{
 					pushFollow(FOLLOW_do_block_in_stat79);
 					do_block();
@@ -327,7 +327,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 4 :
-					// .\\grammars\\LuaWalker.g:53:4: while_stat
+					// grammars/LuaWalker.g:53:4: while_stat
 					{
 					pushFollow(FOLLOW_while_stat_in_stat84);
 					while_stat();
@@ -336,7 +336,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 5 :
-					// .\\grammars\\LuaWalker.g:54:4: repeat_stat
+					// grammars/LuaWalker.g:54:4: repeat_stat
 					{
 					pushFollow(FOLLOW_repeat_stat_in_stat89);
 					repeat_stat();
@@ -345,7 +345,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 6 :
-					// .\\grammars\\LuaWalker.g:55:4: local
+					// grammars/LuaWalker.g:55:4: local
 					{
 					pushFollow(FOLLOW_local_in_stat94);
 					local();
@@ -354,7 +354,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 7 :
-					// .\\grammars\\LuaWalker.g:56:4: if_stat
+					// grammars/LuaWalker.g:56:4: if_stat
 					{
 					pushFollow(FOLLOW_if_stat_in_stat99);
 					if_stat();
@@ -363,7 +363,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 8 :
-					// .\\grammars\\LuaWalker.g:57:4: for_stat
+					// grammars/LuaWalker.g:57:4: for_stat
 					{
 					pushFollow(FOLLOW_for_stat_in_stat104);
 					for_stat();
@@ -372,7 +372,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 9 :
-					// .\\grammars\\LuaWalker.g:58:4: label
+					// grammars/LuaWalker.g:58:4: label
 					{
 					pushFollow(FOLLOW_label_in_stat109);
 					label();
@@ -381,7 +381,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 10 :
-					// .\\grammars\\LuaWalker.g:59:4: goto_stat
+					// grammars/LuaWalker.g:59:4: goto_stat
 					{
 					pushFollow(FOLLOW_goto_stat_in_stat114);
 					goto_stat();
@@ -390,7 +390,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 11 :
-					// .\\grammars\\LuaWalker.g:60:4: Break
+					// grammars/LuaWalker.g:60:4: Break
 					{
 					match(input,Break,FOLLOW_Break_in_stat119); 
 					}
@@ -411,11 +411,11 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "do_block"
-	// .\\grammars\\LuaWalker.g:63:1: do_block : ^( Do chunk ) ;
+	// grammars/LuaWalker.g:63:1: do_block : ^( Do chunk ) ;
 	public final void do_block() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:64:2: ( ^( Do chunk ) )
-			// .\\grammars\\LuaWalker.g:64:4: ^( Do chunk )
+			// grammars/LuaWalker.g:64:2: ( ^( Do chunk ) )
+			// grammars/LuaWalker.g:64:4: ^( Do chunk )
 			{
 			match(input,Do,FOLLOW_Do_in_do_block131); 
 			match(input, Token.DOWN, null); 
@@ -441,11 +441,11 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "while_stat"
-	// .\\grammars\\LuaWalker.g:67:1: while_stat : ^( While expr do_block ) ;
+	// grammars/LuaWalker.g:67:1: while_stat : ^( While expr do_block ) ;
 	public final void while_stat() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:68:2: ( ^( While expr do_block ) )
-			// .\\grammars\\LuaWalker.g:68:4: ^( While expr do_block )
+			// grammars/LuaWalker.g:68:2: ( ^( While expr do_block ) )
+			// grammars/LuaWalker.g:68:4: ^( While expr do_block )
 			{
 			match(input,While,FOLLOW_While_in_while_stat146); 
 			match(input, Token.DOWN, null); 
@@ -475,11 +475,11 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "repeat_stat"
-	// .\\grammars\\LuaWalker.g:71:1: repeat_stat : ^( Repeat chunk expr ) ;
+	// grammars/LuaWalker.g:71:1: repeat_stat : ^( Repeat chunk expr ) ;
 	public final void repeat_stat() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:72:2: ( ^( Repeat chunk expr ) )
-			// .\\grammars\\LuaWalker.g:72:4: ^( Repeat chunk expr )
+			// grammars/LuaWalker.g:72:2: ( ^( Repeat chunk expr ) )
+			// grammars/LuaWalker.g:72:4: ^( Repeat chunk expr )
 			{
 			match(input,Repeat,FOLLOW_Repeat_in_repeat_stat163); 
 			match(input, Token.DOWN, null); 
@@ -509,14 +509,14 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "assignment"
-	// .\\grammars\\LuaWalker.g:75:1: assignment : ^( ASSIGNMENT ^( VAR_LIST e1= expr_list ) ^( EXPR_LIST e2= expr_list ) ) ;
+	// grammars/LuaWalker.g:75:1: assignment : ^( ASSIGNMENT ^( VAR_LIST e1= expr_list ) ^( EXPR_LIST e2= expr_list ) ) ;
 	public final void assignment() throws RecognitionException {
 		TreeRuleReturnScope e1 =null;
 		TreeRuleReturnScope e2 =null;
 
 		try {
-			// .\\grammars\\LuaWalker.g:76:2: ( ^( ASSIGNMENT ^( VAR_LIST e1= expr_list ) ^( EXPR_LIST e2= expr_list ) ) )
-			// .\\grammars\\LuaWalker.g:76:4: ^( ASSIGNMENT ^( VAR_LIST e1= expr_list ) ^( EXPR_LIST e2= expr_list ) )
+			// grammars/LuaWalker.g:76:2: ( ^( ASSIGNMENT ^( VAR_LIST e1= expr_list ) ^( EXPR_LIST e2= expr_list ) ) )
+			// grammars/LuaWalker.g:76:4: ^( ASSIGNMENT ^( VAR_LIST e1= expr_list ) ^( EXPR_LIST e2= expr_list ) )
 			{
 			match(input,ASSIGNMENT,FOLLOW_ASSIGNMENT_in_assignment180); 
 			match(input, Token.DOWN, null); 
@@ -559,13 +559,13 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "local"
-	// .\\grammars\\LuaWalker.g:84:1: local : ^( LOCAL_ASSIGNMENT ^( NAME_LIST a= name_list ) ^( EXPR_LIST b= expr_list ) ) ;
+	// grammars/LuaWalker.g:84:1: local : ^( LOCAL_ASSIGNMENT ^( NAME_LIST a= name_list ) ^( EXPR_LIST b= expr_list ) ) ;
 	public final void local() throws RecognitionException {
 		TreeRuleReturnScope b =null;
 
 		try {
-			// .\\grammars\\LuaWalker.g:85:2: ( ^( LOCAL_ASSIGNMENT ^( NAME_LIST a= name_list ) ^( EXPR_LIST b= expr_list ) ) )
-			// .\\grammars\\LuaWalker.g:85:4: ^( LOCAL_ASSIGNMENT ^( NAME_LIST a= name_list ) ^( EXPR_LIST b= expr_list ) )
+			// grammars/LuaWalker.g:85:2: ( ^( LOCAL_ASSIGNMENT ^( NAME_LIST a= name_list ) ^( EXPR_LIST b= expr_list ) ) )
+			// grammars/LuaWalker.g:85:4: ^( LOCAL_ASSIGNMENT ^( NAME_LIST a= name_list ) ^( EXPR_LIST b= expr_list ) )
 			{
 			match(input,LOCAL_ASSIGNMENT,FOLLOW_LOCAL_ASSIGNMENT_in_local214); 
 			match(input, Token.DOWN, null); 
@@ -603,11 +603,11 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "goto_stat"
-	// .\\grammars\\LuaWalker.g:88:1: goto_stat : ^( Goto Name ) ;
+	// grammars/LuaWalker.g:88:1: goto_stat : ^( Goto Name ) ;
 	public final void goto_stat() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:89:2: ( ^( Goto Name ) )
-			// .\\grammars\\LuaWalker.g:89:4: ^( Goto Name )
+			// grammars/LuaWalker.g:89:2: ( ^( Goto Name ) )
+			// grammars/LuaWalker.g:89:4: ^( Goto Name )
 			{
 			match(input,Goto,FOLLOW_Goto_in_goto_stat243); 
 			match(input, Token.DOWN, null); 
@@ -630,15 +630,15 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "if_stat"
-	// .\\grammars\\LuaWalker.g:92:1: if_stat : ^( If ( ^( CONDITION expr chunk ) )+ ) ;
+	// grammars/LuaWalker.g:92:1: if_stat : ^( If ( ^( CONDITION expr chunk ) )+ ) ;
 	public final void if_stat() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:93:2: ( ^( If ( ^( CONDITION expr chunk ) )+ ) )
-			// .\\grammars\\LuaWalker.g:93:4: ^( If ( ^( CONDITION expr chunk ) )+ )
+			// grammars/LuaWalker.g:93:2: ( ^( If ( ^( CONDITION expr chunk ) )+ ) )
+			// grammars/LuaWalker.g:93:4: ^( If ( ^( CONDITION expr chunk ) )+ )
 			{
 			match(input,If,FOLLOW_If_in_if_stat258); 
 			match(input, Token.DOWN, null); 
-			// .\\grammars\\LuaWalker.g:93:9: ( ^( CONDITION expr chunk ) )+
+			// grammars/LuaWalker.g:93:9: ( ^( CONDITION expr chunk ) )+
 			int cnt4=0;
 			loop4:
 			while (true) {
@@ -650,7 +650,7 @@ public class LuaWalker extends TreeParser {
 
 				switch (alt4) {
 				case 1 :
-					// .\\grammars\\LuaWalker.g:93:10: ^( CONDITION expr chunk )
+					// grammars/LuaWalker.g:93:10: ^( CONDITION expr chunk )
 					{
 					match(input,CONDITION,FOLLOW_CONDITION_in_if_stat262); 
 					match(input, Token.DOWN, null); 
@@ -693,10 +693,10 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "for_stat"
-	// .\\grammars\\LuaWalker.g:96:1: for_stat : ( ^( For Name expr expr ( expr )? do_block ) | ^( FOR_IN ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) do_block ) );
+	// grammars/LuaWalker.g:96:1: for_stat : ( ^( For Name expr expr ( expr )? do_block ) | ^( FOR_IN ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) do_block ) );
 	public final void for_stat() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:97:2: ( ^( For Name expr expr ( expr )? do_block ) | ^( FOR_IN ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) do_block ) )
+			// grammars/LuaWalker.g:97:2: ( ^( For Name expr expr ( expr )? do_block ) | ^( FOR_IN ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) do_block ) )
 			int alt6=2;
 			int LA6_0 = input.LA(1);
 			if ( (LA6_0==For) ) {
@@ -714,7 +714,7 @@ public class LuaWalker extends TreeParser {
 
 			switch (alt6) {
 				case 1 :
-					// .\\grammars\\LuaWalker.g:97:4: ^( For Name expr expr ( expr )? do_block )
+					// grammars/LuaWalker.g:97:4: ^( For Name expr expr ( expr )? do_block )
 					{
 					match(input,For,FOLLOW_For_in_for_stat282); 
 					match(input, Token.DOWN, null); 
@@ -727,7 +727,7 @@ public class LuaWalker extends TreeParser {
 					expr();
 					state._fsp--;
 
-					// .\\grammars\\LuaWalker.g:97:25: ( expr )?
+					// grammars/LuaWalker.g:97:25: ( expr )?
 					int alt5=2;
 					int LA5_0 = input.LA(1);
 					if ( ((LA5_0 >= ASSIGNMENT_VAR && LA5_0 <= And)||LA5_0==Div||(LA5_0 >= DotDot && LA5_0 <= DotDotDot)||LA5_0==Eq||LA5_0==FUNCTION||LA5_0==False||(LA5_0 >= GT && LA5_0 <= GTEq)||(LA5_0 >= LT && LA5_0 <= Length)||(LA5_0 >= Minus && LA5_0 <= Mult)||(LA5_0 >= NEq && LA5_0 <= Number)||LA5_0==Or||LA5_0==Pow||(LA5_0 >= String && LA5_0 <= TABLE)||(LA5_0 >= True && LA5_0 <= UNARY_MINUS)||LA5_0==VAR) ) {
@@ -735,7 +735,7 @@ public class LuaWalker extends TreeParser {
 					}
 					switch (alt5) {
 						case 1 :
-							// .\\grammars\\LuaWalker.g:97:25: expr
+							// grammars/LuaWalker.g:97:25: expr
 							{
 							pushFollow(FOLLOW_expr_in_for_stat290);
 							expr();
@@ -755,7 +755,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 2 :
-					// .\\grammars\\LuaWalker.g:98:4: ^( FOR_IN ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) do_block )
+					// grammars/LuaWalker.g:98:4: ^( FOR_IN ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) do_block )
 					{
 					match(input,FOR_IN,FOLLOW_FOR_IN_in_for_stat300); 
 					match(input, Token.DOWN, null); 
@@ -799,18 +799,18 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "function_literal"
-	// .\\grammars\\LuaWalker.g:101:1: function_literal : ^( FUNCTION ^( PARAM_LIST ( name_list )? ( DotDotDot )? ) chunk ) ;
+	// grammars/LuaWalker.g:101:1: function_literal : ^( FUNCTION ^( PARAM_LIST ( name_list )? ( DotDotDot )? ) chunk ) ;
 	public final void function_literal() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:102:2: ( ^( FUNCTION ^( PARAM_LIST ( name_list )? ( DotDotDot )? ) chunk ) )
-			// .\\grammars\\LuaWalker.g:102:4: ^( FUNCTION ^( PARAM_LIST ( name_list )? ( DotDotDot )? ) chunk )
+			// grammars/LuaWalker.g:102:2: ( ^( FUNCTION ^( PARAM_LIST ( name_list )? ( DotDotDot )? ) chunk ) )
+			// grammars/LuaWalker.g:102:4: ^( FUNCTION ^( PARAM_LIST ( name_list )? ( DotDotDot )? ) chunk )
 			{
 			match(input,FUNCTION,FOLLOW_FUNCTION_in_function_literal327); 
 			match(input, Token.DOWN, null); 
 			match(input,PARAM_LIST,FOLLOW_PARAM_LIST_in_function_literal330); 
 			if ( input.LA(1)==Token.DOWN ) {
 				match(input, Token.DOWN, null); 
-				// .\\grammars\\LuaWalker.g:102:28: ( name_list )?
+				// grammars/LuaWalker.g:102:28: ( name_list )?
 				int alt7=2;
 				int LA7_0 = input.LA(1);
 				if ( (LA7_0==Name) ) {
@@ -818,7 +818,7 @@ public class LuaWalker extends TreeParser {
 				}
 				switch (alt7) {
 					case 1 :
-						// .\\grammars\\LuaWalker.g:102:28: name_list
+						// grammars/LuaWalker.g:102:28: name_list
 						{
 						pushFollow(FOLLOW_name_list_in_function_literal332);
 						name_list();
@@ -829,7 +829,7 @@ public class LuaWalker extends TreeParser {
 
 				}
 
-				// .\\grammars\\LuaWalker.g:102:39: ( DotDotDot )?
+				// grammars/LuaWalker.g:102:39: ( DotDotDot )?
 				int alt8=2;
 				int LA8_0 = input.LA(1);
 				if ( (LA8_0==DotDotDot) ) {
@@ -837,7 +837,7 @@ public class LuaWalker extends TreeParser {
 				}
 				switch (alt8) {
 					case 1 :
-						// .\\grammars\\LuaWalker.g:102:39: DotDotDot
+						// grammars/LuaWalker.g:102:39: DotDotDot
 						{
 						match(input,DotDotDot,FOLLOW_DotDotDot_in_function_literal335); 
 						}
@@ -870,16 +870,16 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "ret_stat"
-	// .\\grammars\\LuaWalker.g:105:1: ret_stat : ^( Return ( expr_list )? ) ;
+	// grammars/LuaWalker.g:105:1: ret_stat : ^( Return ( expr_list )? ) ;
 	public final void ret_stat() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:106:2: ( ^( Return ( expr_list )? ) )
-			// .\\grammars\\LuaWalker.g:106:4: ^( Return ( expr_list )? )
+			// grammars/LuaWalker.g:106:2: ( ^( Return ( expr_list )? ) )
+			// grammars/LuaWalker.g:106:4: ^( Return ( expr_list )? )
 			{
 			match(input,Return,FOLLOW_Return_in_ret_stat352); 
 			if ( input.LA(1)==Token.DOWN ) {
 				match(input, Token.DOWN, null); 
-				// .\\grammars\\LuaWalker.g:106:13: ( expr_list )?
+				// grammars/LuaWalker.g:106:13: ( expr_list )?
 				int alt9=2;
 				int LA9_0 = input.LA(1);
 				if ( ((LA9_0 >= ASSIGNMENT_VAR && LA9_0 <= And)||LA9_0==Div||(LA9_0 >= DotDot && LA9_0 <= DotDotDot)||LA9_0==Eq||LA9_0==FUNCTION||LA9_0==False||(LA9_0 >= GT && LA9_0 <= GTEq)||(LA9_0 >= LT && LA9_0 <= Length)||(LA9_0 >= Minus && LA9_0 <= Mult)||(LA9_0 >= NEq && LA9_0 <= Number)||LA9_0==Or||LA9_0==Pow||(LA9_0 >= String && LA9_0 <= TABLE)||(LA9_0 >= True && LA9_0 <= UNARY_MINUS)||LA9_0==VAR) ) {
@@ -887,7 +887,7 @@ public class LuaWalker extends TreeParser {
 				}
 				switch (alt9) {
 					case 1 :
-						// .\\grammars\\LuaWalker.g:106:13: expr_list
+						// grammars/LuaWalker.g:106:13: expr_list
 						{
 						pushFollow(FOLLOW_expr_list_in_ret_stat354);
 						expr_list();
@@ -917,10 +917,10 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "expr"
-	// .\\grammars\\LuaWalker.g:109:1: expr : ( ^( Or a= expr b= expr ) | ^( And a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( LTEq a= expr b= expr ) | ^( GTEq a= expr b= expr ) | ^( NEq a= expr b= expr ) | ^( Eq a= expr b= expr ) | ^( DotDot a= expr b= expr ) | ^( Add a= expr b= expr ) | ^( Minus a= expr b= expr ) | ^( Mult a= expr b= expr ) | ^( Div a= expr b= expr ) | ^( Mod a= expr b= expr ) | ^( Pow a= expr b= expr ) | ^( UNARY_MINUS a= expr ) | ^( Length a= expr ) | ^( Not a= expr ) | Name | DotDotDot | Number | String | Nil | True | False | var[false] | assignment_var | function_literal | table_constructor );
+	// grammars/LuaWalker.g:109:1: expr : ( ^( Or a= expr b= expr ) | ^( And a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( LTEq a= expr b= expr ) | ^( GTEq a= expr b= expr ) | ^( NEq a= expr b= expr ) | ^( Eq a= expr b= expr ) | ^( DotDot a= expr b= expr ) | ^( Add a= expr b= expr ) | ^( Minus a= expr b= expr ) | ^( Mult a= expr b= expr ) | ^( Div a= expr b= expr ) | ^( Mod a= expr b= expr ) | ^( Pow a= expr b= expr ) | ^( UNARY_MINUS a= expr ) | ^( Length a= expr ) | ^( Not a= expr ) | Name | DotDotDot | Number | String | Nil | True | False | var[false] | assignment_var | function_literal | table_constructor );
 	public final void expr() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:110:2: ( ^( Or a= expr b= expr ) | ^( And a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( LTEq a= expr b= expr ) | ^( GTEq a= expr b= expr ) | ^( NEq a= expr b= expr ) | ^( Eq a= expr b= expr ) | ^( DotDot a= expr b= expr ) | ^( Add a= expr b= expr ) | ^( Minus a= expr b= expr ) | ^( Mult a= expr b= expr ) | ^( Div a= expr b= expr ) | ^( Mod a= expr b= expr ) | ^( Pow a= expr b= expr ) | ^( UNARY_MINUS a= expr ) | ^( Length a= expr ) | ^( Not a= expr ) | Name | DotDotDot | Number | String | Nil | True | False | var[false] | assignment_var | function_literal | table_constructor )
+			// grammars/LuaWalker.g:110:2: ( ^( Or a= expr b= expr ) | ^( And a= expr b= expr ) | ^( LT a= expr b= expr ) | ^( GT a= expr b= expr ) | ^( LTEq a= expr b= expr ) | ^( GTEq a= expr b= expr ) | ^( NEq a= expr b= expr ) | ^( Eq a= expr b= expr ) | ^( DotDot a= expr b= expr ) | ^( Add a= expr b= expr ) | ^( Minus a= expr b= expr ) | ^( Mult a= expr b= expr ) | ^( Div a= expr b= expr ) | ^( Mod a= expr b= expr ) | ^( Pow a= expr b= expr ) | ^( UNARY_MINUS a= expr ) | ^( Length a= expr ) | ^( Not a= expr ) | Name | DotDotDot | Number | String | Nil | True | False | var[false] | assignment_var | function_literal | table_constructor )
 			int alt10=29;
 			switch ( input.LA(1) ) {
 			case Or:
@@ -1075,7 +1075,7 @@ public class LuaWalker extends TreeParser {
 			}
 			switch (alt10) {
 				case 1 :
-					// .\\grammars\\LuaWalker.g:110:4: ^( Or a= expr b= expr )
+					// grammars/LuaWalker.g:110:4: ^( Or a= expr b= expr )
 					{
 					match(input,Or,FOLLOW_Or_in_expr368); 
 					match(input, Token.DOWN, null); 
@@ -1092,7 +1092,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 2 :
-					// .\\grammars\\LuaWalker.g:111:4: ^( And a= expr b= expr )
+					// grammars/LuaWalker.g:111:4: ^( And a= expr b= expr )
 					{
 					match(input,And,FOLLOW_And_in_expr383); 
 					match(input, Token.DOWN, null); 
@@ -1109,7 +1109,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 3 :
-					// .\\grammars\\LuaWalker.g:112:4: ^( LT a= expr b= expr )
+					// grammars/LuaWalker.g:112:4: ^( LT a= expr b= expr )
 					{
 					match(input,LT,FOLLOW_LT_in_expr398); 
 					match(input, Token.DOWN, null); 
@@ -1126,7 +1126,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 4 :
-					// .\\grammars\\LuaWalker.g:113:4: ^( GT a= expr b= expr )
+					// grammars/LuaWalker.g:113:4: ^( GT a= expr b= expr )
 					{
 					match(input,GT,FOLLOW_GT_in_expr413); 
 					match(input, Token.DOWN, null); 
@@ -1143,7 +1143,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 5 :
-					// .\\grammars\\LuaWalker.g:114:4: ^( LTEq a= expr b= expr )
+					// grammars/LuaWalker.g:114:4: ^( LTEq a= expr b= expr )
 					{
 					match(input,LTEq,FOLLOW_LTEq_in_expr428); 
 					match(input, Token.DOWN, null); 
@@ -1160,7 +1160,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 6 :
-					// .\\grammars\\LuaWalker.g:115:4: ^( GTEq a= expr b= expr )
+					// grammars/LuaWalker.g:115:4: ^( GTEq a= expr b= expr )
 					{
 					match(input,GTEq,FOLLOW_GTEq_in_expr443); 
 					match(input, Token.DOWN, null); 
@@ -1177,7 +1177,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 7 :
-					// .\\grammars\\LuaWalker.g:116:4: ^( NEq a= expr b= expr )
+					// grammars/LuaWalker.g:116:4: ^( NEq a= expr b= expr )
 					{
 					match(input,NEq,FOLLOW_NEq_in_expr458); 
 					match(input, Token.DOWN, null); 
@@ -1194,7 +1194,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 8 :
-					// .\\grammars\\LuaWalker.g:117:4: ^( Eq a= expr b= expr )
+					// grammars/LuaWalker.g:117:4: ^( Eq a= expr b= expr )
 					{
 					match(input,Eq,FOLLOW_Eq_in_expr473); 
 					match(input, Token.DOWN, null); 
@@ -1211,7 +1211,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 9 :
-					// .\\grammars\\LuaWalker.g:118:4: ^( DotDot a= expr b= expr )
+					// grammars/LuaWalker.g:118:4: ^( DotDot a= expr b= expr )
 					{
 					match(input,DotDot,FOLLOW_DotDot_in_expr488); 
 					match(input, Token.DOWN, null); 
@@ -1228,7 +1228,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 10 :
-					// .\\grammars\\LuaWalker.g:119:4: ^( Add a= expr b= expr )
+					// grammars/LuaWalker.g:119:4: ^( Add a= expr b= expr )
 					{
 					match(input,Add,FOLLOW_Add_in_expr503); 
 					match(input, Token.DOWN, null); 
@@ -1245,7 +1245,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 11 :
-					// .\\grammars\\LuaWalker.g:120:4: ^( Minus a= expr b= expr )
+					// grammars/LuaWalker.g:120:4: ^( Minus a= expr b= expr )
 					{
 					match(input,Minus,FOLLOW_Minus_in_expr518); 
 					match(input, Token.DOWN, null); 
@@ -1262,7 +1262,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 12 :
-					// .\\grammars\\LuaWalker.g:121:4: ^( Mult a= expr b= expr )
+					// grammars/LuaWalker.g:121:4: ^( Mult a= expr b= expr )
 					{
 					match(input,Mult,FOLLOW_Mult_in_expr533); 
 					match(input, Token.DOWN, null); 
@@ -1279,7 +1279,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 13 :
-					// .\\grammars\\LuaWalker.g:122:4: ^( Div a= expr b= expr )
+					// grammars/LuaWalker.g:122:4: ^( Div a= expr b= expr )
 					{
 					match(input,Div,FOLLOW_Div_in_expr548); 
 					match(input, Token.DOWN, null); 
@@ -1296,7 +1296,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 14 :
-					// .\\grammars\\LuaWalker.g:123:4: ^( Mod a= expr b= expr )
+					// grammars/LuaWalker.g:123:4: ^( Mod a= expr b= expr )
 					{
 					match(input,Mod,FOLLOW_Mod_in_expr563); 
 					match(input, Token.DOWN, null); 
@@ -1313,7 +1313,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 15 :
-					// .\\grammars\\LuaWalker.g:124:4: ^( Pow a= expr b= expr )
+					// grammars/LuaWalker.g:124:4: ^( Pow a= expr b= expr )
 					{
 					match(input,Pow,FOLLOW_Pow_in_expr578); 
 					match(input, Token.DOWN, null); 
@@ -1330,7 +1330,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 16 :
-					// .\\grammars\\LuaWalker.g:125:4: ^( UNARY_MINUS a= expr )
+					// grammars/LuaWalker.g:125:4: ^( UNARY_MINUS a= expr )
 					{
 					match(input,UNARY_MINUS,FOLLOW_UNARY_MINUS_in_expr593); 
 					match(input, Token.DOWN, null); 
@@ -1343,7 +1343,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 17 :
-					// .\\grammars\\LuaWalker.g:126:4: ^( Length a= expr )
+					// grammars/LuaWalker.g:126:4: ^( Length a= expr )
 					{
 					match(input,Length,FOLLOW_Length_in_expr604); 
 					match(input, Token.DOWN, null); 
@@ -1356,7 +1356,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 18 :
-					// .\\grammars\\LuaWalker.g:127:4: ^( Not a= expr )
+					// grammars/LuaWalker.g:127:4: ^( Not a= expr )
 					{
 					match(input,Not,FOLLOW_Not_in_expr615); 
 					match(input, Token.DOWN, null); 
@@ -1369,49 +1369,49 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 19 :
-					// .\\grammars\\LuaWalker.g:128:4: Name
+					// grammars/LuaWalker.g:128:4: Name
 					{
 					match(input,Name,FOLLOW_Name_in_expr625); 
 					}
 					break;
 				case 20 :
-					// .\\grammars\\LuaWalker.g:129:4: DotDotDot
+					// grammars/LuaWalker.g:129:4: DotDotDot
 					{
 					match(input,DotDotDot,FOLLOW_DotDotDot_in_expr630); 
 					}
 					break;
 				case 21 :
-					// .\\grammars\\LuaWalker.g:130:4: Number
+					// grammars/LuaWalker.g:130:4: Number
 					{
 					match(input,Number,FOLLOW_Number_in_expr635); 
 					}
 					break;
 				case 22 :
-					// .\\grammars\\LuaWalker.g:131:4: String
+					// grammars/LuaWalker.g:131:4: String
 					{
 					match(input,String,FOLLOW_String_in_expr640); 
 					}
 					break;
 				case 23 :
-					// .\\grammars\\LuaWalker.g:132:4: Nil
+					// grammars/LuaWalker.g:132:4: Nil
 					{
 					match(input,Nil,FOLLOW_Nil_in_expr645); 
 					}
 					break;
 				case 24 :
-					// .\\grammars\\LuaWalker.g:133:4: True
+					// grammars/LuaWalker.g:133:4: True
 					{
 					match(input,True,FOLLOW_True_in_expr650); 
 					}
 					break;
 				case 25 :
-					// .\\grammars\\LuaWalker.g:134:4: False
+					// grammars/LuaWalker.g:134:4: False
 					{
 					match(input,False,FOLLOW_False_in_expr655); 
 					}
 					break;
 				case 26 :
-					// .\\grammars\\LuaWalker.g:135:4: var[false]
+					// grammars/LuaWalker.g:135:4: var[false]
 					{
 					pushFollow(FOLLOW_var_in_expr660);
 					var(false);
@@ -1420,7 +1420,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 27 :
-					// .\\grammars\\LuaWalker.g:136:4: assignment_var
+					// grammars/LuaWalker.g:136:4: assignment_var
 					{
 					pushFollow(FOLLOW_assignment_var_in_expr666);
 					assignment_var();
@@ -1429,7 +1429,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 28 :
-					// .\\grammars\\LuaWalker.g:137:4: function_literal
+					// grammars/LuaWalker.g:137:4: function_literal
 					{
 					pushFollow(FOLLOW_function_literal_in_expr671);
 					function_literal();
@@ -1438,7 +1438,7 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 29 :
-					// .\\grammars\\LuaWalker.g:138:4: table_constructor
+					// grammars/LuaWalker.g:138:4: table_constructor
 					{
 					pushFollow(FOLLOW_table_constructor_in_expr676);
 					table_constructor();
@@ -1462,11 +1462,11 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "var"
-	// .\\grammars\\LuaWalker.g:141:1: var[boolean noReturn] : ^( VAR expr ( tail )+ ) ;
+	// grammars/LuaWalker.g:141:1: var[boolean noReturn] : ^( VAR expr ( tail )+ ) ;
 	public final void var(boolean noReturn) throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:142:2: ( ^( VAR expr ( tail )+ ) )
-			// .\\grammars\\LuaWalker.g:142:4: ^( VAR expr ( tail )+ )
+			// grammars/LuaWalker.g:142:2: ( ^( VAR expr ( tail )+ ) )
+			// grammars/LuaWalker.g:142:4: ^( VAR expr ( tail )+ )
 			{
 			match(input,VAR,FOLLOW_VAR_in_var689); 
 			match(input, Token.DOWN, null); 
@@ -1474,7 +1474,7 @@ public class LuaWalker extends TreeParser {
 			expr();
 			state._fsp--;
 
-			// .\\grammars\\LuaWalker.g:142:15: ( tail )+
+			// grammars/LuaWalker.g:142:15: ( tail )+
 			int cnt11=0;
 			loop11:
 			while (true) {
@@ -1486,7 +1486,7 @@ public class LuaWalker extends TreeParser {
 
 				switch (alt11) {
 				case 1 :
-					// .\\grammars\\LuaWalker.g:142:15: tail
+					// grammars/LuaWalker.g:142:15: tail
 					{
 					pushFollow(FOLLOW_tail_in_var693);
 					tail();
@@ -1521,11 +1521,11 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "assignment_var"
-	// .\\grammars\\LuaWalker.g:145:1: assignment_var : ^( ASSIGNMENT_VAR expr ( tail )+ ) ;
+	// grammars/LuaWalker.g:145:1: assignment_var : ^( ASSIGNMENT_VAR expr ( tail )+ ) ;
 	public final void assignment_var() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:146:2: ( ^( ASSIGNMENT_VAR expr ( tail )+ ) )
-			// .\\grammars\\LuaWalker.g:146:4: ^( ASSIGNMENT_VAR expr ( tail )+ )
+			// grammars/LuaWalker.g:146:2: ( ^( ASSIGNMENT_VAR expr ( tail )+ ) )
+			// grammars/LuaWalker.g:146:4: ^( ASSIGNMENT_VAR expr ( tail )+ )
 			{
 			match(input,ASSIGNMENT_VAR,FOLLOW_ASSIGNMENT_VAR_in_assignment_var707); 
 			match(input, Token.DOWN, null); 
@@ -1533,7 +1533,7 @@ public class LuaWalker extends TreeParser {
 			expr();
 			state._fsp--;
 
-			// .\\grammars\\LuaWalker.g:146:26: ( tail )+
+			// grammars/LuaWalker.g:146:26: ( tail )+
 			int cnt12=0;
 			loop12:
 			while (true) {
@@ -1545,7 +1545,7 @@ public class LuaWalker extends TreeParser {
 
 				switch (alt12) {
 				case 1 :
-					// .\\grammars\\LuaWalker.g:146:26: tail
+					// grammars/LuaWalker.g:146:26: tail
 					{
 					pushFollow(FOLLOW_tail_in_assignment_var711);
 					tail();
@@ -1580,10 +1580,10 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "tail"
-	// .\\grammars\\LuaWalker.g:149:1: tail : ( ^( INDEX expr ) | ^( CALL ( expr_list )? ) | ^( COL_CALL ( expr_list )? ) );
+	// grammars/LuaWalker.g:149:1: tail : ( ^( INDEX expr ) | ^( CALL ( expr_list )? ) | ^( COL_CALL ( expr_list )? ) );
 	public final void tail() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:150:2: ( ^( INDEX expr ) | ^( CALL ( expr_list )? ) | ^( COL_CALL ( expr_list )? ) )
+			// grammars/LuaWalker.g:150:2: ( ^( INDEX expr ) | ^( CALL ( expr_list )? ) | ^( COL_CALL ( expr_list )? ) )
 			int alt15=3;
 			switch ( input.LA(1) ) {
 			case INDEX:
@@ -1608,7 +1608,7 @@ public class LuaWalker extends TreeParser {
 			}
 			switch (alt15) {
 				case 1 :
-					// .\\grammars\\LuaWalker.g:150:4: ^( INDEX expr )
+					// grammars/LuaWalker.g:150:4: ^( INDEX expr )
 					{
 					match(input,INDEX,FOLLOW_INDEX_in_tail725); 
 					match(input, Token.DOWN, null); 
@@ -1621,12 +1621,12 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 2 :
-					// .\\grammars\\LuaWalker.g:151:4: ^( CALL ( expr_list )? )
+					// grammars/LuaWalker.g:151:4: ^( CALL ( expr_list )? )
 					{
 					match(input,CALL,FOLLOW_CALL_in_tail734); 
 					if ( input.LA(1)==Token.DOWN ) {
 						match(input, Token.DOWN, null); 
-						// .\\grammars\\LuaWalker.g:151:11: ( expr_list )?
+						// grammars/LuaWalker.g:151:11: ( expr_list )?
 						int alt13=2;
 						int LA13_0 = input.LA(1);
 						if ( ((LA13_0 >= ASSIGNMENT_VAR && LA13_0 <= And)||LA13_0==Div||(LA13_0 >= DotDot && LA13_0 <= DotDotDot)||LA13_0==Eq||LA13_0==FUNCTION||LA13_0==False||(LA13_0 >= GT && LA13_0 <= GTEq)||(LA13_0 >= LT && LA13_0 <= Length)||(LA13_0 >= Minus && LA13_0 <= Mult)||(LA13_0 >= NEq && LA13_0 <= Number)||LA13_0==Or||LA13_0==Pow||(LA13_0 >= String && LA13_0 <= TABLE)||(LA13_0 >= True && LA13_0 <= UNARY_MINUS)||LA13_0==VAR) ) {
@@ -1634,7 +1634,7 @@ public class LuaWalker extends TreeParser {
 						}
 						switch (alt13) {
 							case 1 :
-								// .\\grammars\\LuaWalker.g:151:11: expr_list
+								// grammars/LuaWalker.g:151:11: expr_list
 								{
 								pushFollow(FOLLOW_expr_list_in_tail736);
 								expr_list();
@@ -1651,12 +1651,12 @@ public class LuaWalker extends TreeParser {
 					}
 					break;
 				case 3 :
-					// .\\grammars\\LuaWalker.g:152:4: ^( COL_CALL ( expr_list )? )
+					// grammars/LuaWalker.g:152:4: ^( COL_CALL ( expr_list )? )
 					{
 					match(input,COL_CALL,FOLLOW_COL_CALL_in_tail744); 
 					if ( input.LA(1)==Token.DOWN ) {
 						match(input, Token.DOWN, null); 
-						// .\\grammars\\LuaWalker.g:152:15: ( expr_list )?
+						// grammars/LuaWalker.g:152:15: ( expr_list )?
 						int alt14=2;
 						int LA14_0 = input.LA(1);
 						if ( ((LA14_0 >= ASSIGNMENT_VAR && LA14_0 <= And)||LA14_0==Div||(LA14_0 >= DotDot && LA14_0 <= DotDotDot)||LA14_0==Eq||LA14_0==FUNCTION||LA14_0==False||(LA14_0 >= GT && LA14_0 <= GTEq)||(LA14_0 >= LT && LA14_0 <= Length)||(LA14_0 >= Minus && LA14_0 <= Mult)||(LA14_0 >= NEq && LA14_0 <= Number)||LA14_0==Or||LA14_0==Pow||(LA14_0 >= String && LA14_0 <= TABLE)||(LA14_0 >= True && LA14_0 <= UNARY_MINUS)||LA14_0==VAR) ) {
@@ -1664,7 +1664,7 @@ public class LuaWalker extends TreeParser {
 						}
 						switch (alt14) {
 							case 1 :
-								// .\\grammars\\LuaWalker.g:152:15: expr_list
+								// grammars/LuaWalker.g:152:15: expr_list
 								{
 								pushFollow(FOLLOW_expr_list_in_tail746);
 								expr_list();
@@ -1696,16 +1696,16 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "table_constructor"
-	// .\\grammars\\LuaWalker.g:155:1: table_constructor : ^( TABLE ( field )* ) ;
+	// grammars/LuaWalker.g:155:1: table_constructor : ^( TABLE ( field )* ) ;
 	public final void table_constructor() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:156:2: ( ^( TABLE ( field )* ) )
-			// .\\grammars\\LuaWalker.g:156:4: ^( TABLE ( field )* )
+			// grammars/LuaWalker.g:156:2: ( ^( TABLE ( field )* ) )
+			// grammars/LuaWalker.g:156:4: ^( TABLE ( field )* )
 			{
 			match(input,TABLE,FOLLOW_TABLE_in_table_constructor760); 
 			if ( input.LA(1)==Token.DOWN ) {
 				match(input, Token.DOWN, null); 
-				// .\\grammars\\LuaWalker.g:156:12: ( field )*
+				// grammars/LuaWalker.g:156:12: ( field )*
 				loop16:
 				while (true) {
 					int alt16=2;
@@ -1716,7 +1716,7 @@ public class LuaWalker extends TreeParser {
 
 					switch (alt16) {
 					case 1 :
-						// .\\grammars\\LuaWalker.g:156:12: field
+						// grammars/LuaWalker.g:156:12: field
 						{
 						pushFollow(FOLLOW_field_in_table_constructor762);
 						field();
@@ -1749,11 +1749,11 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "field"
-	// .\\grammars\\LuaWalker.g:159:1: field : ^( FIELD a= expr (b= expr )? ) ;
+	// grammars/LuaWalker.g:159:1: field : ^( FIELD a= expr (b= expr )? ) ;
 	public final void field() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:160:2: ( ^( FIELD a= expr (b= expr )? ) )
-			// .\\grammars\\LuaWalker.g:160:4: ^( FIELD a= expr (b= expr )? )
+			// grammars/LuaWalker.g:160:2: ( ^( FIELD a= expr (b= expr )? ) )
+			// grammars/LuaWalker.g:160:4: ^( FIELD a= expr (b= expr )? )
 			{
 			match(input,FIELD,FOLLOW_FIELD_in_field776); 
 			match(input, Token.DOWN, null); 
@@ -1761,7 +1761,7 @@ public class LuaWalker extends TreeParser {
 			expr();
 			state._fsp--;
 
-			// .\\grammars\\LuaWalker.g:160:20: (b= expr )?
+			// grammars/LuaWalker.g:160:20: (b= expr )?
 			int alt17=2;
 			int LA17_0 = input.LA(1);
 			if ( ((LA17_0 >= ASSIGNMENT_VAR && LA17_0 <= And)||LA17_0==Div||(LA17_0 >= DotDot && LA17_0 <= DotDotDot)||LA17_0==Eq||LA17_0==FUNCTION||LA17_0==False||(LA17_0 >= GT && LA17_0 <= GTEq)||(LA17_0 >= LT && LA17_0 <= Length)||(LA17_0 >= Minus && LA17_0 <= Mult)||(LA17_0 >= NEq && LA17_0 <= Number)||LA17_0==Or||LA17_0==Pow||(LA17_0 >= String && LA17_0 <= TABLE)||(LA17_0 >= True && LA17_0 <= UNARY_MINUS)||LA17_0==VAR) ) {
@@ -1769,7 +1769,7 @@ public class LuaWalker extends TreeParser {
 			}
 			switch (alt17) {
 				case 1 :
-					// .\\grammars\\LuaWalker.g:160:20: b= expr
+					// grammars/LuaWalker.g:160:20: b= expr
 					{
 					pushFollow(FOLLOW_expr_in_field784);
 					expr();
@@ -1798,11 +1798,11 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "label"
-	// .\\grammars\\LuaWalker.g:163:1: label : ^( LABEL Name ) ;
+	// grammars/LuaWalker.g:163:1: label : ^( LABEL Name ) ;
 	public final void label() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:164:2: ( ^( LABEL Name ) )
-			// .\\grammars\\LuaWalker.g:164:4: ^( LABEL Name )
+			// grammars/LuaWalker.g:164:2: ( ^( LABEL Name ) )
+			// grammars/LuaWalker.g:164:4: ^( LABEL Name )
 			{
 			match(input,LABEL,FOLLOW_LABEL_in_label798); 
 			match(input, Token.DOWN, null); 
@@ -1828,16 +1828,16 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "expr_list"
-	// .\\grammars\\LuaWalker.g:167:1: expr_list : ( expr )+ ;
+	// grammars/LuaWalker.g:167:1: expr_list : ( expr )+ ;
 	public final LuaWalker.expr_list_return expr_list() throws RecognitionException {
 		LuaWalker.expr_list_return retval = new LuaWalker.expr_list_return();
 		retval.start = input.LT(1);
 
 		try {
-			// .\\grammars\\LuaWalker.g:168:2: ( ( expr )+ )
-			// .\\grammars\\LuaWalker.g:168:4: ( expr )+
+			// grammars/LuaWalker.g:168:2: ( ( expr )+ )
+			// grammars/LuaWalker.g:168:4: ( expr )+
 			{
-			// .\\grammars\\LuaWalker.g:168:4: ( expr )+
+			// grammars/LuaWalker.g:168:4: ( expr )+
 			int cnt18=0;
 			loop18:
 			while (true) {
@@ -1849,7 +1849,7 @@ public class LuaWalker extends TreeParser {
 
 				switch (alt18) {
 				case 1 :
-					// .\\grammars\\LuaWalker.g:168:4: expr
+					// grammars/LuaWalker.g:168:4: expr
 					{
 					pushFollow(FOLLOW_expr_in_expr_list812);
 					expr();
@@ -1883,13 +1883,13 @@ public class LuaWalker extends TreeParser {
 
 
 	// $ANTLR start "name_list"
-	// .\\grammars\\LuaWalker.g:171:1: name_list : ( Name )+ ;
+	// grammars/LuaWalker.g:171:1: name_list : ( Name )+ ;
 	public final void name_list() throws RecognitionException {
 		try {
-			// .\\grammars\\LuaWalker.g:172:2: ( ( Name )+ )
-			// .\\grammars\\LuaWalker.g:172:4: ( Name )+
+			// grammars/LuaWalker.g:172:2: ( ( Name )+ )
+			// grammars/LuaWalker.g:172:4: ( Name )+
 			{
-			// .\\grammars\\LuaWalker.g:172:4: ( Name )+
+			// grammars/LuaWalker.g:172:4: ( Name )+
 			int cnt19=0;
 			loop19:
 			while (true) {
@@ -1901,7 +1901,7 @@ public class LuaWalker extends TreeParser {
 
 				switch (alt19) {
 				case 1 :
-					// .\\grammars\\LuaWalker.g:172:4: Name
+					// grammars/LuaWalker.g:172:4: Name
 					{
 					match(input,Name,FOLLOW_Name_in_name_list824); 
 					}

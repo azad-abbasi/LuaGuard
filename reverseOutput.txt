@@ -11,7 +11,7 @@
 							 ( CHUNK
 								 ( ASSIGNMENT
 									 ( VAR_LIST a )
-									 ( EXPR_LIST hello how are you )
+									 ( EXPR_LIST '  hello how are you ' )
 								 )
 								 ( return 1 )
 							 )
@@ -35,14 +35,14 @@
 		 )
 	 )
 	 ( VAR print
-		 ( CALL enter a number: )
+		 ( CALL '  enter a number: ' )
 	 )
 	 ( ASSIGNMENT
 		 ( VAR_LIST a )
 		 ( EXPR_LIST
 			 ( VAR io
-				 ( INDEX read )
-				 ( CALL *number )
+				 ( INDEX '  read ' )
+				 ( CALL '  *number ' )
 			 )
 		 )
 	 )

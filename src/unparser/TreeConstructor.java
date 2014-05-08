@@ -1,6 +1,8 @@
 package unparser;
 
+import org.antlr.runtime.tree.CommonTree;
 import parser.InputReader;
+import parser.LuaParser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,8 +46,16 @@ public class TreeConstructor {
     }
 
     public void printTree(){
-        printStructuredTree(tree,0);
+        finalTreeString = "";
+        createStructuredTree(tree, 0);
         System.out.println(finalTreeString);
+    }
+
+
+    public String toString(){
+        finalTreeString = "";
+        createStructuredTree(tree, 0);
+        return finalTreeString;
     }
 
     public void printTreeTokens(){
@@ -68,7 +78,7 @@ public class TreeConstructor {
 
                 }
                 else{
-                    thisNode.addChild(treeConstructor(getStringToken(),thisNode));
+                    thisNode.addChild(new Node(getStringToken(),thisNode));
                 }
 //                currentToken = st.nextToken();
             }
@@ -92,12 +102,13 @@ public class TreeConstructor {
     //it means it's a string
     public static String getStringToken(){
         String currentToken = st.nextToken();
-        String finalString="";
+        String finalString="' ";
         while(!currentToken.equals("'")){
-            finalString+=currentToken;
+            finalString+=" "+ currentToken;
             currentToken=st.nextToken();
         }
-        st.nextToken();
+        finalString+=" '";
+//        st.nextToken();
         return finalString;
     }
 
@@ -123,7 +134,7 @@ public class TreeConstructor {
             System.out.println(wb.nextToken());
         }
     }
-    private static void printStructuredTree(Node tree, int Indention){
+    private static void createStructuredTree(Node tree, int Indention){
         //Create the indention first
         String indent="";
         if (Indention > 0 ) {
@@ -132,9 +143,17 @@ public class TreeConstructor {
         //add indents to the final tree
         finalTreeString += indent;
         //add the beginning parenthesis
-        finalTreeString += "(";
+        finalTreeString += " ( ";
         //now we add the current Tree's name
-        finalTreeString += tree.getName();
+        String tokenName = "N";
+
+
+        if(tokenName.equals("String")){
+            finalTreeString = finalTreeString + " ' " + tree.getName() + " ' ";
+        }
+        else{
+            finalTreeString += tree.getName();
+        }
 
 
         //now we will have to print the children
@@ -142,23 +161,31 @@ public class TreeConstructor {
             for (int i = 0 ; i<tree.getChildCount() ; i++){
                 //if this child didn't have any children
                 if(tree.getChild(i).getChildCount() == 0 ){
-                    finalTreeString = finalTreeString + " " + tree.getChild(i).getName();
+                    tokenName = "N";
+
+                    if(tokenName.equals("String")){
+                        finalTreeString = finalTreeString + " " + " ' " + tree.getChild(i).getName() + " ' ";
+                    }
+                    else{
+                        finalTreeString = finalTreeString + " " + tree.getChild(i).getName();
+                    }
+
                 }
                 else{
                     finalTreeString += "\n";
                     for(int j = i ; j<tree.getChildCount(); j++){
-                        printStructuredTree(tree.getChild(j),Indention+1);
+                        createStructuredTree(tree.getChild(j), Indention + 1);
                     }
-                    finalTreeString = finalTreeString + indent + ")\n";
+                    finalTreeString = finalTreeString + indent + " )\n";
                     break;
                 }
                 if(i == tree.getChildCount()-1)
-                    finalTreeString += ")\n";
+                    finalTreeString += " )\n";
             }
         }
         //else if you don't have any children
         else{
-            finalTreeString += ")\n";
+            finalTreeString += " )\n";
         }
     }
 
