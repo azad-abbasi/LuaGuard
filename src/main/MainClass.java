@@ -38,12 +38,12 @@ import unparser.TreeConstructor;
 //            printToSeparateFile(args[1],treeString);
             InputReader.printToFile(args[1], treeStructure);
 
-            String ast = new String(args[1]); // get the file to obfuscate
-            String out = new String(args[2]); // desired name for the obfuscated file
-
+//            String ast = new String(); // get the file to obfuscate
+//            String out = new String(args[2]); // desired name for the obfuscated file
+            Obfuscator myOb = new Obfuscator(args[1],args[2]);
             //call the fileProcessing Function
             try{
-                Obfuscator.FileProcessing(ast, out);
+                myOb.FileProcessing();
             }catch(Exception e){e.printStackTrace();
             }
 
