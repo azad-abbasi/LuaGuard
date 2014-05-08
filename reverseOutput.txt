@@ -1,16 +1,16 @@
  ( CHUNK
 	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST fact )
+		 ( VAR_LIST gbdu )
 		 ( EXPR_LIST
 			 ( FUNCTION
-				 ( PARAM_LIST n d )
+				 ( PARAM_LIST o d )
 				 ( CHUNK
 					 ( if
 						 ( CONDITION
-							 ( == n 0 )
+							 ( == o 0 )
 							 ( CHUNK
 								 ( ASSIGNMENT
-									 ( VAR_LIST a )
+									 ( VAR_LIST b )
 									 ( EXPR_LIST '  hello how are you ' )
 								 )
 								 ( return 1 )
@@ -19,10 +19,10 @@
 						 ( CONDITION True
 							 ( CHUNK
 								 ( return
-									 ( * n
-										 ( VAR fact
+									 ( * o
+										 ( VAR gbdu
 											 ( CALL
-												 ( - n 1 )
+												 ( - o 1 )
 											 )
 										 )
 									 )
@@ -35,10 +35,10 @@
 		 )
 	 )
 	 ( VAR print
-		 ( CALL '  enter a number: ' )
+		 ( CALL '  enter b number: ' )
 	 )
 	 ( ASSIGNMENT
-		 ( VAR_LIST a )
+		 ( VAR_LIST b )
 		 ( EXPR_LIST
 			 ( VAR io
 				 ( INDEX '  read ' )
@@ -48,8 +48,8 @@
 	 )
 	 ( VAR print
 		 ( CALL
-			 ( VAR fact
-				 ( CALL a )
+			 ( VAR gbdu
+				 ( CALL b )
 			 )
 		 )
 	 )

@@ -1,3 +1,4 @@
+package obfuscator;
 import java.io.*;
 import java.util.*;
 
@@ -23,7 +24,7 @@ public class Obfuscator {
      */
 	public static String MinimumVocabObfuscation(String w){
 		StringBuilder result = new StringBuilder(w.length()); //obfuscated word
-		System.out.println(w);
+//		System.out.println(w);
 		for(int i=0; i < w.length(); i++){
 			char c = w.charAt(i);
 			//System.out.println(c);
@@ -37,7 +38,7 @@ public class Obfuscator {
 			result.append(Character.toString((char)(out)));
 		}
 
-		System.out.println(result.toString());
+//		System.out.println(result.toString());
         	return result.toString(); 
        	}
 	
@@ -97,14 +98,5 @@ public class Obfuscator {
 		readAST.close(); // close the reader
 		System.out.println("\nThe AST File you specified : " + AST + " has been obfuscated.\nThe new obfuscated AST File is saved with the name : " + Output + "\n");
 	}
-	
-	public static void main(String[] args){
-		String ast = new String(args[0]); // get the file to obfuscate
-		String out = new String(args[1]); // desired name for the obfuscated file
-		
-		//call the fileProcessing Function
-		try{
-			FileProcessing(ast, out);
-		}catch(Exception e){e.printStackTrace();}
-	}
+
 }

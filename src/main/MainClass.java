@@ -2,6 +2,7 @@
  * Created by azadabbasi on 4/10/14.2
  */
 package main;
+import obfuscator.Obfuscator;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
@@ -37,14 +38,23 @@ import unparser.TreeConstructor;
 //            printToSeparateFile(args[1],treeString);
             InputReader.printToFile(args[1], treeStructure);
 
+            String ast = new String(args[1]); // get the file to obfuscate
+            String out = new String(args[2]); // desired name for the obfuscated file
+
+            //call the fileProcessing Function
+            try{
+                Obfuscator.FileProcessing(ast, out);
+            }catch(Exception e){e.printStackTrace();
+            }
 
 
-            TreeConstructor myTree = new TreeConstructor(args[1]);
+            TreeConstructor myTree = new TreeConstructor(args[2]);
+//            System.out.println(myTree.getRoot().getChild(0).getName());
             InputReader.printToFile(args[2],myTree.toString());
 //            myTree.printTreeTokens();
 
 
-            System.out.println(treeStructure);
+//            System.out.println(treeStructure);
 //
         }
     }
