@@ -85,6 +85,7 @@ public class Tree {
 	public static void merge(Vector<Node> forest){					//will merge the suptree into one tree
 		Vector<Node> tree = new Vector<Node>();
 		Node root = new Node(" ");
+		root.setChild(" ");
 		
 		
 		/**test. prints out subtrees*/
@@ -99,7 +100,7 @@ public class Tree {
 		for (Node n : forest){
 			j = 0;
 			for (Node m : forest){
-				if (m.nameOfParent.equals(n.nameOfParent) && j > k){
+				if (m.nameOfParent.equals(n.nameOfParent) && j > k && k < (forest.size() - 2)){
 					n.getParent().setChild(m.name);
 					tree.add(n.getParent());
 				}
@@ -109,9 +110,40 @@ public class Tree {
 			k++;
 		}
 		
-		for (Node i : tree){
-			i.print();
+		int whichChild;			//used for inner-inner loop
+		int count = -1;				//used to see how many children root ultimately has. The last child of root is the correct structure.
+		k = 0;
+		for (Node n : tree){
+			j = 0;
+			for (Node m : tree){
+				whichChild = 0;
+				Vector<Node> children = m.getChildren();  
+				
+				if (j > k){
+					for (Node ch : children)
+					{
+						if (ch.name.equals(n.name)){
+							count++;
+							m.addChild(n, whichChild);
+							root.addChild(m, 0);
+						}
+						whichChild++;
+					}	
+				}
+				j++;
+			}
+			k++;
 		}
+		
+		System.out.println("rootHas:" + count);
+		
+		root.getChild(0).print();
+		root.getChild(0).getChild(1).print();
+		root.getChild(0).getChild(1).getChild(1).print();
+		root.getChild(0).getChild(1).getChild(1).getChild(1).print();
+		/**for (Node i : tree){
+			i.print();
+		}*/
 	}
 	
 	public static void treeBuilder(Vector<String> ast){

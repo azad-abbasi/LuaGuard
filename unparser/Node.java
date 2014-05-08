@@ -26,8 +26,16 @@ public class Node {
 		children.add(new Node(ch));
 	}
 	
+	public void addChild(Node ch, int i){
+		children.set(i, ch);
+	}
+	
 	public Node getChild(int i){
 		return children.get(i);
+	}
+	
+	public Vector<Node> getChildren(){
+		return children;
 	}
 	
 	public void print(){
