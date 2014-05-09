@@ -1,55 +1,30 @@
  ( CHUNK
-	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST gbdu )
-		 ( EXPR_LIST
-			 ( FUNCTION
-				 ( PARAM_LIST o d )
-				 ( CHUNK
-					 ( if
-						 ( CONDITION
-							 ( == o 0 )
-							 ( CHUNK
-								 ( ASSIGNMENT
-									 ( VAR_LIST b )
-									 ( EXPR_LIST '  hello how are you ' )
-								 )
-								 ( return 1 )
-							 )
-						 )
-						 ( CONDITION True
-							 ( CHUNK
-								 ( return
-									 ( * o
-										 ( VAR gbdu
-											 ( CALL
-												 ( - o 1 )
-											 )
+	 ( do
+		 ( CHUNK
+			 ( LOCAL_ASSIGNMENT
+				 ( NAME_LIST oldprint )
+				 ( EXPR_LIST print )
+			 )
+			 ( FUNCTION_ASSIGNMENT
+				 ( VAR_LIST qsjou )
+				 ( EXPR_LIST
+					 ( FUNCTION
+						 ( PARAM_LIST t )
+						 ( CHUNK
+							 ( VAR oldprint
+								 ( CALL
+									 ( or
+										 ( and
+											 ( == t '  foo ' )
+											 ( '  bar ' )
 										 )
+										 ( t )
 									 )
 								 )
 							 )
 						 )
 					 )
 				 )
-			 )
-		 )
-	 )
-	 ( VAR print
-		 ( CALL '  enter b number: ' )
-	 )
-	 ( ASSIGNMENT
-		 ( VAR_LIST b )
-		 ( EXPR_LIST
-			 ( VAR io
-				 ( INDEX '  read ' )
-				 ( CALL '  *number ' )
-			 )
-		 )
-	 )
-	 ( VAR print
-		 ( CALL
-			 ( VAR gbdu
-				 ( CALL b )
 			 )
 		 )
 	 )

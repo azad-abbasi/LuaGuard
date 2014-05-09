@@ -40,6 +40,8 @@ import unparser.TreeConstructor;
 
 //            String ast = new String(); // get the file to obfuscate
 //            String out = new String(args[2]); // desired name for the obfuscated file
+
+
             Obfuscator myOb = new Obfuscator(args[1],args[2]);
             //call the fileProcessing Function
             try{
@@ -47,7 +49,7 @@ import unparser.TreeConstructor;
             }catch(Exception e){e.printStackTrace();
             }
 
-
+//            TreeConstructor.printTokens(args[1]);
             TreeConstructor myTree = new TreeConstructor(args[2]);
 //            System.out.println(myTree.getRoot().getChild(0).getName());
             InputReader.printToFile(args[2],myTree.toString());

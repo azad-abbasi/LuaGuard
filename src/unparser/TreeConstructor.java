@@ -28,6 +28,7 @@ public class TreeConstructor {
 
 
     public TreeConstructor(String path){
+
         this.path= path;
         InputReader read = new InputReader(path);
         String ast = read.getString();
@@ -63,7 +64,13 @@ public class TreeConstructor {
     }
 
     public static Node treeConstructor(String root, Node father){
-        Node thisNode = new Node(root,father);
+        Node thisNode;
+        if(root.equals("'")){
+            thisNode = new Node(getStringToken(),father);
+        }
+        else{
+            thisNode = new Node(root,father);
+        }
         String currentToken;
         int index = 0 ;
         while(st.hasMoreTokens()){
