@@ -5,13 +5,13 @@ import org.antlr.runtime.tree.CommonTree;
 /**
  * Created by azada on 5/7/14.
  */
-public class MyASTgenerator {
+public class ASTgenerator {
 
     private static String finalTreeString = "";
     public CommonTree tree;
     //you just have to pass the common tree to the parser to greate the AST tree
     //and print it to the output
-    public MyASTgenerator(CommonTree tree){
+    public ASTgenerator(CommonTree tree){
         this.tree = tree;
         createStructuredTree(tree,0);
     }
