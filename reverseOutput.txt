@@ -15,8 +15,8 @@
 								 ( CALL
 									 ( or
 										 ( and
-											 ( == t '  foo ' )
-											 ( '  bar ' )
+											 ( == t  ' foo '  )
+											 (  ' bar '  )
 										 )
 										 ( t )
 									 )
