@@ -6,10 +6,10 @@ import obfuscator.Obfuscator;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
+import parser.ASTgenerator;
 import parser.InputReader;
 import parser.LuaLexer;
 import parser.LuaParser;
-import parser.MyASTgenerator;
 import unparser.TreeConstructor;
 
 
@@ -33,7 +33,7 @@ import unparser.TreeConstructor;
             and feed the Final string to the input reader to put it in a file.
             **/
 
-            MyASTgenerator myAST = new MyASTgenerator(tree);
+            ASTgenerator myAST = new ASTgenerator(tree);
             String treeStructure = myAST.getAST();
 //            printToSeparateFile(args[1],treeString);
             InputReader.printToFile(args[1], treeStructure);

@@ -6,10 +6,10 @@ import obfuscator.Obfuscator;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
+import parser.ASTgenerator;
 import parser.InputReader;
 import parser.LuaLexer;
 import parser.LuaParser;
-import parser.MyASTgenerator;
 import unparser.TreeConstructor;
 
 
@@ -33,13 +33,15 @@ import unparser.TreeConstructor;
             and feed the Final string to the input reader to put it in a file.
             **/
 
-            MyASTgenerator myAST = new MyASTgenerator(tree);
+            ASTgenerator myAST = new ASTgenerator(tree);
             String treeStructure = myAST.getAST();
 //            printToSeparateFile(args[1],treeString);
             InputReader.printToFile(args[1], treeStructure);
 
 //            String ast = new String(); // get the file to obfuscate
 //            String out = new String(args[2]); // desired name for the obfuscated file
+
+
             Obfuscator myOb = new Obfuscator(args[1],args[2]);
             //call the fileProcessing Function
             try{
@@ -47,7 +49,7 @@ import unparser.TreeConstructor;
             }catch(Exception e){e.printStackTrace();
             }
 
-
+//            TreeConstructor.printTokens(args[1]);
             TreeConstructor myTree = new TreeConstructor(args[2]);
 //            System.out.println(myTree.getRoot().getChild(0).getName());
             InputReader.printToFile(args[2],myTree.toString());
