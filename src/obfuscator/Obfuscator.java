@@ -29,7 +29,7 @@ public class Obfuscator {
      */
 	public  String MinimumVocabObfuscation(String w){
 		StringBuilder result = new StringBuilder(w.length()); //obfuscated word
-		System.out.println(w);
+//		System.out.println(w);
 		for(int i=0; i < w.length(); i++){
 			char c = w.charAt(i);
 			//System.out.println(c);
