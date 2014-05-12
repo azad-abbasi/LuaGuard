@@ -29,7 +29,7 @@ import unparser.TreeConstructor;
             CommonTree tree =  parser.parse().getTree();
             String treeString = tree.toStringTree();
 
-            /**now we feed the common tree "tree" to the createStructuredTree
+            /**now we feed the common root "root" to the createStructuredTree
             and feed the Final string to the input reader to put it in a file.
             **/
 

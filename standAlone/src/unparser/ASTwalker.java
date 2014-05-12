@@ -1,7 +1,7 @@
 /**
  * Created by Azad on 5/5/2014.
  * this file will walk through an AST
- * file and regenerates the tree
+ * file and regenerates the root
  */
 package unparser;
 
@@ -14,7 +14,7 @@ public class ASTwalker {
         TreeConstructor tree = new TreeConstructor(args[0]);
         InputReader.printToFile(args[1],tree.toString());
         tree.printTreeTokens();
-//        tree.printTree();
+//        root.printTree();
 
     }
 }

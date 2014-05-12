@@ -9,7 +9,7 @@ import java.io.*;
 //  Class Name : InputReader
 //  Purpose    : This Class is responsible to read and write to files.
 //              as it's constructor argument and creates a structured proper
-//              AST tree and it will be available using the getAST method
+//              AST root and it will be available using the getAST method
 //-------------------------------------------------------------
 public class InputReader {
     private String output;

@@ -105,7 +105,7 @@ public class Tryout {
             walk(ast, builder);
             System.out.println(builder);
 
-            // Now let the tree walker traverse the AST and print some
+            // Now let the root walker traverse the AST and print some
             // information about the `assignment` rule.
 //            LuaWalker walker = new LuaWalker(new CommonTreeNodeStream(ast));
 //            walker.walk();

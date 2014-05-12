@@ -38,7 +38,7 @@ public class Demo {
             if(expressions.getChildCount() > 0 &&
                     expressions.getChild(0).getType() == LuaParser.FUNCTION) {
 
-                System.out.println("walk the tree:\n  " + expressions.toStringTree() +
+                System.out.println("walk the root:\n  " + expressions.toStringTree() +
                         "\ntoo find all strings for event: '" + name + "'");
             }
         }
