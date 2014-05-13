@@ -87,7 +87,9 @@ public class MainClass {
             InputReader.printToFile(args[2],myTree.toString());
             Unparser myUnparser = new Unparser(myTree.getRoot());
             myUnparser.unparse();
-            InputReader.printToFile(args[3],myUnparser.getCode());
+            String code = myUnparser.getCode();
+            System.out.println(code);
+            InputReader.printToFile(args[3],code);
 
             //-------------------------------------------------------------------------
         }

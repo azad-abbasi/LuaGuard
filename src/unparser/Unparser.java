@@ -153,16 +153,30 @@ public class Unparser {
         }
         /**-----------------------------------CONDITION----------------------------------*/
         else if(currentNode.getName().equals("CONDITION")){
+
+
+
             if(!currentNode.getChild(0).getName().equals("True")){
-                for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                    if(i==1){
-                        finalCode.append(") then\n");
+                if(currentNode.getParent().getChild(0)==currentNode){
+                    for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                        if(i==1){
+                            finalCode.append(") then\n");
+                        }
+                        unparse(currentNode.getChild(i));
                     }
-                    unparse(currentNode.getChild(i));
+                }
+                else{
+                    finalCode.append("elseif(");
+                    for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                        if(i==1){
+                            finalCode.append(") then\n");
+                        }
+                        unparse(currentNode.getChild(i));
+                    }
                 }
             }
             else{
-                finalCode.append("else\n");
+                finalCode.append("else \n");
                 for(int i=0 ; i<currentNode.getChildCount() ; i++){
                     unparse(currentNode.getChild(i));
                 }
@@ -227,6 +241,13 @@ public class Unparser {
 
             }
         }
+        /**-----------------------------------goto----------------------------------*/
+        else if(currentNode.getName().equals("goto")){
+            finalCode.append("goto ");
+            for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                unparse(currentNode.getChild(i));
+            }
+        }
         /**-----------------------------------if----------------------------------*/
         else if(currentNode.getName().equals("if")){
             finalCode.append("if(");
@@ -235,8 +256,8 @@ public class Unparser {
             }
             finalCode.append("\nend\n");
         }
-        /**----------------------------------- + -  ----------------------------------*/
-        else if(currentNode.getName().equals("+") || currentNode.getName().equals("-")){
+        /**----------------------------------- + - ^ ----------------------------------*/
+        else if(currentNode.getName().equals("+") || currentNode.getName().equals("-")|| currentNode.getName().equals("^")){
             finalCode.append("(");
             unparse(currentNode.getChild(0));
             finalCode.append(currentNode.getName());
@@ -266,7 +287,7 @@ public class Unparser {
                 unparse(currentNode.getChild(0));
                 finalCode.append(currentNode.getName());
                 unparse(currentNode.getChild(1));
-                finalCode.append("\n");
+//                finalCode.append("\n");
 //                finalCode.append("");
             }
         }
