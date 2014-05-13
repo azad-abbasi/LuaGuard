@@ -146,12 +146,12 @@ public class TreeConstructor {
     //it means it's a string
     private static String getStringToken(){
         String currentToken = st.nextToken();
-        String finalString="' ";
+        String finalString="'";
         while(!currentToken.equals("'")){
-            finalString+=" "+ currentToken;
+            finalString+= currentToken;
             currentToken=st.nextToken();
         }
-        finalString+=" '";
+        finalString+="'";
 //        st.nextToken();
         return finalString;
     }

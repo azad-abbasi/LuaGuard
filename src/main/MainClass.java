@@ -11,9 +11,10 @@ import parser.InputReader;
 import parser.LuaLexer;
 import parser.LuaParser;
 import unparser.TreeConstructor;
+import unparser.Unparser;
 
 
-    public class MainClass {
+public class MainClass {
 
         public static void main(String[] args) throws Exception {
             /**
@@ -64,12 +65,12 @@ import unparser.TreeConstructor;
              */
             //-------------------------------------------------------------------------
             //the Obfuscator goes here , whatever level we decide to have
-            Obfuscator myOb = new Obfuscator(args[1],args[2]);
-            //call the fileProcessing Function
-            try{
-                myOb.FileProcessing();
-            }catch(Exception e){e.printStackTrace();
-            }
+//                            Obfuscator myOb = new Obfuscator(args[1],args[2]);
+//                            //call the fileProcessing Function
+//                            try{
+//                                myOb.FileProcessing();
+//                            }catch(Exception e){e.printStackTrace();
+//                            }
 
             /**
              * The OBFUSCATOR ENDS HERE
@@ -81,8 +82,11 @@ import unparser.TreeConstructor;
              */
             //-------------------------------------------------------------------------
             //read the AST file back to a tree
-            TreeConstructor myTree = new TreeConstructor(args[2]);
+            TreeConstructor myTree = new TreeConstructor(args[1]);
             InputReader.printToFile(args[2],myTree.toString());
+            Unparser myUnparser = new Unparser(myTree.getRoot());
+            myUnparser.unparse();
+            System.out.println(myUnparser.getCode());
 
             //-------------------------------------------------------------------------
         }

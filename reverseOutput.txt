@@ -1,26 +1,15 @@
  ( CHUNK
-	 ( do
-		 ( CHUNK
-			 ( LOCAL_ASSIGNMENT
-				 ( NAME_LIST oldprint )
-				 ( EXPR_LIST print )
-			 )
-			 ( FUNCTION_ASSIGNMENT
-				 ( VAR_LIST qsjou )
-				 ( EXPR_LIST
-					 ( FUNCTION
-						 ( PARAM_LIST t )
-						 ( CHUNK
-							 ( VAR oldprint
-								 ( CALL
-									 ( or
-										 ( and
-											 ( == t  ' foo '  )
-											 (  ' bar '  )
-										 )
-										 ( t )
-									 )
-								 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST fact )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST n )
+				 ( CHUNK
+					 ( if
+						 ( CONDITION
+							 ( == n 0 )
+							 ( CHUNK
+								 ( return 1 )
 							 )
 						 )
 					 )
