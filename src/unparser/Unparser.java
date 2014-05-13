@@ -60,13 +60,6 @@ public class Unparser {
             for(int i=0 ; i<currentNode.getChildCount() ; i++)
                 unparse(currentNode.getChild(i));
         }
-        /**-----------------------------------do----------------------------------*/
-        else if(currentNode.getName().equals("do")){
-            finalCode.append("do\n");
-            for(int i=0 ; i<currentNode.getChildCount() ; i++)
-                unparse(currentNode.getChild(i));
-            finalCode.append("\nend\n");
-        }
         /**-----------------------------------FUNCTION_ASSIGNMENT----------------------------------*/
         //if we encounter a Funtion ASSIGNMENT
         else if(currentNode.getName().equals("FUNCTION_ASSIGNMENT")){
@@ -211,6 +204,13 @@ public class Unparser {
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
+        }
+        /**-----------------------------------do----------------------------------*/
+        else if(currentNode.getName().equals("do")){
+            finalCode.append("do\n");
+            for(int i=0 ; i<currentNode.getChildCount() ; i++)
+                unparse(currentNode.getChild(i));
+            finalCode.append("\nend\n");
         }
         /**-----------------------------------for----------------------------------*/
         else if(currentNode.getName().equals("for")){
