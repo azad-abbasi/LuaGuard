@@ -1,20 +1,12 @@
  ( CHUNK
-	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST fact )
+	 ( ASSIGNMENT
+		 ( VAR_LIST a )
+		 ( EXPR_LIST 5 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST b )
 		 ( EXPR_LIST
-			 ( FUNCTION
-				 ( PARAM_LIST n )
-				 ( CHUNK
-					 ( if
-						 ( CONDITION
-							 ( == n 0 )
-							 ( CHUNK
-								 ( return 1 )
-							 )
-						 )
-					 )
-				 )
-			 )
+			 ( UNARY_MINUS a )
 		 )
 	 )
  )

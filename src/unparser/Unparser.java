@@ -62,33 +62,71 @@ public class Unparser {
             for(int i=0 ; i<currentNode.getChildCount() ; i++)
                 unparse(currentNode.getChild(i));
         }
+
+        if(currentNode.getName().equals("do")){
+            finalCode.append("do\n");
+            for(int i=0 ; i<currentNode.getChildCount() ; i++)
+                unparse(currentNode.getChild(i));
+            finalCode.append("\nend\n");
+        }
+
+
+
         //if we encounter a Funtion ASSIGNMENT
         else if(currentNode.getName().equals("FUNCTION_ASSIGNMENT")){
             finalCode.append("function ");
-            finalCode.append(currentNode.getChild(0).getChild(0).getName());
 
-            for (int i=1;i<currentNode.getChildCount();i++)
+
+            for (int i=0;i<currentNode.getChildCount();i++)
                 unparse(currentNode.getChild(i));
-            finalCode.append("end\n");
+            finalCode.append("\nend\n");
+        }
+
+
+        else if(currentNode.getName().equals("LOCAL_ASSIGNMENT")){
+            finalCode.append("local ");
+            unparse(currentNode.getChild(0));
+            finalCode.append("=");
+            unparse(currentNode.getChild(1));
+            finalCode.append("\n");
+        }
+
+
+
+        else if(currentNode.getName().equals("NAME_LIST")){
+            for(int i=0 ; i<currentNode.getChildCount() ; i++) {
+                unparse(currentNode.getChild(i));
+                if(i>=1 && i<currentNode.getChildCount() && currentNode.getChildCount()>1)
+                    finalCode.append(",");
+            }
         }
 
         else if(currentNode.getName().equals("EXPR_LIST")){
-                for(int i=0 ; i<currentNode.getChildCount() ; i++)
+                for(int i=0 ; i<currentNode.getChildCount() ; i++) {
                     unparse(currentNode.getChild(i));
-                finalCode.append("\n");
+                    if(i>=1 && i<currentNode.getChildCount() && currentNode.getChildCount()>1)
+                        finalCode.append(",");
+                }
         }
 
         else if(currentNode.getName().equals("FUNCTION")){
+            if(currentNode.getParent().getParent().getName().equals("LOCAL_ASSIGNMENT")){
+                finalCode.append("function ");
+                for(int i=0 ; i<currentNode.getChildCount() ; i++)
+                    unparse(currentNode.getChild(i));
+                finalCode.append("\nend\n");
+            }
+            else{
             for(int i=0 ; i<currentNode.getChildCount() ; i++)
                 unparse(currentNode.getChild(i));
+            }
         }
         else if(currentNode.getName().equals("PARAM_LIST")){
             finalCode.append("(");
-            for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                if(i>0&& i<=currentNode.getChildCount()-1)
+            for(int i=0 ; i<currentNode.getChildCount() ; i++) {
+                unparse(currentNode.getChild(i));
+                if(i>=1 && i<currentNode.getChildCount() && currentNode.getChildCount()>1)
                     finalCode.append(",");
-                finalCode.append(currentNode.getChild(i).getName());
-
             }
             finalCode.append(")");
             finalCode.append("\n");
@@ -100,29 +138,118 @@ public class Unparser {
                 for(int i=1 ; i<currentNode.getChildCount() ; i++)
                     unparse(currentNode.getChild(i));
             }
+            if(currentNode.getChild(1).getName().equals("INDEX")){
+                for(int i=0 ; i<currentNode.getChildCount() ; i++)
+                    unparse(currentNode.getChild(i));
+            }
         }
         else if(currentNode.getName().equals("CALL")){
             finalCode.append("(");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                if(i>0&& i<=currentNode.getChildCount()-1)
+                if(i>=1 && i<currentNode.getChildCount() && currentNode.getChildCount()>1)
                     finalCode.append(",");
+
                 unparse(currentNode.getChild(i));
+
             }
-            finalCode.append(")\n");
+
+            finalCode.append(") ");
         }
 
         else if(currentNode.getName().equals("VAR_LIST")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
+                if(i>=1 && i<currentNode.getChildCount() && currentNode.getChildCount()>1)
+                    finalCode.append(",");
             }
         }
+
+
+        else if(currentNode.getName().equals("CONDITION")){
+            if(!currentNode.getChild(0).getName().equals("True")){
+                for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                    if(i==1){
+                        finalCode.append(") then\n");
+                    }
+                    unparse(currentNode.getChild(i));
+                }
+            }
+            else{
+                finalCode.append("else\n");
+                for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                    unparse(currentNode.getChild(i));
+                }
+            }
+        }
+
 
 
         else if(currentNode.getName().equals("ASSIGNMENT")){
             unparse(currentNode.getChild(0));
             finalCode.append("=");
             unparse(currentNode.getChild(1));
+            finalCode.append("\n");
         }
+
+
+        else if(currentNode.getName().equals("ASSIGNMENT_VAR")){
+            for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                unparse(currentNode.getChild(i));
+            }
+//            finalCode.append("\n");
+        }
+
+
+        else if(currentNode.getName().equals("INDEX")){
+            if(currentNode.getChild(0).getName().charAt(0)=='\''){
+                finalCode.append(".");
+                for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                    unparse(currentNode.getChild(i));
+                }
+            }
+            else {
+                finalCode.append("[");
+                for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                    unparse(currentNode.getChild(i));
+                }
+                finalCode.append("]");
+            }
+        }
+
+
+        else if(currentNode.getName().equals("UNARY_MINUS")){
+            finalCode.append("-");
+            for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                unparse(currentNode.getChild(i));
+            }
+        }
+
+
+        else if(currentNode.getName().equals("for")){
+            finalCode.append("for ");
+            unparse(currentNode.getChild(0));
+            finalCode.append("=");
+            for(int i=1 ; i<currentNode.getChildCount() ; i++){
+                unparse(currentNode.getChild(i));
+                if(i<currentNode.getChildCount()-2)
+                    finalCode.append(",");
+                else {
+                    finalCode.append(" ");
+                }
+
+            }
+        }
+
+
+
+        else if(currentNode.getName().equals("if")){
+            finalCode.append("if(");
+            for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                unparse(currentNode.getChild(i));
+            }
+            finalCode.append("\nend\n");
+        }
+
 
         else if(currentNode.getName().equals("+") || currentNode.getName().equals("-")){
             finalCode.append("(");
@@ -139,28 +266,133 @@ public class Unparser {
 
         }
 
-        else if(currentNode.getName().equals("if")){
+        else if(currentNode.getName().equals("==") || currentNode.getName().equals(">") ||
+                currentNode.getName().equals("<") || currentNode.getName().equals(">=")||
+                currentNode.getName().equals("<=")||currentNode.getName().equals("~=")){
+
+            if(currentNode.getParent().getName().equals("while")){
+                unparse(currentNode.getChild(0));
+                finalCode.append(currentNode.getName());
+                unparse(currentNode.getChild(1));
+                finalCode.append(")\n");
+            }
+            else{
+                unparse(currentNode.getChild(0));
+                finalCode.append(currentNode.getName());
+                unparse(currentNode.getChild(1));
+                finalCode.append("\n");
+//                finalCode.append("");
+            }
+        }
+
+        else if(currentNode.getName().equals("return")){
+            finalCode.append("return ");
+            for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                unparse(currentNode.getChild(i));
+            }
+//            finalCode.append("\n");
+        }
+
+        else if(currentNode.getName().equals("or")){
+            unparse(currentNode.getChild(0));
+            finalCode.append(" ");
+            finalCode.append(currentNode.getName());
+            finalCode.append(" ");
+            unparse(currentNode.getChild(1));
+//            finalCode.append(")\n");
+        }
+        else if(currentNode.getName().equals("and")){
+            unparse(currentNode.getChild(0));
+            finalCode.append(" ");
+            finalCode.append(currentNode.getName());
+            finalCode.append(" ");
+            unparse(currentNode.getChild(1));
+        }
+
+        else if(currentNode.getName().equals("while")){
+            finalCode.append("while(");
+            for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                unparse(currentNode.getChild(i));
+            }
+//            finalCode.append("\n");
+        }
+
+        else if(currentNode.getName().equals("..")){
+            unparse(currentNode.getChild(0));
+            finalCode.append(currentNode.getName());
+            unparse(currentNode.getChild(1));
+//
+        }
+
+        else if(currentNode.getName().equals("repeat")){
+            finalCode.append("repeat\n");
+            unparse(currentNode.getChild(0));
+            finalCode.append("until ");
+            unparse(currentNode.getChild(1));
+
+        }
+
+        else if(currentNode.getName().equals("not")){
+            finalCode.append("not ");
+            for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                unparse(currentNode.getChild(i));
+            }
+
+        }
+
+
+
+
+
+        else if(currentNode.getName().equals("#")){
+            finalCode.append("#");
+            for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                unparse(currentNode.getChild(i));
+            }
+
+        }
+
+        else if(currentNode.getName().equals("True")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
         }
-
-        else if(currentNode.getName().equals("CONDITION")){
-            for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
-            }
-        }
-
 
 
         else if(!keywords.contains(currentNode.getName())){
+            if(currentNode.getParent()!=null){
+                if(currentNode.getParent().getName().equals("INDEX")){
+                    if(currentNode.getName().charAt(0)=='\''){
+                        currentNode.setName(stripQuote(currentNode.getName()));
+                    }
+                    finalCode.append(currentNode.getName());
+                }
+                else{
+                    finalCode.append(currentNode.getName());
+                }
+            }
+            else{
             finalCode.append(currentNode.getName());
+            }
         }
+
+
+
+
+
 
 
 
     }
 
+    public static String stripQuote(String quote){
+        String result = "";
+        int length = quote.length();
+        int startP = 1;
+        int endP = length -1 ;
+        result = quote.substring(startP,endP);
+        return result;
+    }
 
     public String getCode(){
         return code;

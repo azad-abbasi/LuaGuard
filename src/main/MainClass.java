@@ -51,6 +51,7 @@ public class MainClass {
             //ASTgenerator reads the tree into a structured tree
             ASTgenerator myAST = new ASTgenerator(tree);
             String treeStructure = myAST.getAST();
+//            System.out.println(treeString);
 
             //static method printToFile prints the tree into a file.
             InputReader.printToFile(args[1], treeStructure);
