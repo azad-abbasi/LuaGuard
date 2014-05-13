@@ -51,21 +51,23 @@ public class Unparser {
         code = finalCode.toString();
     }
 
+
     public static void unparse(Node currentNode){
         //if we encounter a "CHUNK" we move on to
         // it's children and ask them to print themselves
+        /**-----------------------------------CHUNK----------------------------------*/
         if(currentNode.getName().equals("CHUNK")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++)
                 unparse(currentNode.getChild(i));
         }
-
-        if(currentNode.getName().equals("do")){
+        /**-----------------------------------do----------------------------------*/
+        else if(currentNode.getName().equals("do")){
             finalCode.append("do\n");
             for(int i=0 ; i<currentNode.getChildCount() ; i++)
                 unparse(currentNode.getChild(i));
             finalCode.append("\nend\n");
         }
-
+        /**-----------------------------------FUNCTION_ASSIGNMENT----------------------------------*/
         //if we encounter a Funtion ASSIGNMENT
         else if(currentNode.getName().equals("FUNCTION_ASSIGNMENT")){
             finalCode.append("function ");
@@ -75,7 +77,7 @@ public class Unparser {
                 unparse(currentNode.getChild(i));
             finalCode.append("\nend\n");
         }
-
+        /**-----------------------------------LOCAL_ASSIGNMENT----------------------------------*/
         else if(currentNode.getName().equals("LOCAL_ASSIGNMENT")){
             finalCode.append("local ");
             unparse(currentNode.getChild(0));
@@ -83,7 +85,7 @@ public class Unparser {
             unparse(currentNode.getChild(1));
             finalCode.append("\n");
         }
-
+        /**-----------------------------------NAME_LIST----------------------------------*/
         else if(currentNode.getName().equals("NAME_LIST")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++) {
                 unparse(currentNode.getChild(i));
@@ -91,7 +93,7 @@ public class Unparser {
                     finalCode.append(",");
             }
         }
-
+        /**-----------------------------------EXPR_LIST----------------------------------*/
         else if(currentNode.getName().equals("EXPR_LIST")){
                 for(int i=0 ; i<currentNode.getChildCount() ; i++) {
                     unparse(currentNode.getChild(i));
@@ -99,7 +101,7 @@ public class Unparser {
                         finalCode.append(",");
                 }
         }
-
+        /**-----------------------------------FUNCTION----------------------------------*/
         else if(currentNode.getName().equals("FUNCTION")){
             if(currentNode.getParent().getParent().getName().equals("LOCAL_ASSIGNMENT")){
                 finalCode.append("function ");
@@ -112,7 +114,7 @@ public class Unparser {
                 unparse(currentNode.getChild(i));
             }
         }
-
+        /**-----------------------------------PARAM_LIST----------------------------------*/
         else if(currentNode.getName().equals("PARAM_LIST")){
             finalCode.append("(");
             for(int i=0 ; i<currentNode.getChildCount() ; i++) {
@@ -123,7 +125,7 @@ public class Unparser {
             finalCode.append(")");
             finalCode.append("\n");
         }
-
+        /**-----------------------------------VAR----------------------------------*/
         else if(currentNode.getName().equals("VAR")){
             if(currentNode.getChild(1).getName().equals("CALL")){
                 finalCode.append(currentNode.getChild(0).getName());
@@ -135,7 +137,7 @@ public class Unparser {
                     unparse(currentNode.getChild(i));
             }
         }
-
+        /**-----------------------------------CALL----------------------------------*/
         else if(currentNode.getName().equals("CALL")){
             finalCode.append("(");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
@@ -148,7 +150,7 @@ public class Unparser {
 
             finalCode.append(") ");
         }
-
+        /**-----------------------------------VAR_LIST----------------------------------*/
         else if(currentNode.getName().equals("VAR_LIST")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
@@ -156,7 +158,7 @@ public class Unparser {
                     finalCode.append(",");
             }
         }
-
+        /**-----------------------------------CONDITION----------------------------------*/
         else if(currentNode.getName().equals("CONDITION")){
             if(!currentNode.getChild(0).getName().equals("True")){
                 for(int i=0 ; i<currentNode.getChildCount() ; i++){
@@ -173,21 +175,21 @@ public class Unparser {
                 }
             }
         }
-
+        /**-----------------------------------ASSIGNMENT----------------------------------*/
         else if(currentNode.getName().equals("ASSIGNMENT")){
             unparse(currentNode.getChild(0));
             finalCode.append("=");
             unparse(currentNode.getChild(1));
             finalCode.append("\n");
         }
-
+        /**-----------------------------------ASSIGNMENT_VAR----------------------------------*/
         else if(currentNode.getName().equals("ASSIGNMENT_VAR")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
 //            finalCode.append("\n");
         }
-
+        /**-----------------------------------INDEX----------------------------------*/
         else if(currentNode.getName().equals("INDEX")){
             if(currentNode.getChild(0).getName().charAt(0)=='\''){
                 finalCode.append(".");
@@ -203,14 +205,14 @@ public class Unparser {
                 finalCode.append("]");
             }
         }
-
+        /**-----------------------------------UNARY_MINUS----------------------------------*/
         else if(currentNode.getName().equals("UNARY_MINUS")){
             finalCode.append("-");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
         }
-
+        /**-----------------------------------for----------------------------------*/
         else if(currentNode.getName().equals("for")){
             finalCode.append("for ");
             unparse(currentNode.getChild(0));
@@ -225,7 +227,7 @@ public class Unparser {
 
             }
         }
-
+        /**-----------------------------------if----------------------------------*/
         else if(currentNode.getName().equals("if")){
             finalCode.append("if(");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
@@ -233,7 +235,7 @@ public class Unparser {
             }
             finalCode.append("\nend\n");
         }
-
+        /**----------------------------------- + -  ----------------------------------*/
         else if(currentNode.getName().equals("+") || currentNode.getName().equals("-")){
             finalCode.append("(");
             unparse(currentNode.getChild(0));
@@ -241,7 +243,7 @@ public class Unparser {
             unparse(currentNode.getChild(1));
             finalCode.append(")");
         }
-
+        /**----------------------------------- / * ----------------------------------*/
         else if(currentNode.getName().equals("/") || currentNode.getName().equals("*")){
 
             unparse(currentNode.getChild(0));
@@ -249,7 +251,7 @@ public class Unparser {
             unparse(currentNode.getChild(1));
 
         }
-
+        /**------------------------------- == < > <= >= ~= ----------------------------------*/
         else if(currentNode.getName().equals("==") || currentNode.getName().equals(">") ||
                 currentNode.getName().equals("<") || currentNode.getName().equals(">=")||
                 currentNode.getName().equals("<=")||currentNode.getName().equals("~=")){
@@ -268,7 +270,7 @@ public class Unparser {
 //                finalCode.append("");
             }
         }
-
+        /**-----------------------------------return----------------------------------*/
         else if(currentNode.getName().equals("return")){
             finalCode.append("return ");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
@@ -276,7 +278,7 @@ public class Unparser {
             }
 //            finalCode.append("\n");
         }
-
+        /**-----------------------------------or----------------------------------*/
         else if(currentNode.getName().equals("or")){
             unparse(currentNode.getChild(0));
             finalCode.append(" ");
@@ -285,6 +287,7 @@ public class Unparser {
             unparse(currentNode.getChild(1));
 //            finalCode.append(")\n");
         }
+        /**-----------------------------------and----------------------------------*/
         else if(currentNode.getName().equals("and")){
             unparse(currentNode.getChild(0));
             finalCode.append(" ");
@@ -292,7 +295,7 @@ public class Unparser {
             finalCode.append(" ");
             unparse(currentNode.getChild(1));
         }
-
+        /**-----------------------------------while----------------------------------*/
         else if(currentNode.getName().equals("while")){
             finalCode.append("while(");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
@@ -300,14 +303,14 @@ public class Unparser {
             }
 //            finalCode.append("\n");
         }
-
+        /**-----------------------------------..----------------------------------*/
         else if(currentNode.getName().equals("..")){
             unparse(currentNode.getChild(0));
             finalCode.append(currentNode.getName());
             unparse(currentNode.getChild(1));
 //
         }
-
+        /**-----------------------------------repeat----------------------------------*/
         else if(currentNode.getName().equals("repeat")){
             finalCode.append("repeat\n");
             unparse(currentNode.getChild(0));
@@ -315,7 +318,7 @@ public class Unparser {
             unparse(currentNode.getChild(1));
 
         }
-
+        /**-----------------------------------not----------------------------------*/
         else if(currentNode.getName().equals("not")){
             finalCode.append("not ");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
@@ -323,7 +326,7 @@ public class Unparser {
             }
 
         }
-
+        /**-----------------------------------#----------------------------------*/
         else if(currentNode.getName().equals("#")){
             finalCode.append("#");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
@@ -331,13 +334,14 @@ public class Unparser {
             }
 
         }
-
+        /**-----------------------------------True----------------------------------*/
         else if(currentNode.getName().equals("True")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
         }
 
+        /**-----------------------------------UNKNOWN VARIABLES AND STRING----------*/
         else if(!keywords.contains(currentNode.getName())){
             if(currentNode.getParent()!=null){
                 if(currentNode.getParent().getName().equals("INDEX")){
