@@ -1,8 +1,3 @@
-
-
-/**
- * Created by azada on 4/24/14.
- */
 package unparser;
 
 import java.util.ArrayList;
@@ -79,6 +74,7 @@ public class Unparser {
         }
 
         else if(currentNode.getName().equals("FUNCTION")){
+        	finalCode.append("function");
             for(int i=0 ; i<currentNode.getChildCount() ; i++)
                 unparse(currentNode.getChild(i));
         }
@@ -95,6 +91,7 @@ public class Unparser {
         }
 
         else if(currentNode.getName().equals("VAR")){
+        	//finalCode.append("var");
             if(currentNode.getChild(1).getName().equals("CALL")){
                 finalCode.append(currentNode.getChild(0).getName());
                 for(int i=1 ; i<currentNode.getChildCount() ; i++)
@@ -140,18 +137,75 @@ public class Unparser {
         }
 
         else if(currentNode.getName().equals("if")){
+        	finalCode.append("if");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
         }
 
         else if(currentNode.getName().equals("CONDITION")){
+        	//finalCode.append("condition");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
         }
+        
+        /*
+         * Modified by Gabe Aron
+         */
 
-
+        else if(currentNode.getName().equals("ASSIGNMENT_VAR")){
+        	
+        }
+        
+        /*This specifies the contents within a call to an object method*/
+        else if(currentNode.getName().equals("COLL_CALL")){
+        	finalCode.append("(");
+        	unparse(currentNode.getChild(0));
+        	finalCode.append(")");
+        }
+        
+        else if(currentNode.getName().equals("FIELD")){
+        	
+        }
+        
+        else if(currentNode.getName().equals("FIELD_LIST")){
+        	
+        }
+        
+        else if(currentNode.getName().equals("FIN_IN")){
+        	
+        }
+        
+        /*This specifies a call to an object metod*/
+        else if(currentNode.getName().equals("INDEX")){
+        	finalCode.append(":");
+        	unparse(currentNode.getChild(0));
+        }
+        
+        else if(currentNode.getName().equals("LABEL")){
+        	
+        }
+        
+        else if(currentNode.getName().equals("LOCAL_ASSIGNMENT")){
+        	
+        }
+        
+        else if(currentNode.getName().equals("NAME_LIST")){
+        	
+        }
+        
+        else if(currentNode.getName().equals("TABLE")){
+        	
+        }
+        
+        else if(currentNode.getName().equals("UNARY_MINUS")){
+        	
+        }
+        
+        else if(currentNode.getName().equals("FUNCTION_FUNCTIONS")){
+        	
+        }
 
         else if(!keywords.contains(currentNode.getName())){
             finalCode.append(currentNode.getName());
