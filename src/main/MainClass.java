@@ -10,9 +10,10 @@ import parser.ASTgenerator;
 import parser.InputReader;
 import parser.LuaLexer;
 import parser.LuaParser;
+import sun.plugin.converter.util.CommandLine;
 import unparser.TreeConstructor;
 import unparser.Unparser;
-
+import org.apache.commons.cli.*;
 
 public class MainClass {
 
@@ -28,7 +29,10 @@ public class MainClass {
                         "\n     3:the path to the desired unparser path");
                 return;
             }
+            Options options = new Options();
 
+            options.addOption("d", false, "Delete records"); // does not have a value
+            options.addOption("c", true, "CSV Repository"); // has a value
             /**
              * THE ARGUMENT HANDLER ENDS HERE
              */
