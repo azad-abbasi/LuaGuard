@@ -1,0 +1,94 @@
+ ( CHUNK
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST allwords )
+		 ( EXPR_LIST
+			 ( FUNCTION PARAM_LIST
+				 ( CHUNK
+					 ( LOCAL_ASSIGNMENT
+						 ( NAME_LIST line )
+						 ( EXPR_LIST
+							 ( VAR io
+								 ( INDEX 'read' )
+								 ( CALL )
+							 )
+						 )
+					 )
+					 ( LOCAL_ASSIGNMENT
+						 ( NAME_LIST pos )
+						 ( EXPR_LIST 1 )
+					 )
+					 ( return
+						 ( FUNCTION PARAM_LIST
+							 ( CHUNK
+								 ( while line
+									 ( do
+										 ( CHUNK
+											 ( LOCAL_ASSIGNMENT
+												 ( NAME_LIST s e )
+												 ( EXPR_LIST
+													 ( VAR string
+														 ( INDEX 'find' )
+														 ( CALL line '%w+' pos )
+													 )
+												 )
+											 )
+											 ( if
+												 ( CONDITION s
+													 ( CHUNK
+														 ( ASSIGNMENT
+															 ( VAR_LIST pos )
+															 ( EXPR_LIST
+																 ( + e 1 )
+															 )
+														 )
+														 ( return
+															 ( VAR string
+																 ( INDEX 'sub' )
+																 ( CALL line s e )
+															 )
+														 )
+													 )
+												 )
+												 ( CONDITION True
+													 ( CHUNK
+														 ( ASSIGNMENT
+															 ( VAR_LIST line )
+															 ( EXPR_LIST
+																 ( VAR io
+																	 ( INDEX 'read' )
+																	 ( CALL )
+																 )
+															 )
+														 )
+														 ( ASSIGNMENT
+															 ( VAR_LIST pos )
+															 ( EXPR_LIST 1 )
+														 )
+													 )
+												 )
+											 )
+										 )
+									 )
+								 )
+								 ( return nil )
+							 )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( FOR_IN
+		 ( NAME_LIST word )
+		 ( EXPR_LIST
+			 ( VAR allwords CALL )
+		 )
+		 ( do
+			 ( CHUNK
+				 ( VAR print
+					 ( CALL word )
+				 )
+			 )
+		 )
+	 )
+ )

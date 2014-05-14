@@ -1,0 +1,129 @@
+ ( CHUNK
+	 ( ASSIGNMENT
+		 ( VAR_LIST id )
+		 ( EXPR_LIST
+			 ( VAR get_select_items CALL )
+		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST max )
+		 ( EXPR_LIST
+			 ( VAR table
+				 ( INDEX 'maxn' )
+				 ( CALL id )
+			 )
+		 )
+	 )
+	 ( for i 1 max
+		 ( do
+			 ( CHUNK
+				 ( ASSIGNMENT
+					 ( VAR_LIST project )
+					 ( EXPR_LIST
+						 ( VAR get_folder_value
+							 ( CALL 'Project'
+								 ( VAR id
+									 ( INDEX i )
+								 )
+							 )
+						 )
+					 )
+				 )
+				 ( ASSIGNMENT
+					 ( VAR_LIST text )
+					 ( EXPR_LIST
+						 ( VAR get_item_text
+							 ( CALL
+								 ( VAR id
+									 ( INDEX i )
+								 )
+							 )
+						 )
+					 )
+				 )
+				 ( ASSIGNMENT
+					 ( VAR_LIST date )
+					 ( EXPR_LIST
+						 ( VAR get_folder_value
+							 ( CALL 'Appointments'
+								 ( VAR id
+									 ( INDEX i )
+								 )
+							 )
+						 )
+					 )
+				 )
+				 ( VAR msgbox
+					 ( CALL
+						 ( ..
+							 ( ..
+								 ( ..
+									 ( ..
+										 ( ..
+											 ( ..
+												 ( .. 'Project' project )
+												 ( '' )
+											 )
+											 ( 'Itemtext' )
+										 )
+										 ( text )
+									 )
+									 ( '' )
+								 )
+								 ( 'Date=' )
+							 )
+							 ( date )
+						 )
+						 ( '' )
+					 )
+				 )
+				 ( if
+					 ( CONDITION
+						 ( and
+							 ( and
+								 ( ~= project '' )
+								 ( ~=
+									 ( VAR string
+										 ( INDEX 'sub' )
+										 ( CALL text 1 1 )
+									 )
+									 ( '#' )
+								 )
+							 )
+							 ( ~= date '' )
+						 )
+						 ( CHUNK
+							 ( VAR set_item_text
+								 ( CALL
+									 ( VAR id
+										 ( INDEX i )
+									 )
+									 ( ..
+										 ( ..
+											 ( .. '#' project )
+											 ( '' )
+										 )
+										 ( text )
+									 )
+								 )
+							 )
+						 )
+					 )
+				 )
+				 ( if
+					 ( CONDITION
+						 ( and
+							 ( == project '' )
+							 ( ~= date '' )
+						 )
+						 ( CHUNK
+							 ( VAR msgbox
+								 ( CALL 'Itemwithoutprojectnumbers' '' )
+							 )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+ )

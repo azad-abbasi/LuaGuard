@@ -1,37 +1,14 @@
-function permgen (a, n)
-  if n == 0 then
-    coroutine.yield(a)
-  else
-    for i=1,n do
-
-      -- put i-th element as the last one
-      a[n], a[i] = a[i], a[n]
-
-      -- generate all permutations of the other elements
-      permgen(a, n - 1)
-
-      -- restore i-th element
-      a[n], a[i] = a[i], a[n]
-
-    end
-  end
-end
-
-
-function perm (a)
-  local n = table.getn(a)
-  return coroutine.wrap(function () permgen(a, n) end)
-end
-
-
-function printResult (a)
-  for i,v in ipairs(a) do
-    io.write(v, " ")
-  end
-  io.write("\n")
-end
-
-
-for p in perm{"a", "b", "c"} do
-  printResult(p)
+id=get_select_items()
+max=table.maxn(id)
+	for i=1,max do
+		project=get_folder_value("Project",id[i])
+		text=get_item_text(id[i])
+		date=get_folder_value("Appointments",id[i])
+		msgbox("Project "..project.."\n".."Item text "..text.."\n".."Date = "..date,"")
+		if project~="" and string.sub(text,1,1)~="#" and date~="" then
+			set_item_text(id[i],"#"..project.." "..text)
+		end
+		if project == "" and date~="" then
+			msgbox("Item without project numbers","")
+		end
 end

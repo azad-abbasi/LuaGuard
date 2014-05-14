@@ -1,0 +1,95 @@
+ ( CHUNK
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST DataExtract )
+		 ( EXPR_LIST
+			 ( FUNCTION PARAM_LIST
+				 ( CHUNK
+					 ( ASSIGNMENT
+						 ( VAR_LIST NumberItems )
+						 ( EXPR_LIST
+							 ( VAR get_select_items CALL )
+						 )
+					 )
+					 ( ASSIGNMENT
+						 ( VAR_LIST MaxItems )
+						 ( EXPR_LIST
+							 ( VAR table
+								 ( INDEX  ' maxn '  )
+								 ( CALL NumberItems )
+							 )
+						 )
+					 )
+					 ( VAR msgbox
+						 ( CALL
+							 ( .. MaxItems  '  items selected '  )
+							 (  '  '  )
+						 )
+					 )
+					 ( if
+						 ( CONDITION
+							 ( > MaxItems 0 )
+							 ( CHUNK
+								 ( ASSIGNMENT
+									 ( VAR_LIST filename )
+									 ( EXPR_LIST  ' c:\test.txt '  )
+								 )
+								 ( VAR io
+									 ( INDEX  ' output '  )
+									 ( CALL filename  ' w+ '  )
+								 )
+								 ( for i 1 MaxItems
+									 ( do
+										 ( CHUNK
+											 ( ASSIGNMENT
+												 ( VAR_LIST y )
+												 ( EXPR_LIST
+													 ( ..
+														 ( ..
+															 ( ..
+																 ( VAR tostring
+																	 ( CALL i )
+																 )
+																 (  ' ,  '  )
+															 )
+															 ( VAR get_item_text
+																 ( CALL
+																	 ( VAR NumberItems
+																		 ( INDEX i )
+																	 )
+																 )
+															 )
+														 )
+														 (  ' 
+ '  )
+													 )
+												 )
+											 )
+											 ( VAR msgbox
+												 ( CALL y  '  '  )
+											 )
+											 ( VAR io
+												 ( INDEX  ' write '  )
+												 ( CALL y )
+											 )
+										 )
+									 )
+								 )
+								 ( VAR io
+									 ( INDEX  ' close '  )
+									 ( CALL )
+								 )
+							 )
+						 )
+						 ( CONDITION True
+							 ( CHUNK
+								 ( VAR msgbox
+									 ( CALL  ' no selected items '   '  '  )
+								 )
+							 )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+ )

@@ -1,0 +1,101 @@
+ ( CHUNK
+	 ( LOCAL_ASSIGNMENT
+		 ( NAME_LIST f )
+		 ( EXPR_LIST
+			 ( VAR assert
+				 ( CALL
+					 ( VAR io
+						 ( INDEX 'open' )
+						 ( CALL
+							 ( VAR arg
+								 ( INDEX 1 )
+							 )
+							 ( 'rb' )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( LOCAL_ASSIGNMENT
+		 ( NAME_LIST block )
+		 ( EXPR_LIST 10 )
+	 )
+	 ( while true
+		 ( do
+			 ( CHUNK
+				 ( LOCAL_ASSIGNMENT
+					 ( NAME_LIST bytes )
+					 ( EXPR_LIST
+						 ( VAR f
+							 ( INDEX 'read' )
+							 ( COL_CALL block )
+						 )
+					 )
+				 )
+				 ( if
+					 ( CONDITION
+						 ( not bytes )
+						 ( CHUNK break )
+					 )
+				 )
+				 ( FOR_IN
+					 ( NAME_LIST b )
+					 ( EXPR_LIST
+						 ( VAR string
+							 ( INDEX 'gfind' )
+							 ( CALL bytes '.' )
+						 )
+					 )
+					 ( do
+						 ( CHUNK
+							 ( VAR io
+								 ( INDEX 'write' )
+								 ( CALL
+									 ( VAR string
+										 ( INDEX 'format' )
+										 ( CALL '%02X'
+											 ( VAR string
+												 ( INDEX 'byte' )
+												 ( CALL b )
+											 )
+										 )
+									 )
+								 )
+							 )
+						 )
+					 )
+				 )
+				 ( VAR io
+					 ( INDEX 'write' )
+					 ( CALL
+						 ( VAR string
+							 ( INDEX 'rep' )
+							 ( CALL ''
+								 ( +
+									 ( - block
+										 ( VAR string
+											 ( INDEX 'len' )
+											 ( CALL bytes )
+										 )
+									 )
+									 ( 1 )
+								 )
+							 )
+						 )
+					 )
+				 )
+				 ( VAR io
+					 ( INDEX 'write' )
+					 ( CALL
+						 ( VAR string
+							 ( INDEX 'gsub' )
+							 ( CALL bytes '%c' '.' )
+						 )
+						 ( '' )
+					 )
+				 )
+			 )
+		 )
+	 )
+ )

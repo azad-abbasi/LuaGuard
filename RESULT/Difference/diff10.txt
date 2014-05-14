@@ -1,0 +1,69 @@
+line#:12  AST:				 ( INDEX  ' maxn '  )  !=  ExpectedAST:				 ( INDEX 'maxn' )
+line#:24  AST:							 ( CALL  ' Project '   !=  ExpectedAST:							 ( CALL 'Project'
+line#:48  AST:							 ( CALL  ' Appointments '   !=  ExpectedAST:							 ( CALL 'Appointments'
+line#:64  AST:												 ( ..  ' Project  '  project )  !=  ExpectedAST:												 ( .. 'Project' project )
+line#:65  AST:												 (  '   !=  ExpectedAST:												 ( '' )
+line#:66  AST: '  )  !=  ExpectedAST:											 )
+line#:67  AST:											 )  !=  ExpectedAST:											 ( 'Itemtext' )
+line#:68  AST:											 (  ' Item text  '  )  !=  ExpectedAST:										 )
+line#:69  AST:										 )  !=  ExpectedAST:										 ( text )
+line#:70  AST:										 ( text )  !=  ExpectedAST:									 )
+line#:71  AST:									 )  !=  ExpectedAST:									 ( '' )
+line#:72  AST:									 (  '   !=  ExpectedAST:								 )
+line#:73  AST: '  )  !=  ExpectedAST:								 ( 'Date=' )
+line#:74  AST:								 )  !=  ExpectedAST:							 )
+line#:75  AST:								 (  ' Date =  '  )  !=  ExpectedAST:							 ( date )
+line#:76  AST:							 )  !=  ExpectedAST:						 )
+line#:77  AST:							 ( date )  !=  ExpectedAST:						 ( '' )
+line#:78  AST:						 )  !=  ExpectedAST:					 )
+line#:79  AST:						 (  '  '  )  !=  ExpectedAST:				 )
+line#:80  AST:					 )  !=  ExpectedAST:				 ( if
+line#:81  AST:				 )  !=  ExpectedAST:					 ( CONDITION
+line#:82  AST:				 ( if  !=  ExpectedAST:						 ( and
+line#:83  AST:					 ( CONDITION  !=  ExpectedAST:							 ( and
+line#:84  AST:						 ( and  !=  ExpectedAST:								 ( ~= project '' )
+line#:85  AST:							 ( and  !=  ExpectedAST:								 ( ~=
+line#:86  AST:								 ( ~= project  '  '  )  !=  ExpectedAST:									 ( VAR string
+line#:87  AST:								 ( ~=  !=  ExpectedAST:										 ( INDEX 'sub' )
+line#:88  AST:									 ( VAR string  !=  ExpectedAST:										 ( CALL text 1 1 )
+line#:89  AST:										 ( INDEX  ' sub '  )  !=  ExpectedAST:									 )
+line#:90  AST:										 ( CALL text 1 1 )  !=  ExpectedAST:									 ( '#' )
+line#:91  AST:									 )  !=  ExpectedAST:								 )
+line#:92  AST:									 (  ' # '  )  !=  ExpectedAST:							 )
+line#:93  AST:								 )  !=  ExpectedAST:							 ( ~= date '' )
+line#:94  AST:							 )  !=  ExpectedAST:						 )
+line#:95  AST:							 ( ~= date  '  '  )  !=  ExpectedAST:						 ( CHUNK
+line#:96  AST:						 )  !=  ExpectedAST:							 ( VAR set_item_text
+line#:97  AST:						 ( CHUNK  !=  ExpectedAST:								 ( CALL
+line#:98  AST:							 ( VAR set_item_text  !=  ExpectedAST:									 ( VAR id
+line#:99  AST:								 ( CALL  !=  ExpectedAST:										 ( INDEX i )
+line#:100  AST:									 ( VAR id  !=  ExpectedAST:									 )
+line#:101  AST:										 ( INDEX i )  !=  ExpectedAST:									 ( ..
+line#:102  AST:									 )  !=  ExpectedAST:										 ( ..
+line#:103  AST:									 ( ..  !=  ExpectedAST:											 ( .. '#' project )
+line#:104  AST:										 ( ..  !=  ExpectedAST:											 ( '' )
+line#:105  AST:											 ( ..  ' # '  project )  !=  ExpectedAST:										 )
+line#:106  AST:											 (  '   '  )  !=  ExpectedAST:										 ( text )
+line#:107  AST:										 )  !=  ExpectedAST:									 )
+line#:108  AST:										 ( text )  !=  ExpectedAST:								 )
+line#:109  AST:									 )  !=  ExpectedAST:							 )
+line#:110  AST:								 )  !=  ExpectedAST:						 )
+line#:111  AST:							 )  !=  ExpectedAST:					 )
+line#:112  AST:						 )  !=  ExpectedAST:				 )
+line#:113  AST:					 )  !=  ExpectedAST:				 ( if
+line#:114  AST:				 )  !=  ExpectedAST:					 ( CONDITION
+line#:115  AST:				 ( if  !=  ExpectedAST:						 ( and
+line#:116  AST:					 ( CONDITION  !=  ExpectedAST:							 ( == project '' )
+line#:117  AST:						 ( and  !=  ExpectedAST:							 ( ~= date '' )
+line#:118  AST:							 ( == project  '  '  )  !=  ExpectedAST:						 )
+line#:119  AST:							 ( ~= date  '  '  )  !=  ExpectedAST:						 ( CHUNK
+line#:120  AST:						 )  !=  ExpectedAST:							 ( VAR msgbox
+line#:121  AST:						 ( CHUNK  !=  ExpectedAST:								 ( CALL 'Itemwithoutprojectnumbers' '' )
+line#:122  AST:							 ( VAR msgbox  !=  ExpectedAST:							 )
+line#:123  AST:								 ( CALL  ' Item without project numbers '   '  '  )  !=  ExpectedAST:						 )
+line#:124  AST:							 )  !=  ExpectedAST:					 )
+line#:125  AST:						 )  !=  ExpectedAST:				 )
+line#:126  AST:					 )  !=  ExpectedAST:			 )
+line#:127  AST:				 )  !=  ExpectedAST:		 )
+line#:128  AST:			 )  !=  ExpectedAST:	 )
+line#:129  AST:		 )  !=  ExpectedAST: )

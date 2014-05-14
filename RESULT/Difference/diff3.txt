@@ -1,0 +1,3 @@
+line#:34  AST:		 ( CALL  ' enter a number: '  )  !=  ExpectedAST:		 ( CALL 'enteranumber:' )
+line#:40  AST:				 ( INDEX  ' read '  )  !=  ExpectedAST:				 ( INDEX 'read' )
+line#:41  AST:				 ( CALL  ' *number '  )  !=  ExpectedAST:				 ( CALL '*number' )

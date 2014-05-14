@@ -1,0 +1,5 @@
+line#:11  AST:								 ( INDEX  ' read '  )  !=  ExpectedAST:								 ( INDEX 'read' )
+line#:30  AST:														 ( INDEX  ' find '  )  !=  ExpectedAST:														 ( INDEX 'find' )
+line#:31  AST:														 ( CALL line  ' %w+ '  pos )  !=  ExpectedAST:														 ( CALL line '%w+' pos )
+line#:46  AST:																 ( INDEX  ' sub '  )  !=  ExpectedAST:																 ( INDEX 'sub' )
+line#:58  AST:																	 ( INDEX  ' read '  )  !=  ExpectedAST:																	 ( INDEX 'read' )

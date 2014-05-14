@@ -1,0 +1,127 @@
+ ( CHUNK
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST eraseTerminal )
+		 ( EXPR_LIST
+			 ( FUNCTION PARAM_LIST
+				 ( CHUNK
+					 ( VAR io
+						 ( INDEX  ' write '  )
+						 ( CALL  ' [2J '  )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST mark )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST x y )
+				 ( CHUNK
+					 ( VAR io
+						 ( INDEX  ' write '  )
+						 ( CALL
+							 ( VAR string
+								 ( INDEX  ' format '  )
+								 ( CALL  ' [%d;%dH* '  y x )
+							 )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST TermSize )
+		 ( EXPR_LIST
+			 ( TABLE
+				 ( FIELD  ' w '  80 )
+				 ( FIELD  ' h '  24 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST plot )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST f )
+				 ( CHUNK
+					 ( VAR eraseTerminal CALL )
+					 ( for i 1
+						 ( VAR TermSize
+							 ( INDEX  ' w '  )
+						 )
+						 ( do
+							 ( CHUNK
+								 ( LOCAL_ASSIGNMENT
+									 ( NAME_LIST x )
+									 ( EXPR_LIST
+										 ( -
+											 ( *
+												 ( / i
+													 ( VAR TermSize
+														 ( INDEX  ' w '  )
+													 )
+												 )
+												 ( 2 )
+											 )
+											 ( 1 )
+										 )
+									 )
+								 )
+								 ( LOCAL_ASSIGNMENT
+									 ( NAME_LIST y )
+									 ( EXPR_LIST
+										 ( *
+											 ( /
+												 ( +
+													 ( VAR f
+														 ( CALL x )
+													 )
+													 ( 1 )
+												 )
+												 ( 2 )
+											 )
+											 ( VAR TermSize
+												 ( INDEX  ' h '  )
+											 )
+										 )
+									 )
+								 )
+								 ( VAR mark
+									 ( CALL i y )
+								 )
+							 )
+						 )
+					 )
+					 ( VAR io
+						 ( INDEX  ' read '  )
+						 ( CALL )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( VAR plot
+		 ( CALL
+			 ( FUNCTION
+				 ( PARAM_LIST x )
+				 ( CHUNK
+					 ( return
+						 ( VAR math
+							 ( INDEX  ' sin '  )
+							 ( CALL
+								 ( *
+									 ( * x 2 )
+									 ( VAR math
+										 ( INDEX  ' pi '  )
+									 )
+								 )
+							 )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+ )
