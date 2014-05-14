@@ -319,7 +319,9 @@ public class Unparser {
         /**-----------------------------------while----------------------------------*/
         else if(currentNode.getName().equals("while")){
             finalCode.append("while(");
-            for(int i=0 ; i<currentNode.getChildCount() ; i++){
+            unparse(currentNode.getChild(0));
+            finalCode.append(")\n");
+            for(int i=1 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
 //            finalCode.append("\n");
@@ -337,6 +339,7 @@ public class Unparser {
             unparse(currentNode.getChild(0));
             finalCode.append("until ");
             unparse(currentNode.getChild(1));
+            finalCode.append("\n");
 
         }
         /**-----------------------------------not----------------------------------*/
@@ -370,13 +373,16 @@ public class Unparser {
                         currentNode.setName(stripQuote(currentNode.getName()));
                     }
                     finalCode.append(currentNode.getName());
+                    finalCode.append(" ");
                 }
                 else{
                     finalCode.append(currentNode.getName());
+                    finalCode.append(" ");
                 }
             }
             else{
             finalCode.append(currentNode.getName());
+            finalCode.append(" ");
             }
         }
     }
