@@ -134,11 +134,9 @@ public class Unparser {
         else if(currentNode.getName().equals("CALL")){
             finalCode.append("(");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                if(i>=1 && i<currentNode.getChildCount() && currentNode.getChildCount()>1)
-                    finalCode.append(",");
-
                 unparse(currentNode.getChild(i));
-
+                if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
+                    finalCode.append(",");
             }
 
             finalCode.append(") ");
@@ -340,6 +338,8 @@ public class Unparser {
             finalCode.append("return ");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
+                if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
+                    finalCode.append(",");
             }
 //            finalCode.append("\n");
         }
