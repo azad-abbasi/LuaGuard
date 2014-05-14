@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 grammars/Lua.g 2014-05-14 00:23:44
+// $ANTLR 3.5.2 grammars/Lua.g 2014-05-14 11:23:19
 
 package parser;
 
@@ -290,8 +290,8 @@ public class LuaParser extends Parser {
 		ParserRuleReturnScope stat3 =null;
 		ParserRuleReturnScope ret_stat4 =null;
 
-		RewriteRuleSubtreeStream stream_stat=new RewriteRuleSubtreeStream(adaptor,"rule stat");
 		RewriteRuleSubtreeStream stream_ret_stat=new RewriteRuleSubtreeStream(adaptor,"rule ret_stat");
+		RewriteRuleSubtreeStream stream_stat=new RewriteRuleSubtreeStream(adaptor,"rule stat");
 
 		try {
 			// grammars/Lua.g:200:2: ( ( stat )* ( ret_stat )? -> ^( CHUNK ( stat )* ( ret_stat )? ) )
@@ -344,7 +344,7 @@ public class LuaParser extends Parser {
 			}
 
 			// AST REWRITE
-			// elements: stat, ret_stat
+			// elements: ret_stat, stat
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -767,8 +767,8 @@ public class LuaParser extends Parser {
 
 		CommonTree Do18_tree=null;
 		CommonTree End20_tree=null;
-		RewriteRuleTokenStream stream_End=new RewriteRuleTokenStream(adaptor,"token End");
 		RewriteRuleTokenStream stream_Do=new RewriteRuleTokenStream(adaptor,"token Do");
+		RewriteRuleTokenStream stream_End=new RewriteRuleTokenStream(adaptor,"token End");
 		RewriteRuleSubtreeStream stream_chunk=new RewriteRuleSubtreeStream(adaptor,"rule chunk");
 
 		try {
@@ -878,7 +878,7 @@ public class LuaParser extends Parser {
 			if (state.failed) return retval;
 			if ( state.backtracking==0 ) stream_do_block.add(do_block23.getTree());
 			// AST REWRITE
-			// elements: While, do_block, expr
+			// elements: do_block, While, expr
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -950,8 +950,8 @@ public class LuaParser extends Parser {
 
 		CommonTree Repeat24_tree=null;
 		CommonTree Until26_tree=null;
-		RewriteRuleTokenStream stream_Repeat=new RewriteRuleTokenStream(adaptor,"token Repeat");
 		RewriteRuleTokenStream stream_Until=new RewriteRuleTokenStream(adaptor,"token Until");
+		RewriteRuleTokenStream stream_Repeat=new RewriteRuleTokenStream(adaptor,"token Repeat");
 		RewriteRuleSubtreeStream stream_chunk=new RewriteRuleSubtreeStream(adaptor,"rule chunk");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
@@ -976,7 +976,7 @@ public class LuaParser extends Parser {
 			if (state.failed) return retval;
 			if ( state.backtracking==0 ) stream_expr.add(expr27.getTree());
 			// AST REWRITE
-			// elements: chunk, expr, Repeat
+			// elements: Repeat, chunk, expr
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1047,8 +1047,8 @@ public class LuaParser extends Parser {
 
 		CommonTree char_literal29_tree=null;
 		RewriteRuleTokenStream stream_Assign=new RewriteRuleTokenStream(adaptor,"token Assign");
-		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
 		RewriteRuleSubtreeStream stream_var_list=new RewriteRuleSubtreeStream(adaptor,"rule var_list");
+		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
 
 		try {
 			// grammars/Lua.g:232:2: ( var_list '=' expr_list -> ^( ASSIGNMENT ^( VAR_LIST var_list ) ^( EXPR_LIST expr_list ) ) )
@@ -1140,7 +1140,7 @@ public class LuaParser extends Parser {
 
 
 	// $ANTLR start "local"
-	// grammars/Lua.g:236:1: local : Local ( name_list '=' expr_list -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) ) | Function Name func_body -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST Name ) ^( EXPR_LIST func_body ) ) | name_list -> ^( LOCAL_DEC ^( name_list ) ) ) ;
+	// grammars/Lua.g:236:1: local : Local ( name_list '=' expr_list -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) ) | Function Name func_body -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST Name ) ^( EXPR_LIST func_body ) ) | name_list -> ^( LOCAL_DEC ^( NAME_LIST name_list ) ) ) ;
 	public final LuaParser.local_return local() throws RecognitionException {
 		LuaParser.local_return retval = new LuaParser.local_return();
 		retval.start = input.LT(1);
@@ -1160,22 +1160,22 @@ public class LuaParser extends Parser {
 		CommonTree char_literal33_tree=null;
 		CommonTree Function35_tree=null;
 		CommonTree Name36_tree=null;
-		RewriteRuleTokenStream stream_Function=new RewriteRuleTokenStream(adaptor,"token Function");
+		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
 		RewriteRuleTokenStream stream_Local=new RewriteRuleTokenStream(adaptor,"token Local");
 		RewriteRuleTokenStream stream_Assign=new RewriteRuleTokenStream(adaptor,"token Assign");
-		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
-		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
-		RewriteRuleSubtreeStream stream_name_list=new RewriteRuleSubtreeStream(adaptor,"rule name_list");
+		RewriteRuleTokenStream stream_Function=new RewriteRuleTokenStream(adaptor,"token Function");
 		RewriteRuleSubtreeStream stream_func_body=new RewriteRuleSubtreeStream(adaptor,"rule func_body");
+		RewriteRuleSubtreeStream stream_name_list=new RewriteRuleSubtreeStream(adaptor,"rule name_list");
+		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
 
 		try {
-			// grammars/Lua.g:237:2: ( Local ( name_list '=' expr_list -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) ) | Function Name func_body -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST Name ) ^( EXPR_LIST func_body ) ) | name_list -> ^( LOCAL_DEC ^( name_list ) ) ) )
-			// grammars/Lua.g:237:4: Local ( name_list '=' expr_list -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) ) | Function Name func_body -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST Name ) ^( EXPR_LIST func_body ) ) | name_list -> ^( LOCAL_DEC ^( name_list ) ) )
+			// grammars/Lua.g:237:2: ( Local ( name_list '=' expr_list -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) ) | Function Name func_body -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST Name ) ^( EXPR_LIST func_body ) ) | name_list -> ^( LOCAL_DEC ^( NAME_LIST name_list ) ) ) )
+			// grammars/Lua.g:237:4: Local ( name_list '=' expr_list -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) ) | Function Name func_body -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST Name ) ^( EXPR_LIST func_body ) ) | name_list -> ^( LOCAL_DEC ^( NAME_LIST name_list ) ) )
 			{
 			Local31=(Token)match(input,Local,FOLLOW_Local_in_local1126); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_Local.add(Local31);
 
-			// grammars/Lua.g:237:10: ( name_list '=' expr_list -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) ) | Function Name func_body -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST Name ) ^( EXPR_LIST func_body ) ) | name_list -> ^( LOCAL_DEC ^( name_list ) ) )
+			// grammars/Lua.g:237:10: ( name_list '=' expr_list -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) ) | Function Name func_body -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST Name ) ^( EXPR_LIST func_body ) ) | name_list -> ^( LOCAL_DEC ^( NAME_LIST name_list ) ) )
 			int alt4=3;
 			alt4 = dfa4.predict(input);
 			switch (alt4) {
@@ -1255,7 +1255,7 @@ public class LuaParser extends Parser {
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_func_body.add(func_body37.getTree());
 					// AST REWRITE
-					// elements: Name, func_body
+					// elements: func_body, Name
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1319,16 +1319,17 @@ public class LuaParser extends Parser {
 					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 
 					root_0 = (CommonTree)adaptor.nil();
-					// 239:22: -> ^( LOCAL_DEC ^( name_list ) )
+					// 239:22: -> ^( LOCAL_DEC ^( NAME_LIST name_list ) )
 					{
-						// grammars/Lua.g:239:25: ^( LOCAL_DEC ^( name_list ) )
+						// grammars/Lua.g:239:25: ^( LOCAL_DEC ^( NAME_LIST name_list ) )
 						{
 						CommonTree root_1 = (CommonTree)adaptor.nil();
 						root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(LOCAL_DEC, "LOCAL_DEC"), root_1);
-						// grammars/Lua.g:239:37: ^( name_list )
+						// grammars/Lua.g:239:37: ^( NAME_LIST name_list )
 						{
 						CommonTree root_2 = (CommonTree)adaptor.nil();
-						root_2 = (CommonTree)adaptor.becomeRoot(stream_name_list.nextNode(), root_2);
+						root_2 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(NAME_LIST, "NAME_LIST"), root_2);
+						adaptor.addChild(root_2, stream_name_list.nextTree());
 						adaptor.addChild(root_1, root_2);
 						}
 
@@ -1388,21 +1389,21 @@ public class LuaParser extends Parser {
 
 		CommonTree Goto39_tree=null;
 		CommonTree Name40_tree=null;
-		RewriteRuleTokenStream stream_Goto=new RewriteRuleTokenStream(adaptor,"token Goto");
 		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
+		RewriteRuleTokenStream stream_Goto=new RewriteRuleTokenStream(adaptor,"token Goto");
 
 		try {
 			// grammars/Lua.g:244:2: ( Goto Name -> ^( Goto Name ) )
 			// grammars/Lua.g:244:4: Goto Name
 			{
-			Goto39=(Token)match(input,Goto,FOLLOW_Goto_in_goto_stat1232); if (state.failed) return retval; 
+			Goto39=(Token)match(input,Goto,FOLLOW_Goto_in_goto_stat1234); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_Goto.add(Goto39);
 
-			Name40=(Token)match(input,Name,FOLLOW_Name_in_goto_stat1234); if (state.failed) return retval; 
+			Name40=(Token)match(input,Name,FOLLOW_Name_in_goto_stat1236); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_Name.add(Name40);
 
 			// AST REWRITE
-			// elements: Goto, Name
+			// elements: Name, Goto
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1477,30 +1478,30 @@ public class LuaParser extends Parser {
 		CommonTree If41_tree=null;
 		CommonTree Then43_tree=null;
 		CommonTree End47_tree=null;
-		RewriteRuleTokenStream stream_Then=new RewriteRuleTokenStream(adaptor,"token Then");
 		RewriteRuleTokenStream stream_End=new RewriteRuleTokenStream(adaptor,"token End");
+		RewriteRuleTokenStream stream_Then=new RewriteRuleTokenStream(adaptor,"token Then");
 		RewriteRuleTokenStream stream_If=new RewriteRuleTokenStream(adaptor,"token If");
-		RewriteRuleSubtreeStream stream_elseif_stat=new RewriteRuleSubtreeStream(adaptor,"rule elseif_stat");
 		RewriteRuleSubtreeStream stream_chunk=new RewriteRuleSubtreeStream(adaptor,"rule chunk");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
+		RewriteRuleSubtreeStream stream_elseif_stat=new RewriteRuleSubtreeStream(adaptor,"rule elseif_stat");
 		RewriteRuleSubtreeStream stream_else_stat=new RewriteRuleSubtreeStream(adaptor,"rule else_stat");
 
 		try {
 			// grammars/Lua.g:248:2: ( If expr Then chunk ( elseif_stat )* ( else_stat )? End -> ^( If ^( CONDITION expr chunk ) ( elseif_stat )* ( else_stat )? ) )
 			// grammars/Lua.g:248:4: If expr Then chunk ( elseif_stat )* ( else_stat )? End
 			{
-			If41=(Token)match(input,If,FOLLOW_If_in_if_stat1253); if (state.failed) return retval; 
+			If41=(Token)match(input,If,FOLLOW_If_in_if_stat1255); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_If.add(If41);
 
-			pushFollow(FOLLOW_expr_in_if_stat1255);
+			pushFollow(FOLLOW_expr_in_if_stat1257);
 			expr42=expr();
 			state._fsp--;
 			if (state.failed) return retval;
 			if ( state.backtracking==0 ) stream_expr.add(expr42.getTree());
-			Then43=(Token)match(input,Then,FOLLOW_Then_in_if_stat1257); if (state.failed) return retval; 
+			Then43=(Token)match(input,Then,FOLLOW_Then_in_if_stat1259); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_Then.add(Then43);
 
-			pushFollow(FOLLOW_chunk_in_if_stat1259);
+			pushFollow(FOLLOW_chunk_in_if_stat1261);
 			chunk44=chunk();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -1518,7 +1519,7 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:248:23: elseif_stat
 					{
-					pushFollow(FOLLOW_elseif_stat_in_if_stat1261);
+					pushFollow(FOLLOW_elseif_stat_in_if_stat1263);
 					elseif_stat45=elseif_stat();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -1541,7 +1542,7 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:248:36: else_stat
 					{
-					pushFollow(FOLLOW_else_stat_in_if_stat1264);
+					pushFollow(FOLLOW_else_stat_in_if_stat1266);
 					else_stat46=else_stat();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -1551,11 +1552,11 @@ public class LuaParser extends Parser {
 
 			}
 
-			End47=(Token)match(input,End,FOLLOW_End_in_if_stat1267); if (state.failed) return retval; 
+			End47=(Token)match(input,End,FOLLOW_End_in_if_stat1269); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_End.add(End47);
 
 			// AST REWRITE
-			// elements: If, else_stat, expr, chunk, elseif_stat
+			// elements: elseif_stat, else_stat, If, expr, chunk
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1646,8 +1647,8 @@ public class LuaParser extends Parser {
 
 		CommonTree Elseif48_tree=null;
 		CommonTree Then50_tree=null;
-		RewriteRuleTokenStream stream_Elseif=new RewriteRuleTokenStream(adaptor,"token Elseif");
 		RewriteRuleTokenStream stream_Then=new RewriteRuleTokenStream(adaptor,"token Then");
+		RewriteRuleTokenStream stream_Elseif=new RewriteRuleTokenStream(adaptor,"token Elseif");
 		RewriteRuleSubtreeStream stream_chunk=new RewriteRuleSubtreeStream(adaptor,"rule chunk");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
@@ -1655,24 +1656,24 @@ public class LuaParser extends Parser {
 			// grammars/Lua.g:252:2: ( Elseif expr Then chunk -> ^( CONDITION expr chunk ) )
 			// grammars/Lua.g:252:4: Elseif expr Then chunk
 			{
-			Elseif48=(Token)match(input,Elseif,FOLLOW_Elseif_in_elseif_stat1298); if (state.failed) return retval; 
+			Elseif48=(Token)match(input,Elseif,FOLLOW_Elseif_in_elseif_stat1300); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_Elseif.add(Elseif48);
 
-			pushFollow(FOLLOW_expr_in_elseif_stat1300);
+			pushFollow(FOLLOW_expr_in_elseif_stat1302);
 			expr49=expr();
 			state._fsp--;
 			if (state.failed) return retval;
 			if ( state.backtracking==0 ) stream_expr.add(expr49.getTree());
-			Then50=(Token)match(input,Then,FOLLOW_Then_in_elseif_stat1302); if (state.failed) return retval; 
+			Then50=(Token)match(input,Then,FOLLOW_Then_in_elseif_stat1304); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_Then.add(Then50);
 
-			pushFollow(FOLLOW_chunk_in_elseif_stat1304);
+			pushFollow(FOLLOW_chunk_in_elseif_stat1306);
 			chunk51=chunk();
 			state._fsp--;
 			if (state.failed) return retval;
 			if ( state.backtracking==0 ) stream_chunk.add(chunk51.getTree());
 			// AST REWRITE
-			// elements: expr, chunk
+			// elements: chunk, expr
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1748,10 +1749,10 @@ public class LuaParser extends Parser {
 			// grammars/Lua.g:256:2: ( Else chunk -> ^( CONDITION True chunk ) )
 			// grammars/Lua.g:256:4: Else chunk
 			{
-			Else52=(Token)match(input,Else,FOLLOW_Else_in_else_stat1325); if (state.failed) return retval; 
+			Else52=(Token)match(input,Else,FOLLOW_Else_in_else_stat1327); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_Else.add(Else52);
 
-			pushFollow(FOLLOW_chunk_in_else_stat1327);
+			pushFollow(FOLLOW_chunk_in_else_stat1329);
 			chunk53=chunk();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -1842,21 +1843,21 @@ public class LuaParser extends Parser {
 		CommonTree char_literal57_tree=null;
 		CommonTree char_literal58_tree=null;
 		CommonTree In61_tree=null;
-		RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
-		RewriteRuleTokenStream stream_In=new RewriteRuleTokenStream(adaptor,"token In");
-		RewriteRuleTokenStream stream_For=new RewriteRuleTokenStream(adaptor,"token For");
-		RewriteRuleTokenStream stream_Assign=new RewriteRuleTokenStream(adaptor,"token Assign");
 		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
+		RewriteRuleTokenStream stream_In=new RewriteRuleTokenStream(adaptor,"token In");
+		RewriteRuleTokenStream stream_Assign=new RewriteRuleTokenStream(adaptor,"token Assign");
+		RewriteRuleTokenStream stream_For=new RewriteRuleTokenStream(adaptor,"token For");
+		RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
 		RewriteRuleSubtreeStream stream_do_block=new RewriteRuleSubtreeStream(adaptor,"rule do_block");
-		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
 		RewriteRuleSubtreeStream stream_name_list=new RewriteRuleSubtreeStream(adaptor,"rule name_list");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
+		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
 
 		try {
 			// grammars/Lua.g:260:2: ( For ( Name '=' a= expr ',' b= expr ( ',' c= expr )? do_block -> ^( For Name $a $b ( $c)? do_block ) | name_list In expr_list do_block -> ^( FOR_IN ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) do_block ) ) )
 			// grammars/Lua.g:260:4: For ( Name '=' a= expr ',' b= expr ( ',' c= expr )? do_block -> ^( For Name $a $b ( $c)? do_block ) | name_list In expr_list do_block -> ^( FOR_IN ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) do_block ) )
 			{
-			For54=(Token)match(input,For,FOLLOW_For_in_for_stat1348); if (state.failed) return retval; 
+			For54=(Token)match(input,For,FOLLOW_For_in_for_stat1350); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_For.add(For54);
 
 			// grammars/Lua.g:260:8: ( Name '=' a= expr ',' b= expr ( ',' c= expr )? do_block -> ^( For Name $a $b ( $c)? do_block ) | name_list In expr_list do_block -> ^( FOR_IN ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) do_block ) )
@@ -1897,21 +1898,21 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:260:10: Name '=' a= expr ',' b= expr ( ',' c= expr )? do_block
 					{
-					Name55=(Token)match(input,Name,FOLLOW_Name_in_for_stat1352); if (state.failed) return retval; 
+					Name55=(Token)match(input,Name,FOLLOW_Name_in_for_stat1354); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Name.add(Name55);
 
-					char_literal56=(Token)match(input,Assign,FOLLOW_Assign_in_for_stat1354); if (state.failed) return retval; 
+					char_literal56=(Token)match(input,Assign,FOLLOW_Assign_in_for_stat1356); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Assign.add(char_literal56);
 
-					pushFollow(FOLLOW_expr_in_for_stat1358);
+					pushFollow(FOLLOW_expr_in_for_stat1360);
 					a=expr();
 					state._fsp--;
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_expr.add(a.getTree());
-					char_literal57=(Token)match(input,Comma,FOLLOW_Comma_in_for_stat1360); if (state.failed) return retval; 
+					char_literal57=(Token)match(input,Comma,FOLLOW_Comma_in_for_stat1362); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Comma.add(char_literal57);
 
-					pushFollow(FOLLOW_expr_in_for_stat1364);
+					pushFollow(FOLLOW_expr_in_for_stat1366);
 					b=expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -1926,10 +1927,10 @@ public class LuaParser extends Parser {
 						case 1 :
 							// grammars/Lua.g:260:38: ',' c= expr
 							{
-							char_literal58=(Token)match(input,Comma,FOLLOW_Comma_in_for_stat1367); if (state.failed) return retval; 
+							char_literal58=(Token)match(input,Comma,FOLLOW_Comma_in_for_stat1369); if (state.failed) return retval; 
 							if ( state.backtracking==0 ) stream_Comma.add(char_literal58);
 
-							pushFollow(FOLLOW_expr_in_for_stat1371);
+							pushFollow(FOLLOW_expr_in_for_stat1373);
 							c=expr();
 							state._fsp--;
 							if (state.failed) return retval;
@@ -1939,24 +1940,24 @@ public class LuaParser extends Parser {
 
 					}
 
-					pushFollow(FOLLOW_do_block_in_for_stat1375);
+					pushFollow(FOLLOW_do_block_in_for_stat1377);
 					do_block59=do_block();
 					state._fsp--;
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_do_block.add(do_block59.getTree());
 					// AST REWRITE
-					// elements: a, b, Name, do_block, c, For
+					// elements: do_block, a, c, b, Name, For
 					// token labels: 
-					// rule labels: a, b, c, retval
+					// rule labels: retval, b, c, a
 					// token list labels: 
 					// rule list labels: 
 					// wildcard labels: 
 					if ( state.backtracking==0 ) {
 					retval.tree = root_0;
-					RewriteRuleSubtreeStream stream_a=new RewriteRuleSubtreeStream(adaptor,"rule a",a!=null?a.getTree():null);
+					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
 					RewriteRuleSubtreeStream stream_b=new RewriteRuleSubtreeStream(adaptor,"rule b",b!=null?b.getTree():null);
 					RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.getTree():null);
-					RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.getTree():null);
+					RewriteRuleSubtreeStream stream_a=new RewriteRuleSubtreeStream(adaptor,"rule a",a!=null?a.getTree():null);
 
 					root_0 = (CommonTree)adaptor.nil();
 					// 260:60: -> ^( For Name $a $b ( $c)? do_block )
@@ -1989,26 +1990,26 @@ public class LuaParser extends Parser {
 				case 2 :
 					// grammars/Lua.g:261:10: name_list In expr_list do_block
 					{
-					pushFollow(FOLLOW_name_list_in_for_stat1406);
+					pushFollow(FOLLOW_name_list_in_for_stat1408);
 					name_list60=name_list();
 					state._fsp--;
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_name_list.add(name_list60.getTree());
-					In61=(Token)match(input,In,FOLLOW_In_in_for_stat1408); if (state.failed) return retval; 
+					In61=(Token)match(input,In,FOLLOW_In_in_for_stat1410); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_In.add(In61);
 
-					pushFollow(FOLLOW_expr_list_in_for_stat1410);
+					pushFollow(FOLLOW_expr_list_in_for_stat1412);
 					expr_list62=expr_list();
 					state._fsp--;
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_expr_list.add(expr_list62.getTree());
-					pushFollow(FOLLOW_do_block_in_for_stat1412);
+					pushFollow(FOLLOW_do_block_in_for_stat1414);
 					do_block63=do_block();
 					state._fsp--;
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_do_block.add(do_block63.getTree());
 					// AST REWRITE
-					// elements: expr_list, name_list, do_block
+					// elements: do_block, expr_list, name_list
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2103,9 +2104,9 @@ public class LuaParser extends Parser {
 		CommonTree Function64_tree=null;
 		CommonTree Col66_tree=null;
 		CommonTree Name67_tree=null;
-		RewriteRuleTokenStream stream_Function=new RewriteRuleTokenStream(adaptor,"token Function");
-		RewriteRuleTokenStream stream_Col=new RewriteRuleTokenStream(adaptor,"token Col");
 		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
+		RewriteRuleTokenStream stream_Col=new RewriteRuleTokenStream(adaptor,"token Col");
+		RewriteRuleTokenStream stream_Function=new RewriteRuleTokenStream(adaptor,"token Function");
 		RewriteRuleSubtreeStream stream_names=new RewriteRuleSubtreeStream(adaptor,"rule names");
 		RewriteRuleSubtreeStream stream_func_body=new RewriteRuleSubtreeStream(adaptor,"rule func_body");
 
@@ -2113,10 +2114,10 @@ public class LuaParser extends Parser {
 			// grammars/Lua.g:266:2: ( Function names ( Col Name func_body -> ^( FUNCTION_ASSIGNMENT ^( VAR_LIST ) ^( EXPR_LIST func_body ) ) | func_body -> ^( FUNCTION_ASSIGNMENT ^( VAR_LIST ) ^( EXPR_LIST func_body ) ) ) )
 			// grammars/Lua.g:266:4: Function names ( Col Name func_body -> ^( FUNCTION_ASSIGNMENT ^( VAR_LIST ) ^( EXPR_LIST func_body ) ) | func_body -> ^( FUNCTION_ASSIGNMENT ^( VAR_LIST ) ^( EXPR_LIST func_body ) ) )
 			{
-			Function64=(Token)match(input,Function,FOLLOW_Function_in_function1470); if (state.failed) return retval; 
+			Function64=(Token)match(input,Function,FOLLOW_Function_in_function1472); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_Function.add(Function64);
 
-			pushFollow(FOLLOW_names_in_function1472);
+			pushFollow(FOLLOW_names_in_function1474);
 			names65=names();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -2142,14 +2143,14 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:266:21: Col Name func_body
 					{
-					Col66=(Token)match(input,Col,FOLLOW_Col_in_function1476); if (state.failed) return retval; 
+					Col66=(Token)match(input,Col,FOLLOW_Col_in_function1478); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Col.add(Col66);
 
-					Name67=(Token)match(input,Name,FOLLOW_Name_in_function1478); if (state.failed) return retval; 
+					Name67=(Token)match(input,Name,FOLLOW_Name_in_function1480); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Name.add(Name67);
 
 					if ( state.backtracking==0 ) {addSelf=true;}
-					pushFollow(FOLLOW_func_body_in_function1482);
+					pushFollow(FOLLOW_func_body_in_function1484);
 					func_body68=func_body();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -2203,7 +2204,7 @@ public class LuaParser extends Parser {
 				case 2 :
 					// grammars/Lua.g:268:21: func_body
 					{
-					pushFollow(FOLLOW_func_body_in_function1545);
+					pushFollow(FOLLOW_func_body_in_function1547);
 					func_body69=func_body();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -2310,7 +2311,7 @@ public class LuaParser extends Parser {
 			root_0 = (CommonTree)adaptor.nil();
 
 
-			a=(Token)match(input,Name,FOLLOW_Name_in_names1624); if (state.failed) return retval;
+			a=(Token)match(input,Name,FOLLOW_Name_in_names1626); if (state.failed) return retval;
 			if ( state.backtracking==0 ) {
 			a_tree = (CommonTree)adaptor.create(a);
 			adaptor.addChild(root_0, a_tree);
@@ -2330,13 +2331,13 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:275:34: '.' b= Name
 					{
-					char_literal70=(Token)match(input,Dot,FOLLOW_Dot_in_names1629); if (state.failed) return retval;
+					char_literal70=(Token)match(input,Dot,FOLLOW_Dot_in_names1631); if (state.failed) return retval;
 					if ( state.backtracking==0 ) {
 					char_literal70_tree = (CommonTree)adaptor.create(char_literal70);
 					adaptor.addChild(root_0, char_literal70_tree);
 					}
 
-					b=(Token)match(input,Name,FOLLOW_Name_in_names1633); if (state.failed) return retval;
+					b=(Token)match(input,Name,FOLLOW_Name_in_names1635); if (state.failed) return retval;
 					if ( state.backtracking==0 ) {
 					b_tree = (CommonTree)adaptor.create(b);
 					adaptor.addChild(root_0, b_tree);
@@ -2399,10 +2400,10 @@ public class LuaParser extends Parser {
 			// grammars/Lua.g:279:2: ( Function func_body -> func_body )
 			// grammars/Lua.g:279:4: Function func_body
 			{
-			Function71=(Token)match(input,Function,FOLLOW_Function_in_function_literal1648); if (state.failed) return retval; 
+			Function71=(Token)match(input,Function,FOLLOW_Function_in_function_literal1650); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_Function.add(Function71);
 
-			pushFollow(FOLLOW_func_body_in_function_literal1650);
+			pushFollow(FOLLOW_func_body_in_function_literal1652);
 			func_body72=func_body();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -2474,9 +2475,9 @@ public class LuaParser extends Parser {
 		CommonTree char_literal73_tree=null;
 		CommonTree char_literal75_tree=null;
 		CommonTree End77_tree=null;
+		RewriteRuleTokenStream stream_End=new RewriteRuleTokenStream(adaptor,"token End");
 		RewriteRuleTokenStream stream_CPar=new RewriteRuleTokenStream(adaptor,"token CPar");
 		RewriteRuleTokenStream stream_OPar=new RewriteRuleTokenStream(adaptor,"token OPar");
-		RewriteRuleTokenStream stream_End=new RewriteRuleTokenStream(adaptor,"token End");
 		RewriteRuleSubtreeStream stream_chunk=new RewriteRuleSubtreeStream(adaptor,"rule chunk");
 		RewriteRuleSubtreeStream stream_param_list=new RewriteRuleSubtreeStream(adaptor,"rule param_list");
 
@@ -2484,23 +2485,23 @@ public class LuaParser extends Parser {
 			// grammars/Lua.g:283:2: ( '(' param_list ')' chunk End -> ^( FUNCTION param_list chunk ) )
 			// grammars/Lua.g:283:4: '(' param_list ')' chunk End
 			{
-			char_literal73=(Token)match(input,OPar,FOLLOW_OPar_in_func_body1665); if (state.failed) return retval; 
+			char_literal73=(Token)match(input,OPar,FOLLOW_OPar_in_func_body1667); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_OPar.add(char_literal73);
 
-			pushFollow(FOLLOW_param_list_in_func_body1667);
+			pushFollow(FOLLOW_param_list_in_func_body1669);
 			param_list74=param_list();
 			state._fsp--;
 			if (state.failed) return retval;
 			if ( state.backtracking==0 ) stream_param_list.add(param_list74.getTree());
-			char_literal75=(Token)match(input,CPar,FOLLOW_CPar_in_func_body1669); if (state.failed) return retval; 
+			char_literal75=(Token)match(input,CPar,FOLLOW_CPar_in_func_body1671); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_CPar.add(char_literal75);
 
-			pushFollow(FOLLOW_chunk_in_func_body1671);
+			pushFollow(FOLLOW_chunk_in_func_body1673);
 			chunk76=chunk();
 			state._fsp--;
 			if (state.failed) return retval;
 			if ( state.backtracking==0 ) stream_chunk.add(chunk76.getTree());
-			End77=(Token)match(input,End,FOLLOW_End_in_func_body1673); if (state.failed) return retval; 
+			End77=(Token)match(input,End,FOLLOW_End_in_func_body1675); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_End.add(End77);
 
 			// AST REWRITE
@@ -2577,8 +2578,8 @@ public class LuaParser extends Parser {
 		CommonTree char_literal79_tree=null;
 		CommonTree DotDotDot80_tree=null;
 		CommonTree DotDotDot81_tree=null;
-		RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
 		RewriteRuleTokenStream stream_DotDotDot=new RewriteRuleTokenStream(adaptor,"token DotDotDot");
+		RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
 		RewriteRuleSubtreeStream stream_name_list=new RewriteRuleSubtreeStream(adaptor,"rule name_list");
 
 		try {
@@ -2603,7 +2604,7 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:287:4: name_list ( ',' DotDotDot )?
 					{
-					pushFollow(FOLLOW_name_list_in_param_list1694);
+					pushFollow(FOLLOW_name_list_in_param_list1696);
 					name_list78=name_list();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -2618,10 +2619,10 @@ public class LuaParser extends Parser {
 						case 1 :
 							// grammars/Lua.g:287:15: ',' DotDotDot
 							{
-							char_literal79=(Token)match(input,Comma,FOLLOW_Comma_in_param_list1697); if (state.failed) return retval; 
+							char_literal79=(Token)match(input,Comma,FOLLOW_Comma_in_param_list1699); if (state.failed) return retval; 
 							if ( state.backtracking==0 ) stream_Comma.add(char_literal79);
 
-							DotDotDot80=(Token)match(input,DotDotDot,FOLLOW_DotDotDot_in_param_list1699); if (state.failed) return retval; 
+							DotDotDot80=(Token)match(input,DotDotDot,FOLLOW_DotDotDot_in_param_list1701); if (state.failed) return retval; 
 							if ( state.backtracking==0 ) stream_DotDotDot.add(DotDotDot80);
 
 							}
@@ -2678,7 +2679,7 @@ public class LuaParser extends Parser {
 						case 1 :
 							// grammars/Lua.g:288:4: DotDotDot
 							{
-							DotDotDot81=(Token)match(input,DotDotDot,FOLLOW_DotDotDot_in_param_list1717); if (state.failed) return retval; 
+							DotDotDot81=(Token)match(input,DotDotDot,FOLLOW_DotDotDot_in_param_list1719); if (state.failed) return retval; 
 							if ( state.backtracking==0 ) stream_DotDotDot.add(DotDotDot81);
 
 							}
@@ -2772,7 +2773,7 @@ public class LuaParser extends Parser {
 			// grammars/Lua.g:292:2: ( Return ( expr_list )? ( ';' )? -> ^( Return ( expr_list )? ) )
 			// grammars/Lua.g:292:4: Return ( expr_list )? ( ';' )?
 			{
-			Return82=(Token)match(input,Return,FOLLOW_Return_in_ret_stat1754); if (state.failed) return retval; 
+			Return82=(Token)match(input,Return,FOLLOW_Return_in_ret_stat1756); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_Return.add(Return82);
 
 			// grammars/Lua.g:292:11: ( expr_list )?
@@ -2785,7 +2786,7 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:292:11: expr_list
 					{
-					pushFollow(FOLLOW_expr_list_in_ret_stat1756);
+					pushFollow(FOLLOW_expr_list_in_ret_stat1758);
 					expr_list83=expr_list();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -2805,7 +2806,7 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:292:22: ';'
 					{
-					char_literal84=(Token)match(input,SCol,FOLLOW_SCol_in_ret_stat1759); if (state.failed) return retval; 
+					char_literal84=(Token)match(input,SCol,FOLLOW_SCol_in_ret_stat1761); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_SCol.add(char_literal84);
 
 					}
@@ -2893,7 +2894,7 @@ public class LuaParser extends Parser {
 			root_0 = (CommonTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_or_expr_in_expr1780);
+			pushFollow(FOLLOW_or_expr_in_expr1782);
 			or_expr85=or_expr();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -2949,7 +2950,7 @@ public class LuaParser extends Parser {
 			root_0 = (CommonTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_and_expr_in_or_expr1791);
+			pushFollow(FOLLOW_and_expr_in_or_expr1793);
 			and_expr86=and_expr();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -2968,13 +2969,13 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:300:14: Or ^ and_expr
 					{
-					Or87=(Token)match(input,Or,FOLLOW_Or_in_or_expr1794); if (state.failed) return retval;
+					Or87=(Token)match(input,Or,FOLLOW_Or_in_or_expr1796); if (state.failed) return retval;
 					if ( state.backtracking==0 ) {
 					Or87_tree = (CommonTree)adaptor.create(Or87);
 					root_0 = (CommonTree)adaptor.becomeRoot(Or87_tree, root_0);
 					}
 
-					pushFollow(FOLLOW_and_expr_in_or_expr1797);
+					pushFollow(FOLLOW_and_expr_in_or_expr1799);
 					and_expr88=and_expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -3038,7 +3039,7 @@ public class LuaParser extends Parser {
 			root_0 = (CommonTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_rel_expr_in_and_expr1810);
+			pushFollow(FOLLOW_rel_expr_in_and_expr1812);
 			rel_expr89=rel_expr();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -3057,13 +3058,13 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:304:14: And ^ rel_expr
 					{
-					And90=(Token)match(input,And,FOLLOW_And_in_and_expr1813); if (state.failed) return retval;
+					And90=(Token)match(input,And,FOLLOW_And_in_and_expr1815); if (state.failed) return retval;
 					if ( state.backtracking==0 ) {
 					And90_tree = (CommonTree)adaptor.create(And90);
 					root_0 = (CommonTree)adaptor.becomeRoot(And90_tree, root_0);
 					}
 
-					pushFollow(FOLLOW_rel_expr_in_and_expr1816);
+					pushFollow(FOLLOW_rel_expr_in_and_expr1818);
 					rel_expr91=rel_expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -3127,7 +3128,7 @@ public class LuaParser extends Parser {
 			root_0 = (CommonTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_concat_expr_in_rel_expr1829);
+			pushFollow(FOLLOW_concat_expr_in_rel_expr1831);
 			concat_expr92=concat_expr();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -3156,7 +3157,7 @@ public class LuaParser extends Parser {
 						MismatchedSetException mse = new MismatchedSetException(null,input);
 						throw mse;
 					}
-					pushFollow(FOLLOW_concat_expr_in_rel_expr1857);
+					pushFollow(FOLLOW_concat_expr_in_rel_expr1859);
 					concat_expr94=concat_expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -3217,7 +3218,7 @@ public class LuaParser extends Parser {
 			root_0 = (CommonTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_add_expr_in_concat_expr1870);
+			pushFollow(FOLLOW_add_expr_in_concat_expr1872);
 			add_expr95=add_expr();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -3236,13 +3237,13 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:312:14: DotDot ^ add_expr
 					{
-					DotDot96=(Token)match(input,DotDot,FOLLOW_DotDot_in_concat_expr1873); if (state.failed) return retval;
+					DotDot96=(Token)match(input,DotDot,FOLLOW_DotDot_in_concat_expr1875); if (state.failed) return retval;
 					if ( state.backtracking==0 ) {
 					DotDot96_tree = (CommonTree)adaptor.create(DotDot96);
 					root_0 = (CommonTree)adaptor.becomeRoot(DotDot96_tree, root_0);
 					}
 
-					pushFollow(FOLLOW_add_expr_in_concat_expr1876);
+					pushFollow(FOLLOW_add_expr_in_concat_expr1878);
 					add_expr97=add_expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -3306,7 +3307,7 @@ public class LuaParser extends Parser {
 			root_0 = (CommonTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_mult_expr_in_add_expr1889);
+			pushFollow(FOLLOW_mult_expr_in_add_expr1891);
 			mult_expr98=mult_expr();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -3338,7 +3339,7 @@ public class LuaParser extends Parser {
 						MismatchedSetException mse = new MismatchedSetException(null,input);
 						throw mse;
 					}
-					pushFollow(FOLLOW_mult_expr_in_add_expr1901);
+					pushFollow(FOLLOW_mult_expr_in_add_expr1903);
 					mult_expr100=mult_expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -3402,7 +3403,7 @@ public class LuaParser extends Parser {
 			root_0 = (CommonTree)adaptor.nil();
 
 
-			pushFollow(FOLLOW_unary_expr_in_mult_expr1914);
+			pushFollow(FOLLOW_unary_expr_in_mult_expr1916);
 			unary_expr101=unary_expr();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -3434,7 +3435,7 @@ public class LuaParser extends Parser {
 						MismatchedSetException mse = new MismatchedSetException(null,input);
 						throw mse;
 					}
-					pushFollow(FOLLOW_unary_expr_in_mult_expr1930);
+					pushFollow(FOLLOW_unary_expr_in_mult_expr1932);
 					unary_expr103=unary_expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -3496,9 +3497,9 @@ public class LuaParser extends Parser {
 		CommonTree Minus104_tree=null;
 		CommonTree Length106_tree=null;
 		CommonTree Not108_tree=null;
-		RewriteRuleTokenStream stream_Not=new RewriteRuleTokenStream(adaptor,"token Not");
-		RewriteRuleTokenStream stream_Length=new RewriteRuleTokenStream(adaptor,"token Length");
 		RewriteRuleTokenStream stream_Minus=new RewriteRuleTokenStream(adaptor,"token Minus");
+		RewriteRuleTokenStream stream_Length=new RewriteRuleTokenStream(adaptor,"token Length");
+		RewriteRuleTokenStream stream_Not=new RewriteRuleTokenStream(adaptor,"token Not");
 		RewriteRuleSubtreeStream stream_unary_expr=new RewriteRuleSubtreeStream(adaptor,"rule unary_expr");
 		RewriteRuleSubtreeStream stream_pow_expr=new RewriteRuleSubtreeStream(adaptor,"rule pow_expr");
 
@@ -3545,10 +3546,10 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:324:4: Minus unary_expr
 					{
-					Minus104=(Token)match(input,Minus,FOLLOW_Minus_in_unary_expr1943); if (state.failed) return retval; 
+					Minus104=(Token)match(input,Minus,FOLLOW_Minus_in_unary_expr1945); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Minus.add(Minus104);
 
-					pushFollow(FOLLOW_unary_expr_in_unary_expr1945);
+					pushFollow(FOLLOW_unary_expr_in_unary_expr1947);
 					unary_expr105=unary_expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -3586,16 +3587,16 @@ public class LuaParser extends Parser {
 				case 2 :
 					// grammars/Lua.g:325:4: Length pow_expr
 					{
-					Length106=(Token)match(input,Length,FOLLOW_Length_in_unary_expr1958); if (state.failed) return retval; 
+					Length106=(Token)match(input,Length,FOLLOW_Length_in_unary_expr1960); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Length.add(Length106);
 
-					pushFollow(FOLLOW_pow_expr_in_unary_expr1960);
+					pushFollow(FOLLOW_pow_expr_in_unary_expr1962);
 					pow_expr107=pow_expr();
 					state._fsp--;
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_pow_expr.add(pow_expr107.getTree());
 					// AST REWRITE
-					// elements: pow_expr, Length
+					// elements: Length, pow_expr
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -3627,10 +3628,10 @@ public class LuaParser extends Parser {
 				case 3 :
 					// grammars/Lua.g:326:4: Not unary_expr
 					{
-					Not108=(Token)match(input,Not,FOLLOW_Not_in_unary_expr1974); if (state.failed) return retval; 
+					Not108=(Token)match(input,Not,FOLLOW_Not_in_unary_expr1976); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Not.add(Not108);
 
-					pushFollow(FOLLOW_unary_expr_in_unary_expr1976);
+					pushFollow(FOLLOW_unary_expr_in_unary_expr1978);
 					unary_expr109=unary_expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -3671,7 +3672,7 @@ public class LuaParser extends Parser {
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					pushFollow(FOLLOW_pow_expr_in_unary_expr1991);
+					pushFollow(FOLLOW_pow_expr_in_unary_expr1993);
 					pow_expr110=pow_expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -3730,7 +3731,7 @@ public class LuaParser extends Parser {
 			// grammars/Lua.g:333:4: (a+= atom -> $a)
 			// grammars/Lua.g:333:5: a+= atom
 			{
-			pushFollow(FOLLOW_atom_in_pow_expr2007);
+			pushFollow(FOLLOW_atom_in_pow_expr2009);
 			a=atom();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -3784,10 +3785,10 @@ public class LuaParser extends Parser {
 						case 1 :
 							// grammars/Lua.g:333:22: Pow a+= atom
 							{
-							Pow111=(Token)match(input,Pow,FOLLOW_Pow_in_pow_expr2017); if (state.failed) return retval; 
+							Pow111=(Token)match(input,Pow,FOLLOW_Pow_in_pow_expr2019); if (state.failed) return retval; 
 							if ( state.backtracking==0 ) stream_Pow.add(Pow111);
 
-							pushFollow(FOLLOW_atom_in_pow_expr2021);
+							pushFollow(FOLLOW_atom_in_pow_expr2023);
 							a=atom();
 							state._fsp--;
 							if (state.failed) return retval;
@@ -3949,7 +3950,7 @@ public class LuaParser extends Parser {
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					pushFollow(FOLLOW_var_in_atom2040);
+					pushFollow(FOLLOW_var_in_atom2042);
 					var112=var(false);
 					state._fsp--;
 					if (state.failed) return retval;
@@ -3963,7 +3964,7 @@ public class LuaParser extends Parser {
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					pushFollow(FOLLOW_function_literal_in_atom2046);
+					pushFollow(FOLLOW_function_literal_in_atom2048);
 					function_literal113=function_literal();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -3977,7 +3978,7 @@ public class LuaParser extends Parser {
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					pushFollow(FOLLOW_table_constructor_in_atom2051);
+					pushFollow(FOLLOW_table_constructor_in_atom2053);
 					table_constructor114=table_constructor();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -3991,7 +3992,7 @@ public class LuaParser extends Parser {
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					DotDotDot115=(Token)match(input,DotDotDot,FOLLOW_DotDotDot_in_atom2056); if (state.failed) return retval;
+					DotDotDot115=(Token)match(input,DotDotDot,FOLLOW_DotDotDot_in_atom2058); if (state.failed) return retval;
 					if ( state.backtracking==0 ) {
 					DotDotDot115_tree = (CommonTree)adaptor.create(DotDotDot115);
 					adaptor.addChild(root_0, DotDotDot115_tree);
@@ -4005,7 +4006,7 @@ public class LuaParser extends Parser {
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					Number116=(Token)match(input,Number,FOLLOW_Number_in_atom2062); if (state.failed) return retval;
+					Number116=(Token)match(input,Number,FOLLOW_Number_in_atom2064); if (state.failed) return retval;
 					if ( state.backtracking==0 ) {
 					Number116_tree = (CommonTree)adaptor.create(Number116);
 					adaptor.addChild(root_0, Number116_tree);
@@ -4019,7 +4020,7 @@ public class LuaParser extends Parser {
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					String117=(Token)match(input,String,FOLLOW_String_in_atom2067); if (state.failed) return retval;
+					String117=(Token)match(input,String,FOLLOW_String_in_atom2069); if (state.failed) return retval;
 					if ( state.backtracking==0 ) {
 					String117_tree = (CommonTree)adaptor.create(String117);
 					adaptor.addChild(root_0, String117_tree);
@@ -4033,7 +4034,7 @@ public class LuaParser extends Parser {
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					Nil118=(Token)match(input,Nil,FOLLOW_Nil_in_atom2072); if (state.failed) return retval;
+					Nil118=(Token)match(input,Nil,FOLLOW_Nil_in_atom2074); if (state.failed) return retval;
 					if ( state.backtracking==0 ) {
 					Nil118_tree = (CommonTree)adaptor.create(Nil118);
 					adaptor.addChild(root_0, Nil118_tree);
@@ -4047,7 +4048,7 @@ public class LuaParser extends Parser {
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					True119=(Token)match(input,True,FOLLOW_True_in_atom2077); if (state.failed) return retval;
+					True119=(Token)match(input,True,FOLLOW_True_in_atom2079); if (state.failed) return retval;
 					if ( state.backtracking==0 ) {
 					True119_tree = (CommonTree)adaptor.create(True119);
 					adaptor.addChild(root_0, True119_tree);
@@ -4061,7 +4062,7 @@ public class LuaParser extends Parser {
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					False120=(Token)match(input,False,FOLLOW_False_in_atom2082); if (state.failed) return retval;
+					False120=(Token)match(input,False,FOLLOW_False_in_atom2084); if (state.failed) return retval;
 					if ( state.backtracking==0 ) {
 					False120_tree = (CommonTree)adaptor.create(False120);
 					adaptor.addChild(root_0, False120_tree);
@@ -4109,8 +4110,8 @@ public class LuaParser extends Parser {
 		ParserRuleReturnScope t =null;
 		ParserRuleReturnScope callee121 =null;
 
-		RewriteRuleSubtreeStream stream_tail=new RewriteRuleSubtreeStream(adaptor,"rule tail");
 		RewriteRuleSubtreeStream stream_callee=new RewriteRuleSubtreeStream(adaptor,"rule callee");
+		RewriteRuleSubtreeStream stream_tail=new RewriteRuleSubtreeStream(adaptor,"rule tail");
 
 		try {
 			// grammars/Lua.g:349:2: ( ( callee[assign] -> callee ) ( ( tail )=> ( ( ( tail )=>t= tail )+ -> {assign}? ^( ASSIGNMENT_VAR callee ( tail )+ ) -> ^( VAR callee ( tail )+ ) ) )? )
@@ -4119,7 +4120,7 @@ public class LuaParser extends Parser {
 			// grammars/Lua.g:349:4: ( callee[assign] -> callee )
 			// grammars/Lua.g:349:5: callee[assign]
 			{
-			pushFollow(FOLLOW_callee_in_var2095);
+			pushFollow(FOLLOW_callee_in_var2097);
 			callee121=callee(assign);
 			state._fsp--;
 			if (state.failed) return retval;
@@ -4211,7 +4212,7 @@ public class LuaParser extends Parser {
 						case 1 :
 							// grammars/Lua.g:349:44: ( tail )=>t= tail
 							{
-							pushFollow(FOLLOW_tail_in_var2119);
+							pushFollow(FOLLOW_tail_in_var2121);
 							t=tail();
 							state._fsp--;
 							if (state.failed) return retval;
@@ -4229,7 +4230,7 @@ public class LuaParser extends Parser {
 					}
 
 					// AST REWRITE
-					// elements: callee, callee, tail, tail
+					// elements: tail, callee, callee, tail
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -4362,15 +4363,15 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:355:4: '(' expr ')'
 					{
-					char_literal122=(Token)match(input,OPar,FOLLOW_OPar_in_callee2262); if (state.failed) return retval; 
+					char_literal122=(Token)match(input,OPar,FOLLOW_OPar_in_callee2264); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_OPar.add(char_literal122);
 
-					pushFollow(FOLLOW_expr_in_callee2264);
+					pushFollow(FOLLOW_expr_in_callee2266);
 					expr123=expr();
 					state._fsp--;
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_expr.add(expr123.getTree());
-					char_literal124=(Token)match(input,CPar,FOLLOW_CPar_in_callee2266); if (state.failed) return retval; 
+					char_literal124=(Token)match(input,CPar,FOLLOW_CPar_in_callee2268); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_CPar.add(char_literal124);
 
 					// AST REWRITE
@@ -4402,7 +4403,7 @@ public class LuaParser extends Parser {
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					Name125=(Token)match(input,Name,FOLLOW_Name_in_callee2275); if (state.failed) return retval;
+					Name125=(Token)match(input,Name,FOLLOW_Name_in_callee2277); if (state.failed) return retval;
 					if ( state.backtracking==0 ) {
 					Name125_tree = (CommonTree)adaptor.create(Name125);
 					adaptor.addChild(root_0, Name125_tree);
@@ -4485,17 +4486,17 @@ public class LuaParser extends Parser {
 		CommonTree char_literal142_tree=null;
 		CommonTree char_literal144_tree=null;
 		CommonTree String146_tree=null;
-		RewriteRuleTokenStream stream_Col=new RewriteRuleTokenStream(adaptor,"token Col");
-		RewriteRuleTokenStream stream_CPar=new RewriteRuleTokenStream(adaptor,"token CPar");
-		RewriteRuleTokenStream stream_OPar=new RewriteRuleTokenStream(adaptor,"token OPar");
 		RewriteRuleTokenStream stream_Dot=new RewriteRuleTokenStream(adaptor,"token Dot");
-		RewriteRuleTokenStream stream_CBrack=new RewriteRuleTokenStream(adaptor,"token CBrack");
-		RewriteRuleTokenStream stream_String=new RewriteRuleTokenStream(adaptor,"token String");
-		RewriteRuleTokenStream stream_OBrack=new RewriteRuleTokenStream(adaptor,"token OBrack");
 		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
-		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
+		RewriteRuleTokenStream stream_Col=new RewriteRuleTokenStream(adaptor,"token Col");
+		RewriteRuleTokenStream stream_String=new RewriteRuleTokenStream(adaptor,"token String");
+		RewriteRuleTokenStream stream_CPar=new RewriteRuleTokenStream(adaptor,"token CPar");
+		RewriteRuleTokenStream stream_CBrack=new RewriteRuleTokenStream(adaptor,"token CBrack");
+		RewriteRuleTokenStream stream_OPar=new RewriteRuleTokenStream(adaptor,"token OPar");
+		RewriteRuleTokenStream stream_OBrack=new RewriteRuleTokenStream(adaptor,"token OBrack");
 		RewriteRuleSubtreeStream stream_table_constructor=new RewriteRuleSubtreeStream(adaptor,"rule table_constructor");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
+		RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
 
 		try {
 			// grammars/Lua.g:360:2: ( '.' Name -> ^( INDEX String[$Name.text] ) | '[' expr ']' -> ^( INDEX expr ) | ':' Name '(' ( expr_list )? ')' -> ^( INDEX ) ^( COL_CALL ( expr_list )? ) | ':' Name table_constructor -> ^( INDEX ) ^( COL_CALL table_constructor ) | ':' Name String -> ^( INDEX ) ^( COL_CALL String ) | '(' ( expr_list )? ')' -> ^( CALL ( expr_list )? ) | table_constructor -> ^( CALL table_constructor ) | String -> ^( CALL String ) )
@@ -4587,10 +4588,10 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:360:4: '.' Name
 					{
-					char_literal126=(Token)match(input,Dot,FOLLOW_Dot_in_tail2286); if (state.failed) return retval; 
+					char_literal126=(Token)match(input,Dot,FOLLOW_Dot_in_tail2288); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Dot.add(char_literal126);
 
-					Name127=(Token)match(input,Name,FOLLOW_Name_in_tail2288); if (state.failed) return retval; 
+					Name127=(Token)match(input,Name,FOLLOW_Name_in_tail2290); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Name.add(Name127);
 
 					// AST REWRITE
@@ -4626,15 +4627,15 @@ public class LuaParser extends Parser {
 				case 2 :
 					// grammars/Lua.g:361:4: '[' expr ']'
 					{
-					char_literal128=(Token)match(input,OBrack,FOLLOW_OBrack_in_tail2321); if (state.failed) return retval; 
+					char_literal128=(Token)match(input,OBrack,FOLLOW_OBrack_in_tail2323); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_OBrack.add(char_literal128);
 
-					pushFollow(FOLLOW_expr_in_tail2323);
+					pushFollow(FOLLOW_expr_in_tail2325);
 					expr129=expr();
 					state._fsp--;
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_expr.add(expr129.getTree());
-					char_literal130=(Token)match(input,CBrack,FOLLOW_CBrack_in_tail2325); if (state.failed) return retval; 
+					char_literal130=(Token)match(input,CBrack,FOLLOW_CBrack_in_tail2327); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_CBrack.add(char_literal130);
 
 					// AST REWRITE
@@ -4670,13 +4671,13 @@ public class LuaParser extends Parser {
 				case 3 :
 					// grammars/Lua.g:362:4: ':' Name '(' ( expr_list )? ')'
 					{
-					char_literal131=(Token)match(input,Col,FOLLOW_Col_in_tail2353); if (state.failed) return retval; 
+					char_literal131=(Token)match(input,Col,FOLLOW_Col_in_tail2355); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Col.add(char_literal131);
 
-					Name132=(Token)match(input,Name,FOLLOW_Name_in_tail2355); if (state.failed) return retval; 
+					Name132=(Token)match(input,Name,FOLLOW_Name_in_tail2357); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Name.add(Name132);
 
-					char_literal133=(Token)match(input,OPar,FOLLOW_OPar_in_tail2357); if (state.failed) return retval; 
+					char_literal133=(Token)match(input,OPar,FOLLOW_OPar_in_tail2359); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_OPar.add(char_literal133);
 
 					// grammars/Lua.g:362:17: ( expr_list )?
@@ -4689,7 +4690,7 @@ public class LuaParser extends Parser {
 						case 1 :
 							// grammars/Lua.g:362:17: expr_list
 							{
-							pushFollow(FOLLOW_expr_list_in_tail2359);
+							pushFollow(FOLLOW_expr_list_in_tail2361);
 							expr_list134=expr_list();
 							state._fsp--;
 							if (state.failed) return retval;
@@ -4699,7 +4700,7 @@ public class LuaParser extends Parser {
 
 					}
 
-					char_literal135=(Token)match(input,CPar,FOLLOW_CPar_in_tail2362); if (state.failed) return retval; 
+					char_literal135=(Token)match(input,CPar,FOLLOW_CPar_in_tail2364); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_CPar.add(char_literal135);
 
 					// AST REWRITE
@@ -4748,13 +4749,13 @@ public class LuaParser extends Parser {
 				case 4 :
 					// grammars/Lua.g:363:4: ':' Name table_constructor
 					{
-					char_literal136=(Token)match(input,Col,FOLLOW_Col_in_tail2382); if (state.failed) return retval; 
+					char_literal136=(Token)match(input,Col,FOLLOW_Col_in_tail2384); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Col.add(char_literal136);
 
-					Name137=(Token)match(input,Name,FOLLOW_Name_in_tail2384); if (state.failed) return retval; 
+					Name137=(Token)match(input,Name,FOLLOW_Name_in_tail2386); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Name.add(Name137);
 
-					pushFollow(FOLLOW_table_constructor_in_tail2386);
+					pushFollow(FOLLOW_table_constructor_in_tail2388);
 					table_constructor138=table_constructor();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -4800,13 +4801,13 @@ public class LuaParser extends Parser {
 				case 5 :
 					// grammars/Lua.g:364:4: ':' Name String
 					{
-					char_literal139=(Token)match(input,Col,FOLLOW_Col_in_tail2406); if (state.failed) return retval; 
+					char_literal139=(Token)match(input,Col,FOLLOW_Col_in_tail2408); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Col.add(char_literal139);
 
-					Name140=(Token)match(input,Name,FOLLOW_Name_in_tail2408); if (state.failed) return retval; 
+					Name140=(Token)match(input,Name,FOLLOW_Name_in_tail2410); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Name.add(Name140);
 
-					String141=(Token)match(input,String,FOLLOW_String_in_tail2410); if (state.failed) return retval; 
+					String141=(Token)match(input,String,FOLLOW_String_in_tail2412); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_String.add(String141);
 
 					// AST REWRITE
@@ -4850,7 +4851,7 @@ public class LuaParser extends Parser {
 				case 6 :
 					// grammars/Lua.g:365:4: '(' ( expr_list )? ')'
 					{
-					char_literal142=(Token)match(input,OPar,FOLLOW_OPar_in_tail2441); if (state.failed) return retval; 
+					char_literal142=(Token)match(input,OPar,FOLLOW_OPar_in_tail2443); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_OPar.add(char_literal142);
 
 					// grammars/Lua.g:365:8: ( expr_list )?
@@ -4863,7 +4864,7 @@ public class LuaParser extends Parser {
 						case 1 :
 							// grammars/Lua.g:365:8: expr_list
 							{
-							pushFollow(FOLLOW_expr_list_in_tail2443);
+							pushFollow(FOLLOW_expr_list_in_tail2445);
 							expr_list143=expr_list();
 							state._fsp--;
 							if (state.failed) return retval;
@@ -4873,7 +4874,7 @@ public class LuaParser extends Parser {
 
 					}
 
-					char_literal144=(Token)match(input,CPar,FOLLOW_CPar_in_tail2446); if (state.failed) return retval; 
+					char_literal144=(Token)match(input,CPar,FOLLOW_CPar_in_tail2448); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_CPar.add(char_literal144);
 
 					// AST REWRITE
@@ -4914,7 +4915,7 @@ public class LuaParser extends Parser {
 				case 7 :
 					// grammars/Lua.g:366:4: table_constructor
 					{
-					pushFollow(FOLLOW_table_constructor_in_tail2469);
+					pushFollow(FOLLOW_table_constructor_in_tail2471);
 					table_constructor145=table_constructor();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -4952,7 +4953,7 @@ public class LuaParser extends Parser {
 				case 8 :
 					// grammars/Lua.g:367:4: String
 					{
-					String146=(Token)match(input,String,FOLLOW_String_in_tail2492); if (state.failed) return retval; 
+					String146=(Token)match(input,String,FOLLOW_String_in_tail2494); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_String.add(String146);
 
 					// AST REWRITE
@@ -5036,7 +5037,7 @@ public class LuaParser extends Parser {
 			// grammars/Lua.g:371:2: ( '{' ( field_list )? '}' -> ^( TABLE ( field_list )? ) )
 			// grammars/Lua.g:371:4: '{' ( field_list )? '}'
 			{
-			char_literal147=(Token)match(input,OBrace,FOLLOW_OBrace_in_table_constructor2532); if (state.failed) return retval; 
+			char_literal147=(Token)match(input,OBrace,FOLLOW_OBrace_in_table_constructor2534); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_OBrace.add(char_literal147);
 
 			// grammars/Lua.g:371:8: ( field_list )?
@@ -5049,7 +5050,7 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:371:8: field_list
 					{
-					pushFollow(FOLLOW_field_list_in_table_constructor2534);
+					pushFollow(FOLLOW_field_list_in_table_constructor2536);
 					field_list148=field_list();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -5059,7 +5060,7 @@ public class LuaParser extends Parser {
 
 			}
 
-			char_literal149=(Token)match(input,CBrace,FOLLOW_CBrace_in_table_constructor2537); if (state.failed) return retval; 
+			char_literal149=(Token)match(input,CBrace,FOLLOW_CBrace_in_table_constructor2539); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_CBrace.add(char_literal149);
 
 			// AST REWRITE
@@ -5144,7 +5145,7 @@ public class LuaParser extends Parser {
 			// grammars/Lua.g:375:2: ( field ( field_sep field )* ( field_sep )? -> ( field )+ )
 			// grammars/Lua.g:375:4: field ( field_sep field )* ( field_sep )?
 			{
-			pushFollow(FOLLOW_field_in_field_list2557);
+			pushFollow(FOLLOW_field_in_field_list2559);
 			field150=field();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -5166,12 +5167,12 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:375:11: field_sep field
 					{
-					pushFollow(FOLLOW_field_sep_in_field_list2560);
+					pushFollow(FOLLOW_field_sep_in_field_list2562);
 					field_sep151=field_sep();
 					state._fsp--;
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_field_sep.add(field_sep151.getTree());
-					pushFollow(FOLLOW_field_in_field_list2562);
+					pushFollow(FOLLOW_field_in_field_list2564);
 					field152=field();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -5194,7 +5195,7 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:375:29: field_sep
 					{
-					pushFollow(FOLLOW_field_sep_in_field_list2566);
+					pushFollow(FOLLOW_field_sep_in_field_list2568);
 					field_sep153=field_sep();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -5284,10 +5285,10 @@ public class LuaParser extends Parser {
 		CommonTree char_literal157_tree=null;
 		CommonTree Name159_tree=null;
 		CommonTree char_literal160_tree=null;
-		RewriteRuleTokenStream stream_CBrack=new RewriteRuleTokenStream(adaptor,"token CBrack");
-		RewriteRuleTokenStream stream_Assign=new RewriteRuleTokenStream(adaptor,"token Assign");
-		RewriteRuleTokenStream stream_OBrack=new RewriteRuleTokenStream(adaptor,"token OBrack");
 		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
+		RewriteRuleTokenStream stream_Assign=new RewriteRuleTokenStream(adaptor,"token Assign");
+		RewriteRuleTokenStream stream_CBrack=new RewriteRuleTokenStream(adaptor,"token CBrack");
+		RewriteRuleTokenStream stream_OBrack=new RewriteRuleTokenStream(adaptor,"token OBrack");
 		RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
 
 		try {
@@ -5350,21 +5351,21 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:379:4: '[' expr ']' '=' expr
 					{
-					char_literal154=(Token)match(input,OBrack,FOLLOW_OBrack_in_field2583); if (state.failed) return retval; 
+					char_literal154=(Token)match(input,OBrack,FOLLOW_OBrack_in_field2585); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_OBrack.add(char_literal154);
 
-					pushFollow(FOLLOW_expr_in_field2585);
+					pushFollow(FOLLOW_expr_in_field2587);
 					expr155=expr();
 					state._fsp--;
 					if (state.failed) return retval;
 					if ( state.backtracking==0 ) stream_expr.add(expr155.getTree());
-					char_literal156=(Token)match(input,CBrack,FOLLOW_CBrack_in_field2587); if (state.failed) return retval; 
+					char_literal156=(Token)match(input,CBrack,FOLLOW_CBrack_in_field2589); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_CBrack.add(char_literal156);
 
-					char_literal157=(Token)match(input,Assign,FOLLOW_Assign_in_field2589); if (state.failed) return retval; 
+					char_literal157=(Token)match(input,Assign,FOLLOW_Assign_in_field2591); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Assign.add(char_literal157);
 
-					pushFollow(FOLLOW_expr_in_field2591);
+					pushFollow(FOLLOW_expr_in_field2593);
 					expr158=expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -5403,13 +5404,13 @@ public class LuaParser extends Parser {
 				case 2 :
 					// grammars/Lua.g:380:4: Name '=' expr
 					{
-					Name159=(Token)match(input,Name,FOLLOW_Name_in_field2606); if (state.failed) return retval; 
+					Name159=(Token)match(input,Name,FOLLOW_Name_in_field2608); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Name.add(Name159);
 
-					char_literal160=(Token)match(input,Assign,FOLLOW_Assign_in_field2608); if (state.failed) return retval; 
+					char_literal160=(Token)match(input,Assign,FOLLOW_Assign_in_field2610); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Assign.add(char_literal160);
 
-					pushFollow(FOLLOW_expr_in_field2610);
+					pushFollow(FOLLOW_expr_in_field2612);
 					expr161=expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -5448,7 +5449,7 @@ public class LuaParser extends Parser {
 				case 3 :
 					// grammars/Lua.g:381:4: expr
 					{
-					pushFollow(FOLLOW_expr_in_field2633);
+					pushFollow(FOLLOW_expr_in_field2635);
 					expr162=expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -5587,20 +5588,20 @@ public class LuaParser extends Parser {
 		CommonTree string_literal164_tree=null;
 		CommonTree Name165_tree=null;
 		CommonTree string_literal166_tree=null;
-		RewriteRuleTokenStream stream_ColCol=new RewriteRuleTokenStream(adaptor,"token ColCol");
 		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
+		RewriteRuleTokenStream stream_ColCol=new RewriteRuleTokenStream(adaptor,"token ColCol");
 
 		try {
 			// grammars/Lua.g:390:2: ( '::' Name '::' -> ^( LABEL Name ) )
 			// grammars/Lua.g:390:4: '::' Name '::'
 			{
-			string_literal164=(Token)match(input,ColCol,FOLLOW_ColCol_in_label2686); if (state.failed) return retval; 
+			string_literal164=(Token)match(input,ColCol,FOLLOW_ColCol_in_label2688); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_ColCol.add(string_literal164);
 
-			Name165=(Token)match(input,Name,FOLLOW_Name_in_label2688); if (state.failed) return retval; 
+			Name165=(Token)match(input,Name,FOLLOW_Name_in_label2690); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_Name.add(Name165);
 
-			string_literal166=(Token)match(input,ColCol,FOLLOW_ColCol_in_label2690); if (state.failed) return retval; 
+			string_literal166=(Token)match(input,ColCol,FOLLOW_ColCol_in_label2692); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_ColCol.add(string_literal166);
 
 			// AST REWRITE
@@ -5680,7 +5681,7 @@ public class LuaParser extends Parser {
 			// grammars/Lua.g:394:2: ( var[true] ( ',' var[true] )* -> ( var )+ )
 			// grammars/Lua.g:394:4: var[true] ( ',' var[true] )*
 			{
-			pushFollow(FOLLOW_var_in_var_list2709);
+			pushFollow(FOLLOW_var_in_var_list2711);
 			var167=var(true);
 			state._fsp--;
 			if (state.failed) return retval;
@@ -5698,10 +5699,10 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:394:15: ',' var[true]
 					{
-					char_literal168=(Token)match(input,Comma,FOLLOW_Comma_in_var_list2713); if (state.failed) return retval; 
+					char_literal168=(Token)match(input,Comma,FOLLOW_Comma_in_var_list2715); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Comma.add(char_literal168);
 
-					pushFollow(FOLLOW_var_in_var_list2715);
+					pushFollow(FOLLOW_var_in_var_list2717);
 					var169=var(true);
 					state._fsp--;
 					if (state.failed) return retval;
@@ -5791,7 +5792,7 @@ public class LuaParser extends Parser {
 			// grammars/Lua.g:398:2: ( expr ( ',' expr )* -> ( expr )+ )
 			// grammars/Lua.g:398:4: expr ( ',' expr )*
 			{
-			pushFollow(FOLLOW_expr_in_expr_list2734);
+			pushFollow(FOLLOW_expr_in_expr_list2736);
 			expr170=expr();
 			state._fsp--;
 			if (state.failed) return retval;
@@ -5809,10 +5810,10 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:398:10: ',' expr
 					{
-					char_literal171=(Token)match(input,Comma,FOLLOW_Comma_in_expr_list2737); if (state.failed) return retval; 
+					char_literal171=(Token)match(input,Comma,FOLLOW_Comma_in_expr_list2739); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Comma.add(char_literal171);
 
-					pushFollow(FOLLOW_expr_in_expr_list2739);
+					pushFollow(FOLLOW_expr_in_expr_list2741);
 					expr172=expr();
 					state._fsp--;
 					if (state.failed) return retval;
@@ -5897,14 +5898,14 @@ public class LuaParser extends Parser {
 		CommonTree Name173_tree=null;
 		CommonTree char_literal174_tree=null;
 		CommonTree Name175_tree=null;
-		RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
 		RewriteRuleTokenStream stream_Name=new RewriteRuleTokenStream(adaptor,"token Name");
+		RewriteRuleTokenStream stream_Comma=new RewriteRuleTokenStream(adaptor,"token Comma");
 
 		try {
 			// grammars/Lua.g:402:2: ( Name ( ',' Name )* -> {addSelf}? ( Name )+ -> ( Name )+ )
 			// grammars/Lua.g:402:4: Name ( ',' Name )*
 			{
-			Name173=(Token)match(input,Name,FOLLOW_Name_in_name_list2757); if (state.failed) return retval; 
+			Name173=(Token)match(input,Name,FOLLOW_Name_in_name_list2759); if (state.failed) return retval; 
 			if ( state.backtracking==0 ) stream_Name.add(Name173);
 
 			// grammars/Lua.g:402:9: ( ',' Name )*
@@ -5924,10 +5925,10 @@ public class LuaParser extends Parser {
 				case 1 :
 					// grammars/Lua.g:402:10: ',' Name
 					{
-					char_literal174=(Token)match(input,Comma,FOLLOW_Comma_in_name_list2760); if (state.failed) return retval; 
+					char_literal174=(Token)match(input,Comma,FOLLOW_Comma_in_name_list2762); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Comma.add(char_literal174);
 
-					Name175=(Token)match(input,Name,FOLLOW_Name_in_name_list2762); if (state.failed) return retval; 
+					Name175=(Token)match(input,Name,FOLLOW_Name_in_name_list2764); if (state.failed) return retval; 
 					if ( state.backtracking==0 ) stream_Name.add(Name175);
 
 					}
@@ -6020,7 +6021,7 @@ public class LuaParser extends Parser {
 		// grammars/Lua.g:349:33: ( tail )
 		// grammars/Lua.g:349:34: tail
 		{
-		pushFollow(FOLLOW_tail_in_synpred2_Lua2106);
+		pushFollow(FOLLOW_tail_in_synpred2_Lua2108);
 		tail();
 		state._fsp--;
 		if (state.failed) return;
@@ -6035,7 +6036,7 @@ public class LuaParser extends Parser {
 		// grammars/Lua.g:349:44: ( tail )
 		// grammars/Lua.g:349:45: tail
 		{
-		pushFollow(FOLLOW_tail_in_synpred3_Lua2113);
+		pushFollow(FOLLOW_tail_in_synpred3_Lua2115);
 		tail();
 		state._fsp--;
 		if (state.failed) return;
@@ -6047,11 +6048,11 @@ public class LuaParser extends Parser {
 
 	// Delegated rules
 
-	public final boolean synpred1_Lua() {
+	public final boolean synpred3_Lua() {
 		state.backtracking++;
 		int start = input.mark();
 		try {
-			synpred1_Lua_fragment(); // can never throw exception
+			synpred3_Lua_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: "+re);
 		}
@@ -6075,11 +6076,11 @@ public class LuaParser extends Parser {
 		state.failed=false;
 		return success;
 	}
-	public final boolean synpred3_Lua() {
+	public final boolean synpred1_Lua() {
 		state.backtracking++;
 		int start = input.mark();
 		try {
-			synpred3_Lua_fragment(); // can never throw exception
+			synpred1_Lua_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: "+re);
 		}
@@ -6149,7 +6150,7 @@ public class LuaParser extends Parser {
 		}
 		@Override
 		public String getDescription() {
-			return "237:10: ( name_list '=' expr_list -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) ) | Function Name func_body -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST Name ) ^( EXPR_LIST func_body ) ) | name_list -> ^( LOCAL_DEC ^( name_list ) ) )";
+			return "237:10: ( name_list '=' expr_list -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST name_list ) ^( EXPR_LIST expr_list ) ) | Function Name func_body -> ^( LOCAL_ASSIGNMENT ^( NAME_LIST Name ) ^( EXPR_LIST func_body ) ) | name_list -> ^( LOCAL_DEC ^( NAME_LIST name_list ) ) )";
 		}
 	}
 
@@ -6191,151 +6192,151 @@ public class LuaParser extends Parser {
 	public static final BitSet FOLLOW_Name_in_local1167 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
 	public static final BitSet FOLLOW_func_body_in_local1169 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_name_list_in_local1200 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Goto_in_goto_stat1232 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-	public static final BitSet FOLLOW_Name_in_goto_stat1234 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_If_in_if_stat1253 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_in_if_stat1255 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-	public static final BitSet FOLLOW_Then_in_if_stat1257 = new BitSet(new long[]{0x10044C01C2100800L,0x000000000200E208L});
-	public static final BitSet FOLLOW_chunk_in_if_stat1259 = new BitSet(new long[]{0x00000001C0000000L});
-	public static final BitSet FOLLOW_elseif_stat_in_if_stat1261 = new BitSet(new long[]{0x00000001C0000000L});
-	public static final BitSet FOLLOW_else_stat_in_if_stat1264 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_End_in_if_stat1267 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Elseif_in_elseif_stat1298 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_in_elseif_stat1300 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-	public static final BitSet FOLLOW_Then_in_elseif_stat1302 = new BitSet(new long[]{0x10044C0002100800L,0x000000000200E208L});
-	public static final BitSet FOLLOW_chunk_in_elseif_stat1304 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Else_in_else_stat1325 = new BitSet(new long[]{0x10044C0002100800L,0x000000000200E208L});
-	public static final BitSet FOLLOW_chunk_in_else_stat1327 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_For_in_for_stat1348 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-	public static final BitSet FOLLOW_Name_in_for_stat1352 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_Assign_in_for_stat1354 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_in_for_stat1358 = new BitSet(new long[]{0x0000000000200000L});
-	public static final BitSet FOLLOW_Comma_in_for_stat1360 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_in_for_stat1364 = new BitSet(new long[]{0x0000000002200000L});
-	public static final BitSet FOLLOW_Comma_in_for_stat1367 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_in_for_stat1371 = new BitSet(new long[]{0x0000000002000000L});
-	public static final BitSet FOLLOW_do_block_in_for_stat1375 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_name_list_in_for_stat1406 = new BitSet(new long[]{0x0008000000000000L});
-	public static final BitSet FOLLOW_In_in_for_stat1408 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_list_in_for_stat1410 = new BitSet(new long[]{0x0000000002000000L});
-	public static final BitSet FOLLOW_do_block_in_for_stat1412 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Function_in_function1470 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-	public static final BitSet FOLLOW_names_in_function1472 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000200L});
-	public static final BitSet FOLLOW_Col_in_function1476 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-	public static final BitSet FOLLOW_Name_in_function1478 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
-	public static final BitSet FOLLOW_func_body_in_function1482 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_func_body_in_function1545 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Name_in_names1624 = new BitSet(new long[]{0x0000000004000002L});
-	public static final BitSet FOLLOW_Dot_in_names1629 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-	public static final BitSet FOLLOW_Name_in_names1633 = new BitSet(new long[]{0x0000000004000002L});
-	public static final BitSet FOLLOW_Function_in_function_literal1648 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
-	public static final BitSet FOLLOW_func_body_in_function_literal1650 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_OPar_in_func_body1665 = new BitSet(new long[]{0x0000000010040000L,0x0000000000000008L});
-	public static final BitSet FOLLOW_param_list_in_func_body1667 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_CPar_in_func_body1669 = new BitSet(new long[]{0x10044C0102100800L,0x000000000200E208L});
-	public static final BitSet FOLLOW_chunk_in_func_body1671 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_End_in_func_body1673 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_name_list_in_param_list1694 = new BitSet(new long[]{0x0000000000200002L});
-	public static final BitSet FOLLOW_Comma_in_param_list1697 = new BitSet(new long[]{0x0000000010000000L});
-	public static final BitSet FOLLOW_DotDotDot_in_param_list1699 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_DotDotDot_in_param_list1717 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Return_in_ret_stat1754 = new BitSet(new long[]{0x42000A0010000002L,0x00000000001282F8L});
-	public static final BitSet FOLLOW_expr_list_in_ret_stat1756 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-	public static final BitSet FOLLOW_SCol_in_ret_stat1759 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_or_expr_in_expr1780 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_and_expr_in_or_expr1791 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-	public static final BitSet FOLLOW_Or_in_or_expr1794 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_and_expr_in_or_expr1797 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-	public static final BitSet FOLLOW_rel_expr_in_and_expr1810 = new BitSet(new long[]{0x0000000000000082L});
-	public static final BitSet FOLLOW_And_in_and_expr1813 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_rel_expr_in_and_expr1816 = new BitSet(new long[]{0x0000000000000082L});
-	public static final BitSet FOLLOW_concat_expr_in_rel_expr1829 = new BitSet(new long[]{0x0180300200000002L,0x0000000000000004L});
-	public static final BitSet FOLLOW_set_in_rel_expr1832 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_concat_expr_in_rel_expr1857 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_add_expr_in_concat_expr1870 = new BitSet(new long[]{0x0000000008000002L});
-	public static final BitSet FOLLOW_DotDot_in_concat_expr1873 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_add_expr_in_concat_expr1876 = new BitSet(new long[]{0x0000000008000002L});
-	public static final BitSet FOLLOW_mult_expr_in_add_expr1889 = new BitSet(new long[]{0x4000000000000042L});
-	public static final BitSet FOLLOW_set_in_add_expr1892 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_mult_expr_in_add_expr1901 = new BitSet(new long[]{0x4000000000000042L});
-	public static final BitSet FOLLOW_unary_expr_in_mult_expr1914 = new BitSet(new long[]{0x8000000001000002L,0x0000000000000001L});
-	public static final BitSet FOLLOW_set_in_mult_expr1917 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_unary_expr_in_mult_expr1930 = new BitSet(new long[]{0x8000000001000002L,0x0000000000000001L});
-	public static final BitSet FOLLOW_Minus_in_unary_expr1943 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_unary_expr_in_unary_expr1945 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Length_in_unary_expr1958 = new BitSet(new long[]{0x00000A0010000000L,0x00000000001202D8L});
-	public static final BitSet FOLLOW_pow_expr_in_unary_expr1960 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Not_in_unary_expr1974 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_unary_expr_in_unary_expr1976 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_pow_expr_in_unary_expr1991 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_atom_in_pow_expr2007 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001000L});
-	public static final BitSet FOLLOW_Pow_in_pow_expr2017 = new BitSet(new long[]{0x00000A0010000000L,0x00000000001202D8L});
-	public static final BitSet FOLLOW_atom_in_pow_expr2021 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001000L});
-	public static final BitSet FOLLOW_var_in_atom2040 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_function_literal_in_atom2046 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_table_constructor_in_atom2051 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_DotDotDot_in_atom2056 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Number_in_atom2062 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_String_in_atom2067 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Nil_in_atom2072 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_True_in_atom2077 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_False_in_atom2082 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_callee_in_var2095 = new BitSet(new long[]{0x0000000004080002L,0x0000000000020380L});
-	public static final BitSet FOLLOW_tail_in_var2119 = new BitSet(new long[]{0x0000000004080002L,0x0000000000020380L});
-	public static final BitSet FOLLOW_OPar_in_callee2262 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_in_callee2264 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_CPar_in_callee2266 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Name_in_callee2275 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Dot_in_tail2286 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-	public static final BitSet FOLLOW_Name_in_tail2288 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_OBrack_in_tail2321 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_in_tail2323 = new BitSet(new long[]{0x0000000000004000L});
-	public static final BitSet FOLLOW_CBrack_in_tail2325 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Col_in_tail2353 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-	public static final BitSet FOLLOW_Name_in_tail2355 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
-	public static final BitSet FOLLOW_OPar_in_tail2357 = new BitSet(new long[]{0x42000A0010040000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_list_in_tail2359 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_CPar_in_tail2362 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Col_in_tail2382 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-	public static final BitSet FOLLOW_Name_in_tail2384 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-	public static final BitSet FOLLOW_table_constructor_in_tail2386 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Col_in_tail2406 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-	public static final BitSet FOLLOW_Name_in_tail2408 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-	public static final BitSet FOLLOW_String_in_tail2410 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_OPar_in_tail2441 = new BitSet(new long[]{0x42000A0010040000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_list_in_tail2443 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_CPar_in_tail2446 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_table_constructor_in_tail2469 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_String_in_tail2492 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_OBrace_in_table_constructor2532 = new BitSet(new long[]{0x42000A0010002000L,0x00000000001203F8L});
-	public static final BitSet FOLLOW_field_list_in_table_constructor2534 = new BitSet(new long[]{0x0000000000002000L});
-	public static final BitSet FOLLOW_CBrace_in_table_constructor2537 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_field_in_field_list2557 = new BitSet(new long[]{0x0000000000200002L,0x0000000000008000L});
-	public static final BitSet FOLLOW_field_sep_in_field_list2560 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001203F8L});
-	public static final BitSet FOLLOW_field_in_field_list2562 = new BitSet(new long[]{0x0000000000200002L,0x0000000000008000L});
-	public static final BitSet FOLLOW_field_sep_in_field_list2566 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_OBrack_in_field2583 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_in_field2585 = new BitSet(new long[]{0x0000000000004000L});
-	public static final BitSet FOLLOW_CBrack_in_field2587 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_Assign_in_field2589 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_in_field2591 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Name_in_field2606 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_Assign_in_field2608 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_in_field2610 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expr_in_field2633 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ColCol_in_label2686 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-	public static final BitSet FOLLOW_Name_in_label2688 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_ColCol_in_label2690 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_var_in_var_list2709 = new BitSet(new long[]{0x0000000000200002L});
-	public static final BitSet FOLLOW_Comma_in_var_list2713 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000208L});
-	public static final BitSet FOLLOW_var_in_var_list2715 = new BitSet(new long[]{0x0000000000200002L});
-	public static final BitSet FOLLOW_expr_in_expr_list2734 = new BitSet(new long[]{0x0000000000200002L});
-	public static final BitSet FOLLOW_Comma_in_expr_list2737 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
-	public static final BitSet FOLLOW_expr_in_expr_list2739 = new BitSet(new long[]{0x0000000000200002L});
-	public static final BitSet FOLLOW_Name_in_name_list2757 = new BitSet(new long[]{0x0000000000200002L});
-	public static final BitSet FOLLOW_Comma_in_name_list2760 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-	public static final BitSet FOLLOW_Name_in_name_list2762 = new BitSet(new long[]{0x0000000000200002L});
+	public static final BitSet FOLLOW_Goto_in_goto_stat1234 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+	public static final BitSet FOLLOW_Name_in_goto_stat1236 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_If_in_if_stat1255 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_in_if_stat1257 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+	public static final BitSet FOLLOW_Then_in_if_stat1259 = new BitSet(new long[]{0x10044C01C2100800L,0x000000000200E208L});
+	public static final BitSet FOLLOW_chunk_in_if_stat1261 = new BitSet(new long[]{0x00000001C0000000L});
+	public static final BitSet FOLLOW_elseif_stat_in_if_stat1263 = new BitSet(new long[]{0x00000001C0000000L});
+	public static final BitSet FOLLOW_else_stat_in_if_stat1266 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_End_in_if_stat1269 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Elseif_in_elseif_stat1300 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_in_elseif_stat1302 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+	public static final BitSet FOLLOW_Then_in_elseif_stat1304 = new BitSet(new long[]{0x10044C0002100800L,0x000000000200E208L});
+	public static final BitSet FOLLOW_chunk_in_elseif_stat1306 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Else_in_else_stat1327 = new BitSet(new long[]{0x10044C0002100800L,0x000000000200E208L});
+	public static final BitSet FOLLOW_chunk_in_else_stat1329 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_For_in_for_stat1350 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+	public static final BitSet FOLLOW_Name_in_for_stat1354 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_Assign_in_for_stat1356 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_in_for_stat1360 = new BitSet(new long[]{0x0000000000200000L});
+	public static final BitSet FOLLOW_Comma_in_for_stat1362 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_in_for_stat1366 = new BitSet(new long[]{0x0000000002200000L});
+	public static final BitSet FOLLOW_Comma_in_for_stat1369 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_in_for_stat1373 = new BitSet(new long[]{0x0000000002000000L});
+	public static final BitSet FOLLOW_do_block_in_for_stat1377 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_name_list_in_for_stat1408 = new BitSet(new long[]{0x0008000000000000L});
+	public static final BitSet FOLLOW_In_in_for_stat1410 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_list_in_for_stat1412 = new BitSet(new long[]{0x0000000002000000L});
+	public static final BitSet FOLLOW_do_block_in_for_stat1414 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Function_in_function1472 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+	public static final BitSet FOLLOW_names_in_function1474 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000200L});
+	public static final BitSet FOLLOW_Col_in_function1478 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+	public static final BitSet FOLLOW_Name_in_function1480 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+	public static final BitSet FOLLOW_func_body_in_function1484 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_func_body_in_function1547 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Name_in_names1626 = new BitSet(new long[]{0x0000000004000002L});
+	public static final BitSet FOLLOW_Dot_in_names1631 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+	public static final BitSet FOLLOW_Name_in_names1635 = new BitSet(new long[]{0x0000000004000002L});
+	public static final BitSet FOLLOW_Function_in_function_literal1650 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+	public static final BitSet FOLLOW_func_body_in_function_literal1652 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_OPar_in_func_body1667 = new BitSet(new long[]{0x0000000010040000L,0x0000000000000008L});
+	public static final BitSet FOLLOW_param_list_in_func_body1669 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_CPar_in_func_body1671 = new BitSet(new long[]{0x10044C0102100800L,0x000000000200E208L});
+	public static final BitSet FOLLOW_chunk_in_func_body1673 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_End_in_func_body1675 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_name_list_in_param_list1696 = new BitSet(new long[]{0x0000000000200002L});
+	public static final BitSet FOLLOW_Comma_in_param_list1699 = new BitSet(new long[]{0x0000000010000000L});
+	public static final BitSet FOLLOW_DotDotDot_in_param_list1701 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_DotDotDot_in_param_list1719 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Return_in_ret_stat1756 = new BitSet(new long[]{0x42000A0010000002L,0x00000000001282F8L});
+	public static final BitSet FOLLOW_expr_list_in_ret_stat1758 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
+	public static final BitSet FOLLOW_SCol_in_ret_stat1761 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_or_expr_in_expr1782 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_and_expr_in_or_expr1793 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
+	public static final BitSet FOLLOW_Or_in_or_expr1796 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_and_expr_in_or_expr1799 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
+	public static final BitSet FOLLOW_rel_expr_in_and_expr1812 = new BitSet(new long[]{0x0000000000000082L});
+	public static final BitSet FOLLOW_And_in_and_expr1815 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_rel_expr_in_and_expr1818 = new BitSet(new long[]{0x0000000000000082L});
+	public static final BitSet FOLLOW_concat_expr_in_rel_expr1831 = new BitSet(new long[]{0x0180300200000002L,0x0000000000000004L});
+	public static final BitSet FOLLOW_set_in_rel_expr1834 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_concat_expr_in_rel_expr1859 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_add_expr_in_concat_expr1872 = new BitSet(new long[]{0x0000000008000002L});
+	public static final BitSet FOLLOW_DotDot_in_concat_expr1875 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_add_expr_in_concat_expr1878 = new BitSet(new long[]{0x0000000008000002L});
+	public static final BitSet FOLLOW_mult_expr_in_add_expr1891 = new BitSet(new long[]{0x4000000000000042L});
+	public static final BitSet FOLLOW_set_in_add_expr1894 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_mult_expr_in_add_expr1903 = new BitSet(new long[]{0x4000000000000042L});
+	public static final BitSet FOLLOW_unary_expr_in_mult_expr1916 = new BitSet(new long[]{0x8000000001000002L,0x0000000000000001L});
+	public static final BitSet FOLLOW_set_in_mult_expr1919 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_unary_expr_in_mult_expr1932 = new BitSet(new long[]{0x8000000001000002L,0x0000000000000001L});
+	public static final BitSet FOLLOW_Minus_in_unary_expr1945 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_unary_expr_in_unary_expr1947 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Length_in_unary_expr1960 = new BitSet(new long[]{0x00000A0010000000L,0x00000000001202D8L});
+	public static final BitSet FOLLOW_pow_expr_in_unary_expr1962 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Not_in_unary_expr1976 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_unary_expr_in_unary_expr1978 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_pow_expr_in_unary_expr1993 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_atom_in_pow_expr2009 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001000L});
+	public static final BitSet FOLLOW_Pow_in_pow_expr2019 = new BitSet(new long[]{0x00000A0010000000L,0x00000000001202D8L});
+	public static final BitSet FOLLOW_atom_in_pow_expr2023 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001000L});
+	public static final BitSet FOLLOW_var_in_atom2042 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_function_literal_in_atom2048 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_table_constructor_in_atom2053 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_DotDotDot_in_atom2058 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Number_in_atom2064 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_String_in_atom2069 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Nil_in_atom2074 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_True_in_atom2079 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_False_in_atom2084 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_callee_in_var2097 = new BitSet(new long[]{0x0000000004080002L,0x0000000000020380L});
+	public static final BitSet FOLLOW_tail_in_var2121 = new BitSet(new long[]{0x0000000004080002L,0x0000000000020380L});
+	public static final BitSet FOLLOW_OPar_in_callee2264 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_in_callee2266 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_CPar_in_callee2268 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Name_in_callee2277 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Dot_in_tail2288 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+	public static final BitSet FOLLOW_Name_in_tail2290 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_OBrack_in_tail2323 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_in_tail2325 = new BitSet(new long[]{0x0000000000004000L});
+	public static final BitSet FOLLOW_CBrack_in_tail2327 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Col_in_tail2355 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+	public static final BitSet FOLLOW_Name_in_tail2357 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+	public static final BitSet FOLLOW_OPar_in_tail2359 = new BitSet(new long[]{0x42000A0010040000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_list_in_tail2361 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_CPar_in_tail2364 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Col_in_tail2384 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+	public static final BitSet FOLLOW_Name_in_tail2386 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+	public static final BitSet FOLLOW_table_constructor_in_tail2388 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Col_in_tail2408 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+	public static final BitSet FOLLOW_Name_in_tail2410 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+	public static final BitSet FOLLOW_String_in_tail2412 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_OPar_in_tail2443 = new BitSet(new long[]{0x42000A0010040000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_list_in_tail2445 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_CPar_in_tail2448 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_table_constructor_in_tail2471 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_String_in_tail2494 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_OBrace_in_table_constructor2534 = new BitSet(new long[]{0x42000A0010002000L,0x00000000001203F8L});
+	public static final BitSet FOLLOW_field_list_in_table_constructor2536 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_CBrace_in_table_constructor2539 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_field_in_field_list2559 = new BitSet(new long[]{0x0000000000200002L,0x0000000000008000L});
+	public static final BitSet FOLLOW_field_sep_in_field_list2562 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001203F8L});
+	public static final BitSet FOLLOW_field_in_field_list2564 = new BitSet(new long[]{0x0000000000200002L,0x0000000000008000L});
+	public static final BitSet FOLLOW_field_sep_in_field_list2568 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_OBrack_in_field2585 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_in_field2587 = new BitSet(new long[]{0x0000000000004000L});
+	public static final BitSet FOLLOW_CBrack_in_field2589 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_Assign_in_field2591 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_in_field2593 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Name_in_field2608 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_Assign_in_field2610 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_in_field2612 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expr_in_field2635 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ColCol_in_label2688 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+	public static final BitSet FOLLOW_Name_in_label2690 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_ColCol_in_label2692 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_var_in_var_list2711 = new BitSet(new long[]{0x0000000000200002L});
+	public static final BitSet FOLLOW_Comma_in_var_list2715 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000208L});
+	public static final BitSet FOLLOW_var_in_var_list2717 = new BitSet(new long[]{0x0000000000200002L});
+	public static final BitSet FOLLOW_expr_in_expr_list2736 = new BitSet(new long[]{0x0000000000200002L});
+	public static final BitSet FOLLOW_Comma_in_expr_list2739 = new BitSet(new long[]{0x42000A0010000000L,0x00000000001202F8L});
+	public static final BitSet FOLLOW_expr_in_expr_list2741 = new BitSet(new long[]{0x0000000000200002L});
+	public static final BitSet FOLLOW_Name_in_name_list2759 = new BitSet(new long[]{0x0000000000200002L});
+	public static final BitSet FOLLOW_Comma_in_name_list2762 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+	public static final BitSet FOLLOW_Name_in_name_list2764 = new BitSet(new long[]{0x0000000000200002L});
 	public static final BitSet FOLLOW_assignment_in_synpred1_Lua907 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_tail_in_synpred2_Lua2106 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_tail_in_synpred3_Lua2113 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_tail_in_synpred2_Lua2108 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_tail_in_synpred3_Lua2115 = new BitSet(new long[]{0x0000000000000002L});
 }

@@ -156,7 +156,7 @@ public class Unparser {
             finalCode.append("local ");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
-                if(i>=1 && i<currentNode.getChildCount() && currentNode.getChildCount()>1)
+                if(i>=1 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
                     finalCode.append(",");
             }
             finalCode.append("\n");
@@ -228,6 +228,41 @@ public class Unparser {
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
+        }
+        /**-----------------------------------TABLE----------------------------------*/
+        else if(currentNode.getName().equals("TABLE")){
+            finalCode.append("{");
+            for(int i=0 ; i<currentNode.getChildCount() ; i++) {
+                unparse(currentNode.getChild(i));
+                if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
+                    finalCode.append(",");
+            }
+
+            finalCode.append("}\n");
+        }
+        /**-----------------------------------FIELD----------------------------------*/
+        else if(currentNode.getName().equals("FIELD")){
+            if(currentNode.getChildCount()>1) {
+                finalCode.append("[");
+                unparse(currentNode.getChild(0));
+                finalCode.append("]");
+                finalCode.append("=");
+                unparse(currentNode.getChild(1));
+            }
+            else{
+                unparse(currentNode.getChild(0));
+            }
+
+        }
+        /**-----------------------------------FOR_IN----------------------------------*/
+        else if(currentNode.getName().equals("FOR_IN")){
+            finalCode.append("for ");
+            unparse(currentNode.getChild(0));
+            finalCode.append(" in ");
+            for(int i=1 ; i<currentNode.getChildCount() ; i++){
+                unparse(currentNode.getChild(i));
+            }
+
         }
         /**-----------------------------------do----------------------------------*/
         else if(currentNode.getName().equals("do")){
@@ -330,7 +365,7 @@ public class Unparser {
         else if(currentNode.getName().equals("while")){
             finalCode.append("while(");
             unparse(currentNode.getChild(0));
-//            finalCode.append("\n");
+            finalCode.append(")\n");
             for(int i=1 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }

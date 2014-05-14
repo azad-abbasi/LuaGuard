@@ -236,7 +236,7 @@ assignment
 local
  : Local ( name_list '=' expr_list -> ^(LOCAL_ASSIGNMENT ^(NAME_LIST name_list) ^(EXPR_LIST expr_list))
          | Function Name func_body -> ^(LOCAL_ASSIGNMENT ^(NAME_LIST Name) ^(EXPR_LIST func_body))
-         | name_list -> ^(LOCAL_DEC ^(name_list))
+         | name_list -> ^(LOCAL_DEC ^(NAME_LIST name_list))
          )
  ;
 

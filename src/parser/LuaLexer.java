@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 grammars/Lua.g 2014-05-14 00:23:44
+// $ANTLR 3.5.2 grammars/Lua.g 2014-05-14 11:23:19
 
 package parser;
 import java.math.*;
@@ -3063,7 +3063,7 @@ public class LuaLexer extends Lexer {
 	static final String DFA20_acceptS =
 		"\2\uffff\1\3\1\uffff\1\1\1\2";
 	static final String DFA20_specialS =
-		"\1\uffff\1\0\1\uffff\1\1\2\uffff}>";
+		"\1\uffff\1\1\1\uffff\1\0\2\uffff}>";
 	static final String[] DFA20_transitionS = {
 			"\1\1",
 			"\75\5\1\3\35\5\1\4\uffa4\5",
@@ -3112,20 +3112,20 @@ public class LuaLexer extends Lexer {
 			int _s = s;
 			switch ( s ) {
 					case 0 : 
-						int LA20_1 = input.LA(1);
-						s = -1;
-						if ( (LA20_1=='=') ) {s = 3;}
-						else if ( (LA20_1=='[') ) {s = 4;}
-						else if ( ((LA20_1 >= '\u0000' && LA20_1 <= '<')||(LA20_1 >= '>' && LA20_1 <= 'Z')||(LA20_1 >= '\\' && LA20_1 <= '\uFFFF')) ) {s = 5;}
-						if ( s>=0 ) return s;
-						break;
-
-					case 1 : 
 						int LA20_3 = input.LA(1);
 						s = -1;
 						if ( (LA20_3=='[') ) {s = 4;}
 						else if ( (LA20_3=='=') ) {s = 3;}
 						else if ( ((LA20_3 >= '\u0000' && LA20_3 <= '<')||(LA20_3 >= '>' && LA20_3 <= 'Z')||(LA20_3 >= '\\' && LA20_3 <= '\uFFFF')) ) {s = 5;}
+						if ( s>=0 ) return s;
+						break;
+
+					case 1 : 
+						int LA20_1 = input.LA(1);
+						s = -1;
+						if ( (LA20_1=='=') ) {s = 3;}
+						else if ( (LA20_1=='[') ) {s = 4;}
+						else if ( ((LA20_1 >= '\u0000' && LA20_1 <= '<')||(LA20_1 >= '>' && LA20_1 <= 'Z')||(LA20_1 >= '\\' && LA20_1 <= '\uFFFF')) ) {s = 5;}
 						if ( s>=0 ) return s;
 						break;
 			}
