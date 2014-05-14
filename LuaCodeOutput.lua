@@ -1,8 +1,4 @@
-do
-local a2=2*a
-local d=sqrt(((b^2)-4*a*c)) 
-x1=(-b+d)/a2
-x2=(-b-d)/a2
-
-end
-print(x1,x2) 
+a,b,c=0,1
+print(a,b,c) a,b=(a+1),(b+1),(b+2)
+print(a,b) a,b,c=0
+print(a,b,c) 

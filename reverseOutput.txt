@@ -1,55 +1,27 @@
  ( CHUNK
-	 ( do
-		 ( CHUNK
-			 ( LOCAL_ASSIGNMENT
-				 ( NAME_LIST a2 )
-				 ( EXPR_LIST
-					 ( * 2 a )
-				 )
-			 )
-			 ( LOCAL_ASSIGNMENT
-				 ( NAME_LIST d )
-				 ( EXPR_LIST
-					 ( VAR sqrt
-						 ( CALL
-							 ( -
-								 ( ^ b 2 )
-								 ( *
-									 ( * 4 a )
-									 ( c )
-								 )
-							 )
-						 )
-					 )
-				 )
-			 )
-			 ( ASSIGNMENT
-				 ( VAR_LIST x1 )
-				 ( EXPR_LIST
-					 ( /
-						 ( +
-							 ( UNARY_MINUS b )
-							 ( d )
-						 )
-						 ( a2 )
-					 )
-				 )
-			 )
-			 ( ASSIGNMENT
-				 ( VAR_LIST x2 )
-				 ( EXPR_LIST
-					 ( /
-						 ( -
-							 ( UNARY_MINUS b )
-							 ( d )
-						 )
-						 ( a2 )
-					 )
-				 )
-			 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST a b c )
+		 ( EXPR_LIST 0 1 )
+	 )
+	 ( VAR print
+		 ( CALL a b c )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST a b )
+		 ( EXPR_LIST
+			 ( + a 1 )
+			 ( + b 1 )
+			 ( + b 2 )
 		 )
 	 )
 	 ( VAR print
-		 ( CALL x1 x2 )
+		 ( CALL a b )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST a b c )
+		 ( EXPR_LIST 0 )
+	 )
+	 ( VAR print
+		 ( CALL a b c )
 	 )
  )
