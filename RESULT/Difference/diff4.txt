@@ -1,0 +1,6 @@
+line#:11  AST:								 ( INDEX  ' HasString '  )  !=  ExpectedAST:								 ( INDEX 'HasString' )
+line#:12  AST:								 ( COL_CALL  ' string1 '  )  !=  ExpectedAST:								 ( COL_CALL 'string1' )
+line#:20  AST:								 ( INDEX  ' HasString '  )  !=  ExpectedAST:								 ( INDEX 'HasString' )
+line#:21  AST:								 ( COL_CALL  ' string2 '  )  !=  ExpectedAST:								 ( COL_CALL 'string2' )
+line#:33  AST:				 ( INDEX  ' HasString '  )  !=  ExpectedAST:				 ( INDEX 'HasString' )
+line#:34  AST:				 ( COL_CALL  ' outside function... '  )  !=  ExpectedAST:				 ( COL_CALL 'outsidefunction...' )

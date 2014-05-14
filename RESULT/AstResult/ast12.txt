@@ -1,0 +1,412 @@
+ ( CHUNK
+	 ( ASSIGNMENT
+		 ( VAR_LIST Set )
+		 ( EXPR_LIST TABLE )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST
+			 ( ASSIGNMENT_VAR Set
+				 ( INDEX  ' mt '  )
+			 )
+		 )
+		 ( EXPR_LIST TABLE )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST
+			 ( VAR Set
+				 ( INDEX mt )
+				 ( INDEX __add )
+			 )
+		 )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST a b )
+				 ( CHUNK
+					 ( LOCAL_ASSIGNMENT
+						 ( NAME_LIST res )
+						 ( EXPR_LIST
+							 ( VAR Set
+								 ( INDEX  ' new '  )
+								 ( CALL TABLE )
+							 )
+						 )
+					 )
+					 ( FOR_IN
+						 ( NAME_LIST k )
+						 ( EXPR_LIST
+							 ( VAR pairs
+								 ( CALL a )
+							 )
+						 )
+						 ( do
+							 ( CHUNK
+								 ( ASSIGNMENT
+									 ( VAR_LIST
+										 ( ASSIGNMENT_VAR res
+											 ( INDEX k )
+										 )
+									 )
+									 ( EXPR_LIST true )
+								 )
+							 )
+						 )
+					 )
+					 ( FOR_IN
+						 ( NAME_LIST k )
+						 ( EXPR_LIST
+							 ( VAR pairs
+								 ( CALL b )
+							 )
+						 )
+						 ( do
+							 ( CHUNK
+								 ( ASSIGNMENT
+									 ( VAR_LIST
+										 ( ASSIGNMENT_VAR res
+											 ( INDEX k )
+										 )
+									 )
+									 ( EXPR_LIST true )
+								 )
+							 )
+						 )
+					 )
+					 ( return res )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST
+			 ( VAR Set
+				 ( INDEX mt )
+				 ( INDEX __mul )
+			 )
+		 )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST a b )
+				 ( CHUNK
+					 ( LOCAL_ASSIGNMENT
+						 ( NAME_LIST res )
+						 ( EXPR_LIST
+							 ( VAR Set
+								 ( INDEX  ' new '  )
+								 ( CALL TABLE )
+							 )
+						 )
+					 )
+					 ( FOR_IN
+						 ( NAME_LIST k )
+						 ( EXPR_LIST
+							 ( VAR pairs
+								 ( CALL a )
+							 )
+						 )
+						 ( do
+							 ( CHUNK
+								 ( ASSIGNMENT
+									 ( VAR_LIST
+										 ( ASSIGNMENT_VAR res
+											 ( INDEX k )
+										 )
+									 )
+									 ( EXPR_LIST
+										 ( VAR b
+											 ( INDEX k )
+										 )
+									 )
+								 )
+							 )
+						 )
+					 )
+					 ( return res )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST
+			 ( VAR Set
+				 ( INDEX mt )
+				 ( INDEX __le )
+			 )
+		 )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST a b )
+				 ( CHUNK
+					 ( FOR_IN
+						 ( NAME_LIST k )
+						 ( EXPR_LIST
+							 ( VAR pairs
+								 ( CALL a )
+							 )
+						 )
+						 ( do
+							 ( CHUNK
+								 ( if
+									 ( CONDITION
+										 ( not
+											 ( VAR b
+												 ( INDEX k )
+											 )
+										 )
+										 ( CHUNK
+											 ( return false )
+										 )
+									 )
+								 )
+							 )
+						 )
+					 )
+					 ( return true )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST
+			 ( VAR Set
+				 ( INDEX mt )
+				 ( INDEX __lt )
+			 )
+		 )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST a b )
+				 ( CHUNK
+					 ( return
+						 ( and
+							 ( <= a b )
+							 ( not
+								 ( <= b a )
+							 )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST
+			 ( VAR Set
+				 ( INDEX mt )
+				 ( INDEX __eq )
+			 )
+		 )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST a b )
+				 ( CHUNK
+					 ( return
+						 ( and
+							 ( <= a b )
+							 ( <= b a )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST
+			 ( VAR Set
+				 ( INDEX mt )
+				 ( INDEX __tostring )
+			 )
+		 )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST set )
+				 ( CHUNK
+					 ( LOCAL_ASSIGNMENT
+						 ( NAME_LIST s )
+						 ( EXPR_LIST  ' { '  )
+					 )
+					 ( LOCAL_ASSIGNMENT
+						 ( NAME_LIST sep )
+						 ( EXPR_LIST  '  '  )
+					 )
+					 ( FOR_IN
+						 ( NAME_LIST e )
+						 ( EXPR_LIST
+							 ( VAR pairs
+								 ( CALL set )
+							 )
+						 )
+						 ( do
+							 ( CHUNK
+								 ( ASSIGNMENT
+									 ( VAR_LIST s )
+									 ( EXPR_LIST
+										 ( ..
+											 ( .. s sep )
+											 ( e )
+										 )
+									 )
+								 )
+								 ( ASSIGNMENT
+									 ( VAR_LIST sep )
+									 ( EXPR_LIST  ' ,  '  )
+								 )
+							 )
+						 )
+					 )
+					 ( return
+						 ( .. s  ' } '  )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST
+			 ( VAR Set
+				 ( INDEX new )
+			 )
+		 )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST t )
+				 ( CHUNK
+					 ( LOCAL_ASSIGNMENT
+						 ( NAME_LIST set )
+						 ( EXPR_LIST TABLE )
+					 )
+					 ( VAR setmetatable
+						 ( CALL set
+							 ( VAR Set
+								 ( INDEX  ' mt '  )
+							 )
+						 )
+					 )
+					 ( FOR_IN
+						 ( NAME_LIST _ l )
+						 ( EXPR_LIST
+							 ( VAR ipairs
+								 ( CALL t )
+							 )
+						 )
+						 ( do
+							 ( CHUNK
+								 ( ASSIGNMENT
+									 ( VAR_LIST
+										 ( ASSIGNMENT_VAR set
+											 ( INDEX l )
+										 )
+									 )
+									 ( EXPR_LIST true )
+								 )
+							 )
+						 )
+					 )
+					 ( return set )
+				 )
+			 )
+		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST s1 )
+		 ( EXPR_LIST
+			 ( VAR Set
+				 ( INDEX  ' new '  )
+				 ( CALL
+					 ( TABLE
+						 ( FIELD 10 )
+						 ( FIELD 20 )
+						 ( FIELD 30 )
+						 ( FIELD 50 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST s2 )
+		 ( EXPR_LIST
+			 ( VAR Set
+				 ( INDEX  ' new '  )
+				 ( CALL
+					 ( TABLE
+						 ( FIELD 30 )
+						 ( FIELD 1 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST s3 )
+		 ( EXPR_LIST
+			 ( + s1 s2 )
+		 )
+	 )
+	 ( VAR print
+		 ( CALL s3 )
+	 )
+	 ( VAR print
+		 ( CALL
+			 ( *
+				 ( + s1 s2 )
+				 ( s1 )
+			 )
+		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST s1 )
+		 ( EXPR_LIST
+			 ( VAR Set
+				 ( INDEX  ' new '  )
+				 ( CALL
+					 ( TABLE
+						 ( FIELD 2 )
+						 ( FIELD 4 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST s2 )
+		 ( EXPR_LIST
+			 ( VAR Set
+				 ( INDEX  ' new '  )
+				 ( CALL
+					 ( TABLE
+						 ( FIELD 4 )
+						 ( FIELD 10 )
+						 ( FIELD 2 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( VAR print
+		 ( CALL
+			 ( <= s1 s2 )
+		 )
+	 )
+	 ( VAR print
+		 ( CALL
+			 ( < s1 s2 )
+		 )
+	 )
+	 ( VAR print
+		 ( CALL
+			 ( >= s1 s1 )
+		 )
+	 )
+	 ( VAR print
+		 ( CALL
+			 ( > s1 s1 )
+		 )
+	 )
+	 ( VAR print
+		 ( CALL
+			 ( == s1
+				 ( * s2 s1 )
+			 )
+		 )
+	 )
+ )

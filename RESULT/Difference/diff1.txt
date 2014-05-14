@@ -1,0 +1,2 @@
+line#:17  AST:								 ( INDEX  ' maxn '  )  !=  ExpectedAST:								 ( INDEX 'maxn' )
+line#:27  AST:									 ( CALL  ' Need more than one itme selected '   ' Error 001 '  )  !=  ExpectedAST:									 ( CALL 'Needmorethanoneitmeselected' 'Error001' )

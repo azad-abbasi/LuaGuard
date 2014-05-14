@@ -1,0 +1,260 @@
+ ( CHUNK
+	 ( VAR require
+		 ( CALL  ' luasocket '  )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST receive )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST connection )
+				 ( CHUNK
+					 ( VAR connection
+						 ( INDEX  ' timeout '  )
+						 ( COL_CALL 0 )
+					 )
+					 ( LOCAL_ASSIGNMENT
+						 ( NAME_LIST s status )
+						 ( EXPR_LIST
+							 ( VAR connection
+								 ( INDEX  ' receive '  )
+								 ( COL_CALL
+									 ( ^ 2 10 )
+								 )
+							 )
+						 )
+					 )
+					 ( if
+						 ( CONDITION
+							 ( == status  ' timeout '  )
+							 ( CHUNK
+								 ( VAR coroutine
+									 ( INDEX  ' yield '  )
+									 ( CALL connection )
+								 )
+							 )
+						 )
+					 )
+					 ( return s status )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST download )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST host file )
+				 ( CHUNK
+					 ( LOCAL_ASSIGNMENT
+						 ( NAME_LIST c )
+						 ( EXPR_LIST
+							 ( VAR assert
+								 ( CALL
+									 ( VAR socket
+										 ( INDEX  ' connect '  )
+										 ( CALL host 80 )
+									 )
+								 )
+							 )
+						 )
+					 )
+					 ( LOCAL_ASSIGNMENT
+						 ( NAME_LIST count )
+						 ( EXPR_LIST 0 )
+					 )
+					 ( VAR c
+						 ( INDEX  ' send '  )
+						 ( COL_CALL
+							 ( ..
+								 ( ..  ' GET  '  file )
+								 (  '  HTTP/1.0
+
+ '  )
+							 )
+						 )
+					 )
+					 ( while true
+						 ( do
+							 ( CHUNK
+								 ( LOCAL_ASSIGNMENT
+									 ( NAME_LIST s status )
+									 ( EXPR_LIST
+										 ( VAR receive
+											 ( CALL c )
+										 )
+									 )
+								 )
+								 ( ASSIGNMENT
+									 ( VAR_LIST count )
+									 ( EXPR_LIST
+										 ( + count
+											 ( VAR string
+												 ( INDEX  ' len '  )
+												 ( CALL s )
+											 )
+										 )
+									 )
+								 )
+								 ( if
+									 ( CONDITION
+										 ( == status  ' closed '  )
+										 ( CHUNK break )
+									 )
+								 )
+							 )
+						 )
+					 )
+					 ( VAR c
+						 ( INDEX  ' close '  )
+						 ( COL_CALL )
+					 )
+					 ( VAR print
+						 ( CALL file count )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST threads )
+		 ( EXPR_LIST TABLE )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST get )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST host file )
+				 ( CHUNK
+					 ( LOCAL_ASSIGNMENT
+						 ( NAME_LIST co )
+						 ( EXPR_LIST
+							 ( VAR coroutine
+								 ( INDEX  ' create '  )
+								 ( CALL
+									 ( FUNCTION PARAM_LIST
+										 ( CHUNK
+											 ( VAR download
+												 ( CALL host file )
+											 )
+										 )
+									 )
+								 )
+							 )
+						 )
+					 )
+					 ( VAR table
+						 ( INDEX  ' insert '  )
+						 ( CALL threads co )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST dispatcher )
+		 ( EXPR_LIST
+			 ( FUNCTION PARAM_LIST
+				 ( CHUNK
+					 ( while true
+						 ( do
+							 ( CHUNK
+								 ( LOCAL_ASSIGNMENT
+									 ( NAME_LIST n )
+									 ( EXPR_LIST
+										 ( VAR table
+											 ( INDEX  ' getn '  )
+											 ( CALL threads )
+										 )
+									 )
+								 )
+								 ( if
+									 ( CONDITION
+										 ( == n 0 )
+										 ( CHUNK break )
+									 )
+								 )
+								 ( LOCAL_ASSIGNMENT
+									 ( NAME_LIST connections )
+									 ( EXPR_LIST TABLE )
+								 )
+								 ( for i 1 n
+									 ( do
+										 ( CHUNK
+											 ( LOCAL_ASSIGNMENT
+												 ( NAME_LIST status res )
+												 ( EXPR_LIST
+													 ( VAR coroutine
+														 ( INDEX  ' resume '  )
+														 ( CALL
+															 ( VAR threads
+																 ( INDEX i )
+															 )
+														 )
+													 )
+												 )
+											 )
+											 ( if
+												 ( CONDITION
+													 ( not res )
+													 ( CHUNK
+														 ( VAR table
+															 ( INDEX  ' remove '  )
+															 ( CALL threads i )
+														 )
+														 ( break )
+													 )
+												 )
+												 ( CONDITION True
+													 ( CHUNK
+														 ( VAR table
+															 ( INDEX  ' insert '  )
+															 ( CALL connections res )
+														 )
+													 )
+												 )
+											 )
+										 )
+									 )
+								 )
+								 ( if
+									 ( CONDITION
+										 ( ==
+											 ( VAR table
+												 ( INDEX  ' getn '  )
+												 ( CALL connections )
+											 )
+											 ( n )
+										 )
+										 ( CHUNK
+											 ( VAR socket
+												 ( INDEX  ' select '  )
+												 ( CALL connections )
+											 )
+										 )
+									 )
+								 )
+							 )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST host )
+		 ( EXPR_LIST  ' www.w3.org '  )
+	 )
+	 ( VAR get
+		 ( CALL host  ' /TR/html401/html40.txt '  )
+	 )
+	 ( VAR get
+		 ( CALL host  ' /TR/2002/REC-xhtml1-20020801/xhtml1.pdf '  )
+	 )
+	 ( VAR get
+		 ( CALL host  ' /TR/REC-html32.html '  )
+	 )
+	 ( VAR get
+		 ( CALL host  ' /TR/2000/REC-DOM-Level-2-Core-20001113/DOM2-Core.txt '  )
+	 )
+	 ( VAR dispatcher CALL )
+ )

@@ -1,0 +1,159 @@
+ ( CHUNK
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST permgen )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST a n )
+				 ( CHUNK
+					 ( if
+						 ( CONDITION
+							 ( == n 0 )
+							 ( CHUNK
+								 ( VAR coroutine
+									 ( INDEX  ' yield '  )
+									 ( CALL a )
+								 )
+							 )
+						 )
+						 ( CONDITION True
+							 ( CHUNK
+								 ( for i 1 n
+									 ( do
+										 ( CHUNK
+											 ( ASSIGNMENT
+												 ( VAR_LIST
+													 ( ASSIGNMENT_VAR a
+														 ( INDEX n )
+													 )
+													 ( ASSIGNMENT_VAR a
+														 ( INDEX i )
+													 )
+												 )
+												 ( EXPR_LIST
+													 ( VAR a
+														 ( INDEX i )
+													 )
+													 ( VAR a
+														 ( INDEX n )
+													 )
+												 )
+											 )
+											 ( VAR permgen
+												 ( CALL a
+													 ( - n 1 )
+												 )
+											 )
+											 ( ASSIGNMENT
+												 ( VAR_LIST
+													 ( ASSIGNMENT_VAR a
+														 ( INDEX n )
+													 )
+													 ( ASSIGNMENT_VAR a
+														 ( INDEX i )
+													 )
+												 )
+												 ( EXPR_LIST
+													 ( VAR a
+														 ( INDEX i )
+													 )
+													 ( VAR a
+														 ( INDEX n )
+													 )
+												 )
+											 )
+										 )
+									 )
+								 )
+							 )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST perm )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST a )
+				 ( CHUNK
+					 ( LOCAL_ASSIGNMENT
+						 ( NAME_LIST n )
+						 ( EXPR_LIST
+							 ( VAR table
+								 ( INDEX  ' getn '  )
+								 ( CALL a )
+							 )
+						 )
+					 )
+					 ( return
+						 ( VAR coroutine
+							 ( INDEX  ' wrap '  )
+							 ( CALL
+								 ( FUNCTION PARAM_LIST
+									 ( CHUNK
+										 ( VAR permgen
+											 ( CALL a n )
+										 )
+									 )
+								 )
+							 )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST printResult )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST a )
+				 ( CHUNK
+					 ( FOR_IN
+						 ( NAME_LIST i v )
+						 ( EXPR_LIST
+							 ( VAR ipairs
+								 ( CALL a )
+							 )
+						 )
+						 ( do
+							 ( CHUNK
+								 ( VAR io
+									 ( INDEX  ' write '  )
+									 ( CALL v  '   '  )
+								 )
+							 )
+						 )
+					 )
+					 ( VAR io
+						 ( INDEX  ' write '  )
+						 ( CALL  ' 
+ '  )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( FOR_IN
+		 ( NAME_LIST p )
+		 ( EXPR_LIST
+			 ( VAR perm
+				 ( CALL
+					 ( TABLE
+						 ( FIELD  ' a '  )
+						 ( FIELD  ' b '  )
+						 ( FIELD  ' c '  )
+					 )
+				 )
+			 )
+		 )
+		 ( do
+			 ( CHUNK
+				 ( VAR printResult
+					 ( CALL p )
+				 )
+			 )
+		 )
+	 )
+ )

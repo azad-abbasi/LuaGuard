@@ -1,0 +1,122 @@
+ ( CHUNK
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST wordCount )
+		 ( EXPR_LIST
+			 ( FUNCTION PARAM_LIST
+				 ( CHUNK
+					 ( ASSIGNMENT
+						 ( VAR_LIST fullText )
+						 ( EXPR_LIST  '   '  )
+					 )
+					 ( ASSIGNMENT
+						 ( VAR_LIST NumberItems )
+						 ( EXPR_LIST
+							 ( VAR get_select_items CALL )
+						 )
+					 )
+					 ( ASSIGNMENT
+						 ( VAR_LIST MaxItems )
+						 ( EXPR_LIST
+							 ( VAR table
+								 ( INDEX  ' maxn '  )
+								 ( CALL NumberItems )
+							 )
+						 )
+					 )
+					 ( VAR msgbox
+						 ( CALL
+							 ( .. MaxItems  '  items selected '  )
+							 (  '  '  )
+						 )
+					 )
+					 ( for i 1 MaxItems
+						 ( do
+							 ( CHUNK
+								 ( ASSIGNMENT
+									 ( VAR_LIST thisText )
+									 ( EXPR_LIST
+										 ( VAR get_item_text
+											 ( CALL
+												 ( VAR NumberItems
+													 ( INDEX i )
+												 )
+											 )
+										 )
+									 )
+								 )
+								 ( ASSIGNMENT
+									 ( VAR_LIST fullText )
+									 ( EXPR_LIST
+										 ( ..
+											 ( .. thisText  '   '  )
+											 ( fullText )
+										 )
+									 )
+								 )
+							 )
+						 )
+					 )
+					 ( ASSIGNMENT
+						 ( VAR_LIST len )
+						 ( EXPR_LIST
+							 ( VAR string
+								 ( INDEX  ' len '  )
+								 ( CALL fullText )
+							 )
+						 )
+					 )
+					 ( ASSIGNMENT
+						 ( VAR_LIST wc )
+						 ( EXPR_LIST
+							 ( / len 6 )
+						 )
+					 )
+					 ( VAR msgbox
+						 ( CALL
+							 ( ..
+								 ( ..
+									 ( ..
+										 ( ..  ' item has  '  len )
+										 (  '  chars and  '  )
+									 )
+									 ( wc )
+								 )
+								 (  '  words! '  )
+							 )
+							 (  '  '  )
+						 )
+					 )
+					 ( ASSIGNMENT
+						 ( VAR_LIST wc )
+						 ( EXPR_LIST 0 )
+					 )
+					 ( FOR_IN
+						 ( NAME_LIST w )
+						 ( EXPR_LIST
+							 ( VAR string
+								 ( INDEX  ' gmatch '  )
+								 ( CALL fullText  ' %a+ '  )
+							 )
+						 )
+						 ( do
+							 ( CHUNK
+								 ( ASSIGNMENT
+									 ( VAR_LIST wc )
+									 ( EXPR_LIST
+										 ( + wc 1 )
+									 )
+								 )
+							 )
+						 )
+					 )
+					 ( VAR msgbox
+						 ( CALL
+							 ( .. wc  '  words found '  )
+							 (  ' ECCO WC '  )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+ )

@@ -1,0 +1,2 @@
+line#:18  AST:											 ( == s  ' foo '  )  !=  ExpectedAST:											 ( == s 'foo' )
+line#:19  AST:											 (  ' bar '  )  !=  ExpectedAST:											 ( 'bar' )
