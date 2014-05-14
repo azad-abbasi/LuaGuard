@@ -1,5 +1,5 @@
-XCOPY .\src\* .\src\
-XCOPY ..\grammars\*.g .\grammars\
+XCOPY /Y .\src\* .\src\
+XCOPY /Y ..\grammars\*.g .\grammars\
 
 java -cp .\lib\antlr-3.5.2-complete-no-st3.jar org.antlr.Tool .\grammars\Lua.g
 java -cp .\lib\antlr-3.5.2-complete-no-st3.jar org.antlr.Tool .\grammars\LuaWalker.g

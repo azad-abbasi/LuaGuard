@@ -10,7 +10,7 @@ import parser.ASTgenerator;
 import parser.InputReader;
 import parser.LuaLexer;
 import parser.LuaParser;
-import sun.plugin.converter.util.CommandLine;
+
 import unparser.TreeConstructor;
 import unparser.Unparser;
 import org.apache.commons.cli.*;
