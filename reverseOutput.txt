@@ -1,54 +1,22 @@
  ( CHUNK
-	 ( if
-		 ( CONDITION
-			 ( == op '+' )
-			 ( CHUNK
-				 ( ASSIGNMENT
-					 ( VAR_LIST r )
-					 ( EXPR_LIST
-						 ( + a b )
-					 )
-				 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST a )
+		 ( EXPR_LIST
+			 ( .. 'hello' 'world' )
+		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST
+			 ( ASSIGNMENT_VAR t
+				 ( INDEX 'n' )
 			 )
 		 )
-		 ( CONDITION
-			 ( == op '-' )
-			 ( CHUNK
-				 ( ASSIGNMENT
-					 ( VAR_LIST r )
-					 ( EXPR_LIST
-						 ( - a b )
-					 )
+		 ( EXPR_LIST
+			 ( +
+				 ( VAR t
+					 ( INDEX 'n' )
 				 )
-			 )
-		 )
-		 ( CONDITION
-			 ( == op '*' )
-			 ( CHUNK
-				 ( ASSIGNMENT
-					 ( VAR_LIST r )
-					 ( EXPR_LIST
-						 ( * a b )
-					 )
-				 )
-			 )
-		 )
-		 ( CONDITION
-			 ( == op '/' )
-			 ( CHUNK
-				 ( ASSIGNMENT
-					 ( VAR_LIST r )
-					 ( EXPR_LIST
-						 ( / a b )
-					 )
-				 )
-			 )
-		 )
-		 ( CONDITION True
-			 ( CHUNK
-				 ( VAR error
-					 ( CALL 'invalidoperation' )
-				 )
+				 ( 1 )
 			 )
 		 )
 	 )

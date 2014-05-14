@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 grammars/Lua.g 2014-05-06 12:40:25
+// $ANTLR 3.5.2 grammars/Lua.g 2014-05-14 00:23:44
 
 package parser;
 import java.math.*;
@@ -62,41 +62,42 @@ public class LuaLexer extends Lexer {
 	public static final int In=51;
 	public static final int LABEL=52;
 	public static final int LOCAL_ASSIGNMENT=53;
-	public static final int LT=54;
-	public static final int LTEq=55;
-	public static final int Length=56;
-	public static final int Letter=57;
-	public static final int LineBreak=58;
-	public static final int Local=59;
-	public static final int LongBracket=60;
-	public static final int Minus=61;
-	public static final int Mod=62;
-	public static final int Mult=63;
-	public static final int NAME_LIST=64;
-	public static final int NEq=65;
-	public static final int Name=66;
-	public static final int Nil=67;
-	public static final int Not=68;
-	public static final int Number=69;
-	public static final int OBrace=70;
-	public static final int OBrack=71;
-	public static final int OPar=72;
-	public static final int Or=73;
-	public static final int PARAM_LIST=74;
-	public static final int Pow=75;
-	public static final int Repeat=76;
-	public static final int Return=77;
-	public static final int SCol=78;
-	public static final int Space=79;
-	public static final int String=80;
-	public static final int TABLE=81;
-	public static final int Then=82;
-	public static final int True=83;
-	public static final int UNARY_MINUS=84;
-	public static final int Until=85;
-	public static final int VAR=86;
-	public static final int VAR_LIST=87;
-	public static final int While=88;
+	public static final int LOCAL_DEC=54;
+	public static final int LT=55;
+	public static final int LTEq=56;
+	public static final int Length=57;
+	public static final int Letter=58;
+	public static final int LineBreak=59;
+	public static final int Local=60;
+	public static final int LongBracket=61;
+	public static final int Minus=62;
+	public static final int Mod=63;
+	public static final int Mult=64;
+	public static final int NAME_LIST=65;
+	public static final int NEq=66;
+	public static final int Name=67;
+	public static final int Nil=68;
+	public static final int Not=69;
+	public static final int Number=70;
+	public static final int OBrace=71;
+	public static final int OBrack=72;
+	public static final int OPar=73;
+	public static final int Or=74;
+	public static final int PARAM_LIST=75;
+	public static final int Pow=76;
+	public static final int Repeat=77;
+	public static final int Return=78;
+	public static final int SCol=79;
+	public static final int Space=80;
+	public static final int String=81;
+	public static final int TABLE=82;
+	public static final int Then=83;
+	public static final int True=84;
+	public static final int UNARY_MINUS=85;
+	public static final int Until=86;
+	public static final int VAR=87;
+	public static final int VAR_LIST=88;
+	public static final int While=89;
 
 
 	  private boolean ahead(CharSequence chars) {
@@ -1174,8 +1175,8 @@ public class LuaLexer extends Lexer {
 		try {
 			int _type = Name;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// grammars/Lua.g:406:2: ( ( Letter | '_' ) ( Letter | '_' | Digit )* )
-			// grammars/Lua.g:406:4: ( Letter | '_' ) ( Letter | '_' | Digit )*
+			// grammars/Lua.g:408:2: ( ( Letter | '_' ) ( Letter | '_' | Digit )* )
+			// grammars/Lua.g:408:4: ( Letter | '_' ) ( Letter | '_' | Digit )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -1185,7 +1186,7 @@ public class LuaLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// grammars/Lua.g:406:19: ( Letter | '_' | Digit )*
+			// grammars/Lua.g:408:19: ( Letter | '_' | Digit )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -1234,7 +1235,7 @@ public class LuaLexer extends Lexer {
 			CommonToken b=null;
 			CommonToken c=null;
 
-			// grammars/Lua.g:410:2: ( ( ( Digit )+ ( '.' ( Digit )* )? ( Exponent )? | '.' ( Digit )+ ( Exponent )? ) | '0' ( 'x' | 'X' ) a= HexDigits ( '.' (b= HexDigits )? )? (c= BinaryExponent )? )
+			// grammars/Lua.g:412:2: ( ( ( Digit )+ ( '.' ( Digit )* )? ( Exponent )? | '.' ( Digit )+ ( Exponent )? ) | '0' ( 'x' | 'X' ) a= HexDigits ( '.' (b= HexDigits )? )? (c= BinaryExponent )? )
 			int alt12=2;
 			int LA12_0 = input.LA(1);
 			if ( (LA12_0=='0') ) {
@@ -1260,9 +1261,9 @@ public class LuaLexer extends Lexer {
 
 			switch (alt12) {
 				case 1 :
-					// grammars/Lua.g:410:4: ( ( Digit )+ ( '.' ( Digit )* )? ( Exponent )? | '.' ( Digit )+ ( Exponent )? )
+					// grammars/Lua.g:412:4: ( ( Digit )+ ( '.' ( Digit )* )? ( Exponent )? | '.' ( Digit )+ ( Exponent )? )
 					{
-					// grammars/Lua.g:410:4: ( ( Digit )+ ( '.' ( Digit )* )? ( Exponent )? | '.' ( Digit )+ ( Exponent )? )
+					// grammars/Lua.g:412:4: ( ( Digit )+ ( '.' ( Digit )* )? ( Exponent )? | '.' ( Digit )+ ( Exponent )? )
 					int alt8=2;
 					int LA8_0 = input.LA(1);
 					if ( ((LA8_0 >= '0' && LA8_0 <= '9')) ) {
@@ -1280,9 +1281,9 @@ public class LuaLexer extends Lexer {
 
 					switch (alt8) {
 						case 1 :
-							// grammars/Lua.g:410:5: ( Digit )+ ( '.' ( Digit )* )? ( Exponent )?
+							// grammars/Lua.g:412:5: ( Digit )+ ( '.' ( Digit )* )? ( Exponent )?
 							{
-							// grammars/Lua.g:410:5: ( Digit )+
+							// grammars/Lua.g:412:5: ( Digit )+
 							int cnt2=0;
 							loop2:
 							while (true) {
@@ -1315,7 +1316,7 @@ public class LuaLexer extends Lexer {
 								cnt2++;
 							}
 
-							// grammars/Lua.g:410:12: ( '.' ( Digit )* )?
+							// grammars/Lua.g:412:12: ( '.' ( Digit )* )?
 							int alt4=2;
 							int LA4_0 = input.LA(1);
 							if ( (LA4_0=='.') ) {
@@ -1323,10 +1324,10 @@ public class LuaLexer extends Lexer {
 							}
 							switch (alt4) {
 								case 1 :
-									// grammars/Lua.g:410:13: '.' ( Digit )*
+									// grammars/Lua.g:412:13: '.' ( Digit )*
 									{
 									match('.'); 
-									// grammars/Lua.g:410:17: ( Digit )*
+									// grammars/Lua.g:412:17: ( Digit )*
 									loop3:
 									while (true) {
 										int alt3=2;
@@ -1360,7 +1361,7 @@ public class LuaLexer extends Lexer {
 
 							}
 
-							// grammars/Lua.g:410:26: ( Exponent )?
+							// grammars/Lua.g:412:26: ( Exponent )?
 							int alt5=2;
 							int LA5_0 = input.LA(1);
 							if ( (LA5_0=='E'||LA5_0=='e') ) {
@@ -1368,7 +1369,7 @@ public class LuaLexer extends Lexer {
 							}
 							switch (alt5) {
 								case 1 :
-									// grammars/Lua.g:410:26: Exponent
+									// grammars/Lua.g:412:26: Exponent
 									{
 									mExponent(); 
 
@@ -1380,10 +1381,10 @@ public class LuaLexer extends Lexer {
 							}
 							break;
 						case 2 :
-							// grammars/Lua.g:410:38: '.' ( Digit )+ ( Exponent )?
+							// grammars/Lua.g:412:38: '.' ( Digit )+ ( Exponent )?
 							{
 							match('.'); 
-							// grammars/Lua.g:410:42: ( Digit )+
+							// grammars/Lua.g:412:42: ( Digit )+
 							int cnt6=0;
 							loop6:
 							while (true) {
@@ -1416,7 +1417,7 @@ public class LuaLexer extends Lexer {
 								cnt6++;
 							}
 
-							// grammars/Lua.g:410:49: ( Exponent )?
+							// grammars/Lua.g:412:49: ( Exponent )?
 							int alt7=2;
 							int LA7_0 = input.LA(1);
 							if ( (LA7_0=='E'||LA7_0=='e') ) {
@@ -1424,7 +1425,7 @@ public class LuaLexer extends Lexer {
 							}
 							switch (alt7) {
 								case 1 :
-									// grammars/Lua.g:410:49: Exponent
+									// grammars/Lua.g:412:49: Exponent
 									{
 									mExponent(); 
 
@@ -1442,7 +1443,7 @@ public class LuaLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// grammars/Lua.g:411:4: '0' ( 'x' | 'X' ) a= HexDigits ( '.' (b= HexDigits )? )? (c= BinaryExponent )?
+					// grammars/Lua.g:413:4: '0' ( 'x' | 'X' ) a= HexDigits ( '.' (b= HexDigits )? )? (c= BinaryExponent )?
 					{
 					match('0'); 
 					if ( input.LA(1)=='X'||input.LA(1)=='x' ) {
@@ -1461,7 +1462,7 @@ public class LuaLexer extends Lexer {
 					a.setLine(aStartLine492);
 					a.setCharPositionInLine(aStartCharPos492);
 
-					// grammars/Lua.g:411:32: ( '.' (b= HexDigits )? )?
+					// grammars/Lua.g:413:32: ( '.' (b= HexDigits )? )?
 					int alt10=2;
 					int LA10_0 = input.LA(1);
 					if ( (LA10_0=='.') ) {
@@ -1469,10 +1470,10 @@ public class LuaLexer extends Lexer {
 					}
 					switch (alt10) {
 						case 1 :
-							// grammars/Lua.g:411:33: '.' (b= HexDigits )?
+							// grammars/Lua.g:413:33: '.' (b= HexDigits )?
 							{
 							match('.'); 
-							// grammars/Lua.g:411:38: (b= HexDigits )?
+							// grammars/Lua.g:413:38: (b= HexDigits )?
 							int alt9=2;
 							int LA9_0 = input.LA(1);
 							if ( ((LA9_0 >= '0' && LA9_0 <= '9')||(LA9_0 >= 'A' && LA9_0 <= 'F')||(LA9_0 >= 'a' && LA9_0 <= 'f')) ) {
@@ -1480,7 +1481,7 @@ public class LuaLexer extends Lexer {
 							}
 							switch (alt9) {
 								case 1 :
-									// grammars/Lua.g:411:38: b= HexDigits
+									// grammars/Lua.g:413:38: b= HexDigits
 									{
 									int bStart499 = getCharIndex();
 									int bStartLine499 = getLine();
@@ -1500,7 +1501,7 @@ public class LuaLexer extends Lexer {
 
 					}
 
-					// grammars/Lua.g:411:53: (c= BinaryExponent )?
+					// grammars/Lua.g:413:53: (c= BinaryExponent )?
 					int alt11=2;
 					int LA11_0 = input.LA(1);
 					if ( (LA11_0=='P'||LA11_0=='p') ) {
@@ -1508,7 +1509,7 @@ public class LuaLexer extends Lexer {
 					}
 					switch (alt11) {
 						case 1 :
-							// grammars/Lua.g:411:53: c= BinaryExponent
+							// grammars/Lua.g:413:53: c= BinaryExponent
 							{
 							int cStart506 = getCharIndex();
 							int cStartLine506 = getLine();
@@ -1558,7 +1559,7 @@ public class LuaLexer extends Lexer {
 		try {
 			int _type = String;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// grammars/Lua.g:432:2: ( '\"' ( EscapeSequence |~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' | '\\'' ( EscapeSequence |~ ( '\\\\' | '\\'' | '\\r' | '\\n' ) )* '\\'' | LongBracket )
+			// grammars/Lua.g:434:2: ( '\"' ( EscapeSequence |~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' | '\\'' ( EscapeSequence |~ ( '\\\\' | '\\'' | '\\r' | '\\n' ) )* '\\'' | LongBracket )
 			int alt15=3;
 			switch ( input.LA(1) ) {
 			case '\"':
@@ -1583,10 +1584,10 @@ public class LuaLexer extends Lexer {
 			}
 			switch (alt15) {
 				case 1 :
-					// grammars/Lua.g:432:4: '\"' ( EscapeSequence |~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
+					// grammars/Lua.g:434:4: '\"' ( EscapeSequence |~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
 					{
 					match('\"'); 
-					// grammars/Lua.g:432:9: ( EscapeSequence |~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
+					// grammars/Lua.g:434:9: ( EscapeSequence |~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
 					loop13:
 					while (true) {
 						int alt13=3;
@@ -1600,14 +1601,14 @@ public class LuaLexer extends Lexer {
 
 						switch (alt13) {
 						case 1 :
-							// grammars/Lua.g:432:10: EscapeSequence
+							// grammars/Lua.g:434:10: EscapeSequence
 							{
 							mEscapeSequence(); 
 
 							}
 							break;
 						case 2 :
-							// grammars/Lua.g:432:27: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
+							// grammars/Lua.g:434:27: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
 							{
 							if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 								input.consume();
@@ -1630,10 +1631,10 @@ public class LuaLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// grammars/Lua.g:433:4: '\\'' ( EscapeSequence |~ ( '\\\\' | '\\'' | '\\r' | '\\n' ) )* '\\''
+					// grammars/Lua.g:435:4: '\\'' ( EscapeSequence |~ ( '\\\\' | '\\'' | '\\r' | '\\n' ) )* '\\''
 					{
 					match('\''); 
-					// grammars/Lua.g:433:9: ( EscapeSequence |~ ( '\\\\' | '\\'' | '\\r' | '\\n' ) )*
+					// grammars/Lua.g:435:9: ( EscapeSequence |~ ( '\\\\' | '\\'' | '\\r' | '\\n' ) )*
 					loop14:
 					while (true) {
 						int alt14=3;
@@ -1647,14 +1648,14 @@ public class LuaLexer extends Lexer {
 
 						switch (alt14) {
 						case 1 :
-							// grammars/Lua.g:433:10: EscapeSequence
+							// grammars/Lua.g:435:10: EscapeSequence
 							{
 							mEscapeSequence(); 
 
 							}
 							break;
 						case 2 :
-							// grammars/Lua.g:433:27: ~ ( '\\\\' | '\\'' | '\\r' | '\\n' )
+							// grammars/Lua.g:435:27: ~ ( '\\\\' | '\\'' | '\\r' | '\\n' )
 							{
 							if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 								input.consume();
@@ -1677,7 +1678,7 @@ public class LuaLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// grammars/Lua.g:434:4: LongBracket
+					// grammars/Lua.g:436:4: LongBracket
 					{
 					mLongBracket(); 
 
@@ -1700,27 +1701,27 @@ public class LuaLexer extends Lexer {
 		try {
 			int _type = Comment;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// grammars/Lua.g:439:2: ( '--' ( LongBracket | '[' ( '=' )* ~ ( '=' | '[' ) (~ ( '\\r' | '\\n' ) )* | (~ '[' (~ ( '\\r' | '\\n' ) )* )? ) )
-			// grammars/Lua.g:439:4: '--' ( LongBracket | '[' ( '=' )* ~ ( '=' | '[' ) (~ ( '\\r' | '\\n' ) )* | (~ '[' (~ ( '\\r' | '\\n' ) )* )? )
+			// grammars/Lua.g:441:2: ( '--' ( LongBracket | '[' ( '=' )* ~ ( '=' | '[' ) (~ ( '\\r' | '\\n' ) )* | (~ '[' (~ ( '\\r' | '\\n' ) )* )? ) )
+			// grammars/Lua.g:441:4: '--' ( LongBracket | '[' ( '=' )* ~ ( '=' | '[' ) (~ ( '\\r' | '\\n' ) )* | (~ '[' (~ ( '\\r' | '\\n' ) )* )? )
 			{
 			match("--"); 
 
-			// grammars/Lua.g:439:9: ( LongBracket | '[' ( '=' )* ~ ( '=' | '[' ) (~ ( '\\r' | '\\n' ) )* | (~ '[' (~ ( '\\r' | '\\n' ) )* )? )
+			// grammars/Lua.g:441:9: ( LongBracket | '[' ( '=' )* ~ ( '=' | '[' ) (~ ( '\\r' | '\\n' ) )* | (~ '[' (~ ( '\\r' | '\\n' ) )* )? )
 			int alt20=3;
 			alt20 = dfa20.predict(input);
 			switch (alt20) {
 				case 1 :
-					// grammars/Lua.g:439:11: LongBracket
+					// grammars/Lua.g:441:11: LongBracket
 					{
 					mLongBracket(); 
 
 					}
 					break;
 				case 2 :
-					// grammars/Lua.g:440:11: '[' ( '=' )* ~ ( '=' | '[' ) (~ ( '\\r' | '\\n' ) )*
+					// grammars/Lua.g:442:11: '[' ( '=' )* ~ ( '=' | '[' ) (~ ( '\\r' | '\\n' ) )*
 					{
 					match('['); 
-					// grammars/Lua.g:440:15: ( '=' )*
+					// grammars/Lua.g:442:15: ( '=' )*
 					loop16:
 					while (true) {
 						int alt16=2;
@@ -1731,7 +1732,7 @@ public class LuaLexer extends Lexer {
 
 						switch (alt16) {
 						case 1 :
-							// grammars/Lua.g:440:15: '='
+							// grammars/Lua.g:442:15: '='
 							{
 							match('='); 
 							}
@@ -1750,7 +1751,7 @@ public class LuaLexer extends Lexer {
 						recover(mse);
 						throw mse;
 					}
-					// grammars/Lua.g:440:33: (~ ( '\\r' | '\\n' ) )*
+					// grammars/Lua.g:442:33: (~ ( '\\r' | '\\n' ) )*
 					loop17:
 					while (true) {
 						int alt17=2;
@@ -1782,9 +1783,9 @@ public class LuaLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// grammars/Lua.g:441:11: (~ '[' (~ ( '\\r' | '\\n' ) )* )?
+					// grammars/Lua.g:443:11: (~ '[' (~ ( '\\r' | '\\n' ) )* )?
 					{
-					// grammars/Lua.g:441:11: (~ '[' (~ ( '\\r' | '\\n' ) )* )?
+					// grammars/Lua.g:443:11: (~ '[' (~ ( '\\r' | '\\n' ) )* )?
 					int alt19=2;
 					int LA19_0 = input.LA(1);
 					if ( ((LA19_0 >= '\u0000' && LA19_0 <= 'Z')||(LA19_0 >= '\\' && LA19_0 <= '\uFFFF')) ) {
@@ -1792,7 +1793,7 @@ public class LuaLexer extends Lexer {
 					}
 					switch (alt19) {
 						case 1 :
-							// grammars/Lua.g:441:12: ~ '[' (~ ( '\\r' | '\\n' ) )*
+							// grammars/Lua.g:443:12: ~ '[' (~ ( '\\r' | '\\n' ) )*
 							{
 							if ( (input.LA(1) >= '\u0000' && input.LA(1) <= 'Z')||(input.LA(1) >= '\\' && input.LA(1) <= '\uFFFF') ) {
 								input.consume();
@@ -1802,7 +1803,7 @@ public class LuaLexer extends Lexer {
 								recover(mse);
 								throw mse;
 							}
-							// grammars/Lua.g:441:17: (~ ( '\\r' | '\\n' ) )*
+							// grammars/Lua.g:443:17: (~ ( '\\r' | '\\n' ) )*
 							loop18:
 							while (true) {
 								int alt18=2;
@@ -1858,10 +1859,10 @@ public class LuaLexer extends Lexer {
 		try {
 			int _type = Space;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// grammars/Lua.g:447:2: ( ( ' ' | '\\t' | '\\r' | '\\n' | '\\u000C' )+ )
-			// grammars/Lua.g:447:4: ( ' ' | '\\t' | '\\r' | '\\n' | '\\u000C' )+
+			// grammars/Lua.g:449:2: ( ( ' ' | '\\t' | '\\r' | '\\n' | '\\u000C' )+ )
+			// grammars/Lua.g:449:4: ( ' ' | '\\t' | '\\r' | '\\n' | '\\u000C' )+
 			{
-			// grammars/Lua.g:447:4: ( ' ' | '\\t' | '\\r' | '\\n' | '\\u000C' )+
+			// grammars/Lua.g:449:4: ( ' ' | '\\t' | '\\r' | '\\n' | '\\u000C' )+
 			int cnt21=0;
 			loop21:
 			while (true) {
@@ -1909,7 +1910,7 @@ public class LuaLexer extends Lexer {
 	// $ANTLR start "Letter"
 	public final void mLetter() throws RecognitionException {
 		try {
-			// grammars/Lua.g:452:2: ( 'a' .. 'z' | 'A' .. 'Z' )
+			// grammars/Lua.g:454:2: ( 'a' .. 'z' | 'A' .. 'Z' )
 			// grammars/Lua.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -1932,7 +1933,7 @@ public class LuaLexer extends Lexer {
 	// $ANTLR start "Digit"
 	public final void mDigit() throws RecognitionException {
 		try {
-			// grammars/Lua.g:457:2: ( '0' .. '9' )
+			// grammars/Lua.g:459:2: ( '0' .. '9' )
 			// grammars/Lua.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -1955,7 +1956,7 @@ public class LuaLexer extends Lexer {
 	// $ANTLR start "HexDigit"
 	public final void mHexDigit() throws RecognitionException {
 		try {
-			// grammars/Lua.g:461:2: ( Digit | 'a' .. 'f' | 'A' .. 'F' )
+			// grammars/Lua.g:463:2: ( Digit | 'a' .. 'f' | 'A' .. 'F' )
 			// grammars/Lua.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -1978,10 +1979,10 @@ public class LuaLexer extends Lexer {
 	// $ANTLR start "HexDigits"
 	public final void mHexDigits() throws RecognitionException {
 		try {
-			// grammars/Lua.g:467:2: ( ( HexDigit )+ )
-			// grammars/Lua.g:467:4: ( HexDigit )+
+			// grammars/Lua.g:469:2: ( ( HexDigit )+ )
+			// grammars/Lua.g:469:4: ( HexDigit )+
 			{
-			// grammars/Lua.g:467:4: ( HexDigit )+
+			// grammars/Lua.g:469:4: ( HexDigit )+
 			int cnt22=0;
 			loop22:
 			while (true) {
@@ -2026,8 +2027,8 @@ public class LuaLexer extends Lexer {
 	// $ANTLR start "Exponent"
 	public final void mExponent() throws RecognitionException {
 		try {
-			// grammars/Lua.g:471:2: ( ( 'e' | 'E' ) ( '-' | '+' )? ( Digit )+ )
-			// grammars/Lua.g:471:4: ( 'e' | 'E' ) ( '-' | '+' )? ( Digit )+
+			// grammars/Lua.g:473:2: ( ( 'e' | 'E' ) ( '-' | '+' )? ( Digit )+ )
+			// grammars/Lua.g:473:4: ( 'e' | 'E' ) ( '-' | '+' )? ( Digit )+
 			{
 			if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
 				input.consume();
@@ -2037,7 +2038,7 @@ public class LuaLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// grammars/Lua.g:471:16: ( '-' | '+' )?
+			// grammars/Lua.g:473:16: ( '-' | '+' )?
 			int alt23=2;
 			int LA23_0 = input.LA(1);
 			if ( (LA23_0=='+'||LA23_0=='-') ) {
@@ -2060,7 +2061,7 @@ public class LuaLexer extends Lexer {
 
 			}
 
-			// grammars/Lua.g:471:29: ( Digit )+
+			// grammars/Lua.g:473:29: ( Digit )+
 			int cnt24=0;
 			loop24:
 			while (true) {
@@ -2105,8 +2106,8 @@ public class LuaLexer extends Lexer {
 	// $ANTLR start "BinaryExponent"
 	public final void mBinaryExponent() throws RecognitionException {
 		try {
-			// grammars/Lua.g:475:2: ( ( 'p' | 'P' ) ( '-' | '+' )? ( Digit )+ )
-			// grammars/Lua.g:475:4: ( 'p' | 'P' ) ( '-' | '+' )? ( Digit )+
+			// grammars/Lua.g:477:2: ( ( 'p' | 'P' ) ( '-' | '+' )? ( Digit )+ )
+			// grammars/Lua.g:477:4: ( 'p' | 'P' ) ( '-' | '+' )? ( Digit )+
 			{
 			if ( input.LA(1)=='P'||input.LA(1)=='p' ) {
 				input.consume();
@@ -2116,7 +2117,7 @@ public class LuaLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// grammars/Lua.g:475:16: ( '-' | '+' )?
+			// grammars/Lua.g:477:16: ( '-' | '+' )?
 			int alt25=2;
 			int LA25_0 = input.LA(1);
 			if ( (LA25_0=='+'||LA25_0=='-') ) {
@@ -2139,7 +2140,7 @@ public class LuaLexer extends Lexer {
 
 			}
 
-			// grammars/Lua.g:475:29: ( Digit )+
+			// grammars/Lua.g:477:29: ( Digit )+
 			int cnt26=0;
 			loop26:
 			while (true) {
@@ -2184,11 +2185,11 @@ public class LuaLexer extends Lexer {
 	// $ANTLR start "EscapeSequence"
 	public final void mEscapeSequence() throws RecognitionException {
 		try {
-			// grammars/Lua.g:479:2: ( '\\\\' ( ( 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' | '\\\\' | '\"' | '\\'' | 'z' | LineBreak ) | Digit ( Digit ( Digit )? )? | 'x' HexDigit HexDigit ) )
-			// grammars/Lua.g:479:4: '\\\\' ( ( 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' | '\\\\' | '\"' | '\\'' | 'z' | LineBreak ) | Digit ( Digit ( Digit )? )? | 'x' HexDigit HexDigit )
+			// grammars/Lua.g:481:2: ( '\\\\' ( ( 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' | '\\\\' | '\"' | '\\'' | 'z' | LineBreak ) | Digit ( Digit ( Digit )? )? | 'x' HexDigit HexDigit ) )
+			// grammars/Lua.g:481:4: '\\\\' ( ( 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' | '\\\\' | '\"' | '\\'' | 'z' | LineBreak ) | Digit ( Digit ( Digit )? )? | 'x' HexDigit HexDigit )
 			{
 			match('\\'); 
-			// grammars/Lua.g:479:9: ( ( 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' | '\\\\' | '\"' | '\\'' | 'z' | LineBreak ) | Digit ( Digit ( Digit )? )? | 'x' HexDigit HexDigit )
+			// grammars/Lua.g:481:9: ( ( 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' | '\\\\' | '\"' | '\\'' | 'z' | LineBreak ) | Digit ( Digit ( Digit )? )? | 'x' HexDigit HexDigit )
 			int alt30=3;
 			switch ( input.LA(1) ) {
 			case '\n':
@@ -2234,9 +2235,9 @@ public class LuaLexer extends Lexer {
 			}
 			switch (alt30) {
 				case 1 :
-					// grammars/Lua.g:479:11: ( 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' | '\\\\' | '\"' | '\\'' | 'z' | LineBreak )
+					// grammars/Lua.g:481:11: ( 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' | '\\\\' | '\"' | '\\'' | 'z' | LineBreak )
 					{
-					// grammars/Lua.g:479:11: ( 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' | '\\\\' | '\"' | '\\'' | 'z' | LineBreak )
+					// grammars/Lua.g:481:11: ( 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' | '\\\\' | '\"' | '\\'' | 'z' | LineBreak )
 					int alt27=12;
 					switch ( input.LA(1) ) {
 					case 'a':
@@ -2307,73 +2308,73 @@ public class LuaLexer extends Lexer {
 					}
 					switch (alt27) {
 						case 1 :
-							// grammars/Lua.g:479:12: 'a'
+							// grammars/Lua.g:481:12: 'a'
 							{
 							match('a'); 
 							}
 							break;
 						case 2 :
-							// grammars/Lua.g:479:18: 'b'
+							// grammars/Lua.g:481:18: 'b'
 							{
 							match('b'); 
 							}
 							break;
 						case 3 :
-							// grammars/Lua.g:479:24: 'f'
+							// grammars/Lua.g:481:24: 'f'
 							{
 							match('f'); 
 							}
 							break;
 						case 4 :
-							// grammars/Lua.g:479:30: 'n'
+							// grammars/Lua.g:481:30: 'n'
 							{
 							match('n'); 
 							}
 							break;
 						case 5 :
-							// grammars/Lua.g:479:36: 'r'
+							// grammars/Lua.g:481:36: 'r'
 							{
 							match('r'); 
 							}
 							break;
 						case 6 :
-							// grammars/Lua.g:479:42: 't'
+							// grammars/Lua.g:481:42: 't'
 							{
 							match('t'); 
 							}
 							break;
 						case 7 :
-							// grammars/Lua.g:479:48: 'v'
+							// grammars/Lua.g:481:48: 'v'
 							{
 							match('v'); 
 							}
 							break;
 						case 8 :
-							// grammars/Lua.g:479:54: '\\\\'
+							// grammars/Lua.g:481:54: '\\\\'
 							{
 							match('\\'); 
 							}
 							break;
 						case 9 :
-							// grammars/Lua.g:479:61: '\"'
+							// grammars/Lua.g:481:61: '\"'
 							{
 							match('\"'); 
 							}
 							break;
 						case 10 :
-							// grammars/Lua.g:479:67: '\\''
+							// grammars/Lua.g:481:67: '\\''
 							{
 							match('\''); 
 							}
 							break;
 						case 11 :
-							// grammars/Lua.g:479:74: 'z'
+							// grammars/Lua.g:481:74: 'z'
 							{
 							match('z'); 
 							}
 							break;
 						case 12 :
-							// grammars/Lua.g:479:80: LineBreak
+							// grammars/Lua.g:481:80: LineBreak
 							{
 							mLineBreak(); 
 
@@ -2385,11 +2386,11 @@ public class LuaLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// grammars/Lua.g:480:11: Digit ( Digit ( Digit )? )?
+					// grammars/Lua.g:482:11: Digit ( Digit ( Digit )? )?
 					{
 					mDigit(); 
 
-					// grammars/Lua.g:480:17: ( Digit ( Digit )? )?
+					// grammars/Lua.g:482:17: ( Digit ( Digit )? )?
 					int alt29=2;
 					int LA29_0 = input.LA(1);
 					if ( ((LA29_0 >= '0' && LA29_0 <= '9')) ) {
@@ -2397,11 +2398,11 @@ public class LuaLexer extends Lexer {
 					}
 					switch (alt29) {
 						case 1 :
-							// grammars/Lua.g:480:18: Digit ( Digit )?
+							// grammars/Lua.g:482:18: Digit ( Digit )?
 							{
 							mDigit(); 
 
-							// grammars/Lua.g:480:24: ( Digit )?
+							// grammars/Lua.g:482:24: ( Digit )?
 							int alt28=2;
 							int LA28_0 = input.LA(1);
 							if ( ((LA28_0 >= '0' && LA28_0 <= '9')) ) {
@@ -2432,7 +2433,7 @@ public class LuaLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// grammars/Lua.g:481:11: 'x' HexDigit HexDigit
+					// grammars/Lua.g:483:11: 'x' HexDigit HexDigit
 					{
 					match('x'); 
 					mHexDigit(); 
@@ -2456,7 +2457,7 @@ public class LuaLexer extends Lexer {
 	// $ANTLR start "LineBreak"
 	public final void mLineBreak() throws RecognitionException {
 		try {
-			// grammars/Lua.g:486:2: ( ( '\\r' )? '\\n' | '\\r' )
+			// grammars/Lua.g:488:2: ( ( '\\r' )? '\\n' | '\\r' )
 			int alt32=2;
 			int LA32_0 = input.LA(1);
 			if ( (LA32_0=='\r') ) {
@@ -2482,9 +2483,9 @@ public class LuaLexer extends Lexer {
 
 			switch (alt32) {
 				case 1 :
-					// grammars/Lua.g:486:4: ( '\\r' )? '\\n'
+					// grammars/Lua.g:488:4: ( '\\r' )? '\\n'
 					{
-					// grammars/Lua.g:486:4: ( '\\r' )?
+					// grammars/Lua.g:488:4: ( '\\r' )?
 					int alt31=2;
 					int LA31_0 = input.LA(1);
 					if ( (LA31_0=='\r') ) {
@@ -2492,7 +2493,7 @@ public class LuaLexer extends Lexer {
 					}
 					switch (alt31) {
 						case 1 :
-							// grammars/Lua.g:486:4: '\\r'
+							// grammars/Lua.g:488:4: '\\r'
 							{
 							match('\r'); 
 							}
@@ -2504,7 +2505,7 @@ public class LuaLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// grammars/Lua.g:487:4: '\\r'
+					// grammars/Lua.g:489:4: '\\r'
 					{
 					match('\r'); 
 					}
@@ -2522,11 +2523,11 @@ public class LuaLexer extends Lexer {
 	public final void mLongBracket() throws RecognitionException {
 		try {
 			StringBuilder b = new StringBuilder("]");
-			// grammars/Lua.g:492:2: ( '[' ( '=' )* '[' ({...}? => (~ '\\\\' | EscapeSequence ) )* )
-			// grammars/Lua.g:494:4: '[' ( '=' )* '[' ({...}? => (~ '\\\\' | EscapeSequence ) )*
+			// grammars/Lua.g:494:2: ( '[' ( '=' )* '[' ({...}? => (~ '\\\\' | EscapeSequence ) )* )
+			// grammars/Lua.g:496:4: '[' ( '=' )* '[' ({...}? => (~ '\\\\' | EscapeSequence ) )*
 			{
 			match('['); 
-			// grammars/Lua.g:494:8: ( '=' )*
+			// grammars/Lua.g:496:8: ( '=' )*
 			loop33:
 			while (true) {
 				int alt33=2;
@@ -2537,7 +2538,7 @@ public class LuaLexer extends Lexer {
 
 				switch (alt33) {
 				case 1 :
-					// grammars/Lua.g:494:9: '='
+					// grammars/Lua.g:496:9: '='
 					{
 					match('='); 
 					b.append("=");
@@ -2551,7 +2552,7 @@ public class LuaLexer extends Lexer {
 
 			match('['); 
 			b.append("]");
-			// grammars/Lua.g:497:4: ({...}? => (~ '\\\\' | EscapeSequence ) )*
+			// grammars/Lua.g:499:4: ({...}? => (~ '\\\\' | EscapeSequence ) )*
 			loop35:
 			while (true) {
 				int alt35=2;
@@ -2562,12 +2563,12 @@ public class LuaLexer extends Lexer {
 
 				switch (alt35) {
 				case 1 :
-					// grammars/Lua.g:497:5: {...}? => (~ '\\\\' | EscapeSequence )
+					// grammars/Lua.g:499:5: {...}? => (~ '\\\\' | EscapeSequence )
 					{
 					if ( !((!ahead(b))) ) {
 						throw new FailedPredicateException(input, "LongBracket", "!ahead(b)");
 					}
-					// grammars/Lua.g:497:20: (~ '\\\\' | EscapeSequence )
+					// grammars/Lua.g:499:20: (~ '\\\\' | EscapeSequence )
 					int alt34=2;
 					int LA34_0 = input.LA(1);
 					if ( ((LA34_0 >= '\u0000' && LA34_0 <= '[')||(LA34_0 >= ']' && LA34_0 <= '\uFFFF')) ) {
@@ -2585,7 +2586,7 @@ public class LuaLexer extends Lexer {
 
 					switch (alt34) {
 						case 1 :
-							// grammars/Lua.g:497:21: ~ '\\\\'
+							// grammars/Lua.g:499:21: ~ '\\\\'
 							{
 							if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 								input.consume();
@@ -2598,7 +2599,7 @@ public class LuaLexer extends Lexer {
 							}
 							break;
 						case 2 :
-							// grammars/Lua.g:497:29: EscapeSequence
+							// grammars/Lua.g:499:29: EscapeSequence
 							{
 							mEscapeSequence(); 
 
@@ -2637,8 +2638,8 @@ public class LuaLexer extends Lexer {
 		try {
 			int _type = Any;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// grammars/Lua.g:513:2: ( . )
-			// grammars/Lua.g:513:4: .
+			// grammars/Lua.g:515:2: ( . )
+			// grammars/Lua.g:515:4: .
 			{
 			matchAny(); 
 			}
@@ -3103,7 +3104,7 @@ public class LuaLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "439:9: ( LongBracket | '[' ( '=' )* ~ ( '=' | '[' ) (~ ( '\\r' | '\\n' ) )* | (~ '[' (~ ( '\\r' | '\\n' ) )* )? )";
+			return "441:9: ( LongBracket | '[' ( '=' )* ~ ( '=' | '[' ) (~ ( '\\r' | '\\n' ) )* | (~ '[' (~ ( '\\r' | '\\n' ) )* )? )";
 		}
 		@Override
 		public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
