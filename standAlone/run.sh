@@ -16,11 +16,11 @@ mv grammars/*.java src/parser/
 mv *.tokens src/parser/
 
 #compiling the source code
-javac -cp "lib/antlr-3.5.2-complete-no-st3.jar" -sourcepath "./src/*/*" src/*/*.java
+javac -cp "lib/antlr-3.5.2-complete-no-st3.jar:lib/commons-cli-1.2.jar" -sourcepath "./src/*/*" src/*/*.java
 
 #running the mainClass of the source code
 
-java -cp "./src/:lib/antlr-3.5.2-complete-no-st3.jar" main.MainClass $1 $2 $3
+java -cp "./src/:lib/antlr-3.5.2-complete-no-st3.jar:lib/commons-cli-1.2.jar" main.MainClass $1 $2 $3 $4
 
 
 #clearing the directories of .class files

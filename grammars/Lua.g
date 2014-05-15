@@ -56,6 +56,7 @@ tokens {
   DotDotDot = '...';
   DotDot    = '..';
   Dot       = '.';
+  Require   = 'require';
 
   // imaginary tokens
   ASSIGNMENT;
@@ -80,6 +81,7 @@ tokens {
   ASSIGNMENT_VAR;
   VAR;
   LOCAL_DEC;
+  REQUIRE;
 
 }
 
@@ -207,6 +209,7 @@ stat
  | while_stat
  | repeat_stat
  | local
+ | require_stat
  | goto_stat
  | if_stat
  | for_stat
@@ -238,6 +241,10 @@ local
          | Function Name func_body -> ^(LOCAL_ASSIGNMENT ^(NAME_LIST Name) ^(EXPR_LIST func_body))
          | name_list -> ^(LOCAL_DEC ^(NAME_LIST name_list))
          )
+ ;
+
+ require_stat
+ : Require expr_list -> ^(REQUIRE ^(EXPR_LIST expr_list))
  ;
 
 goto_stat

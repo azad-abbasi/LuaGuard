@@ -6,6 +6,21 @@
 package unparser;
 import java.util.ArrayList;
 
+
+
+//-------------------------------------------------------------
+//  Class Name : Node
+//  Purpose    : This Class is the Node in a root, that contains it's
+//              Name, it's children (they are Nodes as well) and a parent
+//              that is a Node itself.
+//
+//  Mehtods: void addChild(Node n)
+//           int getChildCount()
+//           Node getParent()
+//           void setName(String)
+//           Node getChild()
+//           String getName()
+//-------------------------------------------------------------
 public class Node {
     //there are attributes for each Node, they have names, and they
     //contain it's children which are Nodes themselves

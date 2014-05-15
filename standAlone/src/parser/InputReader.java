@@ -4,9 +4,21 @@
 package parser;
 import java.io.*;
 
+
+//-------------------------------------------------------------
+//  Class Name : InputReader
+//  Purpose    : This Class is responsible to read and write to files.
+//              as it's constructor argument and creates a structured proper
+//              AST root and it will be available using the getAST method
+//-------------------------------------------------------------
 public class InputReader {
     private String output;
 
+//-------------------------------------------------------------
+//  Method Name : Constructor
+//  Purpose    : This constructor takes the path to the target file
+//              and reads that file into a global variable output
+//-------------------------------------------------------------
     public InputReader(String path){
 
         try{
@@ -34,6 +46,11 @@ public class InputReader {
 
 
     }
+//-------------------------------------------------------------
+//  Static Method Name: printToFile
+//  arguments: the path to the desired output & the String you wish to print to the file
+//  Purpose    : Print any desired string to the output
+//-------------------------------------------------------------
     public static void printToFile(String path, String finalStr) {
 
         //creating a writer
@@ -50,6 +67,12 @@ public class InputReader {
         }
 
     }
+//-------------------------------------------------------------
+//  Static Method Name : PrintToSeparateFile
+//  arguments: path to the desired file, target String to print
+//  Purpose    : This method prints the target String to a file, if the file
+//              exists, it will generate a separate file and prints the String into that
+//-------------------------------------------------------------
     private static void printToSeparateFile(String path, String finalStr) {
 
         //creating a writer
@@ -73,7 +96,10 @@ public class InputReader {
         }
 
     }
-
+//-------------------------------------------------------------
+//  Method Name : getString
+//  Purpose    : returns the string read by the constructor
+//-------------------------------------------------------------
     public String getString(){
         return output;
     }

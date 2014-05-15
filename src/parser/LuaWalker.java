@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 grammars/LuaWalker.g 2014-05-14 11:23:20
+// $ANTLR 3.5.2 grammars/LuaWalker.g 2014-05-14 22:58:51
 
 package parser;
 
@@ -22,9 +22,9 @@ public class LuaWalker extends TreeParser {
 		"In", "LABEL", "LOCAL_ASSIGNMENT", "LOCAL_DEC", "LT", "LTEq", "Length", 
 		"Letter", "LineBreak", "Local", "LongBracket", "Minus", "Mod", "Mult", 
 		"NAME_LIST", "NEq", "Name", "Nil", "Not", "Number", "OBrace", "OBrack", 
-		"OPar", "Or", "PARAM_LIST", "Pow", "Repeat", "Return", "SCol", "Space", 
-		"String", "TABLE", "Then", "True", "UNARY_MINUS", "Until", "VAR", "VAR_LIST", 
-		"While"
+		"OPar", "Or", "PARAM_LIST", "Pow", "REQUIRE", "Repeat", "Require", "Return", 
+		"SCol", "Space", "String", "TABLE", "Then", "True", "UNARY_MINUS", "Until", 
+		"VAR", "VAR_LIST", "While"
 	};
 	public static final int EOF=-1;
 	public static final int ASSIGNMENT=4;
@@ -100,19 +100,21 @@ public class LuaWalker extends TreeParser {
 	public static final int Or=74;
 	public static final int PARAM_LIST=75;
 	public static final int Pow=76;
-	public static final int Repeat=77;
-	public static final int Return=78;
-	public static final int SCol=79;
-	public static final int Space=80;
-	public static final int String=81;
-	public static final int TABLE=82;
-	public static final int Then=83;
-	public static final int True=84;
-	public static final int UNARY_MINUS=85;
-	public static final int Until=86;
-	public static final int VAR=87;
-	public static final int VAR_LIST=88;
-	public static final int While=89;
+	public static final int REQUIRE=77;
+	public static final int Repeat=78;
+	public static final int Require=79;
+	public static final int Return=80;
+	public static final int SCol=81;
+	public static final int Space=82;
+	public static final int String=83;
+	public static final int TABLE=84;
+	public static final int Then=85;
+	public static final int True=86;
+	public static final int UNARY_MINUS=87;
+	public static final int Until=88;
+	public static final int VAR=89;
+	public static final int VAR_LIST=90;
+	public static final int While=91;
 
 	// delegates
 	public TreeParser[] getDelegates() {
@@ -1936,7 +1938,7 @@ public class LuaWalker extends TreeParser {
 
 	public static final BitSet FOLLOW_chunk_in_walk38 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_CHUNK_in_chunk50 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_stat_in_chunk52 = new BitSet(new long[]{0x0034444002000818L,0x0000000002806000L});
+	public static final BitSet FOLLOW_stat_in_chunk52 = new BitSet(new long[]{0x0034444002000818L,0x000000000A014000L});
 	public static final BitSet FOLLOW_ret_stat_in_chunk55 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_assignment_in_stat68 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_var_in_stat73 = new BitSet(new long[]{0x0000000000000002L});
@@ -1955,7 +1957,7 @@ public class LuaWalker extends TreeParser {
 	public static final BitSet FOLLOW_expr_in_while_stat148 = new BitSet(new long[]{0x0000000002000000L});
 	public static final BitSet FOLLOW_do_block_in_while_stat150 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_Repeat_in_repeat_stat163 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_chunk_in_repeat_stat165 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_chunk_in_repeat_stat165 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_repeat_stat167 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_ASSIGNMENT_in_assignment180 = new BitSet(new long[]{0x0000000000000004L});
 	public static final BitSet FOLLOW_VAR_LIST_in_assignment183 = new BitSet(new long[]{0x0000000000000004L});
@@ -1974,9 +1976,9 @@ public class LuaWalker extends TreeParser {
 	public static final BitSet FOLLOW_expr_in_if_stat264 = new BitSet(new long[]{0x0000000000008000L});
 	public static final BitSet FOLLOW_chunk_in_if_stat266 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_For_in_for_stat282 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_Name_in_for_stat284 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
-	public static final BitSet FOLLOW_expr_in_for_stat286 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
-	public static final BitSet FOLLOW_expr_in_for_stat288 = new BitSet(new long[]{0xC38032821B0000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_Name_in_for_stat284 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
+	public static final BitSet FOLLOW_expr_in_for_stat286 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
+	public static final BitSet FOLLOW_expr_in_for_stat288 = new BitSet(new long[]{0xC38032821B0000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_for_stat290 = new BitSet(new long[]{0x0000000002000000L});
 	public static final BitSet FOLLOW_do_block_in_for_stat293 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_FOR_IN_in_for_stat300 = new BitSet(new long[]{0x0000000000000004L});
@@ -1993,49 +1995,49 @@ public class LuaWalker extends TreeParser {
 	public static final BitSet FOLLOW_Return_in_ret_stat352 = new BitSet(new long[]{0x0000000000000004L});
 	public static final BitSet FOLLOW_expr_list_in_ret_stat354 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_Or_in_expr368 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr372 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr372 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr376 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_And_in_expr383 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr387 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr387 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr391 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_LT_in_expr398 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr402 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr402 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr406 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_GT_in_expr413 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr417 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr417 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr421 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_LTEq_in_expr428 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr432 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr432 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr436 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_GTEq_in_expr443 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr447 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr447 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr451 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_NEq_in_expr458 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr462 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr462 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr466 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_Eq_in_expr473 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr477 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr477 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr481 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_DotDot_in_expr488 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr492 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr492 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr496 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_Add_in_expr503 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr507 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr507 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr511 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_Minus_in_expr518 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr522 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr522 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr526 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_Mult_in_expr533 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr537 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr537 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr541 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_Div_in_expr548 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr552 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr552 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr556 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_Mod_in_expr563 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr567 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr567 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr571 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_Pow_in_expr578 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr582 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr582 = new BitSet(new long[]{0xC3803282190000E0L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_expr586 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_UNARY_MINUS_in_expr593 = new BitSet(new long[]{0x0000000000000004L});
 	public static final BitSet FOLLOW_expr_in_expr597 = new BitSet(new long[]{0x0000000000000008L});
@@ -2069,10 +2071,10 @@ public class LuaWalker extends TreeParser {
 	public static final BitSet FOLLOW_TABLE_in_table_constructor760 = new BitSet(new long[]{0x0000000000000004L});
 	public static final BitSet FOLLOW_field_in_table_constructor762 = new BitSet(new long[]{0x0000001000000008L});
 	public static final BitSet FOLLOW_FIELD_in_field776 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_field780 = new BitSet(new long[]{0xC3803282190000E8L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_field780 = new BitSet(new long[]{0xC3803282190000E8L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_expr_in_field784 = new BitSet(new long[]{0x0000000000000008L});
 	public static final BitSet FOLLOW_LABEL_in_label798 = new BitSet(new long[]{0x0000000000000004L});
 	public static final BitSet FOLLOW_Name_in_label800 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_expr_in_expr_list812 = new BitSet(new long[]{0xC3803282190000E2L,0x0000000000B6147DL});
+	public static final BitSet FOLLOW_expr_in_expr_list812 = new BitSet(new long[]{0xC3803282190000E2L,0x0000000002D8147DL});
 	public static final BitSet FOLLOW_Name_in_name_list824 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000008L});
 }

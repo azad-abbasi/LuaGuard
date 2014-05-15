@@ -66,8 +66,10 @@ public class Unparser {
             finalCode.append("function ");
 
 
-            for (int i=0;i<currentNode.getChildCount();i++)
+            for (int i=0;i<currentNode.getChildCount();i++){
                 unparse(currentNode.getChild(i));
+            }
+
             finalCode.append("\nend\n");
         }
         /**-----------------------------------LOCAL_ASSIGNMENT----------------------------------*/
@@ -94,19 +96,6 @@ public class Unparser {
                         finalCode.append(",");
                 }
         }
-        /**-----------------------------------FUNCTION----------------------------------*/
-        else if(currentNode.getName().equals("FUNCTION")){
-            if(currentNode.getParent().getParent().getName().equals("LOCAL_ASSIGNMENT")){
-                finalCode.append("function ");
-                for(int i=0 ; i<currentNode.getChildCount() ; i++)
-                    unparse(currentNode.getChild(i));
-                finalCode.append("\nend\n");
-            }
-            else{
-            for(int i=0 ; i<currentNode.getChildCount() ; i++)
-                unparse(currentNode.getChild(i));
-            }
-        }
         /**-----------------------------------PARAM_LIST----------------------------------*/
         else if(currentNode.getName().equals("PARAM_LIST")){
             finalCode.append("(");
@@ -115,7 +104,46 @@ public class Unparser {
                 if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
                     finalCode.append(",");
             }
-            finalCode.append(")");
+            finalCode.append(") ");
+//            finalCode.append("\n");
+        }
+        /**-----------------------------------FUNCTION----------------------------------*/
+        else if(currentNode.getName().equals("FUNCTION")){
+            if(currentNode.getParent().getName().equals("CALL")){
+                finalCode.append("function ");
+                for(int i=0 ; i<currentNode.getChildCount() ; i++)
+                    unparse(currentNode.getChild(i));
+                finalCode.append(" end ");
+            }
+            else if(currentNode.getParent().getName().equals("return")){
+                finalCode.append("function ");
+                for(int i=0 ; i<currentNode.getChildCount() ; i++)
+                    unparse(currentNode.getChild(i));
+                finalCode.append(" end ");
+            }
+            else if(currentNode.getParent().getParent().getName().equals("LOCAL_ASSIGNMENT")){
+                finalCode.append("function ");
+                for(int i=0 ; i<currentNode.getChildCount() ; i++)
+                    unparse(currentNode.getChild(i));
+                finalCode.append("\nend\n");
+            }
+            else{
+            for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                unparse(currentNode.getChild(i));
+                if(i==0)
+                    finalCode.append("\n");
+            }
+
+            }
+        }
+        /**-----------------------------------REQUIRE----------------------------------*/
+        else if(currentNode.getName().equals("REQUIRE")){
+            finalCode.append("require ");
+            for(int i=0 ; i<currentNode.getChildCount() ; i++) {
+                unparse(currentNode.getChild(i));
+                if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
+                    finalCode.append(",");
+            }
             finalCode.append("\n");
         }
         /**-----------------------------------VAR----------------------------------*/
@@ -206,7 +234,17 @@ public class Unparser {
         }
         /**-----------------------------------INDEX----------------------------------*/
         else if(currentNode.getName().equals("INDEX")){
-            if(currentNode.getChild(0).getName().charAt(0)=='\''){
+            boolean flag = false;
+            if(currentNode.getParent().getChildCount()>=3)
+                flag = true;
+            if(flag && currentNode.getParent().getChild(2).getName().equals("COL_CALL")){
+                finalCode.append(":");
+                for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                    unparse(currentNode.getChild(i));
+                }
+            }
+
+            else if(currentNode.getChild(0).getName().charAt(0)=='\''){
                 finalCode.append(".");
                 for(int i=0 ; i<currentNode.getChildCount() ; i++){
                     unparse(currentNode.getChild(i));
@@ -226,6 +264,14 @@ public class Unparser {
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
+        }
+        /**-----------------------------------COL_CALL----------------------------------*/
+        else if(currentNode.getName().equals("COL_CALL")){
+            finalCode.append("(");
+            for(int i=0 ; i<currentNode.getChildCount() ; i++){
+                unparse(currentNode.getChild(i));
+            }
+            finalCode.append(") ");
         }
         /**-----------------------------------TABLE----------------------------------*/
         else if(currentNode.getName().equals("TABLE")){
@@ -341,7 +387,7 @@ public class Unparser {
                 if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
                     finalCode.append(",");
             }
-//            finalCode.append("\n");
+            finalCode.append(" ");
         }
         /**-----------------------------------or----------------------------------*/
         else if(currentNode.getName().equals("or")){
@@ -407,6 +453,10 @@ public class Unparser {
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
+        }
+        /**-----------------------------------break----------------------------------*/
+        else if(currentNode.getName().equals("break")){
+            finalCode.append("break\n");
         }
 
         /**-----------------------------------UNKNOWN VARIABLES AND STRING----------*/

@@ -1,19 +1,168 @@
  ( CHUNK
 	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST fwrite )
+		 ( VAR_LIST basicSerialize )
 		 ( EXPR_LIST
 			 ( FUNCTION
-				 ( PARAM_LIST fmt ... )
+				 ( PARAM_LIST o )
 				 ( CHUNK
-					 ( return
-						 ( VAR io
-							 ( INDEX  ' write '  )
-							 ( CALL
-								 ( VAR string
-									 ( INDEX  ' format '  )
-									 ( CALL fmt
-										 ( VAR unpack
-											 ( CALL arg )
+					 ( if
+						 ( CONDITION
+							 ( ==
+								 ( VAR type
+									 ( CALL o )
+								 )
+								 (  ' number '  )
+							 )
+							 ( CHUNK
+								 ( return
+									 ( VAR tostring
+										 ( CALL o )
+									 )
+								 )
+							 )
+						 )
+						 ( CONDITION True
+							 ( CHUNK
+								 ( return
+									 ( VAR string
+										 ( INDEX  ' format '  )
+										 ( CALL  ' %q '  o )
+									 )
+								 )
+							 )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST save )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST name value saved )
+				 ( CHUNK
+					 ( ASSIGNMENT
+						 ( VAR_LIST saved )
+						 ( EXPR_LIST
+							 ( or saved TABLE )
+						 )
+					 )
+					 ( VAR io
+						 ( INDEX  ' write '  )
+						 ( CALL name  '  =  '  )
+					 )
+					 ( if
+						 ( CONDITION
+							 ( or
+								 ( ==
+									 ( VAR type
+										 ( CALL value )
+									 )
+									 (  ' number '  )
+								 )
+								 ( ==
+									 ( VAR type
+										 ( CALL value )
+									 )
+									 (  ' string '  )
+								 )
+							 )
+							 ( CHUNK
+								 ( VAR io
+									 ( INDEX  ' write '  )
+									 ( CALL
+										 ( VAR basicSerialize
+											 ( CALL value )
+										 )
+										 (  ' 
+ '  )
+									 )
+								 )
+							 )
+						 )
+						 ( CONDITION
+							 ( ==
+								 ( VAR type
+									 ( CALL value )
+								 )
+								 (  ' table '  )
+							 )
+							 ( CHUNK
+								 ( if
+									 ( CONDITION
+										 ( VAR saved
+											 ( INDEX value )
+										 )
+										 ( CHUNK
+											 ( VAR io
+												 ( INDEX  ' write '  )
+												 ( CALL
+													 ( VAR saved
+														 ( INDEX value )
+													 )
+													 (  ' 
+ '  )
+												 )
+											 )
+										 )
+									 )
+									 ( CONDITION True
+										 ( CHUNK
+											 ( ASSIGNMENT
+												 ( VAR_LIST
+													 ( ASSIGNMENT_VAR saved
+														 ( INDEX value )
+													 )
+												 )
+												 ( EXPR_LIST name )
+											 )
+											 ( VAR io
+												 ( INDEX  ' write '  )
+												 ( CALL  ' {}
+ '  )
+											 )
+											 ( FOR_IN
+												 ( NAME_LIST k v )
+												 ( EXPR_LIST
+													 ( VAR pairs
+														 ( CALL value )
+													 )
+												 )
+												 ( do
+													 ( CHUNK
+														 ( LOCAL_ASSIGNMENT
+															 ( NAME_LIST fieldname )
+															 ( EXPR_LIST
+																 ( VAR string
+																	 ( INDEX  ' format '  )
+																	 ( CALL  ' %s[%s] '  name
+																		 ( VAR basicSerialize
+																			 ( CALL k )
+																		 )
+																	 )
+																 )
+															 )
+														 )
+														 ( VAR save
+															 ( CALL fieldname v saved )
+														 )
+													 )
+												 )
+											 )
+										 )
+									 )
+								 )
+							 )
+						 )
+						 ( CONDITION True
+							 ( CHUNK
+								 ( VAR error
+									 ( CALL
+										 ( ..  ' cannot save a  ' 
+											 ( VAR type
+												 ( CALL value )
+											 )
 										 )
 									 )
 								 )
@@ -23,5 +172,41 @@
 				 )
 			 )
 		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST a )
+		 ( EXPR_LIST
+			 ( TABLE
+				 ( FIELD
+					 ( TABLE
+						 ( FIELD  ' one '  )
+						 ( FIELD  ' two '  )
+					 )
+				 )
+				 ( FIELD 3 )
+			 )
+		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST b )
+		 ( EXPR_LIST
+			 ( TABLE
+				 ( FIELD  ' k ' 
+					 ( VAR a
+						 ( INDEX 1 )
+					 )
+				 )
+			 )
+		 )
+	 )
+	 ( LOCAL_ASSIGNMENT
+		 ( NAME_LIST t )
+		 ( EXPR_LIST TABLE )
+	 )
+	 ( VAR save
+		 ( CALL  ' a '  a t )
+	 )
+	 ( VAR save
+		 ( CALL  ' b '  b t )
 	 )
  )
