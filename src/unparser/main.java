@@ -5,7 +5,7 @@ package unparser;
 
 public class main {
 	public static void main(String[] args){
-		TreeConstructor tr = new TreeConstructor("testIn1.txt");
+		TreeConstructor tr = new TreeConstructor("ast1.txt");
 		tr.printTree();
 		
 		Unparser up = new Unparser(tr.getRoot());

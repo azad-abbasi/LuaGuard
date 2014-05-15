@@ -54,6 +54,7 @@ public class Unparser {
         //if we encounter a "CHUNK" we move on to
         // it's children and ask them to print themselves
         if(currentNode.getName().equals("CHUNK")){
+        	finalCode.append("\n");
             for(int i=0 ; i<currentNode.getChildCount() ; i++)
                 unparse(currentNode.getChild(i));
         }
@@ -70,16 +71,15 @@ public class Unparser {
         else if(currentNode.getName().equals("EXPR_LIST")){
                 for(int i=0 ; i<currentNode.getChildCount() ; i++)
                     unparse(currentNode.getChild(i));
-                finalCode.append("\n");
         }
 
         else if(currentNode.getName().equals("FUNCTION")){
-        	finalCode.append("function");
+        	//finalCode.append("function");
             for(int i=0 ; i<currentNode.getChildCount() ; i++)
                 unparse(currentNode.getChild(i));
         }
         else if(currentNode.getName().equals("PARAM_LIST")){
-            finalCode.append("(");
+            finalCode.append(" (");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 if(i>0&& i<=currentNode.getChildCount()-1)
                     finalCode.append(",");
@@ -92,11 +92,12 @@ public class Unparser {
 
         else if(currentNode.getName().equals("VAR")){
         	//finalCode.append("var");
-            if(currentNode.getChild(1).getName().equals("CALL")){
+            if(currentNode.getChild(1).getName().equals("CALL") || currentNode.getChild(1).getName().equals("INDEX")){
                 finalCode.append(currentNode.getChild(0).getName());
                 for(int i=1 ; i<currentNode.getChildCount() ; i++)
                     unparse(currentNode.getChild(i));
             }
+            //finalCode.append("\n");
         }
         else if(currentNode.getName().equals("CALL")){
             finalCode.append("(");
@@ -105,7 +106,7 @@ public class Unparser {
                     finalCode.append(",");
                 unparse(currentNode.getChild(i));
             }
-            finalCode.append(")\n");
+            finalCode.append(")");
         }
 
         else if(currentNode.getName().equals("VAR_LIST")){
@@ -119,6 +120,7 @@ public class Unparser {
             unparse(currentNode.getChild(0));
             finalCode.append("=");
             unparse(currentNode.getChild(1));
+            finalCode.append("\n");
         }
 
         else if(currentNode.getName().equals("+") || currentNode.getName().equals("-")){
@@ -138,9 +140,11 @@ public class Unparser {
 
         else if(currentNode.getName().equals("if")){
         	finalCode.append("if");
+        	finalCode.append(" ");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
+            //finalCode.append(" ");
         }
 
         else if(currentNode.getName().equals("CONDITION")){
@@ -153,13 +157,21 @@ public class Unparser {
         /*
          * Modified by Gabe Aron
          */
+        
+        /*This specifies a binary comparison within an if statement*/
+        else if(currentNode.getName().equals("<=") || currentNode.getName().equals(">=") || currentNode.getName().equals("==")){
+        	finalCode.append(currentNode.getChild(0).getName());
+        	finalCode.append(currentNode.getName());
+        	finalCode.append(currentNode.getChild(1).getName());
+        	finalCode.append(" then");
+        }
 
         else if(currentNode.getName().equals("ASSIGNMENT_VAR")){
         	
         }
         
         /*This specifies the contents within a call to an object method*/
-        else if(currentNode.getName().equals("COLL_CALL")){
+        else if(currentNode.getName().equals("COL_CALL")){
         	finalCode.append("(");
         	unparse(currentNode.getChild(0));
         	finalCode.append(")");
@@ -187,8 +199,11 @@ public class Unparser {
         	
         }
         
+        /*This contains a variable name (L-value) and an expression (R-value)*/
         else if(currentNode.getName().equals("LOCAL_ASSIGNMENT")){
-        	
+        	 unparse(currentNode.getChild(0));
+             finalCode.append("=");
+             unparse(currentNode.getChild(1));
         }
         
         else if(currentNode.getName().equals("NAME_LIST")){
