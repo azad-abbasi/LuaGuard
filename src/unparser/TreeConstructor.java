@@ -1,7 +1,5 @@
 package unparser;
 
-import parser.InputReader;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;

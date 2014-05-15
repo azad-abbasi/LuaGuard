@@ -1,11 +1,11 @@
+package unparser;
+
 /**
  * Created by Azad on 5/5/2014.
  * this file will walk through an AST
  * file and regenerates the root
  */
-package unparser;
 
-import parser.InputReader;
 
 public class ASTwalker {
 
