@@ -110,6 +110,8 @@ public class Obfuscator {
                         // for any other token, just write
                         output.write(token);
                     }
+                }else{
+                    output.write(token);
                 }
 
             }
