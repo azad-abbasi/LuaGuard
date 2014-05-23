@@ -30,6 +30,7 @@ public class Obfuscator {
      * Output: String result: obfuscated string
      */
     public String MinimumVocabObfuscation(String w) {
+        // change this to a more sophisticated vocab obfuscator
         StringBuilder result = new StringBuilder(w.length()); //obfuscated word
         //System.out.println(w);
         for (int i = 0; i < w.length(); i++) {

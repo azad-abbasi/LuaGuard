@@ -57,7 +57,7 @@ public class TreeConstructor {
         return root;
     }
 
-
+    public void setRoot(Node r) { root = r;}
 //-------------------------------------------------------------
 //  Method Name : printTree()
 //  Purpose    : This method prints the Tree that has been constructed in the
