@@ -76,6 +76,11 @@ public class Node {
 
 
     }
+    public void removeChildByRef(Node child){
+        if(children.contains(child)){
+            children.remove(child);
+        }
+    }
     public String getName(){
         return this.name;
     }
