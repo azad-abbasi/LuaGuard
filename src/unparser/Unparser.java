@@ -68,6 +68,7 @@ public class Unparser {
             finalCode.append("end\n");
         }
         
+        /**----------------------------------EXPR_LIST----------------------------------**/
         /*Contains the expressions that are assigned to respective variable names*/
         else if(currentNode.getName().equals("EXPR_LIST")){
         		//finalCode.append("Expr_list");
@@ -81,6 +82,7 @@ public class Unparser {
                 
         }
 
+        /**----------------------------------FUNCTION----------------------------------**/
         /* Contains param list as well as the body of the function*/
         else if(currentNode.getName().equals("FUNCTION")){
         	//finalCode.append("function");
@@ -97,7 +99,8 @@ public class Unparser {
             
         }
         
-        /*contains the formal parameters within a function declaration*/
+        /**----------------------------------PARAM_LIST----------------------------------**/
+        /*contains the formal paraeters within a function declaration*/
         else if(currentNode.getName().equals("PARAM_LIST")){
             finalCode.append(" (");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
@@ -110,6 +113,7 @@ public class Unparser {
             finalCode.append("\n");
         }
 
+        /**----------------------------------VAR----------------------------------**/
         /*Used when calling object members, or functions*/
         else if(currentNode.getName().equals("VAR")){
         	//finalCode.append("var");
@@ -125,6 +129,7 @@ public class Unparser {
             //finalCode.append("\n");
         }
         
+        /**----------------------------------CALL----------------------------------**/
         /*used to specify a set of arguments when calling a function*/
         else if(currentNode.getName().equals("CALL")){
             finalCode.append("(");
@@ -136,6 +141,7 @@ public class Unparser {
             finalCode.append(") ");
         }
 
+        /**----------------------------------VAR_LIST----------------------------------**/
         /*Indicates a list of variable names within assingments*/
         else if(currentNode.getName().equals("VAR_LIST")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
@@ -145,6 +151,7 @@ public class Unparser {
             }
         }
 
+        /**----------------------------------ASSIGNMENT----------------------------------**/
         /*used to indicate a variable assignment*/
         else if(currentNode.getName().equals("ASSIGNMENT")){
             unparse(currentNode.getChild(0));
@@ -153,6 +160,8 @@ public class Unparser {
             finalCode.append("\n");
         }
 
+        /**----------------------------------+, -, ^----------------------------------**/
+        /*indicates binary operators for addition, subtraction, and exponentiation*/
         else if(currentNode.getName().equals("+") || currentNode.getName().equals("-") || currentNode.getName().equals("^")){
             finalCode.append("(");
             unparse(currentNode.getChild(0));
@@ -161,14 +170,15 @@ public class Unparser {
             finalCode.append(")");
         }
         
+        /**----------------------------------/, *----------------------------------**/
+        /*indicates operators for multiplication and division*/
         else if(currentNode.getName().equals("/") || currentNode.getName().equals("*")){
-
             unparse(currentNode.getChild(0));
             finalCode.append(currentNode.getName());
             unparse(currentNode.getChild(1));
-
         }
 
+        /**----------------------------------if----------------------------------**/
         /*if-then-else statement*/
         else if(currentNode.getName().equals("if")){
         	finalCode.append("if(");
@@ -178,6 +188,7 @@ public class Unparser {
             finalCode.append("\nendIf\n");
         }
 
+        /**----------------------------------CONDITION----------------------------------**/
         /*contains boolean expressions and event handlers*/
         else if(currentNode.getName().equals("CONDITION")){
         	if(!currentNode.getChild(0).getName().equals("True")){
@@ -207,6 +218,8 @@ public class Unparser {
             }
         }
         
+        /**----------------------------------LOCAL_DEC----------------------------------**/
+        /*indicates the function decode64(), which decodes an encoded string*/
         else if(currentNode.getName().equals("LOCAL_DEC")){
         	finalCode.append("local ");
         	for(int i = 0; i < currentNode.getChildCount(); i++){
@@ -217,6 +230,7 @@ public class Unparser {
         	finalCode.append("\n");
         }
 
+        /**----------------------------------ASSIGNMENT_VAR----------------------------------**/
         /*Used to index through arrays*/
         else if(currentNode.getName().equals("ASSIGNMENT_VAR")){
         	for(int i = 0; i < currentNode.getChildCount(); i++){
@@ -224,6 +238,10 @@ public class Unparser {
         	}
         }
         
+        /**----------------------------------FOR_IN----------------------------------**/
+        /*indicates a for-in loop. for-in loops are similar to for loops, only they are used to 
+         * go through strings by indices.
+         */
         else if(currentNode.getName().equals("FOR_IN")){
             finalCode.append("for ");
             unparse(currentNode.getChild(0));
@@ -234,6 +252,8 @@ public class Unparser {
 
         }
         
+        /**----------------------------------do----------------------------------**/
+        /*indicates a do-while loop*/
         else if(currentNode.getName().equals("do")){
             finalCode.append("do\n");
             for(int i=0 ; i<currentNode.getChildCount() ; i++)
@@ -241,6 +261,8 @@ public class Unparser {
             finalCode.append("\nend\n");
         }
         
+        /**----------------------------------for----------------------------------**/
+        /*indicates a for loop*/
         else if(currentNode.getName().equals("for")){
             finalCode.append("for ");
             unparse(currentNode.getChild(0));
@@ -256,6 +278,8 @@ public class Unparser {
             }
         }
         
+        /**----------------------------------goto----------------------------------**/
+        /*indicates a statement that specifies which label in the code to jump to*/
         else if(currentNode.getName().equals("goto")){
             finalCode.append("goto ");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
@@ -266,6 +290,7 @@ public class Unparser {
          * Modified by Gabe Aron
          */
         
+        /**----------------------------------<=, >=, <, >, ==, ~=----------------------------------**/
         /*This specifies a binary comparison within an if statement*/
         else if(currentNode.getName().equals("<=") || currentNode.getName().equals(">=") || currentNode.getName().equals("==") 
         		|| currentNode.getName().equals("~=") || currentNode.getName().equals("<") || currentNode.getName().equals(">")){
@@ -284,18 +309,37 @@ public class Unparser {
             }
         }
         
-        else if(currentNode.getName().equals("GOTO")){
-        	
-        }
-        
+        /**----------------------------------FIELD_LIST----------------------------------**/
+        /*used to specify the names of fields in a table constructor*/
         else if(currentNode.getName().equals("FIELD_LIST")){
-        	
+        	for (int i = 0; i < currentNode.getChildCount(); i++){
+        		unparse(currentNode.getChild(i));
+        		if(i >= 0 && i < currentNode.getChildCount() - 1 && currentNode.getChildCount() > 1){
+        			finalCode.append(",");
+        		}
+        	}
         }
         
+        /**----------------------------------REQUIRE----------------------------------**/
+        /*Specifies a call to a reserved function that is used to load and run libraries*/
+        else if (currentNode.getName().equals("REQUIRE")){
+        	finalCode.append("require ");
+        	for (int i = 0; i < currentNode.getChildCount(); i++){
+        		unparse(currentNode.getChild(i));
+        		if(i >= 0 && i < currentNode.getChildCount() - 1 && currentNode.getChildCount() > 1){
+        			finalCode.append(",");
+        		}
+        	}
+        }
+        
+        /**----------------------------------FIN_IN----------------------------------**/
+        /*I don't know what this does*/
         else if(currentNode.getName().equals("FIN_IN")){
         	
         }
         
+        /**----------------------------------TABLE----------------------------------**/
+        /*Used to specify a table constructor*/
         else if(currentNode.getName().equals("TABLE")){
         	finalCode.append("{");
         	for (int i = 0; i < currentNode.getChildCount(); i++){
@@ -304,6 +348,7 @@ public class Unparser {
         	finalCode.append("}");
         }
         
+        /**----------------------------------LABEL----------------------------------**/
         /*Used with a goto statement*/
         else if(currentNode.getName().equals("LABEL")){
         	finalCode.append("::");
@@ -312,20 +357,20 @@ public class Unparser {
         	}
         	finalCode.append("::");
         }
-        
-        else if(currentNode.getName().equals("FUNCTION_FUNCTIONS")){
-        	
-        }
+ 
         /*
          * Done with modification
          */
         
+        /**----------------------------------True----------------------------------**/
+        /*Indicates the boolean truth test before the even handler in an if-then-else statement*/
         else if(currentNode.getName().equals("True")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
         }
         
+        /**----------------------------------COL_CALL----------------------------------**/
         /*This specifies the contents within a call to an object method*/
         else if(currentNode.getName().equals("COL_CALL")){
         	finalCode.append("(");
@@ -333,6 +378,7 @@ public class Unparser {
         	finalCode.append(")");
         }
         
+        /**----------------------------------FIELD----------------------------------**/
         /*used to index through tables*/
         else if(currentNode.getName().equals("FIELD")){
         	if(currentNode.getChildCount()>1) {
@@ -347,6 +393,7 @@ public class Unparser {
             }
         }
        
+        /**----------------------------------INDEX----------------------------------**/
         /*This specifies a call to an object metod*/
         else if(currentNode.getName().equals("INDEX")){
         	//finalCode.append(":");
@@ -366,6 +413,7 @@ public class Unparser {
             }
         }
         
+        /**----------------------------------LOCAL_ASSIGNMENT----------------------------------**/
         /*This contains a variable name (L-value) and an expression (R-value)*/
         else if(currentNode.getName().equals("LOCAL_ASSIGNMENT")){
         	finalCode.append("local ");
@@ -375,6 +423,7 @@ public class Unparser {
             finalCode.append("\n");
         }
         
+        /**----------------------------------NAME_LIST----------------------------------**/
         /*This contains a declaration of a local variable*/ 
         else if(currentNode.getName().equals("NAME_LIST")){
         	for(int i = 0; i < currentNode.getChildCount(); i++){
@@ -385,16 +434,7 @@ public class Unparser {
         	}
         }
         
-        else if(currentNode.getName().equals("TABLE")){
-        	 finalCode.append("{");
-             for(int i=0 ; i<currentNode.getChildCount() ; i++) {
-                 unparse(currentNode.getChild(i));
-                 if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
-                     finalCode.append(",");
-             }
-             finalCode.append("}\n");
-        }
-        
+        /**----------------------------------UNARY_MINUS----------------------------------**/
         /*Used to negate an integer or a floating-point number*/
         else if(currentNode.getName().equals("UNARY_MINUS")){
         	finalCode.append("-");
@@ -403,6 +443,7 @@ public class Unparser {
             }
         }
 
+        /**----------------------------------return----------------------------------**/
         /*used to return fields of functions*/
         else if(currentNode.getName().equals("return")){
             finalCode.append("return ");
@@ -414,6 +455,8 @@ public class Unparser {
             finalCode.append("\n");
         }
         
+        /**----------------------------------or----------------------------------**/
+        /*Indicates a logical or*/
         else if(currentNode.getName().equals("or")){
             unparse(currentNode.getChild(0));
             finalCode.append(" ");
@@ -423,6 +466,8 @@ public class Unparser {
 //            finalCode.append(")\n");
         }
         
+        /**----------------------------------and----------------------------------**/
+        /*indicates a logical and*/
         else if(currentNode.getName().equals("and")){
             unparse(currentNode.getChild(0));
             finalCode.append(" ");
@@ -431,6 +476,8 @@ public class Unparser {
             unparse(currentNode.getChild(1));
         }
         
+        /**----------------------------------while----------------------------------**/
+        /*indicates a while loop*/
         else if(currentNode.getName().equals("while")){
             finalCode.append("while(");
             unparse(currentNode.getChild(0));
@@ -441,6 +488,8 @@ public class Unparser {
 //            finalCode.append("\n");
         }
         
+        /**----------------------------------..----------------------------------**/
+        /*used to indicate string concatenation*/
         else if(currentNode.getName().equals("..")){
             unparse(currentNode.getChild(0));
             finalCode.append(currentNode.getName());
@@ -448,6 +497,8 @@ public class Unparser {
     //
         }
         
+        /**----------------------------------repeat----------------------------------**/
+        /*indicates a repeat-until statement. This is similar to a do-while loop.*/
         else if(currentNode.getName().equals("repeat")){
             finalCode.append("repeat\n");
             unparse(currentNode.getChild(0));
@@ -457,6 +508,8 @@ public class Unparser {
 
         }
         
+        /**----------------------------------#----------------------------------**/
+        /*indicates the length operator, a unary operator that returns the number of the last populated element of an array*/
         else if(currentNode.getName().equals("#")){
             finalCode.append("#");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
@@ -464,6 +517,8 @@ public class Unparser {
             }
         }
         
+        /**--------------------------------------------------------------------**/
+        /*The key value of the node currently visited is not a keyword. This is the final case.*/
         else if(!keywords.contains(currentNode.getName())){
             if(currentNode.getParent()!=null){
                 if(currentNode.getParent().getName().equals("INDEX")){
