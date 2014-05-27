@@ -97,10 +97,10 @@ public class Obfuscator {
                     // if the token is " mark , if the stack is empty push it to the stack and write it.
                     if (keepTrackOfStrings.empty()) {
                         keepTrackOfStrings.push("'");
-                        output.write(token);
+                        //output.write(token);
                     } else {  // if the stack is not empty: // end of the string
                         keepTrackOfStrings.pop();
-                        output.write(token);
+                       // output.write(token);
                     }
                 } // before changing any instance of the variable if in the map, check if it is within a string.
                 else if (keepTrackOfStrings.empty()) {

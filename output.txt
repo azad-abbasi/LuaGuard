@@ -1,12 +1,55 @@
  ( CHUNK
-	 ( if
-		 ( CONDITION
-			 ( <= 100
-				 ( + 50 50 )
-			 )
-			 ( CHUNK
-				 ( VAR print
-					 ( CALL a )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST dependsMany )
+		 ( EXPR_LIST
+			 ( FUNCTION PARAM_LIST
+				 ( CHUNK
+					 ( ASSIGNMENT
+						 ( VAR_LIST NumberItems )
+						 ( EXPR_LIST
+							 ( VAR get_select_items CALL )
+						 )
+					 )
+					 ( ASSIGNMENT
+						 ( VAR_LIST MaxNumber )
+						 ( EXPR_LIST
+							 ( VAR table
+								 ( INDEX  ' maxn '  )
+								 ( CALL NumberItems )
+							 )
+						 )
+					 )
+					 ( if
+						 ( CONDITION
+							 ( <= MaxNumber 1 )
+							 ( CHUNK
+								 ( VAR msgbox
+									 ( CALL  ' Need more than one itme selected '   ' Error 001 '  )
+								 )
+							 )
+						 )
+						 ( CONDITION True
+							 ( CHUNK
+								 ( for inc1 1
+									 ( - MaxNumber 1 )
+									 ( do
+										 ( CHUNK
+											 ( VAR add_depend_item
+												 ( CALL
+													 ( VAR NumberItems
+														 ( INDEX MaxNumber )
+													 )
+													 ( VAR NumberItems
+														 ( INDEX inc1 )
+													 )
+												 )
+											 )
+										 )
+									 )
+								 )
+							 )
+						 )
+					 )
 				 )
 			 )
 		 )
