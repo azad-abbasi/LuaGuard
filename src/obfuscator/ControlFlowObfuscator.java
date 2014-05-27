@@ -75,7 +75,7 @@ public class ControlFlowObfuscator {
                 /**-----------------------------------WHILE----------------------------------*/
             }else if(CurrentNode.getName().equals("while")){
                 //While expr do_block -> ^(While expr do_block)
-                System.out.println("I am a while");
+                //System.out.println("I am a while");
                 Node temp = CreateBogusWhile();
                 temp.getChild(1).getChild(0).addChild(CurrentNode);
                 Node parent = CurrentNode.getParent();
