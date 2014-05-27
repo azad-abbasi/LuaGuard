@@ -15,60 +15,74 @@ public class ControlFlowObfuscator {
     }
 
 
-    public static Node CreateBogusIF(Node ifNode){
+    public static Node CreateBogusIF(){
         //create a node of if
         // with condition node : 100 == (50+50)
         Node bogusNode;
         bogusNode = new Node("if",null);
         Node conditionNode = new Node("CONDITION", bogusNode);
         bogusNode.addChild(conditionNode);
-        Node exprNode = new Node("True", conditionNode);
+        Node exprNode = new Node("=", conditionNode);
+        Node expr1 = new Node("100", exprNode);
+        Node expr2 = new Node("", exprNode);
+        expr2.addChild(new Node("+", expr2));
+        expr2.addChild(new Node("50", expr2));
+        expr2.addChild(new Node("50", expr2));
+        exprNode.addChild(expr1);
+        exprNode.addChild(expr2);
         conditionNode.addChild(exprNode);
-        // add an expr to the CONDITION NODE
-        // for now lets make it easy: expr = TRUE
-        // make the chunk of the condition node : the current ifNode
-        //conditionNode.addChild(ifNode);
-        //System.out.println("I AM IN BOGUS IF FUNCTION");
-        // make it have a condition that is true and the body of that codition is the old if
+        bogusNode.addChild(new Node("CHUNK", bogusNode));
         return bogusNode;
     }
+
     public static Node CreateBogusWhile(){
         Node bogusWhile;
-        bogusWhile = new Node();
+        bogusWhile = new Node("while",null);
+        Node expr = new Node("=", bogusWhile);
+        Node expr1 = new Node("100", bogusWhile);
+        Node expr2 = new Node("", expr);
+        expr2.addChild(new Node("+", expr2));
+        expr2.addChild(new Node("50", expr2));
+        expr2.addChild(new Node("50", expr2));
+        expr.addChild(expr1);
+        expr.addChild(expr2);
+        bogusWhile.addChild(expr);
+        Node doNode = new Node("do", bogusWhile);
+        bogusWhile.addChild(doNode);
+        Node chunckNode = new Node("CHUNK", doNode);
+        doNode.addChild(chunckNode);
         return bogusWhile;
     }
+
     public void CFOObfuscate(){
-        System.out.println("IN the CFO ");
+        //System.out.println("IN the CFO ");
         CFOProcessing(this.treeRoot);
     }
 
     public static void CFOProcessing(Node CurrentNode){
-        System.out.println(CurrentNode.getName());
-
+        //System.out.println(CurrentNode.getName());
             /**-----------------------------------IF----------------------------------*/
-            if (CurrentNode.getName().equals("if")) {
+            if(CurrentNode.getName().equals("if")) {
                 // System.out.println("i found an  " + CurrentNode.getName());
                 // call the createBogusIF
-                // point the bogusIF node to the original if NOde
-                // point the parent of the original if node to the new bogusIF
-                Node temp = CreateBogusIF(CurrentNode);
-                temp.addChild(CurrentNode);
+                Node temp = CreateBogusIF();
+                temp.getChild(1).addChild(CurrentNode);
                 Node parent = CurrentNode.getParent();
-                // remove the if child excisting for the parent
-                int count = parent.getChildCount();
-                for (int i = 0; i < count; i++) { // which child is this????
-                    // I am assuming that I am changing every if as im moving on. No if statments are left of the main branch
-                    if (parent.getChild(i).getName().equals("if")) {
-                        parent.removeChild(i);
-                       // System.out.println("Removed an IF");
-                    }
-                }
+                // remove the if child existing for the parent
+                parent.removeChildByRef(CurrentNode);
                 // add the bogusIf to the parent
                 parent.addChild(temp);
                 /**-----------------------------------WHILE----------------------------------*/
-            }else if(CurrentNode.getName().equals("While")){
+            }else if(CurrentNode.getName().equals("while")){
                 //While expr do_block -> ^(While expr do_block)
-
+                System.out.println("I am a while");
+                Node temp = CreateBogusWhile();
+                temp.getChild(1).getChild(0).addChild(CurrentNode);
+                Node parent = CurrentNode.getParent();
+                // remove the while child existing for the parent
+                parent.removeChildByRef(CurrentNode);
+                // add the bogusWhile to the parent
+                parent.addChild(temp);
             }else{
                // System.out.println(CurrentNode.getName());
                 int count = CurrentNode.getChildCount();
@@ -77,15 +91,6 @@ public class ControlFlowObfuscator {
                     CFOProcessing(CurrentNode.getChild(i));
                 }
             }
-
-        // traverse the tree until I encounter a node with (if)
-
-
-        //if no if node encountered
-        //add a bogus if node at the end of the code
-        // as a new child node to the main chunck of the program
-
-        //return treeRoot;
     }
    public static Node getTheTreeManipulated() {
        return treeRoot;
