@@ -72,14 +72,12 @@ public class AreejMain {
          */
         //-------------------------------------------------------------------------
         //the Obfuscator goes here , whatever level we decide to have
-                           TreeConstructor t = new TreeConstructor(args[1]);
-                           ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
-                           //call the Function
-                            cfo.CFOObfuscate();
-                           Node mytree = cfo.getTheTreeManipulated();
 
-                            //System.out.println("The Root now is " + t.getRoot().getName());
-                          InputReader.printToFile(args[2], t.toString());
+                        TreeConstructor t = new TreeConstructor(args[1]);
+                        ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
+                           //call the Function
+                        cfo.CFOObfuscate();
+                        InputReader.printToFile(args[2], t.toString());
 
         /**
          * The OBFUSCATOR ENDS HERE
