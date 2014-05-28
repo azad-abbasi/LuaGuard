@@ -24,14 +24,25 @@ public class Obfuscator {
     public Map<String, String> obfuscatedVars = new HashMap<String, String>();
     public Stack<String> keepTrackOfStrings = new Stack<String>();
 
+
+    public StringBuilder generateBogusWord(int length){
+        StringBuilder word = new StringBuilder(4*length);
+        for(int i = 0; i<length; i++){
+            word.append("illi");
+        }
+        return word;
+    }
+
+
     /*
      * Minimum Vocab Obfuscation
      * Input: String W
      * Output: String result: obfuscated string
      */
     public String MinimumVocabObfuscation(String w) {
+        StringBuilder result = generateBogusWord(w.length());
         // change this to a more sophisticated vocab obfuscator
-        StringBuilder result = new StringBuilder(w.length()); //obfuscated word
+        //StringBuilder result = new StringBuilder(w.length()); //obfuscated word
         //System.out.println(w);
         for (int i = 0; i < w.length(); i++) {
             char c = w.charAt(i);
@@ -70,26 +81,37 @@ public class Obfuscator {
             tokenizer = new StringTokenizer(s,"()\t\n ", true);
             while(tokenizer.hasMoreTokens()){
                 String token = tokenizer.nextToken();
+                //System.out.println("this is the first token " + token);
                 // if variable name or function name obfuscate
                 if((token.equals("VAR_LIST")) || (token.equals("PARAM_LIST")) || (token.equals("NAME_LIST"))){
                     // write to the text file
                     output.write(token);
-                    String space = tokenizer.nextToken();
-                    output.write(space);
-                    String var = tokenizer.nextToken();
-                    String transformedVar = MinimumVocabObfuscation(var);
-                    obfuscatedVars.put(var, transformedVar);
-                    output.write(transformedVar);
+                    System.out.println(token + "Here is where I get next no element");
+                    if(tokenizer.hasMoreTokens()) {
+                        String space = tokenizer.nextToken();
+                        output.write(space);
+                    }
+                    if(tokenizer.hasMoreTokens()) {
+                        String var = tokenizer.nextToken();
+                        String transformedVar = MinimumVocabObfuscation(var);
+                        //System.out.println(var);
+                        obfuscatedVars.put(var, transformedVar);
+                        output.write(transformedVar);
+                    }
                     //check if the string following VAR is in the MAP or a name for built in function
                 }else if(token.equals("VAR")){
                     output.write("VAR");
-                    String space = tokenizer.nextToken();
-                    output.write(space);
-                    String var = tokenizer.nextToken();
-                    if(obfuscatedVars.containsKey(var)){
-                        output.write(obfuscatedVars.get(var));
-                    }else{
-                        output.write(var); // it is a name for a built in function
+                    if(tokenizer.hasMoreTokens()) {
+                        String space = tokenizer.nextToken();
+                        output.write(space);
+                    }
+                    if(tokenizer.hasMoreTokens()) {
+                        String var = tokenizer.nextToken();
+                        if (obfuscatedVars.containsKey(var)) {
+                            output.write(obfuscatedVars.get(var));
+                        } else {
+                            output.write(var); // it is a name for a built in function
+                        }
                     }
                 }
 
@@ -97,10 +119,10 @@ public class Obfuscator {
                     // if the token is " mark , if the stack is empty push it to the stack and write it.
                     if (keepTrackOfStrings.empty()) {
                         keepTrackOfStrings.push("'");
-                        //output.write(token);
+                        output.write(token);
                     } else {  // if the stack is not empty: // end of the string
                         keepTrackOfStrings.pop();
-                       // output.write(token);
+                        output.write(token);
                     }
                 } // before changing any instance of the variable if in the map, check if it is within a string.
                 else if (keepTrackOfStrings.empty()) {
