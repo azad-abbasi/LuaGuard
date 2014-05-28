@@ -3,6 +3,9 @@
  */
 package main;
 import obfuscator.Obfuscator;
+import obfuscator.ControlFlowObfuscator;
+import obfuscator.ParameterObfuscator;
+
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
@@ -70,12 +73,31 @@ public class MainClass {
              */
             //-------------------------------------------------------------------------
             //the Obfuscator goes here , whatever level we decide to have
+
+            // Areej : minimum Vocab Obfuscator
 //                            Obfuscator myOb = new Obfuscator(args[1],args[2]);
 //                            //call the fileProcessing Function
 //                            try{
 //                                myOb.FileProcessing();
 //                            }catch(Exception e){e.printStackTrace();
 //                            }
+
+            // Areej : ControlFlowObfuscator
+
+//            TreeConstructor t = new TreeConstructor(args[1]);
+//            ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
+//            //call the Function
+//            cfo.CFOObfuscate();
+//            InputReader.printToFile(args[2], tree.toString());
+
+
+
+            // Amanda's obfuscator
+//            TreeConstructor t = new TreeConstructor(args[1]);
+//            ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
+//            o.addParams();
+//            InputReader.printToFile(args[2], tree.toString());
+
 
             /**
              * The OBFUSCATOR ENDS HERE
@@ -87,12 +109,12 @@ public class MainClass {
              */
             //-------------------------------------------------------------------------
             //read the AST file back to a tree
-            TreeConstructor myTree = new TreeConstructor(args[1]);
-            InputReader.printToFile(args[2],myTree.toString());
-            Unparser myUnparser = new Unparser(myTree.getRoot());
-            myUnparser.unparse();
-            System.out.println(myUnparser.getCode());
-            InputReader.printToFile(args[3],myUnparser.getCode());
+//            TreeConstructor myTree = new TreeConstructor(args[1]);
+//            InputReader.printToFile(args[2],myTree.toString());
+//            Unparser myUnparser = new Unparser(myTree.getRoot());
+//            myUnparser.unparse();
+//            System.out.println(myUnparser.getCode());
+//            InputReader.printToFile(args[3],myUnparser.getCode());
 
             //-------------------------------------------------------------------------
         }
