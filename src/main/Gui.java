@@ -1,14 +1,17 @@
 package main;
 
 import javax.swing.*;
-import javax.swing.tree.TreeModel;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
-import java.util.*;
 import main.FileTree;
 
 
@@ -21,7 +24,6 @@ public class Gui extends JFrame{
     private JTextPane statusTextPane;
     private JEditorPane luaEditorPane;
     private JEditorPane obfuscatedEditorPane;
-    private JTree projectDirectoryTree;
     private JRadioButton spacingRadioButton;
     private JRadioButton parameterRadioButton;
     private JRadioButton junkDataRadioButton;
@@ -48,6 +50,7 @@ public class Gui extends JFrame{
     private JMenuItem delete;
     private JMenuItem undo;
     private JMenuItem redo;
+    private FileTree projectDirectoryTree;
     //private Queue<String> recentObfuscated;
 
     public Gui() {
@@ -78,7 +81,7 @@ public class Gui extends JFrame{
 
         // Init file chooser and project path for selecting files/dirs
         fileChooser = new FileDialog(this, "Choose a file", FileDialog.LOAD);
-        projectPath = "";
+        projectPath = ".";
 
         // Init status pane with welcome/info message
         statusTextPane.setText("Welcome to LuaGuard!\n" +
@@ -88,6 +91,8 @@ public class Gui extends JFrame{
 
         // Set Layout for FileTree
         projectDirectoryPanel.setLayout(new BorderLayout());
+        //projectDirectoryTree = new FileTree(new File(projectPath));
+
 
         // Add to menu
         file.add(newproj);
@@ -281,18 +286,48 @@ public class Gui extends JFrame{
                 boolean findObfDir = checkForObfuscatedDir();
                 if (!findObfDir) {
                     new File(projectPath+"/obfuscated").mkdir();
+                    File README = new File(projectPath+"/obfuscated", "README.txt");
+                    try {
+                        README.createNewFile();
+                        String content = "This is the directory where all your obfuscated Lua files go!";
+                        FileWriter fw =  new FileWriter(README.getAbsoluteFile());
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        bw.write(content);
+                        bw.close();
+                    } catch (IOException e) {
+                        updateStatusPanel("Error occurred while creating README.txt");
+                    }
                     updateStatusPanel("Added obfuscation directory\nObfuscated code will be sent there\n");
                 } else {
                     updateStatusPanel("Found project...obfuscation sent to obfuscated directory\n");
                 }
-
-                projectDirectoryPanel.removeAll();
-                projectDirectoryPanel.updateUI();
-                JPanel tmp  = new FileTree(new File(projectPath));
-                projectDirectoryPanel.add(tmp, BorderLayout.CENTER);
-                projectDirectoryPanel.updateUI();
+                updateProjectDirFileTree();
             }
         }
+    }
+
+    public void updateProjectDirFileTree() {
+        projectDirectoryPanel.removeAll();
+        projectDirectoryPanel.updateUI();
+        projectDirectoryTree = new FileTree(new File(projectPath));
+        projectDirectoryPanel.add(projectDirectoryTree, BorderLayout.CENTER);
+        projectDirectoryPanel.updateUI();
+        updateActionListenerProjectDirFileTree(projectDirectoryTree);
+    }
+
+    public void updateActionListenerProjectDirFileTree(FileTree dir) {
+        dir.tree.addTreeSelectionListener(new TreeSelectionListener() {
+            @Override
+            public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
+                DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeSelectionEvent.getPath().getLastPathComponent();
+                System.out.println("You selected " + node);
+
+            }
+        });
+    }
+
+    public void updateLuaEditorPane(String filePath) {
+
     }
 
 }

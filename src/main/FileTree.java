@@ -1,39 +1,23 @@
 package main;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.io.File;
 import java.util.Collections;
 import java.util.Vector;
-
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 
-public class FileTree extends JPanel {
-    /** Construct a FileTree */
+public class FileTree extends JPanel{
+    public JTree tree;
+    // Construct a FileTree
     public FileTree(File dir) {
         setLayout(new BorderLayout());
 
         // Make a tree list with all the nodes, and make it a JTree
-        JTree tree = new JTree(addNodes(null, dir));
-
-        // Add a listener
-        tree.addTreeSelectionListener(new TreeSelectionListener() {
-            public void valueChanged(TreeSelectionEvent e) {
-                DefaultMutableTreeNode node = (DefaultMutableTreeNode) e
-                        .getPath().getLastPathComponent();
-                System.out.println("You selected " + node);
-            }
-        });
+        tree = new JTree(addNodes(null, dir));
 
         // Lastly, put the JTree into a JScrollPane.
         JScrollPane scrollpane = new JScrollPane();
@@ -41,7 +25,7 @@ public class FileTree extends JPanel {
         add(BorderLayout.CENTER, scrollpane);
     }
 
-    /** Add nodes from under "dir" into curTop. Highly recursive. */
+    // Add nodes from under "dir" into curTop. Highly recursive.
     DefaultMutableTreeNode addNodes(DefaultMutableTreeNode curTop, File dir) {
         String curPath = dir.getPath();
         DefaultMutableTreeNode curDir = new DefaultMutableTreeNode(curPath);
@@ -72,28 +56,5 @@ public class FileTree extends JPanel {
         for (int fnum = 0; fnum < files.size(); fnum++)
             curDir.add(new DefaultMutableTreeNode(files.elementAt(fnum)));
         return curDir;
-    }
-
-    /** Main: make a Frame, add a FileTree */
-    public static void main(String[] av) {
-
-        JFrame frame = new JFrame("FileTree");
-        frame.setForeground(Color.black);
-        frame.setBackground(Color.lightGray);
-        Container cp = frame.getContentPane();
-
-        System.out.println(av.length);
-
-        if (av.length == 0) {
-            cp.add(new FileTree(new File(".")));
-        } else {
-            cp.setLayout(new BoxLayout(cp, BoxLayout.X_AXIS));
-            for (int i = 0; i < av.length; i++)
-                cp.add(new FileTree(new File(av[i])));
-        }
-
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
