@@ -43,6 +43,13 @@ public class Node {
         n.setParent(this);
 
     }
+    public void addChildatIndex(Node n, int index){
+        if(children == null){
+            children = new ArrayList<Node>();
+        }
+        children.add(index,n);
+        n.setParent(this);
+    }
     public void addChildtoTop(Node n){
         if(children == null){
             children = new ArrayList<Node>();
@@ -50,12 +57,16 @@ public class Node {
         children.add(0,n);
         n.setParent(this);
     }
+    public int getChildIndex(Node n){
+        return children.indexOf(n);
+    }
     public void setParent(Node p){
         this.parent = p;
     }
     public Node getParent(){
         return parent;
     }
+
     public int getChildCount(){
         if(children == null){
             return 0;

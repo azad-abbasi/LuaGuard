@@ -185,7 +185,14 @@ public class Obfuscator {
 						transformedVar = XORObfuscation(var);
 					}else if (obfuName.equals("ILOveOU")){
 						transformedVar = ILOveOUObfuscation(var);
-					}else{
+					}
+                    else if (obfuName.equals("ILOveOU")){
+                        transformedVar = ILOveOUObfuscation(var);
+                    }
+                    else if (obfuName.equals("Confusing")){
+                        transformedVar = confusingString();
+                    }else
+                    {
 						transformedVar = BossObfuscation(var);
 					}
 //-----------------------------------------------------------------------
@@ -216,5 +223,18 @@ public class Obfuscator {
 		readAST.close(); // close the reader
 		System.out.println("\nThe AsT File you specified : " + this.ast + " has been obfuscated.\nThe new obfuscated AST File is saved with the name : " + this.out + "\n");
 	}
+
+    public static String confusingString(){
+        int length = 20;
+        String abc = "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiilllllllllllllllllllljjjjjjjjjjjjjjjjjjjjabcdefghijklmnopqrstuvwxyz";
+        Random r = new Random();
+
+        StringBuilder sb = new StringBuilder(length);
+        sb.append("iilii");
+        for( int i = 0; i < length; i++ )
+            sb.append( abc.charAt( r.nextInt(abc.length()) ) );
+        return sb.toString();
+
+    }
     
 }

@@ -1,32 +1,57 @@
  ( CHUNK
-	 ( if
-		 ( CONDITION
-			 ( == 100
-				 ( + 50 50 )
-			 )
-			 ( if
-				 ( CONDITION
-					 ( == a 2 )
-					 ( CHUNK
-						 ( VAR print
-							 ( CALL b )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST iiliijjzjiiieiijylkjlliij )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST iiliitbijoslkjikiilxlliij b iiliiiiioaiidivjdsfjljiil iiliilijiwilbjlaiiiqiijii )
+				 ( CHUNK
+					 ( VAR print
+						 ( CALL iiliitbijoslkjikiilxlliij )
+					 )
+					 ( if
+						 ( CONDITION
+							 ( == 100
+								 ( + 50 50 )
+							 )
+							 ( if
+								 ( CONDITION
+									 ( == iiliitbijoslkjikiilxlliij 2 )
+									 ( CHUNK
+										 ( VAR print
+											 ( CALL b )
+										 )
+									 )
+								 )
+							 )
+						 )
+					 )
+					 ( while
+						 ( == 100
+							 ( + 50 50 )
+						 )
+						 ( do
+							 ( CHUNK
+								 ( while
+									 ( == iiliitbijoslkjikiilxlliij 2 )
+									 ( do
+										 ( CHUNK
+											 ( VAR print
+												 ( CALL 2 )
+											 )
+										 )
+									 )
+								 )
+							 )
 						 )
 					 )
 				 )
 			 )
 		 )
 	 )
-	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST a )
-		 ( EXPR_LIST
-			 ( FUNCTION
-				 ( PARAM_LIST gbyof )
-				 ( CHUNK
-					 ( VAR print
-						 ( CALL a )
-					 )
-				 )
-			 )
-		 )
+	 ( VAR iiliijjzjiiieiijylkjlliij
+		 ( CALL 2 4 iiliijjiitiiiiljiijjiiaji iiliijiwyilljjilwilylilpi )
+	 )
+	 ( VAR print
+		 ( CALL iiliitbijoslkjikiilxlliij )
 	 )
  )
