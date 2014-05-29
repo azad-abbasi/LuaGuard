@@ -44,7 +44,7 @@ public class TreeConstructor {
         //we need to get rid of the first token that is a parenthesis
         //so we read a token.
         st.nextToken();
-        root = treeConstructor(st.nextToken(),null);
+        root = treeConstructor(st.nextToken());
 
     }
 
@@ -94,13 +94,13 @@ public class TreeConstructor {
 //           the children by calling itself with different arguments.
 //  Purpose    : Construct a tree using the tokens seen in the StringTokenizer
 //-------------------------------------------------------------
-    public static Node treeConstructor(String root, Node father){
+    public static Node treeConstructor(String root){
         Node thisNode;
         if(root.equals("'")){
-            thisNode = new Node(getStringToken(),father);
+            thisNode = new Node(getStringToken());
         }
         else{
-            thisNode = new Node(root,father);
+            thisNode = new Node(root);
         }
         String currentToken;
         int index = 0 ;
@@ -112,17 +112,17 @@ public class TreeConstructor {
 
             if(!(currentToken.equals(")") || currentToken.equals("("))){
                 if(!currentToken.equals("'")){
-                    thisNode.addChild(new Node(currentToken,thisNode));
+                    thisNode.addChild(new Node(currentToken));
 
                 }
                 else{
-                    thisNode.addChild(new Node(getStringToken(),thisNode));
+                    thisNode.addChild(new Node(getStringToken()));
                 }
 //                currentToken = st.nextToken();
             }
             //what happens if we see a closing parenthesis here
             else if(currentToken.equals("(")){
-                thisNode.addChild(treeConstructor(st.nextToken(),thisNode));
+                thisNode.addChild(treeConstructor(st.nextToken()));
 
             }
 

@@ -18,38 +18,38 @@ public class ControlFlowObfuscator {
     public static Node CreateBogusIF(){
         //create a node of if
         // with condition node : 100 == (50+50)
-        Node bogusNode;
-        bogusNode = new Node("if",null);
-        Node conditionNode = new Node("CONDITION", bogusNode);
-        bogusNode.addChild(conditionNode);
-        Node exprNode = new Node("=", conditionNode);
-        Node expr1 = new Node("100", exprNode);
-        Node expr2 = new Node("", exprNode);
-        expr2.addChild(new Node("+", expr2));
-        expr2.addChild(new Node("50", expr2));
-        expr2.addChild(new Node("50", expr2));
+        Node ifNode;
+        ifNode = new Node("if");
+        Node conditionNode = new Node("CONDITION");
+        ifNode.addChild(conditionNode);
+        Node exprNode = new Node("==");
+        Node expr1 = new Node("100");
+        Node expr2 = new Node("");
+        expr2.addChild(new Node("+"));
+        expr2.addChild(new Node("50"));
+        expr2.addChild(new Node("50"));
         exprNode.addChild(expr1);
         exprNode.addChild(expr2);
         conditionNode.addChild(exprNode);
-        bogusNode.addChild(new Node("CHUNK", bogusNode));
-        return bogusNode;
+
+        return ifNode;
     }
 
     public static Node CreateBogusWhile(){
         Node bogusWhile;
-        bogusWhile = new Node("while",null);
-        Node expr = new Node("=", bogusWhile);
-        Node expr1 = new Node("100", bogusWhile);
-        Node expr2 = new Node("", expr);
-        expr2.addChild(new Node("+", expr2));
-        expr2.addChild(new Node("50", expr2));
-        expr2.addChild(new Node("50", expr2));
+        bogusWhile = new Node("while");
+        Node expr = new Node("==");
+        Node expr1 = new Node("100");
+        Node expr2 = new Node("");
+        expr2.addChild(new Node("+"));
+        expr2.addChild(new Node("50"));
+        expr2.addChild(new Node("50"));
         expr.addChild(expr1);
         expr.addChild(expr2);
         bogusWhile.addChild(expr);
-        Node doNode = new Node("do", bogusWhile);
+        Node doNode = new Node("do");
         bogusWhile.addChild(doNode);
-        Node chunckNode = new Node("CHUNK", doNode);
+        Node chunckNode = new Node("CHUNK");
         doNode.addChild(chunckNode);
         return bogusWhile;
     }
@@ -61,13 +61,15 @@ public class ControlFlowObfuscator {
 
     public static void CFOProcessing(Node CurrentNode){
         //System.out.println(CurrentNode.getName());
+
             /**-----------------------------------IF----------------------------------*/
             if(CurrentNode.getName().equals("if")) {
                 // System.out.println("i found an  " + CurrentNode.getName());
                 // call the createBogusIF
                 Node temp = CreateBogusIF();
-                temp.getChild(1).addChild(CurrentNode);
+                temp.getChild(0).addChild(CurrentNode);
                 Node parent = CurrentNode.getParent();
+
                 // remove the if child existing for the parent
                 parent.removeChildByRef(CurrentNode);
                 // add the bogusIf to the parent
