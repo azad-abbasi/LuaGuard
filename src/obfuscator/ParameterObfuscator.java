@@ -83,7 +83,13 @@ public class ParameterObfuscator {
                         Node child = newParamNode(callNode); //create new random parameter child
                     }
 
+                }else{
+                    int childCount = currentNode.getChildCount();
+                    for(int i = 0; i< childCount; i++){
+                        addParams(currentNode.getChild(i));
+                    }
                 }
+
             }
         }else {
             int childCount = currentNode.getChildCount();
