@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="027004c3-b096-4bab-b804-82fc16d2182f" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/FileTree.java" afterPath="$PROJECT_DIR$/src/gui/FileTree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/Gui.form" afterPath="$PROJECT_DIR$/src/gui/Gui.form" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/Gui.java" afterPath="$PROJECT_DIR$/src/gui/Gui.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/logo.gif" afterPath="$PROJECT_DIR$/src/gui/logo.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/GuiMain.java" afterPath="$PROJECT_DIR$/src/main/GuiMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="027004c3-b096-4bab-b804-82fc16d2182f" name="Default" comment="" />
     <ignored path="LuaGuard.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
