@@ -50,6 +50,7 @@ public class Gui extends JFrame{
     private String projectPath;
     private String currFilePath;
     private boolean isProject;
+    private boolean obfuscateBtnClicked;
     private JMenuItem delete;
     private JMenuItem undo;
     private JMenuItem redo;
@@ -183,9 +184,16 @@ public class Gui extends JFrame{
                     deleteDirectory(file);
                     updateProjectDirFileTree();
                 } else {
-                    System.out.println("DOTHisLater");
-                    //File file = new File(projectPath);
-                    //file.delete();
+                    System.out.println(currFilePath);
+                    System.out.println(projectPath);
+                    File file = new File(currFilePath);
+                    System.out.print(file.getName());
+                    File obfFile = new File(projectPath, "obfuscated-" + file.getName());
+                    if (file.exists()){
+                        file.delete();
+                    } else {
+                        updateStatusPanel("Could not delete");
+                    }
                 }
             }
         });
@@ -234,7 +242,7 @@ public class Gui extends JFrame{
                     // DO THIS LATER!
                     System.out.println("Not a project!");
                     String content = luaEditorPane.getText();
-                    System.out.print(projectPath);
+                    System.out.println(projectPath);
                 }
                 // Get Lua Code
                 String luaCode = luaEditorPane.getText();
@@ -329,6 +337,8 @@ public class Gui extends JFrame{
             setTitle("LuaGuard -" + projectPath);
             // Opening a lua file
             if (type == 1) {
+                projectPath = fn_loc;
+                currFilePath = fn_loc + fn;
                 addLuaFile.setEnabled(false);
                 importFolder.setEnabled(false);
                 String file_extension = fn.split("\\.")[1];
@@ -337,9 +347,7 @@ public class Gui extends JFrame{
                 } else {
                     // Write text from file to luaEditorPane
                     try {
-                        File file = new File(projectPath);
-                        // Set filepath = projectpath?
-                        currFilePath = projectPath;
+                        File file = new File(currFilePath);
                         luaEditorPane.setPage(file.toURI().toURL());
                     } catch (IOException ex) {
                         // Catch exception if file not found
@@ -500,6 +508,7 @@ public class Gui extends JFrame{
         clearEditorsDir();
         currFilePath = "";
         projectPath = "";
+        isProject = false;
         setTitle("LuaGuard");
         vocabComboBox.setEnabled(false);
         importFolder.setEnabled(false);
