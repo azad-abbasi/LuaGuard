@@ -28,9 +28,8 @@ public class Node {
     ArrayList<Node> children;
     Node parent;
 
-    public Node(String name, Node parent){
+    public Node(String name){
         this.name = name;
-        this.parent = parent;
     }
     public Node(){
 
@@ -41,6 +40,11 @@ public class Node {
             children = new ArrayList<Node>();
         }
         children.add(n);
+        n.setParent(this);
+
+    }
+    public void setParent(Node p){
+        this.parent = p;
     }
     public Node getParent(){
         return parent;

@@ -4,7 +4,9 @@ package obfuscator;
 import java.io.*;
 import java.util.*;
 import java.lang.*;
+import java.util.Map;
 import unparser.Node;
+
 /*
  *  Obfuscator program: 
  *  created by Amanda Lemkuil
@@ -15,6 +17,7 @@ import unparser.Node;
 
 public class ParameterObfuscator {
     Node root;
+    Map<String, ArrayList<String>> functionMap;
     
 //-------------------------------------------------------------
 //  Method Name : Constructor
@@ -23,6 +26,7 @@ public class ParameterObfuscator {
 //-------------------------------------------------------------
     public ParameterObfuscator(Node root){
         this.root = root;
+        functionMap = new HashMap<String, ArrayList<String>>();
     }
 
 //-------------------------------------------------------------
@@ -33,8 +37,9 @@ public class ParameterObfuscator {
 //-------------------------------------------------------------
     public static Node newParamNode(Node parentNode){
         Node newParam;
-        newParam = new Node(randomString(5), parentNode);
+        newParam = new Node(randomString(5));
         parentNode.addChild(newParam);
+        return newParam;
     }
 
 //-------------------------------------------------------------
@@ -50,7 +55,19 @@ public class ParameterObfuscator {
 
     public static void addParams(Node currentNode){
 
-        if(currentNode.getName().equals("PARAM_LIST")){
+        if(currentNode.getName().equals("FUNCTION_ASSIGNMENT")){
+            Node varNode = currentNode.getChild(0); //VAR_LIST node
+            String funName = varNode.getChild(0).getName(); //function name
+            Node exprNode = currentNode.getChild(1); //EXPR_LIST node
+            Node paramNode = exprNode.getChild(0).getChild(0); //PARAM_LIST node
+            if()
+
+
+            }
+            Node child = newParamNode(currentNode);
+
+        }
+        /*if(currentNode.getName().equals("PARAM_LIST")){
             Node child = newParamNode(currentNode);
 
         } else {
@@ -58,11 +75,11 @@ public class ParameterObfuscator {
             for(int i = 0; i< childCount; i++){
                 addParams(currentNode.getChild(i));
             }
-        }
+        }*/
     }
 
 
-    public static Node getNewTree(){
+    public Node getNewTree(){
         return root;
     }
 

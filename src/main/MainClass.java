@@ -3,6 +3,9 @@
  */
 package main;
 import obfuscator.Obfuscator;
+import obfuscator.ControlFlowObfuscator;
+import obfuscator.ParameterObfuscator;
+
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
@@ -52,8 +55,8 @@ public class MainClass {
             String treeString = tree.toStringTree();
 
             /**now we feed the common root "root" to the createStructuredTree
-            and feed the Final string to the input reader to put it in a file.
-            **/
+             and feed the Final string to the input reader to put it in a file.
+             **/
             //ASTgenerator reads the tree into a structured tree
             ASTgenerator myAST = new ASTgenerator(tree);
             String treeStructure = myAST.getAST();
@@ -61,6 +64,7 @@ public class MainClass {
 
             //static method printToFile prints the tree into a file.
             InputReader.printToFile(args[1], treeStructure);
+
 
             /**
              * PARSER ENDS HERE
@@ -72,6 +76,8 @@ public class MainClass {
              */
             //-------------------------------------------------------------------------
             //the Obfuscator goes here , whatever level we decide to have
+
+            // Areej : minimum Vocab Obfuscator
 //                            Obfuscator myOb = new Obfuscator(args[1],args[2]);
 //                            //call the fileProcessing Function
 //                            try{
@@ -82,6 +88,28 @@ public class MainClass {
 //                            }catch(Exception e){e.printStackTrace();
 //                            }
 
+//            Areej : ControlFlowObfuscator
+
+//            TreeConstructor t = new TreeConstructor(args[1]);
+//            ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
+//            //call the Function
+//            cfo.CFOObfuscate();
+//            InputReader.printToFile(args[2], tree.toString());
+
+            TreeConstructor t = new TreeConstructor(args[1]);
+            ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
+            //call the Function
+            cfo.CFOObfuscate();
+            InputReader.printToFile(args[2], t.toString());
+
+
+            // Amanda's obfuscator
+//            TreeConstructor t = new TreeConstructor(args[1]);
+//            ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
+//            o.addParams();
+//            InputReader.printToFile(args[2], tree.toString());
+
+
             /**
              * The OBFUSCATOR ENDS HERE
              */
@@ -91,14 +119,14 @@ public class MainClass {
              * The UNPARSER STARTS HERE
              */
             //-------------------------------------------------------------------------
-            //read the AST file back to a tree
-            TreeConstructor myTree = new TreeConstructor(args[1]);
+//            read the AST file back to a tree
+            TreeConstructor myTree = new TreeConstructor(args[2]);
             InputReader.printToFile(args[2],myTree.toString());
             Unparser myUnparser = new Unparser(myTree.getRoot());
             myUnparser.unparse();
             System.out.println(myUnparser.getCode());
             InputReader.printToFile(args[3],myUnparser.getCode());
 
-            //-------------------------------------------------------------------------
+//            -------------------------------------------------------------------------
         }
     }
