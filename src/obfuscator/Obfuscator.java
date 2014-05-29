@@ -214,7 +214,7 @@ public class Obfuscator {
 		}
 		output.close(); // close the writer
 		readAST.close(); // close the reader
-		System.out.println("\nThe AST File you specified : " + this.ast + " has been obfuscated.\nThe new obfuscated AST File is saved with the name : " + this.out + "\n");
+		System.out.println("\nThe AsT File you specified : " + this.ast + " has been obfuscated.\nThe new obfuscated AST File is saved with the name : " + this.out + "\n");
 	}
     
 }
