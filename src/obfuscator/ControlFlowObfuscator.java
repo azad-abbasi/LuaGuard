@@ -81,7 +81,8 @@ public class ControlFlowObfuscator {
                 parent.removeChildByRef(CurrentNode);
 
 
-            }else{
+            }
+            else{
                // System.out.println(CurrentNode.getName());
                 int count = CurrentNode.getChildCount();
                 for(int i = 0; i < count; i++){
