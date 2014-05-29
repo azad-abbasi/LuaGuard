@@ -91,7 +91,7 @@ public class ControlFlowObfuscator {
                 }
             }
     }
-   public  Node getTheTreeManipulated() {
+   public  Node getManipulatedTree() {
        return treeRoot;
    }
 }
