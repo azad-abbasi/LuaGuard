@@ -14,6 +14,7 @@ public class ASTwalker {
         TreeConstructor tree = new TreeConstructor(args[0]);
         InputReader.printToFile(args[1],tree.toString());
         tree.printTreeTokens();
+        System.out.println("");
 //        root.printTree();
 
     }
