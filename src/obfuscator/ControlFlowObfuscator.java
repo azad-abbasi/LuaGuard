@@ -62,24 +62,33 @@ public class ControlFlowObfuscator {
                 // call the createBogusIF
                 Node temp = CreateBogusIF();
                 Node parent = CurrentNode.getParent();
-                parent.addChild(temp);
+                parent.addChildtoTop(temp);
                 temp.getChild(0).addChild(CurrentNode);
                 // remove the if child existing for the parent
                 parent.removeChildByRef(CurrentNode);
                 // add the bogusIf to the parent
+                int count = CurrentNode.getChildCount();
+                for(int i = 0; i < count; i++){
+                    //System.out.println(" I am a child of " + CurrentNode.getName() + ">>>");
+                    CFOProcessing(CurrentNode.getChild(i));
+                }
 
                 /**-----------------------------------WHILE----------------------------------*/
             }
-            if(CurrentNode.getName().equals("while")){
+            else if(CurrentNode.getName().equals("while")){
                 //While expr do_block -> ^(While expr do_block)
                 //System.out.println("I am a while");
                 Node temp = CreateBogusWhile();
                 Node parent = CurrentNode.getParent();
-                parent.addChild(temp);
+                parent.addChildtoTop(temp);
                 temp.getChild(1).getChild(0).addChild(CurrentNode);
                 // remove the while child existing for the parent
                 parent.removeChildByRef(CurrentNode);
-
+                int count = CurrentNode.getChildCount();
+                for(int i = 0; i < count; i++){
+                    //System.out.println(" I am a child of " + CurrentNode.getName() + ">>>");
+                    CFOProcessing(CurrentNode.getChild(i));
+                }
 
             }
             else{

@@ -1,20 +1,21 @@
  ( CHUNK
-	 ( ASSIGNMENT
-		 ( VAR_LIST a )
-		 ( EXPR_LIST 2 )
-	 )
 	 ( if
 		 ( CONDITION
 			 ( == a 2 )
 			 ( CHUNK
-				 ( if
-					 ( CONDITION
-						 ( > a 1 )
-						 ( CHUNK
-							 ( VAR print
-								 ( CALL  ' hello '  )
-							 )
-						 )
+				 ( VAR print
+					 ( CALL b )
+				 )
+			 )
+		 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST a )
+		 ( EXPR_LIST
+			 ( FUNCTION PARAM_LIST
+				 ( CHUNK
+					 ( VAR print
+						 ( CALL a )
 					 )
 				 )
 			 )

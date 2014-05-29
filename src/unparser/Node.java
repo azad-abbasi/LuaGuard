@@ -43,6 +43,13 @@ public class Node {
         n.setParent(this);
 
     }
+    public void addChildtoTop(Node n){
+        if(children == null){
+            children = new ArrayList<Node>();
+        }
+        children.add(0,n);
+        n.setParent(this);
+    }
     public void setParent(Node p){
         this.parent = p;
     }

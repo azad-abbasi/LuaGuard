@@ -1,51 +1,31 @@
  ( CHUNK
-	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST fact )
-		 ( EXPR_LIST
-			 ( FUNCTION
-				 ( PARAM_LIST n )
-				 ( CHUNK
-					 ( if
-						 ( CONDITION
-							 ( == n 0 )
-							 ( CHUNK
-								 ( return 1 )
-							 )
-						 )
-						 ( CONDITION True
-							 ( CHUNK
-								 ( return
-									 ( * n
-										 ( VAR fact
-											 ( CALL
-												 ( - n 1 )
-											 )
-										 )
-									 )
-								 )
-							 )
+	 ( if
+		 ( CONDITION
+			 ( == 100
+				 ( + 50 50 )
+			 )
+			 ( if
+				 ( CONDITION
+					 ( == a 2 )
+					 ( CHUNK
+						 ( VAR print
+							 ( CALL b )
 						 )
 					 )
 				 )
 			 )
 		 )
 	 )
-	 ( VAR print
-		 ( CALL  ' enter a number: '  )
-	 )
-	 ( ASSIGNMENT
+	 ( FUNCTION_ASSIGNMENT
 		 ( VAR_LIST a )
 		 ( EXPR_LIST
-			 ( VAR io
-				 ( INDEX  ' read '  )
-				 ( CALL  ' *number '  )
-			 )
-		 )
-	 )
-	 ( VAR print
-		 ( CALL
-			 ( VAR fact
-				 ( CALL a )
+			 ( FUNCTION
+				 ( PARAM_LIST gbyof )
+				 ( CHUNK
+					 ( VAR print
+						 ( CALL a )
+					 )
+				 )
 			 )
 		 )
 	 )

@@ -103,6 +103,13 @@ public class MainClass {
             InputReader.printToFile(args[2], t.toString());
 
 
+
+            ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
+            //call the Function
+            o.addParams();
+            InputReader.printToFile(args[2], t.toString());
+
+
             // Amanda's obfuscator
 //            TreeConstructor t = new TreeConstructor(args[1]);
 //            ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
