@@ -53,6 +53,8 @@ public class Gui extends JFrame{
     private JMenuItem delete;
     private JMenuItem undo;
     private JMenuItem redo;
+    private JMenuItem importFolder;
+    private JMenuItem addLuaFile;
     private FileTree projectDirectoryTree;
 
     public Gui() {
@@ -71,8 +73,10 @@ public class Gui extends JFrame{
         JMenuItem newproj = new JMenuItem("New");
         JMenuItem open = new JMenuItem("Open file...");
         JMenuItem openProj = new JMenuItem("Open Project");
-        JMenuItem importFolder = new JMenuItem("Import...");
-        JMenuItem add = new JMenuItem("Add file...");
+        importFolder = new JMenuItem("Import...");
+        addLuaFile = new JMenuItem("Add file...");
+        importFolder.setEnabled(false);
+        addLuaFile.setEnabled(false);
 
         // Adding edit menu tab with its menu items
         JMenu edit = new JMenu("Edit");
@@ -105,7 +109,7 @@ public class Gui extends JFrame{
         file.add(open);
         file.add(openProj);
         file.add(importFolder);
-        file.add(add);
+        file.add(addLuaFile);
         edit.add(undo);
         edit.add(redo);
         edit.add(delete);
@@ -148,15 +152,15 @@ public class Gui extends JFrame{
         importFolder.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
                 // Set to open only dirs
-                // System.setProperty("apple.awt.fileDialogForDirectories", "true");
-                // openOrNewFileDirProj(2);
-                System.out.println("ssaf");
+                System.setProperty("apple.awt.fileDialogForDirectories", "true");
+                importFilesToProject();
+                //System.out.println("ssaf");
             }
         });
 
-        add.setAccelerator(
+        addLuaFile.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_I, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
-        add.addActionListener(new ActionListener(  ) {
+        addLuaFile.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
                 // Set to open only dirs
                 // System.setProperty("apple.awt.fileDialogForDirectories", "true");
@@ -328,6 +332,8 @@ public class Gui extends JFrame{
             if (type == 0 || type == 2) {
                 // Enabled to delete obfuscated directory
                 delete.setEnabled(true);
+                addLuaFile.setEnabled(true);
+                importFolder.setEnabled(true);
                 isProject = true;
                 if (type ==  0) {
                     // Create directory to place lua code
@@ -368,6 +374,33 @@ public class Gui extends JFrame{
         }
     }
 
+    public void importFilesToProject() {
+        fileChooser.setTitle("Choose folder to import");
+        fileChooser.setVisible(true);
+        String fn = fileChooser.getFile();
+        String fn_loc = fileChooser.getDirectory();
+        String newLocation = projectPath;
+        System.out.println(newLocation);
+        File file = new File(fn_loc+fn);
+        File[] files = file.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            System.out.println(files[i].getName());
+            if(!files[i].isHidden()) {
+                if(!files[i].isDirectory()){
+                    String file_extension = files[i].getName().split("\\.")[1];
+                    if (file_extension.equals("lua")) {
+                        files[i].renameTo(new File(newLocation + File.separator + "Lua" + File.separator + files[i].getName()));
+                    }
+                }
+            }
+        }
+        updateProjectDirFileTree();
+    }
+
+    public void addFileToProject() {
+
+    }
+
     public void updateProjectDirFileTree() {
         projectDirectoryPanel.removeAll();
         projectDirectoryPanel.updateUI();
@@ -382,6 +415,7 @@ public class Gui extends JFrame{
             @Override
             public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeSelectionEvent.getPath().getLastPathComponent();
+                // Error when going up dir!!!
                 String filePath = treeSelectionEvent.getPath().getParentPath().getLastPathComponent() + File.separator + node.toString();
                 File tmp = new File(node.toString());
                 if (!tmp.isDirectory()) {
