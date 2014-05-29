@@ -6,17 +6,25 @@
 				 ( VAR print
 					 ( CALL b )
 				 )
+				 ( if
+					 ( CONDITION
+						 ( == a 3 )
+						 ( CHUNK
+							 ( VAR print
+								 ( CALL a )
+							 )
+						 )
+					 )
+				 )
 			 )
 		 )
 	 )
-	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST a )
-		 ( EXPR_LIST
-			 ( FUNCTION PARAM_LIST
-				 ( CHUNK
-					 ( VAR print
-						 ( CALL a )
-					 )
+	 ( while
+		 ( == a 2 )
+		 ( do
+			 ( CHUNK
+				 ( VAR print
+					 ( CALL 2 )
 				 )
 			 )
 		 )

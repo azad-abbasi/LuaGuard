@@ -62,7 +62,7 @@ public class ControlFlowObfuscator {
                 // call the createBogusIF
                 Node temp = CreateBogusIF();
                 Node parent = CurrentNode.getParent();
-                parent.addChildtoTop(temp);
+                parent.addChildatIndex(temp, parent.getChildIndex(CurrentNode));
                 temp.getChild(0).addChild(CurrentNode);
                 // remove the if child existing for the parent
                 parent.removeChildByRef(CurrentNode);
@@ -80,7 +80,7 @@ public class ControlFlowObfuscator {
                 //System.out.println("I am a while");
                 Node temp = CreateBogusWhile();
                 Node parent = CurrentNode.getParent();
-                parent.addChildtoTop(temp);
+                parent.addChildatIndex(temp, parent.getChildIndex(CurrentNode));
                 temp.getChild(1).getChild(0).addChild(CurrentNode);
                 // remove the while child existing for the parent
                 parent.removeChildByRef(CurrentNode);
