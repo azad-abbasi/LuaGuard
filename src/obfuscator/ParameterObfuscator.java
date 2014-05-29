@@ -17,7 +17,7 @@ import unparser.Node;
 
 public class ParameterObfuscator {
     Node root;
-    Map<String, ArrayList<String>> functionMap;
+    static Map<String, Integer> functionMap;
     
 //-------------------------------------------------------------
 //  Method Name : Constructor
@@ -26,7 +26,7 @@ public class ParameterObfuscator {
 //-------------------------------------------------------------
     public ParameterObfuscator(Node root){
         this.root = root;
-        functionMap = new HashMap<String, ArrayList<String>>();
+        functionMap = new HashMap<String, Integer>();
     }
 
 //-------------------------------------------------------------
@@ -56,32 +56,43 @@ public class ParameterObfuscator {
     public static void addParams(Node currentNode){
 
         if(currentNode.getName().equals("FUNCTION_ASSIGNMENT")){
+
             Node varNode = currentNode.getChild(0); //VAR_LIST node
             String funName = varNode.getChild(0).getName(); //function name
             Node exprNode = currentNode.getChild(1); //EXPR_LIST node
             Node paramNode = exprNode.getChild(0).getChild(0); //PARAM_LIST node
-            if()
-
-
+            //generate random number of params to create
+            Random rand = new Random();
+            int randomNum = rand.nextInt(4);//get random number between 0 and 4(exclusive)
+            functionMap.put(funName,randomNum);
+            for(int i=0; i<=randomNum; i++) {
+                //if(paramNode.getChildCount() == 0){
+                Node child = newParamNode(paramNode); //create new random parameter child
             }
-            Node child = newParamNode(currentNode);
+
 
         }
-        /*if(currentNode.getName().equals("PARAM_LIST")){
-            Node child = newParamNode(currentNode);
+        if(currentNode.getName().equals("VAR")){
+            if(currentNode.getChild(1).getName().equals("CALL")){
+                Node callNode = currentNode.getChild(1);
+                String funName = currentNode.getChild(0).getName();
+                if(functionMap.containsKey(funName)){
+                    int ranNum = functionMap.get(funName);
+                    for(int i=0; i<=ranNum; i++) {
+                        //if(paramNode.getChildCount() == 0){
+                        Node child = newParamNode(callNode); //create new random parameter child
+                    }
 
-        } else {
+                }
+            }
+        }else {
             int childCount = currentNode.getChildCount();
             for(int i = 0; i< childCount; i++){
                 addParams(currentNode.getChild(i));
             }
-        }*/
+        }
     }
 
-
-    public Node getNewTree(){
-        return root;
-    }
 
 //-------------------------------------------------------------
 //  Method Name : randomString

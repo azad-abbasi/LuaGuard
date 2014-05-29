@@ -4,6 +4,7 @@
 package main;
 import obfuscator.ControlFlowObfuscator;
 import obfuscator.Obfuscator;
+import obfuscator.ParameterObfuscator;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
@@ -73,11 +74,24 @@ public class AreejMain {
         //-------------------------------------------------------------------------
         //the Obfuscator goes here , whatever level we decide to have
 
-                        TreeConstructor t = new TreeConstructor(args[1]);
+                      /* TreeConstructor t = new TreeConstructor(args[1]);
                         ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
                            //call the Function
                         cfo.CFOObfuscate();
-                        InputReader.printToFile(args[2], t.toString());
+                        InputReader.printToFile(args[2], t.toString()); */
+
+            TreeConstructor t = new TreeConstructor(args[1]);
+            ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
+            //call the Function
+            o.addParams();
+            InputReader.printToFile(args[2], t.toString());
+
+        TreeConstructor myTree = new TreeConstructor(args[2]);
+        InputReader.printToFile(args[2],myTree.toString());
+        Unparser myUnparser = new Unparser(myTree.getRoot());
+        myUnparser.unparse();
+        System.out.println(myUnparser.getCode());
+        InputReader.printToFile(args[3],myUnparser.getCode());
 
         /**
          * The OBFUSCATOR ENDS HERE

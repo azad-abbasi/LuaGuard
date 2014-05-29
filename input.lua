@@ -1,10 +1,11 @@
-function uniqueid_some_event (e)
- if (e:HasString("string1")) then
-   -- do something
- end
- if (e:HasString("string2")) then
-  -- do something
- end
-end
+function fact (n)
+      if n == 0 then
+        return 1
+      else
+        return n * fact(n-1)
+      end
+    end
 
-if (e:HasString("outside function...")) then end
+    print("enter a number:")
+    a = io.read("*number")        -- read a number
+    print(fact(a))

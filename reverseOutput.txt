@@ -1,39 +1,52 @@
  ( CHUNK
 	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST uniqueid_some_event )
+		 ( VAR_LIST fact )
 		 ( EXPR_LIST
 			 ( FUNCTION
-				 ( PARAM_LIST e )
+				 ( PARAM_LIST n )
 				 ( CHUNK
 					 ( if
 						 ( CONDITION
-							 ( VAR e
-								 ( INDEX 'HasString' )
-								 ( COL_CALL 'string1' )
+							 ( == n 0 )
+							 ( CHUNK
+								 ( return 1 )
 							 )
-							 ( CHUNK )
 						 )
-					 )
-					 ( if
-						 ( CONDITION
-							 ( VAR e
-								 ( INDEX 'HasString' )
-								 ( COL_CALL 'string2' )
+						 ( CONDITION True
+							 ( CHUNK
+								 ( return
+									 ( * n
+										 ( VAR fact
+											 ( CALL
+												 ( - n 1 )
+											 )
+										 )
+									 )
+								 )
 							 )
-							 ( CHUNK )
 						 )
 					 )
 				 )
 			 )
 		 )
 	 )
-	 ( if
-		 ( CONDITION
-			 ( VAR e
-				 ( INDEX 'HasString' )
-				 ( COL_CALL 'outsidefunction...' )
+	 ( VAR print
+		 ( CALL  ' enter a number: '  )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST a )
+		 ( EXPR_LIST
+			 ( VAR io
+				 ( INDEX  ' read '  )
+				 ( CALL  ' *number '  )
 			 )
-			 ( CHUNK )
+		 )
+	 )
+	 ( VAR print
+		 ( CALL
+			 ( VAR fact
+				 ( CALL a )
+			 )
 		 )
 	 )
  )
