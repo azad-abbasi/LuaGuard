@@ -48,6 +48,7 @@ public class Gui extends JFrame{
     // Attr added by Lucas not Intellji form designer
     private FileDialog fileChooser;
     private String projectPath;
+    private String currFilePath;
     private boolean isProject;
     private JMenuItem delete;
     private JMenuItem undo;
@@ -70,10 +71,10 @@ public class Gui extends JFrame{
         // Adding File menu tab with its menu items
         JMenu file = new JMenu("File");
         JMenuItem newproj = new JMenuItem("New");
-        JMenuItem open = new JMenuItem("Open file...");
-        JMenuItem openProj = new JMenuItem("Open Project");
-        importFolder = new JMenuItem("Import...");
-        addLuaFile = new JMenuItem("Add file...");
+        JMenuItem open = new JMenuItem("Open File...");
+        JMenuItem openProj = new JMenuItem("Open Project...");
+        importFolder = new JMenuItem("Import Folder...");
+        addLuaFile = new JMenuItem("Import file...");
         importFolder.setEnabled(false);
         addLuaFile.setEnabled(false);
 
@@ -146,27 +147,29 @@ public class Gui extends JFrame{
             }
         });
 
-        importFolder.setAccelerator(
-                KeyStroke.getKeyStroke(KeyEvent.VK_I, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
-        importFolder.addActionListener(new ActionListener(  ) {
-            public void actionPerformed(ActionEvent e) {
-                // Set to open only dirs
-                System.setProperty("apple.awt.fileDialogForDirectories", "true");
-                importFilesToProject();
-                //System.out.println("ssaf");
-            }
-        });
-
         addLuaFile.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_I, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
         addLuaFile.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
                 // Set to open only dirs
-                // System.setProperty("apple.awt.fileDialogForDirectories", "true");
+                System.setProperty("apple.awt.fileDialogForDirectories", "false");
+                importFilesToProject(0);
                 // openOrNewFileDirProj(2);
-                System.out.println("asfasf");
+                //System.out.println("asfasf");
             }
         });
+
+        importFolder.setAccelerator(
+                KeyStroke.getKeyStroke(KeyEvent.VK_I, (java.awt.event.InputEvent.SHIFT_MASK | (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()))));
+        importFolder.addActionListener(new ActionListener(  ) {
+            public void actionPerformed(ActionEvent e) {
+                // Set to open only dirs
+                System.setProperty("apple.awt.fileDialogForDirectories", "true");
+                importFilesToProject(1);
+                //System.out.println("ssaf");
+            }
+        });
+
 
         delete.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_D, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
@@ -320,6 +323,7 @@ public class Gui extends JFrame{
                     // Write text from file to luaEditorPane
                     try {
                         File file = new File(projectPath);
+                        // Set filepath = projectpath?
                         luaEditorPane.setPage(file.toURI().toURL());
                     } catch (IOException ex) {
                         // Catch exception if file not found
@@ -373,31 +377,48 @@ public class Gui extends JFrame{
         }
     }
 
-    public void importFilesToProject() {
-        fileChooser.setTitle("Choose folder to import");
-        fileChooser.setVisible(true);
-        String fn = fileChooser.getFile();
-        String fn_loc = fileChooser.getDirectory();
-        String newLocation = projectPath;
-        System.out.println(newLocation);
-        File file = new File(fn_loc+fn);
-        File[] files = file.listFiles();
-        for (int i = 0; i < files.length; i++) {
-            System.out.println(files[i].getName());
-            if(!files[i].isHidden()) {
-                if(!files[i].isDirectory()){
-                    String file_extension = files[i].getName().split("\\.")[1];
-                    if (file_extension.equals("lua")) {
-                        files[i].renameTo(new File(newLocation + File.separator + "Lua" + File.separator + files[i].getName()));
+    public void importFilesToProject(int type) {
+        // importing file
+        if (type == 0) {
+            fileChooser.setTitle("Choose lua file to import");
+            fileChooser.setVisible(true);
+            String fn = fileChooser.getFile();
+            String fn_loc = fileChooser.getDirectory();
+            File file = new File(fn_loc+fn);
+            String file_extension = file.getName().split("\\.")[1];
+            if (file_extension.equals("lua")) {
+                boolean success = file.renameTo(new File(projectPath + File.separator + "Lua" + File.separator + file.getName()));
+                if (success)
+                    updateStatusPanel(fn_loc+fn + " added succesfully to " + projectPath);
+                else
+                    updateStatusPanel("Error adding " + fn_loc+fn + " to " + projectPath);
+            }
+        }
+        // Importing folder
+        if (type == 1) {
+            fileChooser.setTitle("Choose folder to import");
+            fileChooser.setVisible(true);
+            String fn = fileChooser.getFile();
+            String fn_loc = fileChooser.getDirectory();
+            File file = new File(fn_loc + fn);
+            File[] files = file.listFiles();
+            for (int i = 0; i < files.length; i++) {
+                System.out.println(files[i].getName());
+                if (!files[i].isHidden()) {
+                    if (!files[i].isDirectory()) {
+                        String file_extension = files[i].getName().split("\\.")[1];
+                        if (file_extension.equals("lua")) {
+                            boolean success = files[i].renameTo(new File(projectPath + File.separator + "Lua" + File.separator + files[i].getName()));
+                            if (success)
+                                updateStatusPanel(fn_loc+fn + " added succesfully to " + projectPath);
+                            else
+                                updateStatusPanel("Error adding " + fn_loc+fn + " to " + projectPath);
+                        }
                     }
                 }
             }
         }
         updateProjectDirFileTree();
-    }
-
-    public void addFileToProject() {
-
     }
 
     public void updateProjectDirFileTree() {
@@ -414,25 +435,27 @@ public class Gui extends JFrame{
             @Override
             public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeSelectionEvent.getPath().getLastPathComponent();
-                // Error when going up dir!!!
-                String filePath = treeSelectionEvent.getPath().getParentPath().getLastPathComponent() + File.separator + node.toString();
-                File tmp = new File(node.toString());
-                if (!tmp.isDirectory()) {
-                    if (!tmp.isHidden()) {
-                        updateLuaEditorPane(filePath);
+                try {
+                    String filePath = treeSelectionEvent.getPath().getParentPath().getLastPathComponent() + File.separator + node.toString();
+                    File tmp = new File(node.toString());
+                    if (!tmp.isDirectory()) {
+                        if (!tmp.isHidden()) {
+                            updateLuaEditorPane(filePath);
+                        }
                     }
-                }
+                } catch (NullPointerException e) {}
             }
         });
     }
 
     public void updateLuaEditorPane(String filePath) {
+        // Create file to set to editorpane
         File file = new File(filePath);
+        currFilePath = filePath;
         try {
             luaEditorPane.setPage(file.toURI().toURL());
         } catch (IOException e) {
-            e.printStackTrace();
-            //updateStatusPanel("Error occurred while reading lua file\n");
+            updateStatusPanel("Error occurred while reading lua file\n");
         }
     }
 
