@@ -71,6 +71,8 @@ public class Gui extends JFrame{
         JMenuItem newproj = new JMenuItem("New");
         JMenuItem open = new JMenuItem("Open file...");
         JMenuItem openProj = new JMenuItem("Open Project");
+        JMenuItem importFolder = new JMenuItem("Import...");
+        JMenuItem add = new JMenuItem("Add file...");
 
         // Adding edit menu tab with its menu items
         JMenu edit = new JMenu("Edit");
@@ -102,6 +104,8 @@ public class Gui extends JFrame{
         file.add(newproj);
         file.add(open);
         file.add(openProj);
+        file.add(importFolder);
+        file.add(add);
         edit.add(undo);
         edit.add(redo);
         edit.add(delete);
@@ -136,6 +140,28 @@ public class Gui extends JFrame{
                 // Set to open only dirs
                 System.setProperty("apple.awt.fileDialogForDirectories", "true");
                 openOrNewFileDirProj(2);
+            }
+        });
+
+        importFolder.setAccelerator(
+                KeyStroke.getKeyStroke(KeyEvent.VK_I, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
+        importFolder.addActionListener(new ActionListener(  ) {
+            public void actionPerformed(ActionEvent e) {
+                // Set to open only dirs
+                // System.setProperty("apple.awt.fileDialogForDirectories", "true");
+                // openOrNewFileDirProj(2);
+                System.out.println("ssaf");
+            }
+        });
+
+        add.setAccelerator(
+                KeyStroke.getKeyStroke(KeyEvent.VK_I, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
+        add.addActionListener(new ActionListener(  ) {
+            public void actionPerformed(ActionEvent e) {
+                // Set to open only dirs
+                // System.setProperty("apple.awt.fileDialogForDirectories", "true");
+                // openOrNewFileDirProj(2);
+                System.out.println("asfasf");
             }
         });
 
@@ -184,13 +210,16 @@ public class Gui extends JFrame{
             }
         });
 
-
-
         obfuscateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 delete.setEnabled(true);
-                undo.setEnabled(true);
+                if (isProject == false) {
+                    // DO THIS LATER!
+                    System.out.println("Not a project!");
+                    String content = luaEditorPane.getText();
+                    System.out.print(projectPath);
+                }
                 // Get Lua Code
                 String luaCode = luaEditorPane.getText();
 
@@ -199,6 +228,7 @@ public class Gui extends JFrame{
                 // Check Degree of Obfuscation Radio Buttons
                 if (vocabRadioButton.isSelected()) {
                     // Do Vocab obfuscation here...
+                    String selectedVocab = (String) vocabComboBox.getSelectedItem();
 
                 }
 
@@ -218,7 +248,7 @@ public class Gui extends JFrame{
                 }
 
                 // Output result to obfuscated editor panel
-                obfuscatedEditorPane.setText(luaCode);
+                // obfuscatedEditorPane.setText(luaCode);
 
                 //JOptionPane.showMessageDialog(Gui.this, luaCode);
             }
@@ -228,7 +258,7 @@ public class Gui extends JFrame{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 System.out.println("Cancel button pressed...");
-                clearEditorsDir(); 
+                clearEditorsDir();
             }
         });
 

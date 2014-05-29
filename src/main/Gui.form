@@ -218,7 +218,7 @@
                       <enabled value="false"/>
                       <model>
                         <item value="MinVocab"/>
-                        <item value="Reverese"/>
+                        <item value="Reverse"/>
                         <item value="XOR"/>
                         <item value="ILoveOU"/>
                         <item value="BOSS"/>
