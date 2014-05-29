@@ -153,7 +153,7 @@ public class Obfuscator {
      * Reads the AST file, run the obfuscation function and write to a new file the new obfuscated
      * AST file
      */
-	public void FileProcessing() throws IOException{
+	public void FileProcessing(String obfuName) throws IOException{
 		BufferedReader readAST = new BufferedReader(new FileReader(ast)); // open a buffer reader
 		BufferedWriter output = new BufferedWriter(new FileWriter(out)); // open a buffer writer
         
@@ -175,7 +175,19 @@ public class Obfuscator {
                     String space = tokenizer.nextToken();
                     output.write(space);
 					String var = tokenizer.nextToken();
-					String transformedVar = MinimumVocabObfuscation(var);
+//-----------------------------------------------------------------------
+					if( obfuName == "MinVocab" ){
+						String transformedVar = MinimumVocabObfuscation(var);
+					}else if (obfuName == "Reverse"){
+						String transformedVar = StringreverseObfuscation(var);
+					}else if (obfuName == "XOR"){
+						String transformedVar = XORObfuscation(var);
+					}else if (obfuName == "ILOveOU"){
+						String transformedVar = ILOveOUObfuscation(var);
+					}else(obfuName == "Boss"){
+						String transformedVar = BossObfuscation(var);
+					}
+//-----------------------------------------------------------------------
 					obfuscatedVars.put(var, transformedVar);
 					output.write(transformedVar);
                     //check if the string following VAR is in the MAP or a name for built in function

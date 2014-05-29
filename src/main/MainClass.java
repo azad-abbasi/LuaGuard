@@ -21,11 +21,13 @@ import org.apache.commons.cli.*;
 public class MainClass {
 
         public static void main(String[] args) throws Exception {
+            String obfuName; // used to select obfuscation
+
             /**
              * The ARGUMENT HANDLER STARTS HERE
              */
             //------------------------------------------------------------------------
-            if(args.length<3){
+            if(args.length < 3){
                 System.out.println("\n    This class takes 3 arguments:" +
                         "\n     1:the path to the input file which contains the Lua code" +
                         "\n     2:the path to the desired output path" +
@@ -79,7 +81,10 @@ public class MainClass {
 //                            Obfuscator myOb = new Obfuscator(args[1],args[2]);
 //                            //call the fileProcessing Function
 //                            try{
-//                                myOb.FileProcessing();
+
+                  /* Key words{ MinVocab,Reverse,XOR,ILOveOU,Boss} = obfuName */
+
+//                                myOb.FileProcessing(obfuName);
 //                            }catch(Exception e){e.printStackTrace();
 //                            }
 
