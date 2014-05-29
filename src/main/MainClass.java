@@ -90,11 +90,6 @@ public class MainClass {
 
 //            Areej : ControlFlowObfuscator
 
-//            TreeConstructor t = new TreeConstructor(args[1]);
-//            ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
-//            //call the Function
-//            cfo.CFOObfuscate();
-//            InputReader.printToFile(args[2], tree.toString());
 
             TreeConstructor t = new TreeConstructor(args[1]);
             ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());

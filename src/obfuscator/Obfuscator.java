@@ -185,7 +185,10 @@ public class Obfuscator {
 						transformedVar = XORObfuscation(var);
 					}else if (obfuName.equals("ILOveOU")){
 						transformedVar = ILOveOUObfuscation(var);
-					}else{
+					}
+                    else if (obfuName.equals("ILOveOU")){
+                        transformedVar = ILOveOUObfuscation(var);
+                    }else{
 						transformedVar = BossObfuscation(var);
 					}
 //-----------------------------------------------------------------------
