@@ -55,6 +55,7 @@ public class Gui extends JFrame{
     private JMenuItem redo;
     private JMenuItem importFolder;
     private JMenuItem addLuaFile;
+    private JMenuItem reset;
     private FileTree projectDirectoryTree;
 
     public Gui() {
@@ -75,6 +76,8 @@ public class Gui extends JFrame{
         JMenuItem openProj = new JMenuItem("Open Project...");
         importFolder = new JMenuItem("Import Folder...");
         addLuaFile = new JMenuItem("Import file...");
+        reset = new JMenuItem("Reset");
+        reset.setEnabled(false);
         importFolder.setEnabled(false);
         addLuaFile.setEnabled(false);
 
@@ -113,6 +116,7 @@ public class Gui extends JFrame{
         edit.add(undo);
         edit.add(redo);
         edit.add(delete);
+        edit.add(reset);
 
         // Create a project, by either selecting a directory or creating a new directory
         newproj.setAccelerator(
@@ -154,8 +158,6 @@ public class Gui extends JFrame{
                 // Set to open only dirs
                 System.setProperty("apple.awt.fileDialogForDirectories", "false");
                 importFilesToProject(0);
-                // openOrNewFileDirProj(2);
-                //System.out.println("asfasf");
             }
         });
 
@@ -213,6 +215,14 @@ public class Gui extends JFrame{
                     vocabComboBox.setEnabled(true);
                 else
                     vocabComboBox.setEnabled(false);
+            }
+        });
+
+        reset.setAccelerator(
+                KeyStroke.getKeyStroke(KeyEvent.VK_R, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
+        reset.addActionListener(new ActionListener(  ) {
+            public void actionPerformed(ActionEvent e) {
+                resetLuaGuard();
             }
         });
 
@@ -312,10 +322,15 @@ public class Gui extends JFrame{
         if (fn == null) {
             return;
         } else {
+            // Once file/project open it can be reset
+            resetLuaGuard();
+            reset.setEnabled(true);
             projectPath = fn_loc + fn;
             setTitle("LuaGuard -" + projectPath);
             // Opening a lua file
             if (type == 1) {
+                addLuaFile.setEnabled(false);
+                importFolder.setEnabled(false);
                 String file_extension = fn.split("\\.")[1];
                 if (!file_extension.equals("lua")) {
                     updateStatusPanel("Incompatible file type chosen, .lua files only supported\n");
@@ -324,6 +339,7 @@ public class Gui extends JFrame{
                     try {
                         File file = new File(projectPath);
                         // Set filepath = projectpath?
+                        currFilePath = projectPath;
                         luaEditorPane.setPage(file.toURI().toURL());
                     } catch (IOException ex) {
                         // Catch exception if file not found
@@ -478,6 +494,29 @@ public class Gui extends JFrame{
         obfuscatedEditorPane.replaceSelection("");
         projectDirectoryPanel.removeAll();
         projectDirectoryPanel.updateUI();
+    }
+
+    public void resetLuaGuard() {
+        clearEditorsDir();
+        currFilePath = "";
+        projectPath = "";
+        setTitle("LuaGuard");
+        vocabComboBox.setEnabled(false);
+        importFolder.setEnabled(false);
+        addLuaFile.setEnabled(false);
+        undo.setEnabled(false);
+        redo.setEnabled(false);
+        delete.setEnabled(false);
+        reset.setEnabled(false);
+        vocabRadioButton.setSelected(false);
+        spacingRadioButton.setSelected(false);
+        junkDataRadioButton.setSelected(false);
+        parameterRadioButton.setSelected(false);
+        statusTextPane.setText("Welcome to LuaGuard!\n" +
+                "Create/open a project to begin\n" +
+                "Or Start typing Lua code into the Lua Editor TextPane\n" +
+                "For further help see our user manual at...\n");
+
     }
 
 }
