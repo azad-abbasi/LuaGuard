@@ -1,57 +1,39 @@
  ( CHUNK
 	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST dependsMany )
+		 ( VAR_LIST uniqueid_some_event )
 		 ( EXPR_LIST
-			 ( FUNCTION PARAM_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST e )
 				 ( CHUNK
-					 ( ASSIGNMENT
-						 ( VAR_LIST NumberItems )
-						 ( EXPR_LIST
-							 ( VAR get_select_items CALL )
-						 )
-					 )
-					 ( ASSIGNMENT
-						 ( VAR_LIST MaxNumber )
-						 ( EXPR_LIST
-							 ( VAR table
-								 ( INDEX  ' maxn '  )
-								 ( CALL NumberItems )
+					 ( if
+						 ( CONDITION
+							 ( VAR e
+								 ( INDEX  ' HasString '  )
+								 ( COL_CALL  ' string1 '  )
 							 )
+							 ( CHUNK )
 						 )
 					 )
 					 ( if
 						 ( CONDITION
-							 ( <= MaxNumber 1 )
-							 ( CHUNK
-								 ( VAR msgbox
-									 ( CALL  ' Need more than one itme selected '   ' Error 001 '  )
-								 )
+							 ( VAR e
+								 ( INDEX  ' HasString '  )
+								 ( COL_CALL  ' string2 '  )
 							 )
-						 )
-						 ( CONDITION True
-							 ( CHUNK
-								 ( for inc1 1
-									 ( - MaxNumber 1 )
-									 ( do
-										 ( CHUNK
-											 ( VAR add_depend_item
-												 ( CALL
-													 ( VAR NumberItems
-														 ( INDEX MaxNumber )
-													 )
-													 ( VAR NumberItems
-														 ( INDEX inc1 )
-													 )
-												 )
-											 )
-										 )
-									 )
-								 )
-							 )
+							 ( CHUNK )
 						 )
 					 )
 				 )
 			 )
+		 )
+	 )
+	 ( if
+		 ( CONDITION
+			 ( VAR e
+				 ( INDEX  ' HasString '  )
+				 ( COL_CALL  ' outside function... '  )
+			 )
+			 ( CHUNK )
 		 )
 	 )
  )
