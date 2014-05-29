@@ -3,6 +3,8 @@ package main;
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.text.Document;
+import javax.swing.text.PlainDocument;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -52,7 +54,6 @@ public class Gui extends JFrame{
     private JMenuItem undo;
     private JMenuItem redo;
     private FileTree projectDirectoryTree;
-    //private Queue<String> recentObfuscated;
 
     public Gui() {
         super("LuaGuard");
@@ -92,9 +93,10 @@ public class Gui extends JFrame{
 
         // Set Layout for FileTree
         projectDirectoryPanel.setLayout(new BorderLayout());
-        //projectDirectoryTree = new FileTree(new File(projectPath));
 
-        // Change tab size for 
+        // Change tab size
+        Document doc =  luaEditorPane.getDocument();
+        doc.putProperty(PlainDocument.tabSizeAttribute, 2);
 
         // Add to menu
         file.add(newproj);
@@ -225,7 +227,7 @@ public class Gui extends JFrame{
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                System.out.println("Cancel button pressed...")
             }
         });
 
@@ -249,7 +251,6 @@ public class Gui extends JFrame{
         boolean containsObfDir = false;
         File file =  new File(projectPath);
         String[] files = file.list();
-
         // Iterate through sub-dirs and files looking for obfuscated dir
         for (int i = 0; i < files.length; i++) {
             if (files[i].equals("obfuscated")){     //Found file "obfuscate"
@@ -275,6 +276,7 @@ public class Gui extends JFrame{
             return;
         } else {
             projectPath = fn_loc + fn;
+            setTitle("LuaGuard -" + projectPath);
             // Opening a lua file
             if (type == 1) {
                 String file_extension = fn.split("\\.")[1];
@@ -298,7 +300,7 @@ public class Gui extends JFrame{
                 isProject = true;
                 if (type ==  0) {
                     // Create directory to place lua code
-                    new File(projectPath+"/lua").mkdir();
+                    new File(projectPath + "/lua").mkdir();
                     File README = new File(projectPath+"/lua", "README.txt");
                     try {
                         README.createNewFile();
@@ -314,7 +316,7 @@ public class Gui extends JFrame{
                 // Check for Obfuscated Dir in Project File Path
                 boolean findObfDir = checkForObfuscatedDir();
                 if (!findObfDir) {
-                    new File(projectPath+"/obfuscated").mkdir();
+                    new File(projectPath + "/obfuscated").mkdir();
                     File README = new File(projectPath+"/obfuscated", "README.txt");
                     try {
                         README.createNewFile();
@@ -349,8 +351,13 @@ public class Gui extends JFrame{
             @Override
             public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeSelectionEvent.getPath().getLastPathComponent();
-                System.out.println("You selected " + node);
-                // Call Updateluaeditor here
+                String filePath = treeSelectionEvent.getPath().getParentPath().getLastPathComponent() + File.separator + node.toString();
+                File tmp = new File(node.toString());
+                if (!tmp.isDirectory()) {
+                    if (!tmp.isHidden()) {
+                        updateLuaEditorPane(filePath);
+                    }
+                }
             }
         });
     }
@@ -360,7 +367,8 @@ public class Gui extends JFrame{
         try {
             luaEditorPane.setPage(file.toURI().toURL());
         } catch (IOException e) {
-            updateStatusPanel("Error occurred while reading lua file");
+            e.printStackTrace();
+            //updateStatusPanel("Error occurred while reading lua file\n");
         }
     }
 
