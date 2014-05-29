@@ -1,12 +1,12 @@
  ( CHUNK
 	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST hello )
+		 ( VAR_LIST iiliijjzjiiieiijylkjlliij )
 		 ( EXPR_LIST
 			 ( FUNCTION
-				 ( PARAM_LIST a b iiliijlijlipdoiliqjaidiiw iiliiiliiklilijluiijljlcj )
+				 ( PARAM_LIST iiliitbijoslkjikiilxlliij b iiliiiiioaiidivjdsfjljiil iiliilijiwilbjlaiiiqiijii )
 				 ( CHUNK
 					 ( VAR print
-						 ( CALL a )
+						 ( CALL iiliitbijoslkjikiilxlliij )
 					 )
 					 ( if
 						 ( CONDITION
@@ -15,7 +15,7 @@
 							 )
 							 ( if
 								 ( CONDITION
-									 ( == a 2 )
+									 ( == iiliitbijoslkjikiilxlliij 2 )
 									 ( CHUNK
 										 ( VAR print
 											 ( CALL b )
@@ -32,7 +32,7 @@
 						 ( do
 							 ( CHUNK
 								 ( while
-									 ( == a 2 )
+									 ( == iiliitbijoslkjikiilxlliij 2 )
 									 ( do
 										 ( CHUNK
 											 ( VAR print
@@ -48,10 +48,10 @@
 			 )
 		 )
 	 )
-	 ( VAR hello
-		 ( CALL 2 4 iiliilrjilijijioiijilmils iiliijliuliliiiicnlilillj )
+	 ( VAR iiliijjzjiiieiijylkjlliij
+		 ( CALL 2 4 iiliijjiitiiiiljiijjiiaji iiliijiwyilljjilwilylilpi )
 	 )
 	 ( VAR print
-		 ( CALL a )
+		 ( CALL iiliitbijoslkjikiilxlliij )
 	 )
  )

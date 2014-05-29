@@ -27,13 +27,13 @@ public class MainClass {
              * The ARGUMENT HANDLER STARTS HERE
              */
             //------------------------------------------------------------------------
-            if(args.length < 3){
-                System.out.println("\n    This class takes 3 arguments:" +
-                        "\n     1:the path to the input file which contains the Lua code" +
-                        "\n     2:the path to the desired output path" +
-                        "\n     3:the path to the desired unparser path");
-                return;
-            }
+//            if(args.length < 3){
+//                System.out.println("\n    This class takes 3 arguments:" +
+//                        "\n     1:the path to the input file which contains the Lua code" +
+//                        "\n     2:the path to the desired output path" +
+//                        "\n     3:the path to the desired unparser path");
+//                return;
+//            }
             Options options = new Options();
 
             options.addOption("d", false, "Delete records"); // does not have a value
@@ -63,7 +63,7 @@ public class MainClass {
 //            System.out.println(treeString);
 
             //static method printToFile prints the tree into a file.
-            InputReader.printToFile(args[1], treeStructure);
+            InputReader.printToFile("output.txt", treeStructure);
 
 
             /**
@@ -78,34 +78,34 @@ public class MainClass {
             //the Obfuscator goes here , whatever level we decide to have
 
             // Areej : minimum Vocab Obfuscator
-//                            Obfuscator myOb = new Obfuscator(args[1],args[2]);
-//                            //call the fileProcessing Function
-//                            try{
+                            Obfuscator myOb = new Obfuscator("output.txt","median.txt");
+                            //call the fileProcessing Function
+                            try{
 
-                  /* Key words{ MinVocab,Reverse,XOR,ILOveOU,Boss} = obfuName */
+                  /* Key words{ MinVocab,Reverse,XOR,ILOveOU,Boss,Confusing} = obfuName */
 
-//                                myOb.FileProcessing(obfuName);
-//                            }catch(Exception e){e.printStackTrace();
-//                            }
+                                myOb.FileProcessing("Confusing");
+                            }catch(Exception e){e.printStackTrace();
+                            }
 
 //            Areej : ControlFlowObfuscator
 
 
-            TreeConstructor t = new TreeConstructor(args[1]);
+            TreeConstructor t = new TreeConstructor("median.txt");
             ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
             //call the Function
             cfo.CFOObfuscate();
-            InputReader.printToFile(args[2], t.toString());
+            InputReader.printToFile("obfuscatedAST.txt", t.toString());
 
 
 
             ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
             //call the Function
             o.addParams();
-            InputReader.printToFile(args[2], t.toString());
+            InputReader.printToFile("obfuscatedAST.txt", t.toString());
 
-
-            // Amanda's obfuscator
+//
+//            Amanda's obfuscator
 //            TreeConstructor t = new TreeConstructor(args[1]);
 //            ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
 //            o.addParams();
@@ -122,14 +122,14 @@ public class MainClass {
              */
             //-------------------------------------------------------------------------
 //            read the AST file back to a tree
-            TreeConstructor myTree = new TreeConstructor(args[2]);
-            InputReader.printToFile(args[2],myTree.toString());
+            TreeConstructor myTree = new TreeConstructor("obfuscatedAST.txt");
+            InputReader.printToFile("obfuscatedAST.txt",myTree.toString());
             Unparser myUnparser = new Unparser(myTree.getRoot());
             myUnparser.unparse();
             System.out.println(myUnparser.getCode());
-            InputReader.printToFile(args[3],myUnparser.getCode());
+            InputReader.printToFile(args[1],myUnparser.getCode());
 
-            System.out.println(Obfuscator.confusingString());
+//            System.out.println(Obfuscator.confusingString());
 //            -------------------------------------------------------------------------
         }
     }

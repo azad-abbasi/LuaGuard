@@ -188,7 +188,11 @@ public class Obfuscator {
 					}
                     else if (obfuName.equals("ILOveOU")){
                         transformedVar = ILOveOUObfuscation(var);
-                    }else{
+                    }
+                    else if (obfuName.equals("Confusing")){
+                        transformedVar = confusingString();
+                    }else
+                    {
 						transformedVar = BossObfuscation(var);
 					}
 //-----------------------------------------------------------------------

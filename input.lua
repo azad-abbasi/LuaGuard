@@ -1,5 +1,6 @@
 function hello(a,b)
 print(a)
+b = 100;
 if(a==2) then print(b)
 end
 while a==2 do

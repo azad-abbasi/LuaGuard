@@ -8,6 +8,10 @@
 					 ( VAR print
 						 ( CALL a )
 					 )
+					 ( ASSIGNMENT
+						 ( VAR_LIST b )
+						 ( EXPR_LIST 100 )
+					 )
 					 ( if
 						 ( CONDITION
 							 ( == a 2 )
