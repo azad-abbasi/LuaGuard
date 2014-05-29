@@ -8,7 +8,7 @@ import unparser.Node;
  */
 public class ControlFlowObfuscator {
 
-   static Node treeRoot;
+    Node treeRoot;
 
     public ControlFlowObfuscator(Node treeRoot) {
         this.treeRoot = treeRoot;
@@ -18,35 +18,29 @@ public class ControlFlowObfuscator {
     public static Node CreateBogusIF(){
         //create a node of if
         // with condition node : 100 == (50+50)
-        Node ifNode;
-        ifNode = new Node("if");
+        Node ifNode = new Node("if");
         Node conditionNode = new Node("CONDITION");
+        Node equalNode = new Node("==");
+        Node plusNode = new Node("+");
+        plusNode.addChild(new Node("50"));
+        plusNode.addChild(new Node("50"));
+        equalNode.addChild(new Node("100"));
+        equalNode.addChild(plusNode);
+        conditionNode.addChild(equalNode);
         ifNode.addChild(conditionNode);
-        Node exprNode = new Node("==");
-        Node expr1 = new Node("100");
-        Node expr2 = new Node("");
-        expr2.addChild(new Node("+"));
-        expr2.addChild(new Node("50"));
-        expr2.addChild(new Node("50"));
-        exprNode.addChild(expr1);
-        exprNode.addChild(expr2);
-        conditionNode.addChild(exprNode);
-
         return ifNode;
     }
 
     public static Node CreateBogusWhile(){
         Node bogusWhile;
         bogusWhile = new Node("while");
-        Node expr = new Node("==");
-        Node expr1 = new Node("100");
-        Node expr2 = new Node("");
-        expr2.addChild(new Node("+"));
-        expr2.addChild(new Node("50"));
-        expr2.addChild(new Node("50"));
-        expr.addChild(expr1);
-        expr.addChild(expr2);
-        bogusWhile.addChild(expr);
+        Node equalNode = new Node("==");
+        Node plusNode = new Node("+");
+        plusNode.addChild(new Node("50"));
+        plusNode.addChild(new Node("50"));
+        equalNode.addChild(new Node("100"));
+        equalNode.addChild(plusNode);
+        bogusWhile.addChild(equalNode);
         Node doNode = new Node("do");
         bogusWhile.addChild(doNode);
         Node chunckNode = new Node("CHUNK");
@@ -67,24 +61,26 @@ public class ControlFlowObfuscator {
                 // System.out.println("i found an  " + CurrentNode.getName());
                 // call the createBogusIF
                 Node temp = CreateBogusIF();
-                temp.getChild(0).addChild(CurrentNode);
                 Node parent = CurrentNode.getParent();
-
+                parent.addChild(temp);
+                temp.getChild(0).addChild(CurrentNode);
                 // remove the if child existing for the parent
                 parent.removeChildByRef(CurrentNode);
                 // add the bogusIf to the parent
-                parent.addChild(temp);
+
                 /**-----------------------------------WHILE----------------------------------*/
-            }else if(CurrentNode.getName().equals("while")){
+            }
+            if(CurrentNode.getName().equals("while")){
                 //While expr do_block -> ^(While expr do_block)
                 //System.out.println("I am a while");
                 Node temp = CreateBogusWhile();
-                temp.getChild(1).getChild(0).addChild(CurrentNode);
                 Node parent = CurrentNode.getParent();
+                parent.addChild(temp);
+                temp.getChild(1).getChild(0).addChild(CurrentNode);
                 // remove the while child existing for the parent
                 parent.removeChildByRef(CurrentNode);
-                // add the bogusWhile to the parent
-                parent.addChild(temp);
+
+
             }else{
                // System.out.println(CurrentNode.getName());
                 int count = CurrentNode.getChildCount();
@@ -94,7 +90,7 @@ public class ControlFlowObfuscator {
                 }
             }
     }
-   public static Node getTheTreeManipulated() {
+   public  Node getTheTreeManipulated() {
        return treeRoot;
    }
 }
