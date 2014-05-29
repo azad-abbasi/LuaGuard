@@ -74,14 +74,6 @@ public class FileTree extends JPanel {
         return curDir;
     }
 
-    public Dimension getMinimumSize() {
-        return new Dimension(200, 400);
-    }
-
-    public Dimension getPreferredSize() {
-        return new Dimension(200, 400);
-    }
-
     /** Main: make a Frame, add a FileTree */
     public static void main(String[] av) {
 

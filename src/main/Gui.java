@@ -37,12 +37,9 @@ public class Gui extends JFrame{
     private JLabel logoLabel;
     private JLabel headerLabel;
     private JPanel projectDirectoryPanel;
-    private JScrollPane projectDirectoryScrollPane;
     private JPanel statusPanel;
     private JScrollPane statusScrollPane;
     private JPanel degreeObfuscationPanel;
-    private JButton chooseButton;
-    private JButton trashButton;
 
     // Attr added by Lucas not Intellji form designer
     private FileDialog fileChooser;
@@ -59,7 +56,7 @@ public class Gui extends JFrame{
         pack();
 
         // Delete random data in JTree Directory
-        projectDirectoryTree.setModel(null);
+        //projectDirectoryTree.setModel(null);
 
         // Adding menu bar
         JMenuBar menubar = new JMenuBar();
@@ -88,6 +85,9 @@ public class Gui extends JFrame{
                 "Create/open a project to begin\n" +
                 "Or Start typing Lua code into the Lua Editor TextPane\n" +
                 "For further help see our user manual at...\n");
+
+        // Set Layout for FileTree
+        projectDirectoryPanel.setLayout(new BorderLayout());
 
         // Add to menu
         file.add(newproj);
@@ -285,19 +285,12 @@ public class Gui extends JFrame{
                 } else {
                     updateStatusPanel("Found project...obfuscation sent to obfuscated directory\n");
                 }
-                Container cp = getContentPane();
-                //cp.remove(projectDirectoryPanel);
-                //cp.add(new FileTree(new File(projectPath)));
 
                 projectDirectoryPanel.removeAll();
                 projectDirectoryPanel.updateUI();
                 JPanel tmp  = new FileTree(new File(projectPath));
-                projectDirectoryPanel = tmp;
+                projectDirectoryPanel.add(tmp, BorderLayout.CENTER);
                 projectDirectoryPanel.updateUI();
-                //projectDirectoryPanel = new FileTree(new File(projectPath));
-                //projectDirectoryPanel.updateUI();
-                //projectDirectoryPanel.
-
             }
         }
     }
