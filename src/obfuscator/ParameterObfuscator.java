@@ -35,6 +35,7 @@ public class ParameterObfuscator {
         Node newParam;
         newParam = new Node(randomString(5), parentNode);
         parentNode.addChild(newParam);
+        return newParam;
     }
 
 //-------------------------------------------------------------
@@ -62,7 +63,7 @@ public class ParameterObfuscator {
     }
 
 
-    public static Node getNewTree(){
+    public Node getNewTree(){
         return root;
     }
 
