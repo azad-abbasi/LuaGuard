@@ -1,17 +1,30 @@
  ( CHUNK
-	 ( if
-		 ( CONDITION
-			 ( == a 2 )
-			 ( CHUNK
-				 ( VAR print
-					 ( CALL b )
-				 )
-				 ( if
-					 ( CONDITION
-						 ( == a 3 )
-						 ( CHUNK
-							 ( VAR print
-								 ( CALL a )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST hello )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST a b )
+				 ( CHUNK
+					 ( VAR print
+						 ( CALL a )
+					 )
+					 ( if
+						 ( CONDITION
+							 ( == a 2 )
+							 ( CHUNK
+								 ( VAR print
+									 ( CALL b )
+								 )
+							 )
+						 )
+					 )
+					 ( while
+						 ( == a 2 )
+						 ( do
+							 ( CHUNK
+								 ( VAR print
+									 ( CALL 2 )
+								 )
 							 )
 						 )
 					 )
@@ -19,14 +32,10 @@
 			 )
 		 )
 	 )
-	 ( while
-		 ( == a 2 )
-		 ( do
-			 ( CHUNK
-				 ( VAR print
-					 ( CALL 2 )
-				 )
-			 )
-		 )
+	 ( VAR hello
+		 ( CALL 2 4 )
+	 )
+	 ( VAR print
+		 ( CALL a )
 	 )
  )

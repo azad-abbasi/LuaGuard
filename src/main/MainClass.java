@@ -134,6 +134,7 @@ public class MainClass {
             System.out.println(myUnparser.getCode());
             InputReader.printToFile(args[3],myUnparser.getCode());
 
+            System.out.println(Obfuscator.confusingString());
 //            -------------------------------------------------------------------------
         }
     }

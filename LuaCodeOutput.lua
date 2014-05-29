@@ -1,12 +1,7 @@
-if(100==(50+50)) then
+function hello(a,b,iiliijlijlipdoiliqjaidiiw,iiliiiliiklilijluiijljlcj) 
+print(a) if(100==(50+50)) then
 if(a==2) then
-print(b) if(100==(50+50)) then
-if(a==3) then
-print(a) 
-end
-
-end
-
+print(b) 
 end
 
 end
@@ -20,3 +15,6 @@ print(2)
 end
 
 end
+
+end
+hello(2,4,iiliilrjilijijioiijilmils,iiliijliuliliiiicnlilillj) print(a) 

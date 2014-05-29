@@ -37,7 +37,7 @@ public class ParameterObfuscator {
 //-------------------------------------------------------------
     public static Node newParamNode(Node parentNode){
         Node newParam;
-        newParam = new Node(randomString(5));
+        newParam = new Node(randomString(20));
         parentNode.addChild(newParam);
         return newParam;
     }
@@ -108,11 +108,12 @@ public class ParameterObfuscator {
 //         
 //-------------------------------------------------------------
     public static String randomString(int length) {
-        String abc = "abcdefghijklmnopqrstuvwxyz";
+        String abc = "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiilllllllllllllllllllljjjjjjjjjjjjjjjjjjjjabcdefghijklmnopqrstuvwxyz";
         Random r = new Random();
-    
+
         StringBuilder sb = new StringBuilder(length);
-        for( int i = 0; i < length; i++ ) 
+        sb.append("iilii");
+        for( int i = 0; i < length; i++ )
             sb.append( abc.charAt( r.nextInt(abc.length()) ) );
         return sb.toString();
     }
