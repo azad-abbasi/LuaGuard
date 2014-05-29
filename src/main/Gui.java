@@ -227,7 +227,8 @@ public class Gui extends JFrame{
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                System.out.println("Cancel button pressed...")
+                System.out.println("Cancel button pressed...");
+                clearEditorsDir(); 
             }
         });
 
@@ -382,6 +383,15 @@ public class Gui extends JFrame{
             }
         }
         path.delete();
+    }
+
+    public void clearEditorsDir() {
+        luaEditorPane.selectAll();
+        luaEditorPane.replaceSelection("");
+        obfuscatedEditorPane.selectAll();
+        obfuscatedEditorPane.replaceSelection("");
+        projectDirectoryPanel.removeAll();
+        projectDirectoryPanel.updateUI();
     }
 
 }
