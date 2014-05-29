@@ -27,13 +27,12 @@ public class MainClass {
              * The ARGUMENT HANDLER STARTS HERE
              */
             //------------------------------------------------------------------------
-//            if(args.length < 3){
-//                System.out.println("\n    This class takes 3 arguments:" +
-//                        "\n     1:the path to the input file which contains the Lua code" +
-//                        "\n     2:the path to the desired output path" +
-//                        "\n     3:the path to the desired unparser path");
-//                return;
-//            }
+            if(args.length < 2){
+                System.out.println("\n    This class takes 3 arguments:" +
+                        "\n     1:the path to the input file which contains the Lua code" +
+                        "\n     2:the path to the desired output path" );
+                return;
+            }
             Options options = new Options();
 
             options.addOption("d", false, "Delete records"); // does not have a value
