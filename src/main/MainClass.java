@@ -30,7 +30,7 @@ public class MainClass {
             if(args.length < 2){
                 System.out.println("\n    This class takes 3 arguments:" +
                         "\n     1:the path to the input file which contains the Lua code" +
-                        "\n     2:the path to the desired output path" );
+                        "\n     2:the path to the desired output path");
                 return;
             }
             Options options = new Options();
