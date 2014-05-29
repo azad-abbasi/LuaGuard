@@ -369,7 +369,7 @@ public class Unparser {
                 unparse(currentNode.getChild(0));
                 finalCode.append(currentNode.getName());
                 unparse(currentNode.getChild(1));
-                finalCode.append(")\n");
+                finalCode.append("\n");
             }
             else{
                 unparse(currentNode.getChild(0));
@@ -408,9 +408,9 @@ public class Unparser {
         }
         /**-----------------------------------while----------------------------------*/
         else if(currentNode.getName().equals("while")){
-            finalCode.append("while(");
+            finalCode.append("while ");
             unparse(currentNode.getChild(0));
-            finalCode.append(")\n");
+            finalCode.append("\n");
             for(int i=1 ; i<currentNode.getChildCount() ; i++){
                 unparse(currentNode.getChild(i));
             }
