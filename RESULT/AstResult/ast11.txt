@@ -1,6 +1,6 @@
  ( CHUNK
-	 ( VAR require
-		 ( CALL  ' luasocket '  )
+	 ( REQUIRE
+		 ( EXPR_LIST  ' luasocket '  )
 	 )
 	 ( FUNCTION_ASSIGNMENT
 		 ( VAR_LIST receive )

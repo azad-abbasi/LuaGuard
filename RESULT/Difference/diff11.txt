@@ -1,4 +1,4 @@
-line#:3  AST:		 ( CALL  ' luasocket '  )  !=  ExpectedAST:		 ( CALL 'luasocket' )
+line#:3  AST:		 ( EXPR_LIST  ' luasocket '  )  !=  ExpectedAST:		 ( EXPR_LIST 'luasocket' )
 line#:12  AST:						 ( INDEX  ' timeout '  )  !=  ExpectedAST:						 ( INDEX 'timeout' )
 line#:19  AST:								 ( INDEX  ' receive '  )  !=  ExpectedAST:								 ( INDEX 'receive' )
 line#:28  AST:							 ( == status  ' timeout '  )  !=  ExpectedAST:							 ( == status 'timeout' )
