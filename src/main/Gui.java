@@ -42,6 +42,7 @@ public class Gui extends JFrame{
     private JPanel statusPanel;
     private JScrollPane statusScrollPane;
     private JPanel degreeObfuscationPanel;
+    private JComboBox vocabComboBox;
 
     // Attr added by Lucas not Intellji form designer
     private FileDialog fileChooser;
@@ -93,6 +94,7 @@ public class Gui extends JFrame{
         projectDirectoryPanel.setLayout(new BorderLayout());
         //projectDirectoryTree = new FileTree(new File(projectPath));
 
+        // Change tab size for 
 
         // Add to menu
         file.add(newproj);
@@ -140,8 +142,10 @@ public class Gui extends JFrame{
         delete.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
                 if (isProject) {
-                    File file = new File(projectPath+"/obfuscated");
-                    file.delete();
+                    System.out.println("trying to delete " + projectPath + "/obfuscated");
+                    File file = new File(projectPath + "/obfuscated");
+                    deleteDirectory(file);
+                    updateProjectDirFileTree();
                 } else {
                     System.out.println("DOTHisLater");
                     //File file = new File(projectPath);
@@ -165,6 +169,16 @@ public class Gui extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 System.out.println("redo recent obfuscated file...");
 
+            }
+        });
+
+        vocabRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (vocabRadioButton.isSelected())
+                    vocabComboBox.setEnabled(true);
+                else
+                    vocabComboBox.setEnabled(false);
             }
         });
 
@@ -282,6 +296,21 @@ public class Gui extends JFrame{
                 // Enabled to delete obfuscated directory
                 delete.setEnabled(true);
                 isProject = true;
+                if (type ==  0) {
+                    // Create directory to place lua code
+                    new File(projectPath+"/lua").mkdir();
+                    File README = new File(projectPath+"/lua", "README.txt");
+                    try {
+                        README.createNewFile();
+                        String content = "This is the directory where all your Lua code goes!";
+                        FileWriter fw =  new FileWriter(README.getAbsoluteFile());
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        bw.write(content);
+                        bw.close();
+                    } catch (IOException e) {
+                        updateStatusPanel("Error occurred while creating README.txt");
+                    }
+                }
                 // Check for Obfuscated Dir in Project File Path
                 boolean findObfDir = checkForObfuscatedDir();
                 if (!findObfDir) {
@@ -289,7 +318,7 @@ public class Gui extends JFrame{
                     File README = new File(projectPath+"/obfuscated", "README.txt");
                     try {
                         README.createNewFile();
-                        String content = "This is the directory where all your obfuscated Lua files go!";
+                        String content = "This is the directory where all your obfuscated Lua code goes!";
                         FileWriter fw =  new FileWriter(README.getAbsoluteFile());
                         BufferedWriter bw = new BufferedWriter(fw);
                         bw.write(content);
@@ -321,13 +350,30 @@ public class Gui extends JFrame{
             public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeSelectionEvent.getPath().getLastPathComponent();
                 System.out.println("You selected " + node);
-
+                // Call Updateluaeditor here
             }
         });
     }
 
     public void updateLuaEditorPane(String filePath) {
+        File file = new File(filePath);
+        try {
+            luaEditorPane.setPage(file.toURI().toURL());
+        } catch (IOException e) {
+            updateStatusPanel("Error occurred while reading lua file");
+        }
+    }
 
+    public void deleteDirectory(File path) {
+        File[] files = path.listFiles();
+        for(int i = 0; i < files.length; i++) {
+            if(files[i].isDirectory()) {
+                deleteDirectory(files[i]);
+            } else {
+                files[i].delete();
+            }
+        }
+        path.delete();
     }
 
 }
