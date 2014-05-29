@@ -1,12 +1,13 @@
-function uniqueid_some_event(e) 
-if(e:HasString('string1') ) then
+a=2
+if(100==(50+50)) then
+if(a==2) then
+if(100==(50+50)) then
+if(a>1) then
+print('hello') 
+end
 
 end
-if(e:HasString('string2') ) then
 
 end
-
-end
-if(e:HasString('outsidefunction...') ) then
 
 end

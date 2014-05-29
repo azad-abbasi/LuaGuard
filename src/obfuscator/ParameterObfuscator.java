@@ -60,10 +60,10 @@ public class ParameterObfuscator {
             String funName = varNode.getChild(0).getName(); //function name
             Node exprNode = currentNode.getChild(1); //EXPR_LIST node
             Node paramNode = exprNode.getChild(0).getChild(0); //PARAM_LIST node
-            if()
-
-
-            }
+//            if()
+//
+//
+//            }
             Node child = newParamNode(currentNode);
 
         }

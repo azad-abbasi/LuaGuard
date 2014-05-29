@@ -176,16 +176,17 @@ public class Obfuscator {
                     output.write(space);
 					String var = tokenizer.nextToken();
 //-----------------------------------------------------------------------
-					if( obfuName == "MinVocab" ){
-						String transformedVar = MinimumVocabObfuscation(var);
-					}else if (obfuName == "Reverse"){
-						String transformedVar = StringreverseObfuscation(var);
-					}else if (obfuName == "XOR"){
-						String transformedVar = XORObfuscation(var);
-					}else if (obfuName == "ILOveOU"){
-						String transformedVar = ILOveOUObfuscation(var);
-					}else(obfuName == "Boss"){
-						String transformedVar = BossObfuscation(var);
+                    String transformedVar;
+					if(obfuName.equals("MinVocab")){
+						transformedVar = MinimumVocabObfuscation(var);
+					}else if (obfuName.equals("Reverse")){
+						transformedVar = StringreverseObfuscation(var);
+					}else if (obfuName.equals("XOR")){
+						transformedVar = XORObfuscation(var);
+					}else if (obfuName.equals("ILOveOU")){
+						transformedVar = ILOveOUObfuscation(var);
+					}else{
+						transformedVar = BossObfuscation(var);
 					}
 //-----------------------------------------------------------------------
 					obfuscatedVars.put(var, transformedVar);

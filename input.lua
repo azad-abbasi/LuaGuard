@@ -1,10 +1,2 @@
-function uniqueid_some_event (e)
- if (e:HasString("string1")) then
-   -- do something
- end
- if (e:HasString("string2")) then
-  -- do something
- end
-end
-
-if (e:HasString("outside function...")) then end
+a=2
+if a==2 then if a>1 then print('hello') end end
