@@ -1,7 +1,6 @@
 package main;
 
-import javax.swing.*;
-import java.awt.event.KeyEvent;
+import gui.Gui;
 
 /**
  * Created by lucasr on 5/16/14.
