@@ -99,7 +99,6 @@ public class ParameterObfuscator {
         }
     }
 
-
 //-------------------------------------------------------------
 //  Method Name : randomString
 //  Purpose    : generate a random string of charachters and numbers 
@@ -116,5 +115,9 @@ public class ParameterObfuscator {
         for( int i = 0; i < length; i++ ) 
             sb.append( abc.charAt( r.nextInt(abc.length()) ) );
         return sb.toString();
+    }
+
+    public Node getManipulatedTree(){
+        return this.root;
     }
 }
