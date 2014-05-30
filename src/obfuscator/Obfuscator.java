@@ -172,43 +172,50 @@ public class Obfuscator {
 				if((token.equals("VAR_LIST")) || (token.equals("PARAM_LIST"))){
 					// write to the text file
 					output.write(token);
-                    String space = tokenizer.nextToken();
-                    output.write(space);
-					String var = tokenizer.nextToken();
+
+                    if(tokenizer.hasMoreTokens()){
+                        String space = tokenizer.nextToken();
+                        output.write(space);
+                        String var = tokenizer.nextToken();
 //-----------------------------------------------------------------------
-                    String transformedVar;
-					if(obfuName.equals("MinVocab")){
-						transformedVar = MinimumVocabObfuscation(var);
-					}else if (obfuName.equals("Reverse")){
-						transformedVar = StringreverseObfuscation(var);
-					}else if (obfuName.equals("XOR")){
-						transformedVar = XORObfuscation(var);
-					}else if (obfuName.equals("ILOveOU")){
-						transformedVar = ILOveOUObfuscation(var);
-					}
-                    else if (obfuName.equals("ILOveOU")){
-                        transformedVar = ILOveOUObfuscation(var);
+                        String transformedVar;
+                        if(obfuName.equals("MinVocab")){
+                            transformedVar = MinimumVocabObfuscation(var);
+                        }else if (obfuName.equals("Reverse")){
+                            transformedVar = StringreverseObfuscation(var);
+                        }else if (obfuName.equals("XOR")){
+                            transformedVar = XORObfuscation(var);
+                        }else if (obfuName.equals("ILOveOU")){
+                            transformedVar = ILOveOUObfuscation(var);
+                        }
+                        else if (obfuName.equals("ILOveOU")){
+                            transformedVar = ILOveOUObfuscation(var);
+                        }
+                        else if (obfuName.equals("Confusing")){
+                            transformedVar = confusingString();
+                        }else
+                        {
+                            transformedVar = BossObfuscation(var);
+                        }
+//-----------------------------------------------------------------------
+                        obfuscatedVars.put(var, transformedVar);
+                        output.write(transformedVar);
                     }
-                    else if (obfuName.equals("Confusing")){
-                        transformedVar = confusingString();
-                    }else
-                    {
-						transformedVar = BossObfuscation(var);
-					}
-//-----------------------------------------------------------------------
-					obfuscatedVars.put(var, transformedVar);
-					output.write(transformedVar);
                     //check if the string following VAR is in the MAP or a name for built in function
                 }else if(token.equals("VAR")){
 					output.write("VAR");
-					String space = tokenizer.nextToken();
-                   	output.write(space);
-					String var = tokenizer.nextToken();
-					if(obfuscatedVars.containsKey(var)){
-						output.write(obfuscatedVars.get(var));
-					}else{
-						output.write(var); // it is a name for a built in function
+
+                    if (tokenizer.hasMoreTokens()){
+                        String space = tokenizer.nextToken();
+                        output.write(space);
+                        String var = tokenizer.nextToken();
+                        if(obfuscatedVars.containsKey(var)){
+                            output.write(obfuscatedVars.get(var));
+                        }else{
+                            output.write(var); // it is a name for a built in function
+                        }
                     }
+
                     // change any instance of this token if it is in the MAP with the obfuscated version
 				}else if(obfuscatedVars.containsKey(token)){
 					output.write(obfuscatedVars.get(token));

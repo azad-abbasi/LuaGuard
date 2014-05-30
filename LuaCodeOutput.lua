@@ -1,22 +1,17 @@
-function iiliiliijojllliiiiiiiliii(iiliilcjiilihjlsllillilli,b,iiliiiijlljilimljiljjiljj) 
-print(iiliilcjiilihjlsllillilli) iiliilillliiiiiiixgjjxluu=100
-if(100==(50+50)) then
-if(iiliilcjiilihjlsllillilli==2) then
-print(iiliilillliiiiiiixgjjxluu) 
+function iiliiixiiciijljiiiftjjlhp(iiliijiiitijiijjujrllyvim,iiliizilllijjjjvlijiicijl,iiliiiikjioiiljllzpjazili) 
+io.write('[2J') 
 end
-
+function iiliiiiiiltuisilijjiiilii(iiliiiljleljjiiilitlsggvl,y,iiliiiillilijiiijiijlusji,iiliiijjluhjjjijsjvnilliu,iiliillulqilleylinjjiiiij,iiliiiijijiljiijijjeeljli) 
+io.write(string.format('[%d;%dH*',y,iiliiiljleljjiiilitlsggvl) ) 
 end
-while 100==(50+50)
+iiliieeyvljijilljylilanjj={['w']=80,['h']=24}
 
-do
-while iiliilcjiilihjlsllillilli==2
-
-do
-print(2) 
+function iiliijjliliiiiyiejlrjwill(iiliiilxiliiiimiijjijlhij,iiliiiiyicijilliimujliiii,iiliiiizjlljlliljiiigljzn) 
+iiliiixiiciijljiiiftjjlhp(iiliiicilfiijplpjieliaiii,iiliikjiiinljkilnaiioliij,iiliijiqiilililjirjlijjll) for i=1,iiliieeyvljijilljylilanjj.w do
+local iiliiiljleljjiiilitlsggvl=(i/iiliieeyvljijilljylilanjj.w*2-1)
+local y=(iiliiilxiliiiimiijjijlhij(iiliiiljleljjiiilitlsggvl) +1)/2*iiliieeyvljijilljylilanjj.h
+iiliiiiiiltuisilijjiiilii(i,y,iiliiliijijliiijiijajmsjl,iiliiiigijiiiiiiiiviljjii,iiliijiijkllijijisjwwvxji,iiliisjiiqiailjijjjjiljjl) 
 end
-break
-
+ io.read() 
 end
-
-end
-iiliiliijojllliiiiiiiliii(2,4,iiliiitliijjslyiliujilplj) print(iiliilcjiilihjlsllillilli) 
+iiliijjliliiiiyiejlrjwill(function (iiliiliiuljlnjlilsjinitlj) return math.sin(iiliiliiuljlnjlilsjinitlj*2*math.pi)   end ,iiliiiulijljgiljdizljizii,iiliipiisijilmoitjjibajpd) 

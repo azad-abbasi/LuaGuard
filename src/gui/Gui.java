@@ -156,8 +156,8 @@ public class Gui extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // Set to open only files
                 System.setProperty("apple.awt.fileDialogForDirectories", "false");
-                //openOrNewFileDirProj(1);
-                openFile();
+                openOrNewFileDirProj(1);
+                //openFile();
             }
         });
 
