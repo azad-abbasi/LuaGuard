@@ -1,78 +1,60 @@
  ( CHUNK
-	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST iiliijjiilixj )
+	 ( ASSIGNMENT
+		 ( VAR_LIST iiliizjijiiyjjr )
 		 ( EXPR_LIST
-			 ( FUNCTION
-				 ( PARAM_LIST iiliilljjjejj b iiliikljliiii iiliiilljiili iiliiaijjijlj )
-				 ( CHUNK
-					 ( VAR print
-						 ( CALL iiliilljjjejj )
-					 )
-					 ( ASSIGNMENT
-						 ( VAR_LIST iiliiifuiiiiutl )
-						 ( EXPR_LIST
-							 ( -
-								 ( +
-									 ( * 725145 534200 )
-									 ( 252561 )
-								 )
-								 ( / 1346140 269228 )
-							 )
-						 )
-					 )
-					 ( if
-						 ( CONDITION
-							 ( == iiliiifuiiiiutl 825654916 )
-							 ( if
-								 ( CONDITION
-									 ( == iiliilljjjejj 2 )
-									 ( CHUNK
-										 ( VAR print
-											 ( CALL b )
-										 )
-									 )
-								 )
-							 )
-						 )
-					 )
-					 ( ASSIGNMENT
-						 ( VAR_LIST iiliiiiiiliiill )
-						 ( EXPR_LIST
-							 ( -
-								 ( +
-									 ( * 511222 747382 )
-									 ( 894520 )
-								 )
-								 ( / 1751780 350356 )
-							 )
-						 )
-					 )
-					 ( while
-						 ( == iiliiiiiiliiill -173074025 )
-						 ( do
-							 ( CHUNK
-								 ( while
-									 ( == iiliilljjjejj 2 )
-									 ( do
-										 ( CHUNK
-											 ( VAR print
-												 ( CALL 2 )
-											 )
-										 )
-									 )
-								 )
-								 ( break )
-							 )
+			 ( -
+				 ( +
+					 ( * 790 255 )
+					 ( 184922 )
+				 )
+				 ( / 2034825 406965 )
+			 )
+		 )
+	 )
+	 ( if
+		 ( CONDITION
+			 ( == iiliizjijiiyjjr 386367 )
+			 ( if
+				 ( CONDITION
+					 ( == a 2 )
+					 ( CHUNK
+						 ( VAR print
+							 ( CALL a )
 						 )
 					 )
 				 )
 			 )
 		 )
 	 )
-	 ( VAR iiliijjiilixj
-		 ( CALL 2 4 iiliiiyliiiji iiliilmyjqyil iiliiijjljjjl )
+	 ( ASSIGNMENT
+		 ( VAR_LIST iiliijjljikiili )
+		 ( EXPR_LIST
+			 ( -
+				 ( +
+					 ( * 723 403 )
+					 ( 195390 )
+				 )
+				 ( / 4170345 834069 )
+			 )
+		 )
 	 )
-	 ( VAR print
-		 ( CALL iiliilljjjejj )
+	 ( while
+		 ( == iiliijjljikiili 486754 )
+		 ( do
+			 ( CHUNK
+				 ( while
+					 ( == 2 3 )
+					 ( do
+						 ( CHUNK
+							 ( ASSIGNMENT
+								 ( VAR_LIST iiliijliljwin )
+								 ( EXPR_LIST 3 )
+							 )
+						 )
+					 )
+				 )
+				 ( break )
+			 )
+		 )
 	 )
  )

@@ -20,20 +20,7 @@ public class ControlFlowObfuscator {
     }
 
 
-    public static ArrayList<Node> CreateBogusIF(){
-        ArrayList<Node> list = new ArrayList<Node>();
-        Random r = new Random();
-        int a = r.nextInt(999999);
-        int b = r.nextInt(999999);
-        int c = r.nextInt(999999);
-        int e = r.nextInt(999999);
-        int d = e*5;
-
-
-        int result = a*b+c-d/e;
-
-        String res = ParameterObfuscator.randomString(10);
-        String resultS = String.valueOf(result);
+    public static Node assignmentGenerator(int a, int b, int c , int d, int e , String res){
         String as = String.valueOf(a);
         String bs = String.valueOf(b);
         String cs = String.valueOf(c);
@@ -60,7 +47,24 @@ public class ControlFlowObfuscator {
         assignment.addChild(varlist);
         assignment.addChild(explist);
 
+        return assignment;
+    }
 
+
+    public static ArrayList<Node> CreateBogusIF(){
+        ArrayList<Node> list = new ArrayList<Node>();
+        Random r = new Random();
+        int a = r.nextInt(999);
+        int b = r.nextInt(999);
+        int c = r.nextInt(999999);
+        int e = r.nextInt(999999);
+        int d = e*5;
+
+        int result = a*b+c-d/e;
+        String res = ParameterObfuscator.randomString(10);
+        String resultS = String.valueOf(result);
+
+        Node assignment = assignmentGenerator(a,b,c,d,e,res);
         Node ifNode = new Node("if");
         Node conditionNode = new Node("CONDITION");
         Node equalNode = new Node("==");
@@ -73,7 +77,6 @@ public class ControlFlowObfuscator {
 
         list.add(assignment);
         list.add(ifNode);
-
         return list;
     }
 
@@ -81,8 +84,8 @@ public class ControlFlowObfuscator {
     public static ArrayList<Node> CreateBogusWhile(){
         ArrayList<Node> list = new ArrayList<Node>();
         Random r = new Random();
-        int a = r.nextInt(999999);
-        int b = r.nextInt(999999);
+        int a = r.nextInt(999);
+        int b = r.nextInt(999);
         int c = r.nextInt(999999);
         int e = r.nextInt(999999);
         int d = e*5;
@@ -98,26 +101,7 @@ public class ControlFlowObfuscator {
         String ds = String.valueOf(d);
         String es = String.valueOf(e);
 
-        Node assignment = new Node("ASSIGNMENT");
-        Node explist = new Node("EXPR_LIST");
-        Node varlist = new Node("VAR_LIST");
-        Node minus = new Node("-");
-        Node plus = new Node("+");
-        Node mult = new Node("*");
-        Node div = new Node("/");
-        div.addChild(new Node(ds));
-        div.addChild(new Node(es));
-        mult.addChild(new Node(as));
-        mult.addChild(new Node(bs));
-        plus.addChild(mult);
-        plus.addChild(new Node(cs));
-        minus.addChild(plus);
-        minus.addChild(div);
-        explist.addChild(minus);
-        varlist.addChild(new Node(res));
-        assignment.addChild(varlist);
-        assignment.addChild(explist);
-
+        Node assignment  =  assignmentGenerator(a,b,c,d,e,res);
         Node bogusWhile;
         bogusWhile = new Node("while");
         Node equalNode = new Node("==");
