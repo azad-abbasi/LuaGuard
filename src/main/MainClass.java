@@ -65,6 +65,7 @@ public class MainClass {
             InputReader.printToFile("output.txt", treeStructure);
 
 
+
             /**
              * PARSER ENDS HERE
              */
@@ -77,31 +78,34 @@ public class MainClass {
             //the Obfuscator goes here , whatever level we decide to have
 
             // Areej : minimum Vocab Obfuscator
-                            Obfuscator myOb = new Obfuscator("output.txt","median.txt");
-                            //call the fileProcessing Function
-                            try{
+            Obfuscator myOb = new Obfuscator("output.txt","output.txt");
+            //call the fileProcessing Function
 
-                  /* Key words{ MinVocab,Reverse,XOR,ILOveOU,Boss,Confusing} = obfuName */
+            try{
 
-                                myOb.FileProcessing("Confusing");
-                            }catch(Exception e){e.printStackTrace();
-                            }
+  /* Key words{ MinVocab,Reverse,XOR,ILOveOU,Boss,Confusing} = obfuName */
+
+                myOb.FileProcessing("Confusing");
+
+            }catch(Exception e){e.printStackTrace();
+            }
 
 //            Areej : ControlFlowObfuscator
 
 
-            TreeConstructor t = new TreeConstructor("median.txt");
+            TreeConstructor t = new TreeConstructor("output.txt");
             ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
             //call the Function
             cfo.CFOObfuscate();
-            InputReader.printToFile("obfuscatedAST.txt", t.toString());
+            InputReader.printToFile("output.txt", t.toString());
 
 
 
+            t = new TreeConstructor("output.txt");
             ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
             //call the Function
             o.addParams();
-            InputReader.printToFile("obfuscatedAST.txt", t.toString());
+            InputReader.printToFile("output.txt", t.toString());
 
 //
 //            Amanda's obfuscator
@@ -121,8 +125,8 @@ public class MainClass {
              */
             //-------------------------------------------------------------------------
 //            read the AST file back to a tree
-            TreeConstructor myTree = new TreeConstructor("obfuscatedAST.txt");
-            InputReader.printToFile("obfuscatedAST.txt",myTree.toString());
+            TreeConstructor myTree = new TreeConstructor("output.txt");
+            InputReader.printToFile("output.txt",myTree.toString());
             Unparser myUnparser = new Unparser(myTree.getRoot());
             myUnparser.unparse();
             System.out.println(myUnparser.getCode());

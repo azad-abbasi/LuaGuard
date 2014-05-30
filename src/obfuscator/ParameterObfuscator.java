@@ -37,7 +37,7 @@ public class ParameterObfuscator {
 //-------------------------------------------------------------
     public static Node newParamNode(Node parentNode){
         Node newParam;
-        newParam = new Node(randomString(20));
+        newParam = new Node(randomString(8));
         parentNode.addChild(newParam);
         return newParam;
     }

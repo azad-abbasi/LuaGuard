@@ -162,7 +162,14 @@ public class Gui extends JFrame{
                 KeyStroke.getKeyStroke(KeyEvent.VK_O, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
         open.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
                 openFile();
+=======
+                // Set to open only files
+                System.setProperty("apple.awt.fileDialogForDirectories", "false");
+                openOrNewFileDirProj(1);
+                //openFile();
+>>>>>>> 9b7a65d6258a10b0c9b7a0d9cee29dad5382937e
             }
         });
 
