@@ -45,6 +45,7 @@ public class ControlFlowObfuscator {
         bogusWhile.addChild(doNode);
         Node chunckNode = new Node("CHUNK");
         doNode.addChild(chunckNode);
+        chunckNode.addChild(new Node("break"));
         return bogusWhile;
     }
 
@@ -81,7 +82,7 @@ public class ControlFlowObfuscator {
                 Node temp = CreateBogusWhile();
                 Node parent = CurrentNode.getParent();
                 parent.addChildatIndex(temp, parent.getChildIndex(CurrentNode));
-                temp.getChild(1).getChild(0).addChild(CurrentNode);
+                temp.getChild(1).getChild(0).addChildatIndex(CurrentNode,0);
                 // remove the while child existing for the parent
                 parent.removeChildByRef(CurrentNode);
                 int count = CurrentNode.getChildCount();
