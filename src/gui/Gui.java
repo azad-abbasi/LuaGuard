@@ -1,7 +1,9 @@
 package gui;
 
 
+import obfuscator.ControlFlowObfuscator;
 import obfuscator.Obfuscator;
+import obfuscator.ParameterObfuscator;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
@@ -162,14 +164,11 @@ public class Gui extends JFrame{
                 KeyStroke.getKeyStroke(KeyEvent.VK_O, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
         open.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
                 openFile();
-=======
                 // Set to open only files
-                System.setProperty("apple.awt.fileDialogForDirectories", "false");
-                openOrNewFileDirProj(1);
+                //System.setProperty("apple.awt.fileDialogForDirectories", "false");
+                //openOrNewFileDirProj(1);
                 //openFile();
->>>>>>> 9b7a65d6258a10b0c9b7a0d9cee29dad5382937e
             }
         });
 
@@ -308,15 +307,21 @@ public class Gui extends JFrame{
                         }
 
                     }
-                    Obfuscator myOb = new Obfuscator("output.txt","median.txt");
-                    TreeConstructor t = new TreeConstructor("median.txt");
+                    Obfuscator myOb = new Obfuscator("output.txt","output.txt");
 
                     // Check Degree of Obfuscation Radio Buttons
                     if (vocabRadioButton.isSelected()) {
                         // Do Vocab obfuscation here...
                         String selectedVocab = (String) vocabComboBox.getSelectedItem();
-
+                        System.out.println(selectedVocab);
+                        try {
+                            myOb.FileProcessing(selectedVocab);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
+
+                    TreeConstructor t = new TreeConstructor("output.txt");
 
                     if (spacingRadioButton.isSelected()) {
                         // Do Spacing obfuscation here...
@@ -325,13 +330,20 @@ public class Gui extends JFrame{
 
                     if (junkDataRadioButton.isSelected()) {
                         // Do Junk Data obfuscation here...
-                        //ControlFlowObfuscator cfo
+                        ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
+                        cfo.CFOObfuscate();
+                        InputReader.printToFile("output.txt", t.toString());
                     }
 
                     if (parameterRadioButton.isSelected()) {
                         // Do Parameter obfuscation here...
-
+                        t = new TreeConstructor("output.txt");
+                        ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
+                        //call the Function
+                        o.addParams();
+                        InputReader.printToFile("output.txt", t.toString());
                     }
+
 
                     // Output result to obfuscated editor panel
                     // obfuscatedEditorPane.setText(luaCode);
@@ -395,7 +407,7 @@ public class Gui extends JFrame{
         System.setProperty("apple.awt.fileDialogForDirectories", "false");
         // Set FileDialog
         fileChooser.setMode(FileDialog.LOAD);
-        fileChooser.setTitle("Open a Lua File");
+        fileChooser.setTitle("Select a Lua File");
         fileChooser.setFilenameFilter(luaFilter);
         fileChooser.setVisible(true);
         String fn = fileChooser.getFile();
