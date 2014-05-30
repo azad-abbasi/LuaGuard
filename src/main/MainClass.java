@@ -64,7 +64,7 @@ public class MainClass {
             //static method printToFile prints the tree into a file.
             InputReader.printToFile("output.txt", treeStructure);
             InputReader x = new InputReader("output.txt");
-            InputReader.printToFile("obfuscatedAST",x.getString());
+            InputReader.printToFile("obfuscatedAST.txt",x.getString());
 
             /**
              * PARSER ENDS HERE
@@ -78,13 +78,15 @@ public class MainClass {
             //the Obfuscator goes here , whatever level we decide to have
 
             // Areej : minimum Vocab Obfuscator
-            Obfuscator myOb = new Obfuscator("output.txt","obfuscatedAST.txt");
+            Obfuscator myOb = new Obfuscator("obfuscatedAST.txt","obfuscatedAST.txt");
             //call the fileProcessing Function
+
             try{
 
   /* Key words{ MinVocab,Reverse,XOR,ILOveOU,Boss,Confusing} = obfuName */
 
                 myOb.FileProcessing("MinVocab");
+
             }catch(Exception e){e.printStackTrace();
             }
 

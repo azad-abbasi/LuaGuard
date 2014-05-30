@@ -1,4 +1,6 @@
 package obfuscator;
+import parser.InputReader;
+
 import java.io.*;
 import java.util.*;
 
@@ -19,8 +21,9 @@ import java.util.*;
 
 
 public class Obfuscator {
-    static String ast ;
-    static String out;
+    String ast ;
+    String out;
+    StringBuilder finalString = new StringBuilder();
     //Map obfuscatedVars: keep track of the strings and thier transformations.
     //Key (orignial strings) = Zarray ->> Value(transformed strings) = aaaxxx
     
@@ -155,7 +158,7 @@ public class Obfuscator {
      */
 	public void FileProcessing(String obfuName) throws IOException{
 		BufferedReader readAST = new BufferedReader(new FileReader(ast)); // open a buffer reader
-		BufferedWriter output = new BufferedWriter(new FileWriter(out)); // open a buffer writer
+
         
 		int x=0; //Line counter for printing. and testing purposes
         
@@ -171,11 +174,11 @@ public class Obfuscator {
 				// if variable name or function name obfuscate
 				if((token.equals("VAR_LIST")) || (token.equals("PARAM_LIST"))){
 					// write to the text file
-					output.write(token);
+					finalString.append(token);
 
                     if(tokenizer.hasMoreTokens()){
                         String space = tokenizer.nextToken();
-                        output.write(space);
+                        finalString.append(space);
                         String var = tokenizer.nextToken();
 //-----------------------------------------------------------------------
                         String transformedVar;
@@ -199,35 +202,36 @@ public class Obfuscator {
                         }
 //-----------------------------------------------------------------------
                         obfuscatedVars.put(var, transformedVar);
-                        output.write(transformedVar);
+                        finalString.append(transformedVar);
                     }
                     //check if the string following VAR is in the MAP or a name for built in function
                 }else if(token.equals("VAR")){
-					output.write("VAR");
+                    finalString.append("VAR");
 
                     if (tokenizer.hasMoreTokens()){
                         String space = tokenizer.nextToken();
-                        output.write(space);
+                        finalString.append(space);
                         String var = tokenizer.nextToken();
                         if(obfuscatedVars.containsKey(var)){
-                            output.write(obfuscatedVars.get(var));
+                            finalString.append(obfuscatedVars.get(var));
                         }else{
-                            output.write(var); // it is a name for a built in function
+                            finalString.append(var); // it is a name for a built in function
                         }
                     }
 
                     // change any instance of this token if it is in the MAP with the obfuscated version
 				}else if(obfuscatedVars.containsKey(token)){
-					output.write(obfuscatedVars.get(token));
+                    finalString.append(obfuscatedVars.get(token));
 				}else{
                     // for any other token, just write
-					output.write(token);
+                    finalString.append(token);
 				}
 			}
-			output.write("\n"); // a line ended in the AST
+            finalString.append("\n"); // a line ended in the AST
 		}
-		output.close(); // close the writer
+
 		readAST.close(); // close the reader
+        InputReader.printToFile(out, finalString.toString());
 		System.out.println("\nThe AsT File you specified : " + this.ast + " has been obfuscated.\nThe new obfuscated AST File is saved with the name : " + this.out + "\n");
 	}
 
