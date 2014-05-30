@@ -7,6 +7,7 @@ import java.util.*;
 /*
  *  Obfuscator program: obfuscate AST trees of LUA code files
  *  created by Areej Alghamdi
+ *  edited by Azad Abbasi
  *  April 28 2014
  *  CIS 523
  */

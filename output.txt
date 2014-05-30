@@ -1,4 +1,5 @@
  ( CHUNK
+<<<<<<< HEAD
 	 ( FUNCTION_ASSIGNMENT
 		 ( VAR_LIST hello )
 		 ( EXPR_LIST
@@ -26,6 +27,33 @@
 									 ( CALL 2 )
 								 )
 							 )
+=======
+	 ( ASSIGNMENT
+		 ( VAR_LIST iiliijijioiii )
+		 ( EXPR_LIST 4 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST iiliiiizij )
+		 ( EXPR_LIST
+			 ( -
+				 ( +
+					 ( * 9571 4885 )
+					 ( 2442 )
+				 )
+				 ( / 8720 1744 )
+			 )
+		 )
+	 )
+	 ( if
+		 ( CONDITION
+			 ( == iiliiiizij 46756772 )
+			 ( if
+				 ( CONDITION
+					 ( == iiliijijioiii 4 )
+					 ( CHUNK
+						 ( VAR print
+							 ( CALL 'hello' )
+>>>>>>> e5cea7e0d6cfd9382f6251212971adca9b3a5297
 						 )
 					 )
 				 )

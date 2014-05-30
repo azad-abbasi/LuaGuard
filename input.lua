@@ -1,1 +1,2 @@
-local d = 2
+a = 4
+if(a==4) then print('hello') end
