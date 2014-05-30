@@ -1,62 +1,59 @@
  ( CHUNK
-<<<<<<< HEAD
-	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST hello )
-		 ( EXPR_LIST
-			 ( FUNCTION
-				 ( PARAM_LIST a b )
-				 ( CHUNK
-					 ( VAR print
-						 ( CALL a )
-					 )
-					 ( if
-						 ( CONDITION
-							 ( == a 2 )
-							 ( CHUNK
-								 ( VAR print
-									 ( CALL b )
-								 )
-							 )
-						 )
-					 )
-					 ( while
-						 ( == a 2 )
-						 ( do
-							 ( CHUNK
-								 ( VAR print
-									 ( CALL 2 )
-								 )
-							 )
-=======
 	 ( ASSIGNMENT
-		 ( VAR_LIST iiliijijioiii )
-		 ( EXPR_LIST 4 )
-	 )
-	 ( ASSIGNMENT
-		 ( VAR_LIST iiliiiizij )
+		 ( VAR_LIST iiliizjijiiyjjr )
 		 ( EXPR_LIST
 			 ( -
 				 ( +
-					 ( * 9571 4885 )
-					 ( 2442 )
+					 ( * 790 255 )
+					 ( 184922 )
 				 )
-				 ( / 8720 1744 )
+				 ( / 2034825 406965 )
 			 )
 		 )
 	 )
 	 ( if
 		 ( CONDITION
-			 ( == iiliiiizij 46756772 )
+			 ( == iiliizjijiiyjjr 386367 )
 			 ( if
 				 ( CONDITION
-					 ( == iiliijijioiii 4 )
+					 ( == a 2 )
 					 ( CHUNK
 						 ( VAR print
-							 ( CALL 'hello' )
->>>>>>> e5cea7e0d6cfd9382f6251212971adca9b3a5297
+							 ( CALL a )
 						 )
 					 )
 				 )
+			 )
+		 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST iiliijjljikiili )
+		 ( EXPR_LIST
+			 ( -
+				 ( +
+					 ( * 723 403 )
+					 ( 195390 )
+				 )
+				 ( / 4170345 834069 )
+			 )
+		 )
+	 )
+	 ( while
+		 ( == iiliijjljikiili 486754 )
+		 ( do
+			 ( CHUNK
+				 ( while
+					 ( == 2 3 )
+					 ( do
+						 ( CHUNK
+							 ( ASSIGNMENT
+								 ( VAR_LIST iiliijliljwin )
+								 ( EXPR_LIST 3 )
+							 )
+						 )
+					 )
+				 )
+				 ( break )
 			 )
 		 )
 	 )
