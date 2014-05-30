@@ -99,11 +99,11 @@ public class MainClass {
 
 
 
-            t = new TreeConstructor("output.txt");
-            ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
+            TreeConstructor t2 = new TreeConstructor("output.txt");
+            ParameterObfuscator o = new ParameterObfuscator(t2.getRoot());
             //call the Function
             o.addParams();
-            InputReader.printToFile("output.txt", t.toString());
+            InputReader.printToFile("output.txt", t2.toString());
 
 //
 //            Amanda's obfuscator
