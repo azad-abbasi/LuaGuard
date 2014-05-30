@@ -83,7 +83,7 @@ public class MainClass {
 
   /* Key words{ MinVocab,Reverse,XOR,ILOveOU,Boss,Confusing} = obfuName */
 
-                myOb.FileProcessing("Confusing");
+                myOb.FileProcessing("MinVocab");
             }catch(Exception e){e.printStackTrace();
             }
 

@@ -232,7 +232,7 @@ public class Obfuscator {
 	}
 
     public static String confusingString(){
-        int length = 20;
+        int length = 8;
         String abc = "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiilllllllllllllllllllljjjjjjjjjjjjjjjjjjjjabcdefghijklmnopqrstuvwxyz";
         Random r = new Random();
 

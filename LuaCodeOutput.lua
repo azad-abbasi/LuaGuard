@@ -1,17 +1,17 @@
-function iiliiixiiciijljiiiftjjlhp(iiliijiiitijiijjujrllyvim,iiliizilllijjjjvlijiicijl,iiliiiikjioiiljllzpjazili) 
+function fsbtfUfsnjobm(iiliicyliahio,iiliijjljjjjl,iiliijijeliji) 
 io.write('[2J') 
 end
-function iiliiiiiiltuisilijjiiilii(iiliiiljleljjiiilitlsggvl,y,iiliiiillilijiiijiijlusji,iiliiijjluhjjjijsjvnilliu,iiliillulqilleylinjjiiiij,iiliiiijijiljiijijjeeljli) 
-io.write(string.format('[%d;%dH*',y,iiliiiljleljjiiilitlsggvl) ) 
+function nbsl(y,y,iiliicixjjijj,iiliiiljciiim,iiliiiiplijjl,iiliilllmyizi) 
+io.write(string.format('[%d;%dH*',y,y) ) 
 end
-iiliieeyvljijilljylilanjj={['w']=80,['h']=24}
+UfsnTjaf={['w']=80,['h']=24}
 
-function iiliijjliliiiiyiejlrjwill(iiliiilxiliiiimiijjijlhij,iiliiiiyicijilliimujliiii,iiliiiizjlljlliljiiigljzn) 
-iiliiixiiciijljiiiftjjlhp(iiliiicilfiijplpjieliaiii,iiliikjiiinljkilnaiioliij,iiliijiqiilililjirjlijjll) for i=1,iiliieeyvljijilljylilanjj.w do
-local iiliiiljleljjiiilitlsggvl=(i/iiliieeyvljijilljylilanjj.w*2-1)
-local y=(iiliiilxiliiiimiijjijlhij(iiliiiljleljjiiilitlsggvl) +1)/2*iiliieeyvljijilljylilanjj.h
-iiliiiiiiltuisilijjiiilii(i,y,iiliiliijijliiijiijajmsjl,iiliiiigijiiiiiiiiviljjii,iiliijiijkllijijisjwwvxji,iiliisjiiqiailjijjjjiljjl) 
+function qmpu(g,iiliixjiixjij,iiliiicodiiji,iiliipijjjgig) 
+fsbtfUfsnjobm(iiliioiilziil,iiliiidjcviii,iiliilvjjljij) for i=1,UfsnTjaf.w do
+local y=(i/UfsnTjaf.w*2-1)
+local y=(g(y) +1)/2*UfsnTjaf.h
+nbsl(i,y,iiliiixijimll,iiliilaivljes,iiliirnljlcii,iiliijjililil) 
 end
  io.read() 
 end
-iiliijjliliiiiyiejlrjwill(function (iiliiliiuljlnjlilsjinitlj) return math.sin(iiliiliiuljlnjlilsjinitlj*2*math.pi)   end ,iiliiiulijljgiljdizljizii,iiliipiisijilmoitjjibajpd) 
+qmpu(function (y) return math.sin(y*2*math.pi)   end ,iiliiljiltljl,iiliidjijlirl,iiliiiiiilijh) 
