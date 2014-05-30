@@ -396,7 +396,6 @@ public class Gui extends JFrame{
                 // Catch exception if file not found
                 updateStatusPanel("Could not find file!\n");
             }
-
         }
     }
 
