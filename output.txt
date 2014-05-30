@@ -1,4 +1,8 @@
  ( CHUNK
+	 ( ASSIGNMENT
+		 ( VAR_LIST a )
+		 ( EXPR_LIST 2 )
+	 )
 	 ( FUNCTION_ASSIGNMENT
 		 ( VAR_LIST eraseTerminal )
 		 ( EXPR_LIST

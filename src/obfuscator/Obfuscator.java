@@ -19,8 +19,8 @@ import java.util.*;
 
 
 public class Obfuscator {
-    String ast ;
-    String out;
+    static String ast ;
+    static String out;
     //Map obfuscatedVars: keep track of the strings and thier transformations.
     //Key (orignial strings) = Zarray ->> Value(transformed strings) = aaaxxx
     

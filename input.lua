@@ -1,3 +1,5 @@
+a=2
+
 function eraseTerminal ()
   io.write("\27[2J")
 end

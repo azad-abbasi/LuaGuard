@@ -63,7 +63,8 @@ public class MainClass {
 
             //static method printToFile prints the tree into a file.
             InputReader.printToFile("output.txt", treeStructure);
-
+            InputReader x = new InputReader("output.txt");
+            InputReader.printToFile("obfuscatedAST",x.getString());
 
             /**
              * PARSER ENDS HERE
@@ -77,7 +78,7 @@ public class MainClass {
             //the Obfuscator goes here , whatever level we decide to have
 
             // Areej : minimum Vocab Obfuscator
-            Obfuscator myOb = new Obfuscator("output.txt","median.txt");
+            Obfuscator myOb = new Obfuscator("output.txt","obfuscatedAST.txt");
             //call the fileProcessing Function
             try{
 
@@ -90,7 +91,7 @@ public class MainClass {
 //            Areej : ControlFlowObfuscator
 
 
-            TreeConstructor t = new TreeConstructor("median.txt");
+            TreeConstructor t = new TreeConstructor("obfuscatedAST.txt");
             ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
             //call the Function
             cfo.CFOObfuscate();
@@ -98,6 +99,7 @@ public class MainClass {
 
 
 
+            t = new TreeConstructor("obfuscatedAST.txt");
             ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
             //call the Function
             o.addParams();
