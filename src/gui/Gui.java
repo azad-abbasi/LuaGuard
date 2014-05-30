@@ -23,6 +23,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.LinkedList;
 import java.util.Queue;
 
 // Gui Import files
@@ -75,6 +76,7 @@ public class Gui extends JFrame{
     private JMenuItem saveAs;
     private FileTree projectDirectoryTree;
     private Queue<String> recentObfuscated;
+    private File recentUndo;
 
     public Gui() {
         super("LuaGuard");
@@ -122,6 +124,7 @@ public class Gui extends JFrame{
         projectPath = ".";
         isProject = false;
         obfuscateBtnClicked = false;
+        recentObfuscated = new LinkedList<String>();
 
         // Init status pane with welcome/info message
         statusTextPane.setText("Welcome to LuaGuard!\n" +
@@ -165,10 +168,6 @@ public class Gui extends JFrame{
         open.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
                 openFile();
-                // Set to open only files
-                //System.setProperty("apple.awt.fileDialogForDirectories", "false");
-                //openOrNewFileDirProj(1);
-                //openFile();
             }
         });
 
@@ -250,8 +249,7 @@ public class Gui extends JFrame{
                 KeyStroke.getKeyStroke(KeyEvent.VK_Z, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
         undo.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
-                redo.setEnabled(true);
-                System.out.println("undo recent obfuscated file...");
+                undo();
             }
         });
 
@@ -259,8 +257,7 @@ public class Gui extends JFrame{
                 KeyStroke.getKeyStroke(KeyEvent.VK_Z, (java.awt.event.InputEvent.SHIFT_MASK | (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()))));
         redo.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("redo recent obfuscated file...");
-
+                redo();
             }
         });
 
@@ -282,27 +279,6 @@ public class Gui extends JFrame{
             }
         });
 
-        /*public void save(){
-            if (setDirectory) {
-                System.out.println(currFilePath);
-                System.out.println(projectPath);
-                String newContent = luaEditorPane.getText();
-                File newFile = new File(currFilePath);
-                try {
-                    newFile.createNewFile();
-                    FileWriter fw = new FileWriter(newFile.getAbsoluteFile());
-                    BufferedWriter bw = new BufferedWriter(fw);
-                    bw.write(newContent);
-                    bw.close();
-                    luaEditorPane.updateUI();
-                } catch (IOException e) {
-                    updateStatusPanel("Failed to save " + newFile.getName());
-                }
-            } else {
-                saveAs();
-            }
-        }*/
-
         obfuscateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -311,11 +287,7 @@ public class Gui extends JFrame{
                     // delete.setEnabled(true);
                     // Lua File was Opened not a LuaGuard Project
                     if (!isProject) {
-                        // String content = luaEditorPane.getText();
-                        System.out.println(projectPath);
-                        System.out.println(currFilePath);
                         outputPath = projectPath + "output.txt";
-                        System.out.println(outputPath);
                         try {
                             LuaLexer lexer = new LuaLexer((new ANTLRFileStream(currFilePath)));
                             LuaParser parser = new LuaParser(new CommonTokenStream(lexer));
@@ -329,7 +301,6 @@ public class Gui extends JFrame{
                         }catch (org.antlr.runtime.RecognitionException e) {
                             e.printStackTrace();
                         }
-
                     }
 
                     // Check Degree of Obfuscation Radio Buttons
@@ -378,6 +349,8 @@ public class Gui extends JFrame{
                     String obfuscatedOutputPath = projectPath + "obfuscated-" + tmp.getName();
                     InputReader.printToFile(obfuscatedOutputPath, myUnparser.getCode());
                     obfuscatedEditorPane.setText(myUnparser.getCode());
+
+                    recentObfuscated.add(obfuscatedOutputPath);
                 }
             }
         });
@@ -451,6 +424,9 @@ public class Gui extends JFrame{
             // Disable features for a project...A file was only open (not a project)
             importLuaFile.setEnabled(false);
             importFolder.setEnabled(false);
+            // Enable undo, redo
+            undo.setEnabled(true);
+            redo.setEnabled(true);
             setTitle("LuaGuard - " + projectPath);
             File file = new File(currFilePath);
             try {
@@ -696,6 +672,21 @@ public class Gui extends JFrame{
         }
     }
 
+    public void undo() {
+        if (recentObfuscated.size() != 0) {
+            redo.setEnabled(true);
+            String recObfs = recentObfuscated.poll();
+            File rec = new File(recObfs);
+            recentUndo = new File(recObfs);
+            rec.delete();
+            clearEditorsDir();
+        }
+    }
+
+    public void redo() {
+        System.out.println(recentUndo.getAbsolutePath());
+    }
+
     public void updateProjectDirFileTree() {
         projectDirectoryPanel.removeAll();
         projectDirectoryPanel.updateUI();
@@ -779,6 +770,8 @@ public class Gui extends JFrame{
 
     }
 
+
+    // FIX THIS
     public void alertBeforeExit() {
         if ((!obfuscateBtnClicked) && (!isProject) && (!luaEditorPane.getText().equals(""))){
             JOptionPane.showMessageDialog(null, "Your work will not be saved or obfuscated!");
