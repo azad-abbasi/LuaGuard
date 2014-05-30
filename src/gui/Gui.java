@@ -12,6 +12,7 @@ import parser.InputReader;
 import parser.LuaLexer;
 import parser.LuaParser;
 import unparser.TreeConstructor;
+import unparser.Unparser;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -25,7 +26,6 @@ import java.io.*;
 import java.util.Queue;
 
 // Gui Import files
-
 
 /**
  * Created by lucasr on 5/16/14.
@@ -61,6 +61,7 @@ public class Gui extends JFrame{
     private FilenameFilter luaFilter;
     private String projectPath;
     private String currFilePath;
+    private String outputPath;
     private boolean isProject;
     private boolean obfuscateBtnClicked;
     private boolean setDirectory;
@@ -94,7 +95,6 @@ public class Gui extends JFrame{
         importFolder = new JMenuItem("Import Folder...");
         importLuaFile = new JMenuItem("Import file...");
         reset = new JMenuItem("Reset");
-        reset.setEnabled(false);
         importFolder.setEnabled(false);
         importLuaFile.setEnabled(false);
 
@@ -282,16 +282,40 @@ public class Gui extends JFrame{
             }
         });
 
+        /*public void save(){
+            if (setDirectory) {
+                System.out.println(currFilePath);
+                System.out.println(projectPath);
+                String newContent = luaEditorPane.getText();
+                File newFile = new File(currFilePath);
+                try {
+                    newFile.createNewFile();
+                    FileWriter fw = new FileWriter(newFile.getAbsoluteFile());
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    bw.write(newContent);
+                    bw.close();
+                    luaEditorPane.updateUI();
+                } catch (IOException e) {
+                    updateStatusPanel("Failed to save " + newFile.getName());
+                }
+            } else {
+                saveAs();
+            }
+        }*/
+
         obfuscateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (setDirectory) {
+                    obfuscateBtnClicked = true;
                     // delete.setEnabled(true);
                     // Lua File was Opened not a LuaGuard Project
                     if (!isProject) {
-                        String content = luaEditorPane.getText();
+                        // String content = luaEditorPane.getText();
                         System.out.println(projectPath);
                         System.out.println(currFilePath);
+                        outputPath = projectPath + "output.txt";
+                        System.out.println(outputPath);
                         try {
                             LuaLexer lexer = new LuaLexer((new ANTLRFileStream(currFilePath)));
                             LuaParser parser = new LuaParser(new CommonTokenStream(lexer));
@@ -299,21 +323,20 @@ public class Gui extends JFrame{
                             String treeString = tree.toString();
                             ASTgenerator myAST = new ASTgenerator(tree);
                             String treeStructure = myAST.getAST();
-                            InputReader.printToFile("output.txt", treeStructure);
+                            InputReader.printToFile(outputPath, treeStructure);
                         } catch (IOException e){
                             e.printStackTrace();
-                        } catch (org.antlr.runtime.RecognitionException e) {
+                        }catch (org.antlr.runtime.RecognitionException e) {
                             e.printStackTrace();
                         }
 
                     }
-                    Obfuscator myOb = new Obfuscator("output.txt","output.txt");
 
                     // Check Degree of Obfuscation Radio Buttons
                     if (vocabRadioButton.isSelected()) {
                         // Do Vocab obfuscation here...
                         String selectedVocab = (String) vocabComboBox.getSelectedItem();
-                        System.out.println(selectedVocab);
+                        Obfuscator myOb = new Obfuscator(outputPath, outputPath);
                         try {
                             myOb.FileProcessing(selectedVocab);
                         } catch (IOException e) {
@@ -321,34 +344,40 @@ public class Gui extends JFrame{
                         }
                     }
 
-                    TreeConstructor t = new TreeConstructor("output.txt");
-
                     if (spacingRadioButton.isSelected()) {
                         // Do Spacing obfuscation here...
-
                     }
 
                     if (junkDataRadioButton.isSelected()) {
                         // Do Junk Data obfuscation here...
+                        TreeConstructor t = new TreeConstructor(outputPath);
                         ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
                         cfo.CFOObfuscate();
-                        InputReader.printToFile("output.txt", t.toString());
+                        InputReader.printToFile(outputPath, t.toString());
                     }
 
                     if (parameterRadioButton.isSelected()) {
                         // Do Parameter obfuscation here...
-                        t = new TreeConstructor("output.txt");
-                        ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
+                        TreeConstructor t2 = new TreeConstructor(outputPath);
+                        ParameterObfuscator o = new ParameterObfuscator(t2.getRoot());
                         //call the Function
                         o.addParams();
-                        InputReader.printToFile("output.txt", t.toString());
+                        InputReader.printToFile(outputPath, t2.toString());
                     }
 
+                    TreeConstructor myTree = new TreeConstructor(outputPath);
+                    InputReader.printToFile(outputPath, myTree.toString());
+                    Unparser myUnparser = new Unparser(myTree.getRoot());
+                    myUnparser.unparse();
 
-                    // Output result to obfuscated editor panel
-                    // obfuscatedEditorPane.setText(luaCode);
+                    // Delete Output.txt to make sure it's not added to, found bugs with overwriting
+                    File output = new File(outputPath);
+                    output.delete();
 
-                    //JOptionPane.showMessageDialog(Gui.this, luaCode);
+                    File tmp = new File(currFilePath);
+                    String obfuscatedOutputPath = projectPath + "obfuscated-" + tmp.getName();
+                    InputReader.printToFile(obfuscatedOutputPath, myUnparser.getCode());
+                    obfuscatedEditorPane.setText(myUnparser.getCode());
                 }
             }
         });
@@ -739,7 +768,6 @@ public class Gui extends JFrame{
         undo.setEnabled(false);
         redo.setEnabled(false);
         delete.setEnabled(false);
-        reset.setEnabled(false);
         vocabRadioButton.setSelected(false);
         spacingRadioButton.setSelected(false);
         junkDataRadioButton.setSelected(false);
