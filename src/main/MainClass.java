@@ -64,8 +64,6 @@ public class MainClass {
             //static method printToFile prints the tree into a file.
             InputReader.printToFile("output.txt", treeStructure);
 
-
-
             /**
              * PARSER ENDS HERE
              */

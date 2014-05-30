@@ -1,6 +1,33 @@
  ( CHUNK
-	 ( LOCAL_ASSIGNMENT
-		 ( NAME_LIST d )
-		 ( EXPR_LIST 2 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST iiliijijioiii )
+		 ( EXPR_LIST 4 )
+	 )
+	 ( ASSIGNMENT
+		 ( VAR_LIST iiliiiizij )
+		 ( EXPR_LIST
+			 ( -
+				 ( +
+					 ( * 9571 4885 )
+					 ( 2442 )
+				 )
+				 ( / 8720 1744 )
+			 )
+		 )
+	 )
+	 ( if
+		 ( CONDITION
+			 ( == iiliiiizij 46756772 )
+			 ( if
+				 ( CONDITION
+					 ( == iiliijijioiii 4 )
+					 ( CHUNK
+						 ( VAR print
+							 ( CALL 'hello' )
+						 )
+					 )
+				 )
+			 )
+		 )
 	 )
  )
