@@ -11,6 +11,7 @@ import java.awt.event.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.*;
 
@@ -46,6 +47,7 @@ public class Gui extends JFrame{
 
     // Attr added by Lucas not Intellji form designer
     private FileDialog fileChooser;
+    private FilenameFilter luaFilter;
     private String projectPath;
     private String currFilePath;
     private boolean isProject;
@@ -55,7 +57,7 @@ public class Gui extends JFrame{
     private JMenuItem undo;
     private JMenuItem redo;
     private JMenuItem importFolder;
-    private JMenuItem addLuaFile;
+    private JMenuItem importLuaFile;
     private JMenuItem reset;
     private JMenuItem save;
     private JMenuItem saveAs;
@@ -67,39 +69,45 @@ public class Gui extends JFrame{
         setContentPane(rootPanel);
         pack();
 
-        // Delete random data in JTree Directory
-        //projectDirectoryTree.setModel(null);
-
         // Adding menu bar
         JMenuBar menubar = new JMenuBar();
 
         // Adding File menu tab with its menu items
         JMenu file = new JMenu("File");
-        JMenuItem newproj = new JMenuItem("New");
+        JMenuItem newproj = new JMenuItem("New Project...");
         JMenuItem addFile = new JMenu("Add File");
         JMenuItem open = new JMenuItem("Open File...");
         JMenuItem openProj = new JMenuItem("Open Project...");
         save = new JMenuItem("Save");
         saveAs = new JMenuItem("Save As...");
         importFolder = new JMenuItem("Import Folder...");
-        addLuaFile = new JMenuItem("Import file...");
+        importLuaFile = new JMenuItem("Import file...");
         reset = new JMenuItem("Reset");
         reset.setEnabled(false);
         importFolder.setEnabled(false);
-        addLuaFile.setEnabled(false);
+        importLuaFile.setEnabled(false);
 
         // Adding edit menu tab with its menu items
         JMenu edit = new JMenu("Edit");
         undo = new JMenuItem("Undo");
         redo = new JMenuItem("Redo");
         delete = new JMenuItem("Delete");
-        save.setEnabled(false);
         undo.setEnabled(false);
         redo.setEnabled(false);
         delete.setEnabled(false);
 
-        // Init file chooser and project path for selecting files/dirs
+        // Init file chooser, file filter and project path for selecting files/dirs
         fileChooser = new FileDialog(this, "Choose a file", FileDialog.LOAD);
+        luaFilter = new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                String lowercaseName = name.toLowerCase();
+                if (lowercaseName.endsWith(".lua")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
         projectPath = ".";
         isProject = false;
         obfuscateBtnClicked = false;
@@ -124,7 +132,7 @@ public class Gui extends JFrame{
         file.add(save);
         file.add(saveAs);
         file.add(importFolder);
-        file.add(addLuaFile);
+        file.add(importLuaFile);
         edit.add(undo);
         edit.add(redo);
         edit.add(delete);
@@ -148,7 +156,8 @@ public class Gui extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // Set to open only files
                 System.setProperty("apple.awt.fileDialogForDirectories", "false");
-                openOrNewFileDirProj(1);
+                //openOrNewFileDirProj(1);
+                openFile();
             }
         });
 
@@ -169,7 +178,7 @@ public class Gui extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // Set to open only files
                 System.setProperty("apple.awt.fileDialogForDirectories", "true");
-                saveOrSaveAs(0);
+                save();
             }
         });
 
@@ -179,13 +188,13 @@ public class Gui extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // Set to open only dirs
                 System.setProperty("apple.awt.fileDialogForDirectories", "true");
-                saveOrSaveAs(1);
+                saveAs();
             }
         });
 
-        addLuaFile.setAccelerator(
+        importLuaFile.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_I, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
-        addLuaFile.addActionListener(new ActionListener(  ) {
+        importLuaFile.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
                 // Set to open only dirs
                 System.setProperty("apple.awt.fileDialogForDirectories", "false");
@@ -265,7 +274,7 @@ public class Gui extends JFrame{
         obfuscateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (setDirectory == true) {
+                if (setDirectory) {
                     delete.setEnabled(true);
                     if (isProject == false) {
                         // DO THIS LATER!
@@ -324,6 +333,8 @@ public class Gui extends JFrame{
             }
         });
 
+
+
         menubar.add(file);
         menubar.add(edit);
         setJMenuBar(menubar);
@@ -358,11 +369,47 @@ public class Gui extends JFrame{
         return containsObfDir;
     }
 
+    public void openFile() {
+        fileChooser.setMode(FileDialog.LOAD);
+        fileChooser.setTitle("Open a Lua File");
+        fileChooser.setFilenameFilter(luaFilter);
+        fileChooser.setVisible(true);
+        String fn = fileChooser.getFile();
+        String fn_loc = fileChooser.getDirectory();
+        if (fn == null) {
+            return;
+        } else {
+            // Reset Project before opening anything...
+            resetLuaGuard();
+            // Set Project Path and Current File Path
+            projectPath = fn_loc;
+            currFilePath = fn_loc + fn;
+            setDirectory = true;
+            // Disable features for a project...A file was only open (not a project)
+            importLuaFile.setEnabled(false);
+            importFolder.setEnabled(false);
+            setTitle("LuaGuard -" + projectPath);
+            try {
+                File file = new File(currFilePath);
+                luaEditorPane.setPage(file.toURI().toURL());
+            } catch (IOException ex) {
+                // Catch exception if file not found
+                updateStatusPanel("Could not find file!\n");
+            }
+
+        }
+    }
+
+    public void newOrOpenProject() {
+
+    }
+
     public void openOrNewFileDirProj(int type){
         // int type => Type of Action
         // 0 = New project
         // 1 = Open file
         // 2 = Open a Project
+        //fileChooser.
         fileChooser.setVisible(true);
         String fn = fileChooser.getFile();
         String fn_loc = fileChooser.getDirectory();
@@ -372,14 +419,14 @@ public class Gui extends JFrame{
             // Once file/project open it can be reset
             resetLuaGuard();
             reset.setEnabled(true);
-            save.setEnabled(true);
             projectPath = fn_loc + fn;
             setTitle("LuaGuard -" + projectPath);
+            setDirectory = true;
             // Opening a lua file
             if (type == 1) {
                 projectPath = fn_loc;
                 currFilePath = fn_loc + fn;
-                addLuaFile.setEnabled(false);
+                importLuaFile.setEnabled(false);
                 importFolder.setEnabled(false);
                 String file_extension = fn.split("\\.")[1];
                 if (!file_extension.equals("lua")) {
@@ -399,7 +446,7 @@ public class Gui extends JFrame{
             if (type == 0 || type == 2) {
                 // Enabled to delete obfuscated directory
                 delete.setEnabled(true);
-                addLuaFile.setEnabled(true);
+                importLuaFile.setEnabled(true);
                 importFolder.setEnabled(true);
                 isProject = true;
                 if (type ==  0) {
@@ -490,11 +537,8 @@ public class Gui extends JFrame{
         updateProjectDirFileTree();
     }
 
-    public void saveOrSaveAs(int type){
-        // type => 0 => save
-        // type => 1 => saveAs
-        // For save file is already specified
-        if (type == 0) {
+    public void save(){
+        if (setDirectory) {
             System.out.println(currFilePath);
             System.out.println(projectPath);
             String newContent = luaEditorPane.getText();
@@ -506,17 +550,23 @@ public class Gui extends JFrame{
                 bw.write(newContent);
                 bw.close();
                 luaEditorPane.updateUI();
-            } catch(IOException e) {
+            } catch (IOException e) {
                 updateStatusPanel("Failed to save " + newFile.getName());
             }
         } else {
-            fileChooser.setTitle("Choose Directory");
-            fileChooser.setMode(FileDialog.SAVE);
-            fileChooser.setVisible(true);
-            String fn = fileChooser.getFile();
-            String fn_loc = fileChooser.getDirectory();
-            if (fn == null)
-                return;
+            saveAs();
+        }
+    }
+
+    public void saveAs() {
+        fileChooser.setTitle("Choose Directory");
+        fileChooser.setMode(FileDialog.SAVE);
+        fileChooser.setVisible(true);
+        String fn = fileChooser.getFile();
+        String fn_loc = fileChooser.getDirectory();
+        if (fn == null) {
+            return;
+        } else {
             projectPath = fn_loc + fn;
             System.out.println(projectPath);
         }
@@ -553,6 +603,7 @@ public class Gui extends JFrame{
         // Create file to set to editorpane
         File file = new File(filePath);
         currFilePath = filePath;
+        System.out.println(currFilePath);
         try {
             luaEditorPane.setPage(file.toURI().toURL());
         } catch (IOException e) {
@@ -589,8 +640,7 @@ public class Gui extends JFrame{
         setTitle("LuaGuard");
         vocabComboBox.setEnabled(false);
         importFolder.setEnabled(false);
-        addLuaFile.setEnabled(false);
-        save.setEnabled(false);
+        importLuaFile.setEnabled(false);
         undo.setEnabled(false);
         redo.setEnabled(false);
         delete.setEnabled(false);
