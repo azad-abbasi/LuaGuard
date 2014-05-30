@@ -88,12 +88,9 @@ public class Gui extends JFrame{
 
         // Adding File menu tab with its menu items
         JMenu file = new JMenu("File");
-        final JMenuItem newproj = new JMenuItem("New Project...");
-        JMenuItem addFile = new JMenu("Add File");
+        final JMenuItem newproj = new JMenuItem("New Project");
         JMenuItem open = new JMenuItem("Open File...");
-        JMenuItem openProj = new JMenuItem("Open Project...");
-        save = new JMenuItem("Save");
-        saveAs = new JMenuItem("Save As...");
+        final JMenuItem openProj = new JMenuItem("Open Project...");
         importFolder = new JMenuItem("Import Folder...");
         importLuaFile = new JMenuItem("Import file...");
         reset = new JMenuItem("Reset");
@@ -143,8 +140,8 @@ public class Gui extends JFrame{
         file.add(newproj);
         file.add(open);
         file.add(openProj);
-        file.add(save);
-        file.add(saveAs);
+        //file.add(save);
+        //file.add(saveAs);
         file.add(importFolder);
         file.add(importLuaFile);
         edit.add(undo);
@@ -176,29 +173,8 @@ public class Gui extends JFrame{
                 KeyStroke.getKeyStroke(KeyEvent.VK_O, (java.awt.event.InputEvent.SHIFT_MASK | (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()))));
         openProj.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
-                // Set to open only dirs
-                System.setProperty("apple.awt.fileDialogForDirectories", "true");
-                openOrNewFileDirProj(2);
-            }
-        });
-
-        save.setAccelerator(
-                KeyStroke.getKeyStroke(KeyEvent.VK_S, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
-        save.addActionListener(new ActionListener(  ) {
-            public void actionPerformed(ActionEvent e) {
-                // Set to open only files
-                System.setProperty("apple.awt.fileDialogForDirectories", "true");
-                save();
-            }
-        });
-
-        saveAs.setAccelerator(
-                KeyStroke.getKeyStroke(KeyEvent.VK_S, (java.awt.event.InputEvent.SHIFT_MASK | (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()))));
-        saveAs.addActionListener(new ActionListener(  ) {
-            public void actionPerformed(ActionEvent e) {
-                // Set to open only dirs
-                System.setProperty("apple.awt.fileDialogForDirectories", "true");
-                saveAs();
+                openProject();
+                //openOrNewFileDirProj(2);
             }
         });
 
@@ -228,7 +204,6 @@ public class Gui extends JFrame{
         delete.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
                 if (isProject) {
-                    System.out.println("trying to delete " + projectPath + "/obfuscated");
                     File file = new File(projectPath + "/obfuscated");
                     deleteDirectory(file);
                     updateProjectDirFileTree();
@@ -282,25 +257,26 @@ public class Gui extends JFrame{
         obfuscateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (setDirectory) {
+                File ext = new File(currFilePath);
+                String f_ext = ext.getName().split("\\.")[1];
+                if (setDirectory && (f_ext.equals("lua"))) {
                     obfuscateBtnClicked = true;
-                    // delete.setEnabled(true);
+
+                    //delete.setEnabled(true);
                     // Lua File was Opened not a LuaGuard Project
-                    if (!isProject) {
-                        outputPath = projectPath + "output.txt";
-                        try {
-                            LuaLexer lexer = new LuaLexer((new ANTLRFileStream(currFilePath)));
-                            LuaParser parser = new LuaParser(new CommonTokenStream(lexer));
-                            CommonTree tree =  parser.parse().getTree();
-                            String treeString = tree.toString();
-                            ASTgenerator myAST = new ASTgenerator(tree);
-                            String treeStructure = myAST.getAST();
-                            InputReader.printToFile(outputPath, treeStructure);
-                        } catch (IOException e){
-                            e.printStackTrace();
-                        }catch (org.antlr.runtime.RecognitionException e) {
-                            e.printStackTrace();
-                        }
+                    outputPath = projectPath + "output.txt";
+                    try {
+                        LuaLexer lexer = new LuaLexer((new ANTLRFileStream(currFilePath)));
+                        LuaParser parser = new LuaParser(new CommonTokenStream(lexer));
+                        CommonTree tree =  parser.parse().getTree();
+                        String treeString = tree.toString();
+                        ASTgenerator myAST = new ASTgenerator(tree);
+                        String treeStructure = myAST.getAST();
+                        InputReader.printToFile(outputPath, treeStructure);
+                    } catch (IOException e){
+                        e.printStackTrace();
+                    }catch (org.antlr.runtime.RecognitionException e) {
+                        e.printStackTrace();
                     }
 
                     // Check Degree of Obfuscation Radio Buttons
@@ -336,6 +312,7 @@ public class Gui extends JFrame{
                         InputReader.printToFile(outputPath, t2.toString());
                     }
 
+
                     TreeConstructor myTree = new TreeConstructor(outputPath);
                     InputReader.printToFile(outputPath, myTree.toString());
                     Unparser myUnparser = new Unparser(myTree.getRoot());
@@ -346,10 +323,15 @@ public class Gui extends JFrame{
                     output.delete();
 
                     File tmp = new File(currFilePath);
-                    String obfuscatedOutputPath = projectPath + "obfuscated-" + tmp.getName();
+                    String obfuscatedOutputPath = "";
+                    if (!isProject) {
+                        obfuscatedOutputPath = projectPath + "obfuscated-" + tmp.getName();
+                    } else {
+                        obfuscatedOutputPath = projectPath + "/obfuscated/" + tmp.getName();
+                    }
                     InputReader.printToFile(obfuscatedOutputPath, myUnparser.getCode());
                     obfuscatedEditorPane.setText(myUnparser.getCode());
-
+                    updateProjectDirFileTree();
                     recentObfuscated.add(obfuscatedOutputPath);
                 }
             }
@@ -359,14 +341,8 @@ public class Gui extends JFrame{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 System.out.println("Cancel button pressed...");
-                //clearEditorsDir();
-            }
-        });
 
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent windowEvent) {
-                alertBeforeExit();
+                //clearEditorsDir();
             }
         });
 
@@ -405,6 +381,8 @@ public class Gui extends JFrame{
     }
 
     public void openFile() {
+        // Reset Project before opening anything...
+        resetLuaGuard();
         // Set to open only files
         System.setProperty("apple.awt.fileDialogForDirectories", "false");
         // Set FileDialog
@@ -415,8 +393,6 @@ public class Gui extends JFrame{
         String fn = fileChooser.getFile();
         String fn_loc = fileChooser.getDirectory();
         if (fn != null) {
-            // Reset Project before opening anything...
-            resetLuaGuard();
             // Set Project Path and Current File Path
             projectPath = fn_loc;
             currFilePath = fn_loc + fn;
@@ -429,6 +405,7 @@ public class Gui extends JFrame{
             redo.setEnabled(true);
             setTitle("LuaGuard - " + projectPath);
             File file = new File(currFilePath);
+            System.out.println(currFilePath);
             try {
                 luaEditorPane.setPage(file.toURI().toURL());
             } catch (IOException e) {
@@ -439,6 +416,7 @@ public class Gui extends JFrame{
     }
 
     public void newProject() {
+        resetLuaGuard();
         System.setProperty("apple.awt.fileDialogForDirectories", "true");
         fileChooser.setMode(FileDialog.SAVE);
         fileChooser.setTitle("Create Directory For Project");
@@ -454,6 +432,7 @@ public class Gui extends JFrame{
             // File Path NOT SPECIFIED YET
             setDirectory = true;
             isProject = true;
+            projectPath = fn_loc + fn + File.separator;
 
             // Enable features for a project...A file was only open (not a project)
             importLuaFile.setEnabled(true);
@@ -462,11 +441,11 @@ public class Gui extends JFrame{
 
             // Set Title
             setTitle("LuaGuard - " + projectPath);
-            System.out.println(fn_loc);
-            System.out.println(fn_loc + fn);
+            //System.out.println(fn_loc);
+            //System.out.println(fn_loc + fn);
 
-            new File(fn_loc+fn).mkdir();
-            /*// Create Lua directory
+            // Create LuaGuard Project Directory and Lua Directory
+            new File(projectPath).mkdir();
             new File(projectPath + "/lua").mkdir();
             File README = new File(projectPath+"/lua", "README.txt");
             try {
@@ -497,94 +476,74 @@ public class Gui extends JFrame{
                     updateStatusPanel("Added obfuscation directory\nObfuscated code will be sent there\n");
             } else {
                 updateStatusPanel("Found project...obfuscation sent to obfuscated directory\n");
-            }*/
-            //updateProjectDirFileTree();
+            }
+            updateProjectDirFileTree();
         }
     }
 
-
-    public void openOrNewFileDirProj(int type){
-        // int type => Type of Action
-        // 0 = New project
-        // 1 = Open file
-        // 2 = Open a Project
-        //fileChooser.
+    public void openProject() {
+        resetLuaGuard();
+        System.setProperty("apple.awt.fileDialogForDirectories", "true");
+        fileChooser.setMode(FileDialog.LOAD);
+        fileChooser.setTitle("Select LuaGuard Project");
         fileChooser.setVisible(true);
         String fn = fileChooser.getFile();
         String fn_loc = fileChooser.getDirectory();
-        if (fn == null) {
-            return;
-        } else {
-            // Once file/project open it can be reset
-            resetLuaGuard();
-            reset.setEnabled(true);
-            projectPath = fn_loc + fn;
-            setTitle("LuaGuard -" + projectPath);
-            setDirectory = true;
-            // Opening a lua file
-            if (type == 1) {
-                projectPath = fn_loc;
-                currFilePath = fn_loc + fn;
-                importLuaFile.setEnabled(false);
-                importFolder.setEnabled(false);
-                String file_extension = fn.split("\\.")[1];
-                if (!file_extension.equals("lua")) {
-                    updateStatusPanel("Incompatible file type chosen, .lua files only supported\n");
-                } else {
-                    // Write text from file to luaEditorPane
-                    try {
-                        File file = new File(currFilePath);
-                        luaEditorPane.setPage(file.toURI().toURL());
-                    } catch (IOException ex) {
-                        // Catch exception if file not found
-                        updateStatusPanel("Could not find file!\n");
-                    }
-                }
-            }
+        if (fn != null) {
 
-            // Creating a new project/Opening a project
-            if (type == 0 || type == 2) {
-                // Enabled to delete obfuscated directory
-                delete.setEnabled(true);
-                importLuaFile.setEnabled(true);
-                importFolder.setEnabled(true);
-                isProject = true;
-                if (type ==  0) {
-                    // Create directory to place lua code
-                    new File(projectPath + "/lua").mkdir();
-                    File README = new File(projectPath+"/lua", "README.txt");
-                    try {
-                        README.createNewFile();
-                        String content = "This is the directory where all your Lua code goes!";
-                        FileWriter fw =  new FileWriter(README.getAbsoluteFile());
-                        BufferedWriter bw = new BufferedWriter(fw);
-                        bw.write(content);
-                        bw.close();
-                    } catch (IOException e) {
-                        updateStatusPanel("Error occurred while creating README.txt");
-                    }
-                }
-                // Check for Obfuscated Dir in Project File Path
-                boolean findObfDir = checkForObfuscatedDir();
-                if (!findObfDir) {
-                    new File(projectPath + "/obfuscated").mkdir();
-                    File README = new File(projectPath+"/obfuscated", "README.txt");
-                    try {
-                        README.createNewFile();
-                        String content = "This is the directory where all your obfuscated Lua code goes!";
-                        FileWriter fw =  new FileWriter(README.getAbsoluteFile());
-                        BufferedWriter bw = new BufferedWriter(fw);
-                        bw.write(content);
-                        bw.close();
-                    } catch (IOException e) {
-                        updateStatusPanel("Error occurred while creating README.txt");
-                    }
-                    updateStatusPanel("Added obfuscation directory\nObfuscated code will be sent there\n");
-                } else {
-                    updateStatusPanel("Found project...obfuscation sent to obfuscated directory\n");
-                }
-                updateProjectDirFileTree();
+            // Reset Project before opening anything...
+            resetLuaGuard();
+
+            // Set Project Path and Current File Path
+            // File Path NOT SPECIFIED YET
+            setDirectory = true;
+            isProject = true;
+            projectPath = fn_loc + fn + File.separator;
+
+            // Enable features for a project...A file was only open (not a project)
+            importLuaFile.setEnabled(true);
+            importFolder.setEnabled(true);
+            delete.setEnabled(true);
+
+            // Set Title
+            setTitle("LuaGuard - " + projectPath);
+            //System.out.println(fn_loc);
+            //System.out.println(fn_loc + fn);
+
+            // Create LuaGuard Project Directory and Lua Directory
+            new File(projectPath).mkdir();
+            new File(projectPath + "/lua").mkdir();
+            File README = new File(projectPath+"/lua", "README.txt");
+            try {
+                README.createNewFile();
+                String content = "This is the directory where all your Lua code goes!";
+                FileWriter fw =  new FileWriter(README.getAbsoluteFile());
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(content);
+                bw.close();
+            } catch (IOException e) {
+                updateStatusPanel("Error occurred while creating README.txt");
             }
+            // Check Obfuscated Dir
+            boolean findObfDir = checkForObfuscatedDir();
+            if (!findObfDir) {
+                new File(projectPath + "/obfuscated").mkdir();
+                README = new File(projectPath+"/obfuscated", "README.txt");
+                try {
+                    README.createNewFile();
+                    String content = "This is the directory where all your obfuscated Lua code goes!";
+                    FileWriter fw =  new FileWriter(README.getAbsoluteFile());
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    bw.write(content);
+                    bw.close();
+                } catch (IOException e) {
+                    updateStatusPanel("Error occurred while creating README.txt");
+                }
+                updateStatusPanel("Added obfuscation directory\nObfuscated code will be sent there\n");
+            } else {
+                updateStatusPanel("Found project...obfuscation sent to obfuscated directory\n");
+            }
+            updateProjectDirFileTree();
         }
     }
 
@@ -637,41 +596,6 @@ public class Gui extends JFrame{
         updateProjectDirFileTree();
     }
 
-    public void save(){
-        if (setDirectory) {
-            System.out.println(currFilePath);
-            System.out.println(projectPath);
-            String newContent = luaEditorPane.getText();
-            File newFile = new File(currFilePath);
-            try {
-                newFile.createNewFile();
-                FileWriter fw = new FileWriter(newFile.getAbsoluteFile());
-                BufferedWriter bw = new BufferedWriter(fw);
-                bw.write(newContent);
-                bw.close();
-                luaEditorPane.updateUI();
-            } catch (IOException e) {
-                updateStatusPanel("Failed to save " + newFile.getName());
-            }
-        } else {
-            saveAs();
-        }
-    }
-
-    public void saveAs() {
-        fileChooser.setTitle("Choose Directory");
-        fileChooser.setMode(FileDialog.SAVE);
-        fileChooser.setVisible(true);
-        String fn = fileChooser.getFile();
-        String fn_loc = fileChooser.getDirectory();
-        if (fn == null) {
-            return;
-        } else {
-            projectPath = fn_loc + fn;
-            System.out.println(projectPath);
-        }
-    }
-
     public void undo() {
         if (recentObfuscated.size() != 0) {
             redo.setEnabled(true);
@@ -684,7 +608,8 @@ public class Gui extends JFrame{
     }
 
     public void redo() {
-        System.out.println(recentUndo.getAbsolutePath());
+        if (recentUndo != null)
+            System.out.println(recentUndo.getAbsolutePath());
     }
 
     public void updateProjectDirFileTree() {
@@ -718,7 +643,6 @@ public class Gui extends JFrame{
         // Create file to set to editorpane
         File file = new File(filePath);
         currFilePath = filePath;
-        System.out.println(currFilePath);
         try {
             luaEditorPane.setPage(file.toURI().toURL());
         } catch (IOException e) {
@@ -739,16 +663,19 @@ public class Gui extends JFrame{
     }
 
     public void clearEditorsDir() {
-        luaEditorPane.selectAll();
-        luaEditorPane.replaceSelection("");
-        obfuscatedEditorPane.selectAll();
-        obfuscatedEditorPane.replaceSelection("");
+        luaEditorPane.setText("");
+        Document doc = luaEditorPane.getDocument();
+        doc.putProperty(Document.StreamDescriptionProperty, null);
+        obfuscatedEditorPane.setText("");
+        doc = obfuscatedEditorPane.getDocument();
+        doc.putProperty(Document.StreamDescriptionProperty, null);
         projectDirectoryPanel.removeAll();
         projectDirectoryPanel.updateUI();
     }
 
     public void resetLuaGuard() {
         clearEditorsDir();
+        fileChooser = new FileDialog(this);
         currFilePath = "";
         projectPath = "";
         isProject = false;
@@ -768,16 +695,6 @@ public class Gui extends JFrame{
                 "Or Start typing Lua code into the Lua Editor TextPane\n" +
                 "For further help see our user manual at...\n");
 
-    }
-
-
-    // FIX THIS
-    public void alertBeforeExit() {
-        if ((!obfuscateBtnClicked) && (!isProject) && (!luaEditorPane.getText().equals(""))){
-            JOptionPane.showMessageDialog(null, "Your work will not be saved or obfuscated!");
-        } else {
-            System.exit(0);
-        }
     }
 
 }
