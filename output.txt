@@ -1,6 +1,6 @@
  ( CHUNK
-	 ( ASSIGNMENT
-		 ( VAR_LIST a d b c )
-		 ( EXPR_LIST 2 2 2 2 )
+	 ( LOCAL_ASSIGNMENT
+		 ( NAME_LIST d )
+		 ( EXPR_LIST 2 )
 	 )
  )
