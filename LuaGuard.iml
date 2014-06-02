@@ -10,7 +10,6 @@
     <orderEntry type="library" name="lib17" level="project" />
     <orderEntry type="library" name="lib16" level="project" />
     <orderEntry type="library" name="LuaGuard3" level="project" />
-    <orderEntry type="module" module-name="LuaGuard" />
   </component>
 </module>
 

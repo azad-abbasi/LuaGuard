@@ -102,8 +102,8 @@ public class Gui extends JFrame{
         undo = new JMenuItem("Undo");
         redo = new JMenuItem("Redo");
         delete = new JMenuItem("Delete");
-        undo.setEnabled(false);
-        redo.setEnabled(false);
+        //undo.setEnabled(false);
+        //redo.setEnabled(false);
         delete.setEnabled(false);
 
         // Init file chooser, file filter and project path for selecting files/dirs
@@ -126,7 +126,6 @@ public class Gui extends JFrame{
         // Init status pane with welcome/info message
         statusTextPane.setText("Welcome to LuaGuard!\n" +
                 "Create/open a project to begin\n" +
-                "Or Start typing Lua code into the Lua Editor TextPane\n" +
                 "For further help see our user manual at...\n");
 
         // Set Layout for FileTree
@@ -140,8 +139,6 @@ public class Gui extends JFrame{
         file.add(newproj);
         file.add(open);
         file.add(openProj);
-        //file.add(save);
-        //file.add(saveAs);
         file.add(importFolder);
         file.add(importLuaFile);
         edit.add(undo);
@@ -154,7 +151,6 @@ public class Gui extends JFrame{
                 KeyStroke.getKeyStroke(KeyEvent.VK_N, (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())));
         newproj.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //newProject();
                 newProject();
             }
         });
@@ -174,7 +170,6 @@ public class Gui extends JFrame{
         openProj.addActionListener(new ActionListener(  ) {
             public void actionPerformed(ActionEvent e) {
                 openProject();
-                //openOrNewFileDirProj(2);
             }
         });
 
@@ -272,7 +267,6 @@ public class Gui extends JFrame{
                 if (setDirectory && (f_ext.equals("lua"))) {
                     obfuscateBtnClicked = true;
 
-                    //delete.setEnabled(true);
                     // Lua File was Opened not a LuaGuard Project
                     outputPath = projectPath + "output.txt";
                     try {
@@ -352,7 +346,7 @@ public class Gui extends JFrame{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 System.out.println("Cancel button pressed...");
-
+                undo();
                 //clearEditorsDir();
             }
         });
@@ -448,12 +442,12 @@ public class Gui extends JFrame{
             // Enable features for a project...A file was only open (not a project)
             importLuaFile.setEnabled(true);
             importFolder.setEnabled(true);
+            undo.setEnabled(true);
+            redo.setEnabled(true);
             delete.setEnabled(true);
 
             // Set Title
             setTitle("LuaGuard - " + projectPath);
-            //System.out.println(fn_loc);
-            //System.out.println(fn_loc + fn);
 
             // Create LuaGuard Project Directory and Lua Directory
             new File(projectPath).mkdir();
@@ -514,12 +508,12 @@ public class Gui extends JFrame{
             // Enable features for a project...A file was only open (not a project)
             importLuaFile.setEnabled(true);
             importFolder.setEnabled(true);
+            undo.setEnabled(true);
+            redo.setEnabled(true);
             delete.setEnabled(true);
 
             // Set Title
             setTitle("LuaGuard - " + projectPath);
-            //System.out.println(fn_loc);
-            //System.out.println(fn_loc + fn);
 
             // Create LuaGuard Project Directory and Lua Directory
             new File(projectPath).mkdir();
@@ -696,8 +690,8 @@ public class Gui extends JFrame{
         vocabComboBox.setEnabled(false);
         importFolder.setEnabled(false);
         importLuaFile.setEnabled(false);
-        undo.setEnabled(false);
-        redo.setEnabled(false);
+        //undo.setEnabled(false);
+        //redo.setEnabled(false);
         delete.setEnabled(false);
         vocabRadioButton.setSelected(false);
         spacingRadioButton.setSelected(false);
@@ -705,7 +699,6 @@ public class Gui extends JFrame{
         parameterRadioButton.setSelected(false);
         statusTextPane.setText("Welcome to LuaGuard!\n" +
                 "Create/open a project to begin\n" +
-                "Or Start typing Lua code into the Lua Editor TextPane\n" +
                 "For further help see our user manual at...\n");
 
     }
