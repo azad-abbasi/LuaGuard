@@ -77,17 +77,17 @@ public class MainClass {
             //the Obfuscator goes here , whatever level we decide to have
 
             // Areej : minimum Vocab Obfuscator
-            Obfuscator myOb = new Obfuscator("output.txt","output.txt");
-            //call the fileProcessing Function
-
-            try{
-
-             /* Key words{ MinVocab,Reverse,XOR,ILOveOU,Boss,Confusing} = obfuName */
-
-                myOb.FileProcessing("Confusing");
-
-            }catch(Exception e){e.printStackTrace();
-            }
+//            Obfuscator myOb = new Obfuscator("output.txt","output.txt");
+//            //call the fileProcessing Function
+//
+//            try{
+//
+//             /* Key words{ MinVocab,Reverse,XOR,ILOveOU,Boss,Confusing} = obfuName */
+//
+//                myOb.FileProcessing("Confusing");
+//
+//            }catch(Exception e){e.printStackTrace();
+//            }
 
 //            Areej : ControlFlowObfuscator
 
