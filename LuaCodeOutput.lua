@@ -1,6 +1,2 @@
-iiliimqjlljji=5
-function iiliilihjwjjj(iiliiilieiplj,iiliiiiiiiijj,iiliipiljiina,iiliiniiiwilo,iiliitbofnjjj) 
-iiliiilllcsji=2
-
-end
-iiliilihjwjjj(3,iiliillijtaaj,iiliililiifjy,iiliimljiqsai,iiliijlviilis) print(iiliiilllcsji) 
+local iiliiulziljjj,iiliijjjdciml,iiliijiljiljg,iiliigjjjiljo=2,3,4,5
+iiliiulziljjj=2

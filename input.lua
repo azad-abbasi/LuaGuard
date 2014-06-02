@@ -1,6 +1,2 @@
-c = 5
-function a(c)
-c=2
-end
-a(3)
-print(c)
+local a , b ,c , d = 2,3,4,5
+a = 2
