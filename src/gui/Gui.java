@@ -257,9 +257,18 @@ public class Gui extends JFrame{
         obfuscateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                File ext = new File(currFilePath);
-                String f_ext = ext.getName().split("\\.")[1];
+                String f_ext = "";
                 String spacingParam = "NULL";
+                try {
+                    File ext = new File(currFilePath);
+                    f_ext = ext.getName().split("\\.")[1];
+                } catch(ArrayIndexOutOfBoundsException e) {
+                    // Incorrect path
+                    updateStatusPanel("No file selected or incorrect path!");
+                } catch (NullPointerException e) {
+                    updateStatusPanel("No file selected or incorrect path!");
+                }
+
                 if (setDirectory && (f_ext.equals("lua"))) {
                     obfuscateBtnClicked = true;
 
@@ -633,7 +642,9 @@ public class Gui extends JFrame{
                     File tmp = new File(node.toString());
                     if (!tmp.isDirectory()) {
                         if (!tmp.isHidden()) {
+                            setTitle("LuaGuard - " + projectPath + node.toString());
                             updateLuaEditorPane(filePath);
+
                         }
                     }
                 } catch (NullPointerException e) {}
