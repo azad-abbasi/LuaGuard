@@ -2,8 +2,8 @@ package gui;
 
 
 import obfuscator.ControlFlowObfuscator;
-import obfuscator.Obfuscator;
 import obfuscator.ParameterObfuscator;
+import obfuscator.VocabObfuscator;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
@@ -21,7 +21,9 @@ import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -287,12 +289,18 @@ public class Gui extends JFrame{
                     if (vocabRadioButton.isSelected()) {
                         // Do Vocab obfuscation here...
                         String selectedVocab = (String) vocabComboBox.getSelectedItem();
-                        Obfuscator myOb = new Obfuscator(outputPath, outputPath);
+                        // Old way called...
+                        /* myOb = new Obfuscator(outputPath, outputPath);
                         try {
                             myOb.FileProcessing(selectedVocab);
                         } catch (IOException e) {
                             e.printStackTrace();
-                        }
+                        }*/
+
+                        TreeConstructor t3 = new TreeConstructor(outputPath);
+                        VocabObfuscator vo = new VocabObfuscator(t3.getRoot(), selectedVocab);
+                        vo.obfuscate();
+                        InputReader.printToFile(outputPath,t3.toString());
                     }
 
                     if (spacingRadioButton.isSelected()) {
@@ -607,6 +615,7 @@ public class Gui extends JFrame{
             String recObfs = recentObfuscated.poll();
             File rec = new File(recObfs);
             recentUndo = new File(recObfs);
+
             rec.delete();
             clearEditorsDir();
         }
@@ -690,8 +699,6 @@ public class Gui extends JFrame{
         vocabComboBox.setEnabled(false);
         importFolder.setEnabled(false);
         importLuaFile.setEnabled(false);
-        //undo.setEnabled(false);
-        //redo.setEnabled(false);
         delete.setEnabled(false);
         vocabRadioButton.setSelected(false);
         spacingRadioButton.setSelected(false);
