@@ -107,12 +107,6 @@ public class MainClass {
             InputReader.printToFile("output.txt", t2.toString());
 
 //
-//            Amanda's obfuscator
-//            TreeConstructor t = new TreeConstructor(args[1]);
-//            ParameterObfuscator o = new ParameterObfuscator(t.getRoot());
-//            o.addParams();
-//            InputReader.printToFile(args[2], tree.toString());
-
 
             TreeConstructor t3 = new TreeConstructor("output.txt");
             VocabObfuscator vo = new VocabObfuscator(t3.getRoot());
@@ -132,7 +126,9 @@ public class MainClass {
             TreeConstructor myTree = new TreeConstructor("output.txt");
             InputReader.printToFile("output.txt",myTree.toString());
             Unparser myUnparser = new Unparser(myTree.getRoot());
-            myUnparser.unparse();
+            //if you want to unparse with spacing and new lines , pass "Spacing" to the unparse mehtod.
+            // other wise, pass "noSpace";
+            myUnparser.unparse("Spacing");
             System.out.println(myUnparser.getCode());
             InputReader.printToFile(args[1],myUnparser.getCode());
 
