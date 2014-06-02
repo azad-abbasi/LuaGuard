@@ -1,2 +1,2 @@
-local iiliiulziljjj,iiliijjjdciml,iiliijiljiljg,iiliigjjjiljo=2,3,4,5
-iiliiulziljjj=2
+local iiliiniiiljdj,iiliiiwjpilji,iiliilipiiljj,iiliiljjvtuoi=2,3,4,5
+iiliiniiiljdj=2
