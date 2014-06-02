@@ -182,14 +182,14 @@
                   <text value="Parameter"/>
                 </properties>
               </component>
-              <component id="6b6d0" class="javax.swing.JRadioButton" binding="spacingRadioButton" default-binding="true">
+              <component id="6b6d0" class="javax.swing.JRadioButton" binding="spacingRadioButton">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
                     <preferred-size width="197" height="23"/>
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="Spacing"/>
+                  <text value="No Spacing"/>
                 </properties>
               </component>
               <component id="5b61" class="javax.swing.JRadioButton" binding="junkDataRadioButton" default-binding="true">
