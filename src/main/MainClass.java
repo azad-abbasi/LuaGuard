@@ -129,7 +129,7 @@ public class MainClass {
             Unparser myUnparser = new Unparser(myTree.getRoot());
             //if you want to unparse with spacing and new lines , pass "Spacing" to the unparse mehtod.
             // other wise, pass "noSpace";
-            myUnparser.unparse("Spacing");
+            myUnparser.unparse("Spag");
             System.out.println(myUnparser.getCode());
             InputReader.printToFile(args[1],myUnparser.getCode());
 

@@ -256,7 +256,7 @@ public class Obfuscator {
 
     public static String confusingString(){
         int length = 8;
-        String abc = "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiilllllllllllllllllllljjjjjjjjjjjjjjjjjjjjabcdefghijklmnopqrstuvwxyz";
+        String abc = "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiilllllllllllllllllllljjjjjjjjjjjjjjjjjjjjABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         Random r = new Random();
 
         StringBuilder sb = new StringBuilder(length);

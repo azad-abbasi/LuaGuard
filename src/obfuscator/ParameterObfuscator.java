@@ -108,7 +108,7 @@ public class ParameterObfuscator {
 //         
 //-------------------------------------------------------------
     public static String randomString(int length) {
-        String abc = "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiilllllllllllllllllllljjjjjjjjjjjjjjjjjjjjabcdefghijklmnopqrstuvwxyz";
+        String abc = "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiilllllllllllllllllllljjjjjjjjjjjjjjjjjjjjABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         Random r = new Random();
 
         StringBuilder sb = new StringBuilder(length);
