@@ -177,35 +177,53 @@ public class Obfuscator {
 					// write to the text file
 					finalString.append(token);
 
-                    if(tokenizer.hasMoreTokens()){
+                    if(tokenizer.hasMoreTokens()) {
                         String space = tokenizer.nextToken();
                         finalString.append(space);
-                        String var = tokenizer.nextToken();
+                        System.out.println("Start of list of variables");
+                        System.out.print("( ");
+                        String tokenii = tokenizer.nextToken();
+                        while (!tokenii.equals(")")) {
+                            // String var = tokenizer.nextToken();
+                            String var = tokenii;
+                            System.out.print(var);
+                            System.out.print(" ");
+
+                            //-----------------------------------------------------------------------
+                            String transformedVar;
+                            if (obfuName.equals("MinVocab")) {
+                                transformedVar = MinimumVocabObfuscation(var);
+                            } else if (obfuName.equals("Reverse")) {
+                                transformedVar = StringreverseObfuscation(var);
+                            } else if (obfuName.equals("XOR")) {
+                                transformedVar = XORObfuscation(var);
+                            } else if (obfuName.equals("ILOveOU")) {
+                                transformedVar = ILOveOUObfuscation(var);
+                            } else if (obfuName.equals("ILOveOU")) {
+                                transformedVar = ILOveOUObfuscation(var);
+                            } else if (obfuName.equals("Confusing")) {
+                                transformedVar = confusingString();
+                            } else {
+                                transformedVar = BossObfuscation(var);
+                            }
 //-----------------------------------------------------------------------
-                        String transformedVar;
-                        if(obfuName.equals("MinVocab")){
-                            transformedVar = MinimumVocabObfuscation(var);
-                        }else if (obfuName.equals("Reverse")){
-                            transformedVar = StringreverseObfuscation(var);
-                        }else if (obfuName.equals("XOR")){
-                            transformedVar = XORObfuscation(var);
-                        }else if (obfuName.equals("ILOveOU")){
-                            transformedVar = ILOveOUObfuscation(var);
+                            obfuscatedVars.put(var, transformedVar);
+                            finalString.append(transformedVar);
+                            if (tokenizer.hasMoreTokens()) {
+                                space = tokenizer.nextToken();
+                                finalString.append(space);
+                                tokenii = tokenizer.nextToken();
+                            }
                         }
-                        else if (obfuName.equals("ILOveOU")){
-                            transformedVar = ILOveOUObfuscation(var);
-                        }
-                        else if (obfuName.equals("Confusing")){
-                            transformedVar = confusingString();
-                        }else
-                        {
-                            transformedVar = BossObfuscation(var);
-                        }
-//-----------------------------------------------------------------------
-                        obfuscatedVars.put(var, transformedVar);
-                        finalString.append(transformedVar);
+                        // write the closing parentheses
+                        token = tokenii;
+                        finalString.append(tokenii);
+                        System.out.print(tokenii);
+                        System.out.println();
+                        System.out.println("End of the list of variables ");
+                        // continue;
                     }
-                    //check if the string following VAR is in the MAP or a name for built in function
+                        //check if the string following VAR is in the MAP or a name for built in function
                 }else if(token.equals("VAR")){
                     finalString.append("VAR");
 
