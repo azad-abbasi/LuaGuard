@@ -1,26 +1,10 @@
  ( CHUNK
+	 ( LOCAL_ASSIGNMENT
+		 ( NAME_LIST iiliiulziljjj iiliijjjdciml iiliijiljiljg iiliigjjjiljo )
+		 ( EXPR_LIST 2 3 4 5 )
+	 )
 	 ( ASSIGNMENT
-		 ( VAR_LIST iiliimqjlljji )
-		 ( EXPR_LIST 5 )
-	 )
-	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST iiliilihjwjjj )
-		 ( EXPR_LIST
-			 ( FUNCTION
-				 ( PARAM_LIST iiliiilieiplj iiliiiiiiiijj iiliipiljiina iiliiniiiwilo iiliitbofnjjj )
-				 ( CHUNK
-					 ( ASSIGNMENT
-						 ( VAR_LIST iiliiilllcsji )
-						 ( EXPR_LIST 2 )
-					 )
-				 )
-			 )
-		 )
-	 )
-	 ( VAR iiliilihjwjjj
-		 ( CALL 3 iiliillijtaaj iiliililiifjy iiliimljiqsai iiliijlviilis )
-	 )
-	 ( VAR print
-		 ( CALL iiliiilllcsji )
+		 ( VAR_LIST iiliiulziljjj )
+		 ( EXPR_LIST 2 )
 	 )
  )

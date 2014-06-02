@@ -119,7 +119,11 @@ public class VocabObfuscator {
         }
 
 
+
         else{
+            if (recVars.containsKey(currentNode.getName())) {
+                currentNode.setName(recVars.get(currentNode.getName()));
+            }
             int count = currentNode.getChildCount();
             for(int i=0;i<count ; i++){
                 process(currentNode.getChild(i));
@@ -150,4 +154,78 @@ public class VocabObfuscator {
         return sb.toString();
 
     }
+
+    public static String MinimumVocabObfuscation(String w){
+        StringBuilder result = new StringBuilder(w.length()); //obfuscated word
+        //		System.out.println(w);
+        for(int i=0; i < w.length(); i++){
+            char c = w.charAt(i);
+            //System.out.println(c);
+            int k= c - 96;
+            //System.out.println(k);
+            int num = k%26;
+            k = k/26;
+            int out = num+1+96;
+            //System.out.println((char)out);
+            result.append(Character.toString((char)(out)));
+        }
+
+        //		System.out.println(result.toString());
+        return result.toString();
+    }
+
+
+    public String StringreverseObfuscation(String w){
+        StringBuilder result = new StringBuilder(w.length()); //obfuscated word
+        for(int i = w.length()-1 ; i>=0 ; i--){
+            char c = w.charAt(i);
+            result.append(c);
+        }
+        return result.toString();
+    }
+
+	/*
+     * String XOR Obfuscation
+     * Input: String W
+     * Output: String result: obfuscated string
+     */
+
+    public String XORObfuscation(String w){
+        Random r = new Random();
+
+        int key = r.nextInt(900)%32;  // the key used in XOR encryption
+
+        StringBuilder result = new StringBuilder(w.length()); //obfuscated word
+
+        for(int i = 0 ; i < w.length() ; i++){
+            char c = w.charAt(i);
+            char _c = (char) (c ^ key);
+            if(_c < 'A' || _c >'z' || (_c > 'Z' && _c < 'a'))
+            {
+                _c = c;
+            }
+            result.append(_c);
+        }
+        return result.toString();
+    }
+
+	/*
+     * I love UO Obfuscation
+     * Input: String W
+     * Output: String result: obfuscated string
+     */
+
+    public String ILOveOUObfuscation(String w){
+        String s = "iloveou";
+        StringBuilder result = new StringBuilder(w.length()); //obfuscated word
+        result.append('_');
+        for(int i = 0 ; i < w.length() ; i++){
+            char c = w.charAt(i);
+            result.append(c);
+            result.append(s.charAt(i%7));
+        }
+        return result.toString();
+    }
+
+
 }
