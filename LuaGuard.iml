@@ -7,9 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="LuaGuard1" level="project" />
-    <orderEntry type="library" name="lib13" level="project" />
-    <orderEntry type="library" name="lib12" level="project" />
+    <orderEntry type="library" name="lib14" level="project" />
+    <orderEntry type="library" name="LuaGuard2" level="project" />
+    <orderEntry type="library" name="lib15" level="project" />
   </component>
 </module>
 

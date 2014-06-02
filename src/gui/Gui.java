@@ -259,6 +259,7 @@ public class Gui extends JFrame{
             public void actionPerformed(ActionEvent actionEvent) {
                 File ext = new File(currFilePath);
                 String f_ext = ext.getName().split("\\.")[1];
+                String spacingParam = "NULL";
                 if (setDirectory && (f_ext.equals("lua"))) {
                     obfuscateBtnClicked = true;
 
@@ -293,6 +294,7 @@ public class Gui extends JFrame{
 
                     if (spacingRadioButton.isSelected()) {
                         // Do Spacing obfuscation here...
+                        spacingParam = "Spacing";
                     }
 
                     if (junkDataRadioButton.isSelected()) {
@@ -316,7 +318,7 @@ public class Gui extends JFrame{
                     TreeConstructor myTree = new TreeConstructor(outputPath);
                     InputReader.printToFile(outputPath, myTree.toString());
                     Unparser myUnparser = new Unparser(myTree.getRoot());
-                    myUnparser.unparse();
+                    myUnparser.unparse(spacingParam);
 
                     // Delete Output.txt to make sure it's not added to, found bugs with overwriting
                     File output = new File(outputPath);
