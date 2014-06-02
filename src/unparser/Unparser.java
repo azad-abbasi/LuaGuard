@@ -494,7 +494,7 @@ public class Unparser {
         /**-----------------------------------CHUNK----------------------------------*/
         if(currentNode.getName().equals("CHUNK")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++)
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
         }
         /**-----------------------------------FUNCTION_ASSIGNMENT----------------------------------*/
         //if we encounter a Funtion ASSIGNMENT
@@ -503,7 +503,7 @@ public class Unparser {
 
 
             for (int i=0;i<currentNode.getChildCount();i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
             }
 
             finalCode.append(" end ");
@@ -511,15 +511,15 @@ public class Unparser {
         /**-----------------------------------LOCAL_ASSIGNMENT----------------------------------*/
         else if(currentNode.getName().equals("LOCAL_ASSIGNMENT")){
             finalCode.append("local ");
-            unparse(currentNode.getChild(0));
+            unparseNoSpace(currentNode.getChild(0));
             finalCode.append("=");
-            unparse(currentNode.getChild(1));
+            unparseNoSpace(currentNode.getChild(1));
             finalCode.append(" ");
         }
         /**-----------------------------------NAME_LIST----------------------------------*/
         else if(currentNode.getName().equals("NAME_LIST")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++) {
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
                 if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
                     finalCode.append(",");
             }
@@ -527,7 +527,7 @@ public class Unparser {
         /**-----------------------------------EXPR_LIST----------------------------------*/
         else if(currentNode.getName().equals("EXPR_LIST")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++) {
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
                 if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
                     finalCode.append(",");
             }
@@ -536,7 +536,7 @@ public class Unparser {
         else if(currentNode.getName().equals("PARAM_LIST")){
             finalCode.append("(");
             for(int i=0 ; i<currentNode.getChildCount() ; i++) {
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
                 if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
                     finalCode.append(",");
             }
@@ -548,24 +548,24 @@ public class Unparser {
             if(currentNode.getParent().getName().equals("CALL")){
                 finalCode.append("function ");
                 for(int i=0 ; i<currentNode.getChildCount() ; i++)
-                    unparse(currentNode.getChild(i));
+                    unparseNoSpace(currentNode.getChild(i));
                 finalCode.append(" end ");
             }
             else if(currentNode.getParent().getName().equals("return")){
                 finalCode.append("function ");
                 for(int i=0 ; i<currentNode.getChildCount() ; i++)
-                    unparse(currentNode.getChild(i));
+                    unparseNoSpace(currentNode.getChild(i));
                 finalCode.append(" end ");
             }
             else if(currentNode.getParent().getParent().getName().equals("LOCAL_ASSIGNMENT")){
                 finalCode.append("function ");
                 for(int i=0 ; i<currentNode.getChildCount() ; i++)
-                    unparse(currentNode.getChild(i));
+                    unparseNoSpace(currentNode.getChild(i));
                 finalCode.append(" end ");
             }
             else{
                 for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                    unparse(currentNode.getChild(i));
+                    unparseNoSpace(currentNode.getChild(i));
                     if(i==0)
                         finalCode.append(" ");
                 }
@@ -576,7 +576,7 @@ public class Unparser {
         else if(currentNode.getName().equals("REQUIRE")){
             finalCode.append("require ");
             for(int i=0 ; i<currentNode.getChildCount() ; i++) {
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
                 if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
                     finalCode.append(",");
             }
@@ -587,18 +587,18 @@ public class Unparser {
             if(currentNode.getChild(1).getName().equals("CALL")){
                 finalCode.append(currentNode.getChild(0).getName());
                 for(int i=1 ; i<currentNode.getChildCount() ; i++)
-                    unparse(currentNode.getChild(i));
+                    unparseNoSpace(currentNode.getChild(i));
             }
             if(currentNode.getChild(1).getName().equals("INDEX")){
                 for(int i=0 ; i<currentNode.getChildCount() ; i++)
-                    unparse(currentNode.getChild(i));
+                    unparseNoSpace(currentNode.getChild(i));
             }
         }
         /**-----------------------------------CALL----------------------------------*/
         else if(currentNode.getName().equals("CALL")){
             finalCode.append("(");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
                 if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
                     finalCode.append(",");
             }
@@ -608,7 +608,7 @@ public class Unparser {
         /**-----------------------------------VAR_LIST----------------------------------*/
         else if(currentNode.getName().equals("VAR_LIST")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
                 if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
                     finalCode.append(",");
             }
@@ -617,7 +617,7 @@ public class Unparser {
         else if(currentNode.getName().equals("LOCAL_DEC")){
             finalCode.append("local ");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
                 if(i>=1 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
                     finalCode.append(",");
             }
@@ -634,7 +634,7 @@ public class Unparser {
                         if(i==1){
                             finalCode.append(") then ");
                         }
-                        unparse(currentNode.getChild(i));
+                        unparseNoSpace(currentNode.getChild(i));
                     }
                 }
                 else{
@@ -643,28 +643,28 @@ public class Unparser {
                         if(i==1){
                             finalCode.append(") then ");
                         }
-                        unparse(currentNode.getChild(i));
+                        unparseNoSpace(currentNode.getChild(i));
                     }
                 }
             }
             else{
                 finalCode.append("else ");
                 for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                    unparse(currentNode.getChild(i));
+                    unparseNoSpace(currentNode.getChild(i));
                 }
             }
         }
         /**-----------------------------------ASSIGNMENT----------------------------------*/
         else if(currentNode.getName().equals("ASSIGNMENT")){
-            unparse(currentNode.getChild(0));
+            unparseNoSpace(currentNode.getChild(0));
             finalCode.append("=");
-            unparse(currentNode.getChild(1));
+            unparseNoSpace(currentNode.getChild(1));
             finalCode.append(" ");
         }
         /**-----------------------------------ASSIGNMENT_VAR----------------------------------*/
         else if(currentNode.getName().equals("ASSIGNMENT_VAR")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
             }
 //            finalCode.append("\n");
         }
@@ -676,20 +676,20 @@ public class Unparser {
             if(flag && currentNode.getParent().getChild(2).getName().equals("COL_CALL")){
                 finalCode.append(":");
                 for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                    unparse(currentNode.getChild(i));
+                    unparseNoSpace(currentNode.getChild(i));
                 }
             }
 
             else if(currentNode.getChild(0).getName().charAt(0)=='\''){
                 finalCode.append(".");
                 for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                    unparse(currentNode.getChild(i));
+                    unparseNoSpace(currentNode.getChild(i));
                 }
             }
             else {
                 finalCode.append("[");
                 for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                    unparse(currentNode.getChild(i));
+                    unparseNoSpace(currentNode.getChild(i));
                 }
                 finalCode.append("]");
             }
@@ -698,14 +698,14 @@ public class Unparser {
         else if(currentNode.getName().equals("UNARY_MINUS")){
             finalCode.append("-");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
             }
         }
         /**-----------------------------------COL_CALL----------------------------------*/
         else if(currentNode.getName().equals("COL_CALL")){
             finalCode.append("(");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
             }
             finalCode.append(") ");
         }
@@ -713,7 +713,7 @@ public class Unparser {
         else if(currentNode.getName().equals("TABLE")){
             finalCode.append("{");
             for(int i=0 ; i<currentNode.getChildCount() ; i++) {
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
                 if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
                     finalCode.append(",");
             }
@@ -724,22 +724,22 @@ public class Unparser {
         else if(currentNode.getName().equals("FIELD")){
             if(currentNode.getChildCount()>1) {
                 finalCode.append("[");
-                unparse(currentNode.getChild(0));
+                unparseNoSpace(currentNode.getChild(0));
                 finalCode.append("]");
                 finalCode.append("=");
-                unparse(currentNode.getChild(1));
+                unparseNoSpace(currentNode.getChild(1));
             }
             else{
-                unparse(currentNode.getChild(0));
+                unparseNoSpace(currentNode.getChild(0));
             }
         }
         /**-----------------------------------FOR_IN----------------------------------*/
         else if(currentNode.getName().equals("FOR_IN")){
             finalCode.append("for ");
-            unparse(currentNode.getChild(0));
+            unparseNoSpace(currentNode.getChild(0));
             finalCode.append(" in ");
             for(int i=1 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
             }
 
         }
@@ -747,16 +747,16 @@ public class Unparser {
         else if(currentNode.getName().equals("do")){
             finalCode.append("do ");
             for(int i=0 ; i<currentNode.getChildCount() ; i++)
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
             finalCode.append(" end ");
         }
         /**-----------------------------------for----------------------------------*/
         else if(currentNode.getName().equals("for")){
             finalCode.append("for ");
-            unparse(currentNode.getChild(0));
+            unparseNoSpace(currentNode.getChild(0));
             finalCode.append("=");
             for(int i=1 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
                 if(i<currentNode.getChildCount()-2)
                     finalCode.append(",");
                 else {
@@ -769,31 +769,31 @@ public class Unparser {
         else if(currentNode.getName().equals("goto")){
             finalCode.append("goto ");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
             }
         }
         /**-----------------------------------if----------------------------------*/
         else if(currentNode.getName().equals("if")){
             finalCode.append("if(");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
             }
             finalCode.append(" end ");
         }
         /**----------------------------------- + - ^ ----------------------------------*/
         else if(currentNode.getName().equals("+") || currentNode.getName().equals("-")|| currentNode.getName().equals("^")){
             finalCode.append("(");
-            unparse(currentNode.getChild(0));
+            unparseNoSpace(currentNode.getChild(0));
             finalCode.append(currentNode.getName());
-            unparse(currentNode.getChild(1));
+            unparseNoSpace(currentNode.getChild(1));
             finalCode.append(")");
         }
         /**----------------------------------- / * ----------------------------------*/
         else if(currentNode.getName().equals("/") || currentNode.getName().equals("*")){
 
-            unparse(currentNode.getChild(0));
+            unparseNoSpace(currentNode.getChild(0));
             finalCode.append(currentNode.getName());
-            unparse(currentNode.getChild(1));
+            unparseNoSpace(currentNode.getChild(1));
 
         }
         /**------------------------------- == < > <= >= ~= ----------------------------------*/
@@ -802,15 +802,15 @@ public class Unparser {
                 currentNode.getName().equals("<=")||currentNode.getName().equals("~=")){
 
             if(currentNode.getParent().getName().equals("while")){
-                unparse(currentNode.getChild(0));
+                unparseNoSpace(currentNode.getChild(0));
                 finalCode.append(currentNode.getName());
-                unparse(currentNode.getChild(1));
+                unparseNoSpace(currentNode.getChild(1));
                 finalCode.append(" ");
             }
             else{
-                unparse(currentNode.getChild(0));
+                unparseNoSpace(currentNode.getChild(0));
                 finalCode.append(currentNode.getName());
-                unparse(currentNode.getChild(1));
+                unparseNoSpace(currentNode.getChild(1));
 //                finalCode.append("\n");
 //                finalCode.append("");
             }
@@ -819,7 +819,7 @@ public class Unparser {
         else if(currentNode.getName().equals("return")){
             finalCode.append("return ");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
                 if(i>=0 && i<currentNode.getChildCount()-1 && currentNode.getChildCount()>1)
                     finalCode.append(",");
             }
@@ -827,44 +827,44 @@ public class Unparser {
         }
         /**-----------------------------------or----------------------------------*/
         else if(currentNode.getName().equals("or")){
-            unparse(currentNode.getChild(0));
+            unparseNoSpace(currentNode.getChild(0));
             finalCode.append(" ");
             finalCode.append(currentNode.getName());
             finalCode.append(" ");
-            unparse(currentNode.getChild(1));
+            unparseNoSpace(currentNode.getChild(1));
 //            finalCode.append(")\n");
         }
         /**-----------------------------------and----------------------------------*/
         else if(currentNode.getName().equals("and")){
-            unparse(currentNode.getChild(0));
+            unparseNoSpace(currentNode.getChild(0));
             finalCode.append(" ");
             finalCode.append(currentNode.getName());
             finalCode.append(" ");
-            unparse(currentNode.getChild(1));
+            unparseNoSpace(currentNode.getChild(1));
         }
         /**-----------------------------------while----------------------------------*/
         else if(currentNode.getName().equals("while")){
             finalCode.append("while ");
-            unparse(currentNode.getChild(0));
+            unparseNoSpace(currentNode.getChild(0));
             finalCode.append(" ");
             for(int i=1 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
             }
 //            finalCode.append("\n");
         }
         /**-----------------------------------..----------------------------------*/
         else if(currentNode.getName().equals("..")){
-            unparse(currentNode.getChild(0));
+            unparseNoSpace(currentNode.getChild(0));
             finalCode.append(currentNode.getName());
-            unparse(currentNode.getChild(1));
+            unparseNoSpace(currentNode.getChild(1));
 //
         }
         /**-----------------------------------repeat----------------------------------*/
         else if(currentNode.getName().equals("repeat")){
             finalCode.append("repeat ");
-            unparse(currentNode.getChild(0));
+            unparseNoSpace(currentNode.getChild(0));
             finalCode.append("until ");
-            unparse(currentNode.getChild(1));
+            unparseNoSpace(currentNode.getChild(1));
             finalCode.append(" ");
 
         }
@@ -872,7 +872,7 @@ public class Unparser {
         else if(currentNode.getName().equals("not")){
             finalCode.append("not ");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
             }
 
         }
@@ -880,14 +880,14 @@ public class Unparser {
         else if(currentNode.getName().equals("#")){
             finalCode.append("#");
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
             }
 
         }
         /**-----------------------------------True----------------------------------*/
         else if(currentNode.getName().equals("True")){
             for(int i=0 ; i<currentNode.getChildCount() ; i++){
-                unparse(currentNode.getChild(i));
+                unparseNoSpace(currentNode.getChild(i));
             }
         }
         /**-----------------------------------break----------------------------------*/

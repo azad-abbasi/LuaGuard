@@ -103,6 +103,10 @@ public class VocabObfuscator {
                 }
 
             }
+            int count = currentNode.getChildCount();
+            for(int i=0;i<count ; i++){
+                process(currentNode.getChild(i));
+            }
 
         }
         else if(currentNode.getName().equals("CALL")){
