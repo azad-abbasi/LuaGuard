@@ -97,18 +97,23 @@ public class VocabObfuscator {
         }
 
         else if(currentNode.getName().equals("VAR")){
-
-                for (int i = 0; i < currentNode.getChildCount(); i++) {
-                    if (recVars.containsKey(currentNode.getChild(i).getName())) {
-                        currentNode.getChild(i).setName(recVars.get(currentNode.getChild(i).getName()));
-                    } else {
-                        String randomvVar = randomVar();
-                        recVars.put(currentNode.getChild(i).getName(), randomvVar);
-                        currentNode.getChild(i).setName(randomvVar);
-                    }
+            if(currentNode.getChild(1).getName().equals("CALL")){
+                if(recFunc.containsKey(currentNode.getChild(0).getName())){
+                    currentNode.getChild(0).setName(recFunc.get(currentNode.getChild(0).getName()));
                 }
 
+            }
+
         }
+        else if(currentNode.getName().equals("CALL")){
+            int count = currentNode.getChildCount();
+            for(int i=0;i<count ; i++){
+                if (recVars.containsKey(currentNode.getChild(i).getName())) {
+                    currentNode.getChild(i).setName(recVars.get(currentNode.getChild(i).getName()));
+                }
+            }
+        }
+
 
         else{
             int count = currentNode.getChildCount();
