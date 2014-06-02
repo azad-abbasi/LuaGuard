@@ -109,7 +109,8 @@ public class MainClass {
 //
 
             TreeConstructor t3 = new TreeConstructor("output.txt");
-            VocabObfuscator vo = new VocabObfuscator(t3.getRoot());
+            //             /* Key words{ MinVocab,Reverse,XOR,ILOveOU,Boss,Confusing} = obfuName */
+            VocabObfuscator vo = new VocabObfuscator(t3.getRoot(), "Confusing");
             vo.obfuscate();
             InputReader.printToFile("output.txt",t3.toString());
 

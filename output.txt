@@ -1,10 +1,10 @@
  ( CHUNK
 	 ( LOCAL_ASSIGNMENT
-		 ( NAME_LIST iiliiulziljjj iiliijjjdciml iiliijiljiljg iiliigjjjiljo )
+		 ( NAME_LIST iiliiniiiljdj iiliiiwjpilji iiliilipiiljj iiliiljjvtuoi )
 		 ( EXPR_LIST 2 3 4 5 )
 	 )
 	 ( ASSIGNMENT
-		 ( VAR_LIST iiliiulziljjj )
+		 ( VAR_LIST iiliiniiiljdj )
 		 ( EXPR_LIST 2 )
 	 )
  )
