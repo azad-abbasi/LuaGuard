@@ -1,60 +1,26 @@
  ( CHUNK
 	 ( ASSIGNMENT
-		 ( VAR_LIST iiliizjijiiyjjr )
-		 ( EXPR_LIST
-			 ( -
-				 ( +
-					 ( * 790 255 )
-					 ( 184922 )
-				 )
-				 ( / 2034825 406965 )
-			 )
-		 )
+		 ( VAR_LIST iiliimqjlljji )
+		 ( EXPR_LIST 5 )
 	 )
-	 ( if
-		 ( CONDITION
-			 ( == iiliizjijiiyjjr 386367 )
-			 ( if
-				 ( CONDITION
-					 ( == a 2 )
-					 ( CHUNK
-						 ( VAR print
-							 ( CALL a )
-						 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST iiliilihjwjjj )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST iiliiilieiplj iiliiiiiiiijj iiliipiljiina iiliiniiiwilo iiliitbofnjjj )
+				 ( CHUNK
+					 ( ASSIGNMENT
+						 ( VAR_LIST iiliiilllcsji )
+						 ( EXPR_LIST 2 )
 					 )
 				 )
 			 )
 		 )
 	 )
-	 ( ASSIGNMENT
-		 ( VAR_LIST iiliijjljikiili )
-		 ( EXPR_LIST
-			 ( -
-				 ( +
-					 ( * 723 403 )
-					 ( 195390 )
-				 )
-				 ( / 4170345 834069 )
-			 )
-		 )
+	 ( VAR iiliilihjwjjj
+		 ( CALL 3 iiliillijtaaj iiliililiifjy iiliimljiqsai iiliijlviilis )
 	 )
-	 ( while
-		 ( == iiliijjljikiili 486754 )
-		 ( do
-			 ( CHUNK
-				 ( while
-					 ( == 2 3 )
-					 ( do
-						 ( CHUNK
-							 ( ASSIGNMENT
-								 ( VAR_LIST iiliijliljwin )
-								 ( EXPR_LIST 3 )
-							 )
-						 )
-					 )
-				 )
-				 ( break )
-			 )
-		 )
+	 ( VAR print
+		 ( CALL iiliiilllcsji )
 	 )
  )

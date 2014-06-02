@@ -1,2 +1,6 @@
-if(a==2) then print(a) end
-while(2==3) do s=3 end
+c = 5
+function a(c)
+c=2
+end
+a(3)
+print(c)

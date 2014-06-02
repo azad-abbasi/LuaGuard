@@ -89,7 +89,7 @@ public class AreejMain {
         TreeConstructor myTree = new TreeConstructor(args[2]);
         InputReader.printToFile(args[2],myTree.toString());
         Unparser myUnparser = new Unparser(myTree.getRoot());
-        myUnparser.unparse();
+        myUnparser.unparse("Spacing");
         System.out.println(myUnparser.getCode());
         InputReader.printToFile(args[3],myUnparser.getCode());
 
