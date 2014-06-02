@@ -607,6 +607,7 @@ public class Gui extends JFrame{
             String recObfs = recentObfuscated.poll();
             File rec = new File(recObfs);
             recentUndo = new File(recObfs);
+            
             rec.delete();
             clearEditorsDir();
         }
@@ -690,8 +691,6 @@ public class Gui extends JFrame{
         vocabComboBox.setEnabled(false);
         importFolder.setEnabled(false);
         importLuaFile.setEnabled(false);
-        //undo.setEnabled(false);
-        //redo.setEnabled(false);
         delete.setEnabled(false);
         vocabRadioButton.setSelected(false);
         spacingRadioButton.setSelected(false);
