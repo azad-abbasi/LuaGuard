@@ -121,6 +121,9 @@ public class VocabObfuscator {
                     currentNode.getChild(i).setName(recVars.get(currentNode.getChild(i).getName()));
                 }
             }
+            for(int i=0;i<count ; i++){
+                process(currentNode.getChild(i));
+            }
         }
 
 

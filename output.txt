@@ -1,10 +1,83 @@
  ( CHUNK
-	 ( LOCAL_ASSIGNMENT
-		 ( NAME_LIST iiliiniiiljdj iiliiiwjpilji iiliilipiiljj iiliiljjvtuoi )
-		 ( EXPR_LIST 2 3 4 5 )
-	 )
 	 ( ASSIGNMENT
-		 ( VAR_LIST iiliiniiiljdj )
-		 ( EXPR_LIST 2 )
+		 ( VAR_LIST iiliithliailj )
+		 ( EXPR_LIST 5 )
+	 )
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST iiliiljnijjij )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST iiliijiflnill iiliiizjiiiij iiliiiillilli )
+				 ( CHUNK
+					 ( ASSIGNMENT
+						 ( VAR_LIST iiliiciiiiiji )
+						 ( EXPR_LIST
+							 ( +
+								 ( -
+									 ( * iiliiizjiiiij 2 )
+									 ( iiliijiflnill )
+								 )
+								 ( 40 )
+							 )
+						 )
+					 )
+					 ( ASSIGNMENT
+						 ( VAR_LIST iiliiiiliilii )
+						 ( EXPR_LIST
+							 ( -
+								 ( +
+									 ( * 17 612 )
+									 ( 451693 )
+								 )
+								 ( / 3918560 783712 )
+							 )
+						 )
+					 )
+					 ( while
+						 ( == iiliiiiliilii 462092 )
+						 ( do
+							 ( CHUNK
+								 ( while
+									 ( > iiliiciiiiiji 1 )
+									 ( do
+										 ( CHUNK
+											 ( ASSIGNMENT
+												 ( VAR_LIST iiliijiflnill )
+												 ( EXPR_LIST
+													 ( + iiliijiflnill 1 )
+												 )
+											 )
+											 ( ASSIGNMENT
+												 ( VAR_LIST iiliiciiiiiji )
+												 ( EXPR_LIST
+													 ( - iiliiciiiiiji 1 )
+												 )
+											 )
+										 )
+									 )
+								 )
+								 ( break )
+							 )
+						 )
+					 )
+					 ( return iiliijiflnill )
+				 )
+			 )
+		 )
+	 )
+	 ( LOCAL_ASSIGNMENT
+		 ( NAME_LIST iiliijiflnill )
+		 ( EXPR_LIST
+			 ( + iiliithliailj
+				 ( VAR iiliiljnijjij
+					 ( CALL 2 20 iiliiilniilia )
+				 )
+			 )
+		 )
+	 )
+	 ( VAR print
+		 ( CALL
+			 ( + iiliijiflnill iiliithliailj )
+		 )
 	 )
  )
