@@ -189,7 +189,7 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="No Spacing"/>
+                  <text value="Spacing"/>
                 </properties>
               </component>
               <component id="5b61" class="javax.swing.JRadioButton" binding="junkDataRadioButton" default-binding="true">

@@ -79,6 +79,7 @@ public class Gui extends JFrame{
     private FileTree projectDirectoryTree;
     private Queue<String> recentObfuscated;
     private File recentUndo;
+    private String recentObfsText;
 
     public Gui() {
         super("LuaGuard");
@@ -124,11 +125,12 @@ public class Gui extends JFrame{
         isProject = false;
         obfuscateBtnClicked = false;
         recentObfuscated = new LinkedList<String>();
+        recentObfsText = "";
 
         // Init status pane with welcome/info message
         statusTextPane.setText("Welcome to LuaGuard!\n" +
-                "Create/open a project to begin\n" +
-                "For further help see our user manual at...\n");
+                "Create/open a project to begin!\n" +
+                "For further help see our user manual on Assembla!\n");
 
         // Set Layout for FileTree
         projectDirectoryPanel.setLayout(new BorderLayout());
@@ -616,14 +618,37 @@ public class Gui extends JFrame{
             File rec = new File(recObfs);
             recentUndo = new File(recObfs);
 
+            try {
+                FileInputStream f = new FileInputStream(recentUndo);
+                BufferedReader br = new BufferedReader(new InputStreamReader(f));
+                String line = "";
+                while ((line = br.readLine()) != null) {
+                    recentObfsText += line + "\n";
+                }
+                br.close();
+            } catch (FileNotFoundException e) {
+                updateStatusPanel("Could not find undo File!");
+            } catch (IOException e) {
+                updateStatusPanel("Failed to read in file before undo!");
+            }
             rec.delete();
-            clearEditorsDir();
+            clearEditors();
+            updateProjectDirFileTree();
         }
     }
 
     public void redo() {
         if (recentUndo != null)
-            System.out.println(recentUndo.getAbsolutePath());
+            try {
+                recentUndo.createNewFile();
+                FileWriter fw =  new FileWriter(recentUndo.getAbsoluteFile());
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(recentObfsText);
+                bw.close();
+                updateProjectDirFileTree();
+            } catch (IOException e) {
+                updateStatusPanel("Failed to Redo recent undo file");
+            }
     }
 
     public void updateProjectDirFileTree() {
@@ -689,6 +714,15 @@ public class Gui extends JFrame{
         projectDirectoryPanel.updateUI();
     }
 
+    public void clearEditors() {
+        luaEditorPane.setText("");
+        Document doc = luaEditorPane.getDocument();
+        doc.putProperty(Document.StreamDescriptionProperty, null);
+        obfuscatedEditorPane.setText("");
+        doc = obfuscatedEditorPane.getDocument();
+        doc.putProperty(Document.StreamDescriptionProperty, null);
+    }
+
     public void resetLuaGuard() {
         clearEditorsDir();
         fileChooser = new FileDialog(this);
@@ -705,8 +739,8 @@ public class Gui extends JFrame{
         junkDataRadioButton.setSelected(false);
         parameterRadioButton.setSelected(false);
         statusTextPane.setText("Welcome to LuaGuard!\n" +
-                "Create/open a project to begin\n" +
-                "For further help see our user manual at...\n");
+                "Create/open a project to begin!\n" +
+                "For further help see our user manual on Assembla!\n");
 
     }
 
