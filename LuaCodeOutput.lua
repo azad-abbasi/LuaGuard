@@ -1,1 +1,14 @@
-iiliiiKQiijip=5 function iiliildRXuAhj(iiliijililMIG,iiliijFjiWizi,iiliijitutMll,iiliiiiAlHZPQ)  iiliiijjiiDji=((iiliijFjiWizi*2-iiliijililMIG)+40) iiliijjRijiii=((459*136+409201)-3435175/687035) while iiliijjRijiii==471620  do while iiliiijjiiDji>1  do iiliijililMIG=(iiliijililMIG+1) iiliiijjiiDji=(iiliiijjiiDji-1)  end break  end return iiliijililMIG  end local iiliijililMIG=(iiliiiKQiijip+iiliildRXuAhj(2,20,iiliiIpZiYjYj,iiliizijijQii) ) print((iiliijililMIG+iiliiiKQiijip)) 
+a=5
+function b(s,t) 
+d=((t*2-s)+40)
+while d>1
+
+do
+s=(s+1)
+d=(d-1)
+
+end
+return s 
+end
+local s=(a+b(2,20) )
+print((s+a)) 

@@ -1,56 +1,56 @@
  ( CHUNK
 	 ( ASSIGNMENT
-		 ( VAR_LIST iiliiiKQiijip )
+		 ( VAR_LIST a )
 		 ( EXPR_LIST 5 )
 	 )
 	 ( FUNCTION_ASSIGNMENT
-		 ( VAR_LIST iiliildRXuAhj )
+		 ( VAR_LIST b )
 		 ( EXPR_LIST
 			 ( FUNCTION
-				 ( PARAM_LIST iiliijililMIG iiliijFjiWizi iiliijitutMll iiliiiiAlHZPQ )
+				 ( PARAM_LIST s t iiliimPilltji iiliifGiliiOi iiliijheiiliz iiliiGjgijSji )
 				 ( CHUNK
 					 ( ASSIGNMENT
-						 ( VAR_LIST iiliiijjiiDji )
+						 ( VAR_LIST d )
 						 ( EXPR_LIST
 							 ( +
 								 ( -
-									 ( * iiliijFjiWizi 2 )
-									 ( iiliijililMIG )
+									 ( * t 2 )
+									 ( s )
 								 )
 								 ( 40 )
 							 )
 						 )
 					 )
 					 ( ASSIGNMENT
-						 ( VAR_LIST iiliijjRijiii )
+						 ( VAR_LIST iiliiiOiijIibiw )
 						 ( EXPR_LIST
 							 ( -
 								 ( +
-									 ( * 459 136 )
-									 ( 409201 )
+									 ( * 422 44 )
+									 ( 384866 )
 								 )
-								 ( / 3435175 687035 )
+								 ( / 2371800 474360 )
 							 )
 						 )
 					 )
 					 ( while
-						 ( == iiliijjRijiii 471620 )
+						 ( == iiliiiOiijIibiw 403429 )
 						 ( do
 							 ( CHUNK
 								 ( while
-									 ( > iiliiijjiiDji 1 )
+									 ( > d 1 )
 									 ( do
 										 ( CHUNK
 											 ( ASSIGNMENT
-												 ( VAR_LIST iiliijililMIG )
+												 ( VAR_LIST s )
 												 ( EXPR_LIST
-													 ( + iiliijililMIG 1 )
+													 ( + s 1 )
 												 )
 											 )
 											 ( ASSIGNMENT
-												 ( VAR_LIST iiliiijjiiDji )
+												 ( VAR_LIST d )
 												 ( EXPR_LIST
-													 ( - iiliiijjiiDji 1 )
+													 ( - d 1 )
 												 )
 											 )
 										 )
@@ -60,24 +60,24 @@
 							 )
 						 )
 					 )
-					 ( return iiliijililMIG )
+					 ( return s )
 				 )
 			 )
 		 )
 	 )
 	 ( LOCAL_ASSIGNMENT
-		 ( NAME_LIST iiliijililMIG )
+		 ( NAME_LIST s )
 		 ( EXPR_LIST
-			 ( + iiliiiKQiijip
-				 ( VAR iiliildRXuAhj
-					 ( CALL 2 20 iiliiIpZiYjYj iiliizijijQii )
+			 ( + a
+				 ( VAR b
+					 ( CALL 2 20 iiliiSUijljlC iiliiklOfiiev iiliibllkMrjT iiliilwiiisiy )
 				 )
 			 )
 		 )
 	 )
 	 ( VAR print
 		 ( CALL
-			 ( + iiliijililMIG iiliiiKQiijip )
+			 ( + s a )
 		 )
 	 )
  )

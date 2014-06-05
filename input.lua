@@ -1,11 +1,1 @@
-a = 5
-function b(s,t)
-d = t*2-s + 40
-while d>1 do
-s = s+1
-d = d-1
-end
-return s
-end
-local s = a + b(2,20)
-print(s+a)
+a=5 function b(s,t,iiliimPilltji,iiliifGiliiOi,iiliijheiiliz,iiliiGjgijSji)  d=((t*2-s)+40) iiliiiOiijIibiw=((422*44+384866)-2371800/474360) while iiliiiOiijIibiw==403429  do while d>1  do s=(s+1) d=(d-1)  end break  end return s  end local s=(a+b(2,20,iiliiSUijljlC,iiliiklOfiiev,iiliibllkMrjT,iiliilwiiisiy) ) print((s+a)) 
