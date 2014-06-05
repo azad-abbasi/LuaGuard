@@ -77,7 +77,7 @@ public class MainClass {
 //            System.out.println(treeString);
 
             //static method printToFile prints the tree into a file.
-            InputReader.printToFile("output.txt", treeStructure);
+            InputReader.printToFile("ast.txt", treeStructure);
             //control flag
             boolean flag = true;
             if (args.length >= 3) {
@@ -96,10 +96,10 @@ public class MainClass {
                             listofvocab.add("Confusing");
 
                             if (listofvocab.contains(args[args.length - 3])) {
-                                TreeConstructor t3 = new TreeConstructor("output.txt");
+                                TreeConstructor t3 = new TreeConstructor("ast.txt");
                                 VocabObfuscator vo = new VocabObfuscator(t3.getRoot(), args[args.length - 3]);
                                 vo.obfuscate();
-                                InputReader.printToFile("output.txt", t3.toString());
+                                InputReader.printToFile("ast.txt", t3.toString());
                             } else {
                                 System.out.println("No such option for vocab obfuscation");
                                 System.out.println("Try one of these options : ");
@@ -109,18 +109,18 @@ public class MainClass {
                         }
                         if (args[i].contains("p")) {
                             //if we have the parameter adding option:
-                            TreeConstructor t2 = new TreeConstructor("output.txt");
+                            TreeConstructor t2 = new TreeConstructor("ast.txt");
                             ParameterObfuscator o = new ParameterObfuscator(t2.getRoot());
                             //call the Function
                             o.addParams();
-                            InputReader.printToFile("output.txt", t2.toString());
+                            InputReader.printToFile("ast.txt", t2.toString());
                         }
                         if (args[i].contains("c")) {
-                            TreeConstructor t = new TreeConstructor("output.txt");
+                            TreeConstructor t = new TreeConstructor("ast.txt");
                             ControlFlowObfuscator cfo = new ControlFlowObfuscator(t.getRoot());
                             //call the Function
                             cfo.CFOObfuscate();
-                            InputReader.printToFile("output.txt", t.toString());
+                            InputReader.printToFile("ast.txt", t.toString());
                         }
                         if (args[i].contains("s")) {
                             flag = false;
@@ -151,36 +151,30 @@ public class MainClass {
                     }
                 }
 
-
-
                 /**
                  * THE ARGUMENT HANDLER ENDS HERE
                  */
                 //------------------------------------------------------------------------
 
-                /**
-                 * The OBFUSCATOR STARTS HERE
-                 */
-
             }
             if (flag) {
-                TreeConstructor myTree = new TreeConstructor("output.txt");
-                InputReader.printToFile("output.txt", myTree.toString());
+                TreeConstructor myTree = new TreeConstructor("ast.txt");
+                InputReader.printToFile("ast.txt", myTree.toString());
                 Unparser myUnparser = new Unparser(myTree.getRoot());
                 //if you want to unparse with spacing and new lines , pass "Spacing" to the unparse mehtod.
                 // other wise, pass "noSpace";
                 myUnparser.unparse("Spacing");
                 System.out.println(myUnparser.getCode());
-                InputReader.printToFile(args[1], myUnparser.getCode());
+                InputReader.printToFile(args[args.length-1], myUnparser.getCode());
             } else {
-                TreeConstructor myTree = new TreeConstructor("output.txt");
-                InputReader.printToFile("output.txt", myTree.toString());
+                TreeConstructor myTree = new TreeConstructor("ast.txt");
+                InputReader.printToFile("ast.txt", myTree.toString());
                 Unparser myUnparser = new Unparser(myTree.getRoot());
                 //if you want to unparse with spacing and new lines , pass "Spacing" to the unparse mehtod.
                 // other wise, pass "noSpace";
                 myUnparser.unparse("noSpace");
                 System.out.println(myUnparser.getCode());
-                InputReader.printToFile(args[1], myUnparser.getCode());
+                InputReader.printToFile(args[args.length-1], myUnparser.getCode());
             }
         }
 
