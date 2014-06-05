@@ -1,0 +1,27 @@
+ ( CHUNK
+	 ( FUNCTION_ASSIGNMENT
+		 ( VAR_LIST fwrite )
+		 ( EXPR_LIST
+			 ( FUNCTION
+				 ( PARAM_LIST fmt ... )
+				 ( CHUNK
+					 ( return
+						 ( VAR io
+							 ( INDEX  ' write '  )
+							 ( CALL
+								 ( VAR string
+									 ( INDEX  ' format '  )
+									 ( CALL fmt
+										 ( VAR unpack
+											 ( CALL arg )
+										 )
+									 )
+								 )
+							 )
+						 )
+					 )
+				 )
+			 )
+		 )
+	 )
+ )
